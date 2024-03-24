@@ -4,6 +4,7 @@ title: Who we are
 image: assets/images/pic01.jpg
 description: HumemAI
 nav-menu: true
+order: 2
 ---
 
 <!-- Main -->

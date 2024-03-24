@@ -4,6 +4,7 @@ layout: landing
 description: What HumemAI means to you
 image: assets/images/pic07.jpg
 nav-menu: true
+order: 3
 ---
 
 <!-- Main -->
