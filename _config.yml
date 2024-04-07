@@ -2,7 +2,8 @@
 title: HumemAI
 subtitle: A Machine With Human-Like Memory Systems
 email: info@humem.ai
-description: Empower yourself with HumemAI.<br /> open-sourced for everyone.
+# description: Empower yourself with HumemAI.<br /> open-sourced for everyone.
+description: Currently under construction. <br />Check out https://taewoon.kim/projects/human-memory/
 baseurl: "/forty-jekyll-theme" # the subpath of your site, e.g. /blog
 url: https://humem.ai # the base hostname & protocol for your site
 author: Taewoon Kim
