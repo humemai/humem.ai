@@ -51,7 +51,7 @@ Memory Systems", a.k.a. HumemAI** [https://humem.ai/](https://humem.ai/).
 
 ## The human memory system
 
-![alt text](/assets/img/projects/human-memory/memory-hierarchy.png)
+![alt text](/assets/img/posts/2024-03-01/memory-hierarchy.png)
 
 Let's first try to understand how human memory systems work. Above is the human memory
 hierarchy. At the heart of this system are two critical components: short-term (or
@@ -119,7 +119,7 @@ structured and detailed information relevant to the user's query. Below is an ex
 a knowledge graph that I obtained from [a blog
 post](https://www.semrush.com/blog/knowledge-graph/) (Pavlik, V. 2023).
 
-![alt text](/assets/img/projects/human-memory/kg-example.png)
+![alt text](/assets/img/posts/2024-03-01/kg-example.png)
 
 Representing human-like memory systems with knowledge graphs comes with a lot of
 benefits. First, we can take advantage of the open knowledge graphs out there that
@@ -218,7 +218,7 @@ In HumemAI, these data will be "encoded" as short-term memory. I'm not talking a
 something like JPEG here. What I mean is that they will be encoded as a knowledge graph
 and be stored in the agent's short-term memory system. Below is an example.
 
-![alt text](/assets/img/projects/human-memory/image2kg.png)
+![alt text](/assets/img/posts/2024-03-01/image2kg.png)
 
 Both the entities, i.e., Male, Taewoon, Phone, and Living room, and relations, i.e.,
 subclass of, holds, and located at, can have key-value properties, i.e., _{age: 34}_ and
