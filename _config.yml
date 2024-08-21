@@ -147,18 +147,17 @@ navbar-var-length: false
 # footer-link-col: "#404040"
 # footer-hover-col: "#0085A1"
 
-page-col: "#F8F9FA"         # Lightened background to contrast well with the main color
-text-col: "#333333"          # Darker text for better readability
-link-col: "#1a5f7a"          # Using the main color for links
-hover-col: "#154b5f"         # A darker shade of the main color for hover effects
-navbar-col: "#E0E7EB"        # Soft, light grey to work with the page background
-navbar-text-col: "#1a5f7a"   # Main color for navbar text for consistency
-navbar-border-col: "#C5CED3"  # A subtle grey for the navbar border
-footer-col: "#E0E7EB"        # Matching the navbar for consistency
-footer-text-col: "#555555"    # Medium grey for footer text
-footer-link-col: "#1a5f7a"    # Main color for footer links
-footer-hover-col: "#154b5f"   # Darker shade for hover effects in the footer
-
+page-col: "#F8F9FA" # Lightened background to contrast well with the main color
+text-col: "#333333" # Darker text for better readability
+link-col: "#1a5f7a" # Using the main color for links
+hover-col: "#154b5f" # A darker shade of the main color for hover effects
+navbar-col: "#E0E7EB" # Soft, light grey to work with the page background
+navbar-text-col: "#1a5f7a" # Main color for navbar text for consistency
+navbar-border-col: "#C5CED3" # A subtle grey for the navbar border
+footer-col: "#E0E7EB" # Matching the navbar for consistency
+footer-text-col: "#555555" # Medium grey for footer text
+footer-link-col: "#1a5f7a" # Main color for footer links
+footer-hover-col: "#154b5f" # Darker shade for hover effects in the footer
 
 # Alternatively, the navbar, footer, and page background can be set to an image
 # instead of colour
@@ -184,6 +183,7 @@ footer-hover-col: "#154b5f"   # Darker shade for hover effects in the footer
 
 # Fill in your Google Analytics tag ID (or "Measurement ID") to track your website usage
 #gtag: "G-XXXXXXXXXX"
+gtag: "G-78EWHHCV9Z"
 
 # Fill in your Cloudflare Analytics beacon token to track your website using Cloudflare Analytics
 #cloudflare_analytics: ""
