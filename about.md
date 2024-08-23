@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "HumemAI: A Machine With Human-Like Memory Systems"
-subtitle: A machine that can think and talk like us.
-cover-img: /assets/img/posts/2024-03-01/human-memory.png
-thumbnail-img: /assets/img/posts/2024-03-01/human-memory.png
+title: "Designing an AI agent that can think and talk like us"
+subtitle: Can we make AI conscious?
+cover-img: /assets/img/about/human-memory.png
+thumbnail-img: /assets/img/about/human-memory.png
 tags: [AI, human memory, knowledge graph, machine learning, deep learning]
 author: Taewoon Kim
 comments: true
@@ -33,7 +33,7 @@ comments: true
   - [Stage 3: Production ready in the digital world](#stage-3-production-ready-in-the-digital-world)
   - [Stage 4: Production ready in the real world](#stage-4-production-ready-in-the-real-world)
 - [Conclusion](#conclusion)
-- [Cite this project](#cite-this-project)
+- [Cite this article](#cite-this-article)
 - [References](#references)
 
 ## Motivation
@@ -51,7 +51,7 @@ Memory Systems", a.k.a. HumemAI** [https://humem.ai/](https://humem.ai/).
 
 ## The human memory system
 
-![alt text](/assets/img/posts/2024-03-01/memory-hierarchy.png)
+![alt text](/assets/img/about/memory-hierarchy.png)
 
 Let's first try to understand how human memory systems work. Above is the human memory
 hierarchy. At the heart of this system are two critical components: short-term (or
@@ -119,7 +119,7 @@ structured and detailed information relevant to the user's query. Below is an ex
 a knowledge graph that I obtained from [a blog
 post](https://www.semrush.com/blog/knowledge-graph/) (Pavlik, V. 2023).
 
-![alt text](/assets/img/posts/2024-03-01/kg-example.png)
+![alt text](/assets/img/about/kg-example.png)
 
 Representing human-like memory systems with knowledge graphs comes with a lot of
 benefits. First, we can take advantage of the open knowledge graphs out there that
@@ -218,7 +218,7 @@ In HumemAI, these data will be "encoded" as short-term memory. I'm not talking a
 something like JPEG here. What I mean is that they will be encoded as a knowledge graph
 and be stored in the agent's short-term memory system. Below is an example.
 
-![alt text](/assets/img/posts/2024-03-01/image2kg.png)
+![alt text](/assets/img/about/image2kg.png)
 
 Both the entities, i.e., Male, Taewoon, Phone, and Living room, and relations, i.e.,
 subclass of, holds, and located at, can have key-value properties, i.e., _{age: 34}_ and
@@ -417,7 +417,7 @@ efficient interactions. As we continue to refine and enhance HumemAI, it remains
 testament to the power of interdisciplinary research and the boundless possibilities of
 AI when modeled after the intricate workings of the human mind.
 
-## Cite this project
+## Cite this article
 
 ```bibtex
 @article{kim2024humemai,
@@ -426,7 +426,7 @@ AI when modeled after the intricate workings of the human mind.
   journal = "https://humem.ai",
   year    = "2024",
   month   = "Mar",
-  url     = "https://humem.ai/2024-03-01-human-memory/"
+  url     = "https://humem.ai/about/"
 }
 ```
 
