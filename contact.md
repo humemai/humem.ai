@@ -9,7 +9,7 @@ author: Taewoon Kim
 # comments: true
 ---
 
-<i class="fas fa-envelope"></i> **Email:**[info@humem.ai](mailto:info@humem.ai)
+<i class="fas fa-envelope"></i> **Email:** [info@humem.ai](mailto:info@humem.ai)
 <br>
 <i class="fab fa-linkedin"></i> **LinkedIn:** [humemai](https://linkedin.com/company/humemai)
 <br>
