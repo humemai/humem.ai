@@ -33,4 +33,4 @@ more human-like AI, capable of understanding and interacting with the world in a
 more intuitive way.
 
 For a detailed exploration of the concepts and development process behind HumemAI, [read
-the full article](https://humem.ai2024-03-01-design-humeai/).
+the full article](https://humem.ai/2024-03-01-design-humeai/).
