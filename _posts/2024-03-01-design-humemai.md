@@ -426,7 +426,7 @@ AI when modeled after the intricate workings of the human mind.
   journal = "https://humem.ai",
   year    = "2024",
   month   = "Mar",
-  url     = "https://humem.ai/about/"
+  url     = "https://humem.ai/2024-03-01-design-humemai/"
 }
 ```
 
