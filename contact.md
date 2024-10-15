@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Contact"
-subtitle: "We offer B2B services that include AI/ML model development and consulting"
+subtitle: "We offer B2B services, including full stack AI / ML model development and consulting"
 # cover-img: /assets/img/about/human-memory.png
 # thumbnail-img: /assets/img/about/human-memory.png
 tags: [contact]
