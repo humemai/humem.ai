@@ -2,8 +2,8 @@
 layout: page
 title: "HumemAI: Building an AI with a Human-Like Memory"
 # subtitle: Can we make AI conscious?
-# cover-img: /assets/img/about/human-memory.png
-# thumbnail-img: /assets/img/about/human-memory.png
+cover-img: /assets/img/about/humemai-no-text.svg
+thumbnail-img: /assets/img/about/humemai-no-text.svg
 # tags: [AI, human memory, knowledge graph, machine learning, deep learning]
 author: Taewoon Kim
 # comments: true

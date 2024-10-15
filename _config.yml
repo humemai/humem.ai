@@ -21,7 +21,7 @@ author: HumemAI
 
 navbar-links:
   About: about
-  Blog: blog
+  # Blog: blog
   Playground: playground
   Contact: contact
   # Contact: contact
