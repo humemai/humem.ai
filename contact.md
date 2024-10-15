@@ -1,13 +1,14 @@
 ---
 layout: page
 title: "Contact"
-subtitle: "Feel free to reach out to us"
+subtitle: "We offer B2B services that include AI/ML model development and consulting"
 # cover-img: /assets/img/about/human-memory.png
 # thumbnail-img: /assets/img/about/human-memory.png
 tags: [contact]
 author: Taewoon Kim
 # comments: true
 ---
+
 
 <i class="fas fa-envelope"></i> **Email:** [info@humem.ai](mailto:info@humem.ai)
 <br>
