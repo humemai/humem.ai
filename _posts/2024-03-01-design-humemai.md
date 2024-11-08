@@ -36,6 +36,8 @@ comments: true
 - [Cite this article](#cite-this-article)
 - [References](#references)
 
+![](/assets/img/humemai-diagram.svg)
+
 ## Motivation
 
 I've always been fascinated with intelligent machines. They have the power to augment

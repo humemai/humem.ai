@@ -9,6 +9,8 @@ author: Taewoon Kim
 # comments: true
 ---
 
+![](/assets/img/humemai-diagram.svg)
+
 Current AI systems like ChatGPT are impressive, but they lack a crucial element: memory.
 Each conversation starts fresh, with no recollection of past interactions. To tackle
 this limitation, the HumemAI project was initiated in 2024, born from [Taewoon
