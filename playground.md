@@ -5,5 +5,4 @@ subtitle: Let's see what HumemAI can do
 comments: true
 ---
 
-I have some ideas how you can play around with the HumemAI agents. It's a work in
-progress. Stay tuned!
+[Try PromptAgent!](https://github.com/humemai/humemai/blob/main/examples/janus-graph-parse-text/example-janus-agent.ipynb)
