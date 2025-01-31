@@ -31,7 +31,7 @@ working to build AI with human-like memory systems. -->
 </div>
 
 **Chief Scientific Officer (CSO)**  
-[Website](https://liacs.leidenuniv.nl/~meermtvander/) | [GitHub](![alt text](image.png))
+[Website](https://liacs.leidenuniv.nl/~meermtvander/) | [GitHub](https://github.com/m0re4u)
 | [LinkedIn](https://linkedin.com/in/michiel-meer) | [X](https://twitter.com/mtichiel) |
 [email](mailto:m.t.van.der.meer@liacs.leidenuniv.nl)
 
