@@ -33,7 +33,7 @@ working to build AI with human-like memory systems. -->
 **Chief Scientific Officer (CSO)**  
 [Website](https://liacs.leidenuniv.nl/~meermtvander/) | [GitHub](https://github.com/m0re4u)
 | [LinkedIn](https://linkedin.com/in/michiel-meer) | [X](https://twitter.com/mtichiel) |
-[email](mailto:m.t.van.der.meer@liacs.leidenuniv.nl)
+[email](mailto:michiel@humem.ai)
 
 ---
 
@@ -45,6 +45,6 @@ working to build AI with human-like memory systems. -->
 
 **Creative Director**  
 [LinkedIn](https://www.linkedin.com/in/iulia-stefania-dascalu) |
-[email](mailto:iuli10dascalu@gmail.com)
+[email](mailto:iulia@humem.ai)
 
 ---
