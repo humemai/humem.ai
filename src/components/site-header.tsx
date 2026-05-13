@@ -10,13 +10,19 @@ import styles from "./site-header.module.css";
 export function SiteHeader() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [openDesktopDropdown, setOpenDesktopDropdown] = useState<string | null>(null);
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const closeDesktopDropdown = () => {
+    setOpenDesktopDropdown(null);
+  };
+
   useEffect(() => {
     closeMobileMenu();
+    closeDesktopDropdown();
   }, [pathname]);
 
   const isActive = (href?: string) => {
@@ -48,14 +54,33 @@ export function SiteHeader() {
             {navigationItems.map((item) => (
               <li className={styles.desktopItem} key={item.label}>
                 {item.items ? (
-                  <div className={`${styles.dropdown} ${isGroupActive(item.items.map((subItem) => subItem.href)) ? styles.activeDropdown : ""}`}>
-                    <span className={styles.dropdownLabel}>{item.label}</span>
-                    <div className={styles.dropdownMenu}>
+                  <div
+                    className={`${styles.dropdown} ${isGroupActive(item.items.map((subItem) => subItem.href)) ? styles.activeDropdown : ""}`}
+                    onBlur={(event) => {
+                      if (!event.currentTarget.contains(event.relatedTarget)) {
+                        closeDesktopDropdown();
+                      }
+                    }}
+                    onMouseEnter={() => setOpenDesktopDropdown(item.label)}
+                    onMouseLeave={closeDesktopDropdown}
+                  >
+                    <button
+                      aria-expanded={openDesktopDropdown === item.label}
+                      aria-haspopup="true"
+                      className={styles.dropdownLabel}
+                      onClick={() => setOpenDesktopDropdown((current) => current === item.label ? null : item.label)}
+                      onFocus={() => setOpenDesktopDropdown(item.label)}
+                      type="button"
+                    >
+                      {item.label}
+                    </button>
+                    <div className={`${styles.dropdownMenu} ${openDesktopDropdown === item.label ? styles.dropdownMenuOpen : ""}`}>
                       {item.items.map((subItem) => (
                         <Link
                           className={`${styles.dropdownLink} ${isActive(subItem.href) ? styles.activeDropdownLink : ""}`}
                           href={subItem.href}
                           key={subItem.label}
+                          onClick={closeDesktopDropdown}
                         >
                           {subItem.label}
                         </Link>

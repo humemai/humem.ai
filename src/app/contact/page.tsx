@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { ContentPage } from "@/components/content-page";
 
 export const metadata: Metadata = {
@@ -11,7 +12,23 @@ export default function ContactPage() {
     <ContentPage
       eyebrow="Contact"
       title="Early access, partnerships, and customer-specific deployments."
-      intro="This page should serve both inbound customers and people who want to talk about projects, hiring, or collaboration."
+      intro="Get in touch if you want early access, a hosted deployment, a project collaboration, or a conversation about where memory-heavy AI systems are headed."
+      aside={
+        <figure className="heroFigure">
+          <div className="heroFigureImageWrap">
+            <Image
+              src="/illustrations/contact.png"
+              alt="Contact illustration"
+              fill
+              className="heroFigureImage"
+              sizes="(min-width: 1024px) 360px, 100vw"
+            />
+          </div>
+          <figcaption className="heroFigureCaption">
+            Reach out for hosted HumemAI, custom memory workflows, research collaborations, or hiring conversations.
+          </figcaption>
+        </figure>
+      }
     >
       <section id="early-access">
         <h2>Get early access</h2>

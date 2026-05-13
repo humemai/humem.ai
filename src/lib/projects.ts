@@ -124,7 +124,7 @@ export const projects: Project[] = [
     solution:
       "Machines With Human-Like Memory investigates memory architectures for AI that draw more directly from human memory concepts such as persistence, structure, replay, and selective recall. It serves as a research base for later systems work across long-term agent memory, memory-aware reasoning, and practical implementations in the HumemAI stack.",
     impact:
-      "This project is the deeper research spine behind several later HumemAI efforts. Multiple papers will be added here over time, turning this page into the public entry point for the broader research thread rather than a single repo or one-off prototype.",
+      "This project forms the deeper research foundation behind several later HumemAI efforts. It connects the broader research thread around memory architectures to the more practical systems and products that followed.",
     acknowledgements:
       "This research was partially funded by the Hybrid Intelligence Center, a 10-year program funded by the Dutch Ministry of Education, Culture and Science through the Netherlands Organisation for Scientific Research (NWO). Learn more at https://www.hybrid-intelligence-centre.nl/.",
     links: [{ label: "Contact HumemAI", href: "/contact" }],

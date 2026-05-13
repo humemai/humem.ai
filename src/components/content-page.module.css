@@ -56,6 +56,32 @@
   color: var(--muted);
 }
 
+.aside :global(.heroFigure) {
+  margin: 0;
+}
+
+.aside :global(.heroFigureImageWrap) {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--surface);
+}
+
+.aside :global(.heroFigureImageWrapTall) {
+  aspect-ratio: 4 / 5;
+}
+
+.aside :global(.heroFigureImage) {
+  object-fit: cover;
+}
+
+.aside :global(.heroFigureCaption) {
+  margin: 0.8rem 0 0;
+  line-height: 1.65;
+}
+
 .aside :global(.partnerLogoLink) {
   display: inline-flex;
   align-items: center;

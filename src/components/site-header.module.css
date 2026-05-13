@@ -85,16 +85,20 @@
 }
 
 .dropdownLabel {
-  cursor: default;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
 }
 
 .dropdownMenu {
   position: absolute;
   top: calc(100% + 0.6rem);
-  left: 50%;
+  left: 0;
   display: grid;
   gap: 0.35rem;
-  min-width: 12rem;
+  min-width: max-content;
   padding: 0.75rem;
   border: 1px solid var(--border);
   border-radius: 1rem;
@@ -102,15 +106,15 @@
   box-shadow: var(--shadow);
   opacity: 0;
   visibility: hidden;
-  transform: translate(-50%, 8px);
+  transform: translateY(8px);
+  transform-origin: top left;
   transition: 150ms ease;
 }
 
-.dropdown:hover .dropdownMenu,
-.dropdown:focus-within .dropdownMenu {
+.dropdownMenuOpen {
   opacity: 1;
   visibility: visible;
-  transform: translate(-50%, 0);
+  transform: translateY(0);
 }
 
 .dropdownLink {

@@ -3,8 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
+import rehypeHighlight from "rehype-highlight";
+import rehypeKatex from "rehype-katex";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
 import { ContentPage } from "@/components/content-page";
 import { getAllBlogPosts, getBlogPost } from "@/lib/blog-posts";
 import styles from "../blog.module.css";
@@ -65,8 +68,8 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
         </div>
         <div className={styles.content}>
           <ReactMarkdown
-            rehypePlugins={[rehypeRaw]}
-            remarkPlugins={[remarkGfm]}
+            rehypePlugins={[rehypeRaw, rehypeKatex, [rehypeHighlight, { ignoreMissing: true }]]}
+            remarkPlugins={[remarkGfm, remarkMath]}
             components={{
               a: ({ href, children, ...props }) => {
                 const normalizedHref = String(href ?? "");

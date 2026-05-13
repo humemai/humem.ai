@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { ContentPage } from "@/components/content-page";
 import styles from "./pricing.module.css";
 
@@ -12,8 +13,23 @@ export default function PricingPage() {
     <ContentPage
       eyebrow="Pricing"
       title="Start free, or pay for the integrated hosted experience."
-      intro="The pricing story should be honest: open source for developers, hosted HumemAI for teams that want outcomes, and custom options for integration-heavy use cases."
-      aside={<p>For the first pass, this page should explain the model clearly rather than pretending the product already has rigid SaaS tiers.</p>}
+      intro="HumemAI offers an open-source path for developers, a hosted path for teams that want faster outcomes, and custom engagements for integration-heavy deployments."
+      aside={
+        <figure className="heroFigure">
+          <div className="heroFigureImageWrap">
+            <Image
+              src="/illustrations/pricing.png"
+              alt="Pricing illustration"
+              fill
+              className="heroFigureImage"
+              sizes="(min-width: 1024px) 360px, 100vw"
+            />
+          </div>
+          <figcaption className="heroFigureCaption">
+            Start with the open-source repositories, contact HumemAI for hosted access, or work with us directly on custom deployments.
+          </figcaption>
+        </figure>
+      }
     >
       <div className={styles.grid}>
         <section className={styles.card}>
@@ -28,7 +44,7 @@ export default function PricingPage() {
             <li>Bring your own infrastructure</li>
           </ul>
           <p>
-            <a href="https://github.com/humemai" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            <a href="https://github.com/humemai" target="_blank" rel="noopener noreferrer">Learn more</a>
           </p>
         </section>
 

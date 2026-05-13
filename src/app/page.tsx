@@ -30,6 +30,15 @@ export default function Home() {
         </div>
 
         <div className={styles.heroPanel}>
+          <div className={styles.heroVisualWrap}>
+            <Image
+              src="/illustrations/landing.png"
+              alt="HumemAI landing illustration"
+              fill
+              className={styles.heroVisual}
+              sizes="(min-width: 1024px) 32vw, 100vw"
+            />
+          </div>
           <div className={styles.panelHeader}>
             <span className={styles.panelLabel}>How HumemAI works</span>
             <span className={styles.panelMeta}>GUI + hosted + API-ready</span>
@@ -52,30 +61,30 @@ export default function Home() {
       </section>
 
       <section className={styles.sectionGrid}>
-        <article className={styles.featureCard}>
+        <Link className={styles.featureCard} href="/product">
           <p className={styles.cardEyebrow}>Product</p>
-          <h2>One page that explains the product clearly</h2>
+          <h2>A memory layer designed for real agent workflows</h2>
           <p>
-            Explain HumemAI as the memory layer for agentic systems, not as a loose bundle of repositories.
+            See how HumemAI handles conversational history, structured knowledge, and hybrid retrieval in one system.
           </p>
-          <Link href="/product">Read the product story</Link>
-        </article>
-        <article className={styles.featureCard}>
+          <span className={styles.cardAction}>Learn more</span>
+        </Link>
+        <Link className={styles.featureCard} href="/pricing">
           <p className={styles.cardEyebrow}>Pricing</p>
           <h2>Free open source and paid hosted options</h2>
           <p>
             Developers can self-host from GitHub. Teams that want outcomes can use a managed deployment.
           </p>
-          <Link href="/pricing">View pricing options</Link>
-        </article>
-        <article className={styles.featureCard}>
+          <span className={styles.cardAction}>Learn more</span>
+        </Link>
+        <Link className={styles.featureCard} href="/projects">
           <p className={styles.cardEyebrow}>Projects</p>
-          <h2>Overview first, then dedicated pages</h2>
+          <h2>Research, prototypes, and funded work in public</h2>
           <p>
-            Showcase flagship work like Audit-Ready Memory with a hub page and one page per project.
+            Follow the projects that shaped HumemAI so far, from audit-ready memory systems to embedded database work.
           </p>
-          <Link href="/projects">Browse projects</Link>
-        </article>
+          <span className={styles.cardAction}>Learn more</span>
+        </Link>
       </section>
 
       <section className={styles.sectionSplit}>
@@ -89,10 +98,10 @@ export default function Home() {
         </div>
         <div className={styles.bulletPanel}>
           <ul className={styles.bullets}>
-            <li>Browser-default dark and light mode</li>
-            <li>Desktop dropdown nav and mobile-first tap navigation</li>
-            <li>Future-ready space for app.humem.ai and api.humem.ai</li>
-            <li>Blog, projects, and careers as real startup signals</li>
+            <li>Persistent memory across sessions instead of stateless chat</li>
+            <li>Support for documents, tables, graphs, and connected data</li>
+            <li>Open-source foundations with a hosted product path</li>
+            <li>Explainable memory structures that teams can inspect and control</li>
           </ul>
         </div>
       </section>

@@ -40,7 +40,7 @@ export function SiteFooter() {
         </div>
 
         <div className={styles.bottomRow}>
-          <p>Browser-default theme, hosted frontend, future-ready for app.humem.ai and api.humem.ai.</p>
+          <p>Open-source roots, practical memory systems, and a hosted product direction for teams building agents.</p>
           <p>© {new Date().getFullYear()} HumemAI</p>
         </div>
       </div>

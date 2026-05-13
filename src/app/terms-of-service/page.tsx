@@ -9,12 +9,28 @@ export default function TermsOfServicePage() {
   return (
     <ContentPage
       eyebrow="Legal"
-      title="Terms of service placeholder"
-      intro="Add the production terms here once the legal copy is ready."
+      title="Terms of service"
+      intro="These terms explain how the HumemAI website, public materials, and open-source links are made available to visitors."
     >
       <section>
-        <h2>Current status</h2>
-        <p>This placeholder exists so navigation and footer links stay valid during the redesign.</p>
+        <h2>Website use</h2>
+        <p>
+          The HumemAI website is provided for information about the company, product direction, research, projects, and contact. Use of the public website does not create a customer relationship or grant access to any hosted service unless agreed separately.
+        </p>
+      </section>
+
+      <section>
+        <h2>Open-source materials</h2>
+        <p>
+          Links to repositories, documentation, and other public materials are provided as-is. Any separate open-source projects remain governed by their own repository licenses and terms.
+        </p>
+      </section>
+
+      <section>
+        <h2>Updates</h2>
+        <p>
+          These terms may change as HumemAI introduces hosted offerings, APIs, and customer-specific services. Any material updates will be posted here.
+        </p>
       </section>
     </ContentPage>
   );

@@ -13,7 +13,7 @@ export default function ProductPage() {
       eyebrow="Product"
       title="HumemAI is a memory layer for agentic AI systems."
       intro="Users interact through natural language, upload documents and data, and let HumemAI organize knowledge into the right memory structures across text, tables, graphs, and vectors."
-      aside={<p>Keep this page concise: what HumemAI is, how it works, who it serves, and why hosted plus open source both matter.</p>}
+      aside={<p>HumemAI combines conversational memory, structured knowledge, and hybrid retrieval so agents can work across sessions without collapsing everything into a single context window.</p>}
     >
       <section>
         <h2>What HumemAI does</h2>
@@ -37,7 +37,7 @@ export default function ProductPage() {
           Teams can start with the open-source components for free or use a hosted HumemAI deployment when they want the integrated memory workspace managed for them.
         </p>
         <p>
-          <Link href="/pricing">See pricing</Link>
+          <Link href="/pricing">Learn more</Link>
         </p>
       </section>
     </ContentPage>

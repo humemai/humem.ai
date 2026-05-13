@@ -10,16 +10,24 @@ export default function CareersPage() {
   return (
     <ContentPage
       eyebrow="Careers"
-      title="Careers is the right label."
-      intro="Even before formal job listings exist, this page can show that HumemAI is actively looking for talent across memory systems, databases, AI product engineering, and design."
+      title="Help build memory systems that stay useful over time."
+      intro="HumemAI is looking for people who care about building AI systems with memory, structure, and long-term usefulness. If that mission fits your interests, we would be glad to hear from you."
     >
       <section>
         <h2>Who we want to meet</h2>
-        <ul>
-          <li>AI and retrieval engineers</li>
-          <li>Database and systems engineers</li>
-          <li>Product-minded frontend and platform builders</li>
-        </ul>
+        <p>
+          We are interested in people who want to build agents with memory together. That can mean research, engineering, product work, design, infrastructure, or something harder to label but clearly relevant to the problem.
+        </p>
+        <p>
+          If you are drawn to persistent memory, knowledge systems, retrieval, databases, or the user experience around intelligent systems, HumemAI would be glad to hear from you.
+        </p>
+      </section>
+
+      <section>
+        <h2>How to reach us</h2>
+        <p>
+          Send a note to <a href="mailto:info@humem.ai?subject=HumemAI%20careers">info@humem.ai</a> with your background, the kind of work you want to do, and any projects or writing that show how you think.
+        </p>
       </section>
     </ContentPage>
   );

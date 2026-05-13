@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ContentPage } from "@/components/content-page";
 import { projects } from "@/lib/projects";
+import styles from "./projects.module.css";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -13,18 +14,16 @@ export default function ProjectsPage() {
     <ContentPage
       eyebrow="Projects"
       title="Public proof, flagship efforts, and dedicated project pages."
-      intro="Use this overview as the hub. Each card should point to its own page with the background, funding context, repositories, and current status."
-      aside={<p>Projects work better than Research as a startup credibility surface because they show concrete outcomes instead of only positioning.</p>}
+      intro="Explore the projects that shaped HumemAI so far, including funded work, infrastructure experiments, and product-facing memory systems."
+      aside={<p>Each project page includes background, repositories, funding context where relevant, and the current direction of the work.</p>}
     >
       {projects.map((project) => (
-        <section key={project.slug}>
+        <Link className={styles.card} href={`/projects/${project.slug}`} key={project.slug}>
           <h2>{project.title}</h2>
-          <p>{project.summary}</p>
-          <p>{project.funding ? `${project.funding} · ${project.status}` : project.status}</p>
-          <p>
-            <Link href={`/projects/${project.slug}`}>View project page</Link>
-          </p>
-        </section>
+          <p className={styles.summary}>{project.summary}</p>
+          <p className={styles.meta}>{project.funding ? `${project.funding} · ${project.status}` : project.status}</p>
+          <span className={styles.action}>Learn more</span>
+        </Link>
       ))}
     </ContentPage>
   );

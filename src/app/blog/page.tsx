@@ -17,11 +17,11 @@ export default function BlogPage() {
     <ContentPage
       eyebrow="Blog"
       title="The Latest News From HumemAI"
-      intro="Posts brought over from the earlier site, kept as a real writing surface for research updates, videos, and product infrastructure work."
+      intro="Writing from HumemAI on memory systems, research updates, infrastructure work, videos, and product direction."
     >
       <div className={styles.list}>
         {posts.map((post) => (
-          <article className={styles.card} key={post.slug}>
+          <Link className={`${styles.card} ${styles.cardLink}`} href={`/blog/${post.slug}`} key={post.slug}>
             {post.image ? (
               <div className={styles.cardImageWrap}>
                 <Image src={post.image} alt={post.title} fill className={styles.cardImage} sizes="(min-width: 900px) 50vw, 100vw" />
@@ -35,8 +35,8 @@ export default function BlogPage() {
                 <span className={styles.tag} key={tag}>{tag}</span>
               ))}
             </div>
-            <Link className={styles.action} href={`/blog/${post.slug}`}>Read post</Link>
-          </article>
+            <span className={styles.action}>Learn more</span>
+          </Link>
         ))}
       </div>
     </ContentPage>
