@@ -1,0 +1,28 @@
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.card {
+  height: 100%;
+}
+
+.label {
+  margin: 0 0 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.card ul {
+  margin-top: 1rem;
+}
+
+@media (min-width: 1040px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+  }
+}

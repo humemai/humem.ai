@@ -1,66 +1,101 @@
+import Image from "next/image";
+import Link from "next/link";
 import styles from "./page.module.css";
 
 export default function Home() {
   return (
     <main className={styles.page}>
-      <div className={styles.shell}>
-        <header className={styles.header}>
-          <div>
-            <p className={styles.eyebrow}>
-              HumemAI demo
-            </p>
-            <h1 className={styles.title}>
-              Vercel + Cloudflare smoke test
-            </h1>
+      <section className={styles.heroShell}>
+        <div className={styles.heroCopy}>
+          <div className={styles.heroEyebrowRow}>
+            <Image src="/favicon.png" alt="HumemAI icon" width={24} height={24} />
+            <p className={styles.eyebrow}>Persistent memory for agentic AI</p>
           </div>
-          <span className={styles.badge}>
-            Next.js app router
-          </span>
-        </header>
-
-        <section className={styles.hero}>
-          <div className={styles.copy}>
-            <p className={styles.lead}>
-              This page exists only to validate the new website pipeline: public GitHub
-              repo, Vercel deployment, and Cloudflare DNS in front of the apex domain.
-            </p>
-            <div className={styles.actions}>
-              <a
-                className={styles.primaryAction}
-                href="https://vercel.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Open Vercel
-              </a>
-              <a
-                className={styles.secondaryAction}
-                href="https://dash.cloudflare.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Open Cloudflare
-              </a>
-            </div>
+          <h1 className={styles.title}>
+            Turn conversations, documents, tables, and graphs into usable long-term memory.
+          </h1>
+          <p className={styles.lead}>
+            HumemAI gives AI systems a memory layer that stays persistent across sessions,
+            adapts to mixed data types, and remains inspectable instead of turning into a
+            black box.
+          </p>
+          <div className={styles.actions}>
+            <Link className={styles.primaryAction} href="/pricing">
+              Explore pricing
+            </Link>
+            <Link className={styles.secondaryAction} href="/product">
+              See the product
+            </Link>
           </div>
+        </div>
 
-          <div className={styles.card}>
-            <p className={styles.cardTitle}>
-              Checklist
-            </p>
-            <ul className={styles.checklist}>
-              <li>Repo is public under the HumemAI GitHub organization.</li>
-              <li>Vercel imports the repo and creates a successful production deploy.</li>
-              <li>Cloudflare points `humem.ai` to Vercel and serves HTTPS correctly.</li>
-            </ul>
+        <div className={styles.heroPanel}>
+          <div className={styles.panelHeader}>
+            <span className={styles.panelLabel}>How HumemAI works</span>
+            <span className={styles.panelMeta}>GUI + hosted + API-ready</span>
           </div>
-        </section>
+          <div className={styles.memoryList}>
+            <article>
+              <h2>Episodic memory</h2>
+              <p>Capture what happened, when it happened, and why it matters across interactions.</p>
+            </article>
+            <article>
+              <h2>Semantic memory</h2>
+              <p>Keep documents, tables, graphs, and connected systems in the most useful structure.</p>
+            </article>
+            <article>
+              <h2>Hybrid retrieval</h2>
+              <p>Let agents query relationships, vectors, and structured knowledge in one memory layer.</p>
+            </article>
+          </div>
+        </div>
+      </section>
 
-        <footer className={styles.footer}>
-          <p>Temporary landing page for deployment validation.</p>
-          <p>Next step after this test: replace with the real public site.</p>
-        </footer>
-      </div>
+      <section className={styles.sectionGrid}>
+        <article className={styles.featureCard}>
+          <p className={styles.cardEyebrow}>Product</p>
+          <h2>One page that explains the product clearly</h2>
+          <p>
+            Explain HumemAI as the memory layer for agentic systems, not as a loose bundle of repositories.
+          </p>
+          <Link href="/product">Read the product story</Link>
+        </article>
+        <article className={styles.featureCard}>
+          <p className={styles.cardEyebrow}>Pricing</p>
+          <h2>Free open source and paid hosted options</h2>
+          <p>
+            Developers can self-host from GitHub. Teams that want outcomes can use a managed deployment.
+          </p>
+          <Link href="/pricing">View pricing options</Link>
+        </article>
+        <article className={styles.featureCard}>
+          <p className={styles.cardEyebrow}>Projects</p>
+          <h2>Overview first, then dedicated pages</h2>
+          <p>
+            Showcase flagship work like Audit-Ready Memory with a hub page and one page per project.
+          </p>
+          <Link href="/projects">Browse projects</Link>
+        </article>
+      </section>
+
+      <section className={styles.sectionSplit}>
+        <div className={styles.copyBlock}>
+          <p className={styles.cardEyebrow}>Why now</p>
+          <h2>Agents can act, but they still forget.</h2>
+          <p>
+            The world is getting more agentic, but most systems remain stateless chat wrappers.
+            HumemAI focuses on the missing layer: persistent, explainable memory that agents can use over time.
+          </p>
+        </div>
+        <div className={styles.bulletPanel}>
+          <ul className={styles.bullets}>
+            <li>Browser-default dark and light mode</li>
+            <li>Desktop dropdown nav and mobile-first tap navigation</li>
+            <li>Future-ready space for app.humem.ai and api.humem.ai</li>
+            <li>Blog, projects, and careers as real startup signals</li>
+          </ul>
+        </div>
+      </section>
     </main>
   );
 }

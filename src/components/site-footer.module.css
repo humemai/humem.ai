@@ -1,0 +1,91 @@
+.footer {
+  padding: 1rem 0 3rem;
+}
+
+.inner {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 2rem;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.brandBlock {
+  max-width: 34rem;
+}
+
+.brandHeading {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.copy {
+  margin: 0.8rem 0 0;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.columns {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.column h2 {
+  margin: 0 0 0.75rem;
+  font-size: 0.98rem;
+}
+
+.column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.column li + li {
+  margin-top: 0.55rem;
+}
+
+.column a {
+  color: var(--muted);
+}
+
+.bottomRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+@media (min-width: 720px) {
+  .inner {
+    width: min(1180px, calc(100% - 3rem));
+    padding: 2rem;
+  }
+
+  .columns {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .bottomRow {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

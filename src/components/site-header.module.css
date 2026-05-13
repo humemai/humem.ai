@@ -1,0 +1,240 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  padding: 1rem 0 0;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface-strong) 88%, transparent);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-weight: 700;
+}
+
+.logoMark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.logoText {
+  letter-spacing: -0.03em;
+}
+
+.desktopNav,
+.ctaRow {
+  display: none;
+}
+
+.desktopList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.desktopItem a,
+.dropdownLabel {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.activeNavLink,
+.activeDropdown .dropdownLabel {
+  color: var(--foreground) !important;
+}
+
+.activeNavLink {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.55rem;
+}
+
+.activeDropdown .dropdownLabel {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.55rem;
+}
+
+.dropdown {
+  position: relative;
+  padding: 0.75rem 0;
+}
+
+.dropdownLabel {
+  cursor: default;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 0.6rem);
+  left: 50%;
+  display: grid;
+  gap: 0.35rem;
+  min-width: 12rem;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--surface-strong);
+  box-shadow: var(--shadow);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, 8px);
+  transition: 150ms ease;
+}
+
+.dropdown:hover .dropdownMenu,
+.dropdown:focus-within .dropdownMenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+.dropdownLink {
+  padding: 0.45rem 0.55rem;
+  border-radius: 0.7rem;
+}
+
+.dropdownLink:hover {
+  background: var(--accent-soft);
+  color: var(--foreground);
+}
+
+.activeDropdownLink {
+  background: var(--accent-soft);
+  color: var(--foreground);
+}
+
+.ctaRow {
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.primaryCta,
+.secondaryCta,
+.mobileSummary,
+.mobileActions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.6rem;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.primaryCta,
+.mobileActions a:last-child {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+.secondaryCta,
+.mobileSummary,
+.mobileActions a:first-child {
+  border: 1px solid var(--border-strong);
+  color: var(--foreground);
+}
+
+.mobileMenu {
+  margin-left: auto;
+}
+
+.mobileSummary {
+  list-style: none;
+  cursor: pointer;
+  background: var(--surface-strong);
+}
+
+.mobileSummary::-webkit-details-marker {
+  display: none;
+}
+
+.mobilePanel {
+  display: grid;
+  gap: 1rem;
+  margin-top: 0.75rem;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 1.2rem;
+  background: var(--surface-strong);
+  box-shadow: var(--shadow);
+}
+
+.mobileGroup {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.mobileGroup > a,
+.mobileLinks a {
+  padding: 0.2rem 0;
+}
+
+.mobileGroupLabel {
+  margin: 0;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.activeMobileGroupLabel {
+  color: var(--foreground);
+}
+
+.mobileLinks {
+  display: grid;
+  gap: 0.45rem;
+  padding-left: 0.75rem;
+}
+
+.activeMobileLink {
+  color: var(--foreground);
+  font-weight: 700;
+}
+
+.mobileActions {
+  display: grid;
+  gap: 0.6rem;
+}
+
+@media (min-width: 920px) {
+  .inner {
+    width: min(1180px, calc(100% - 3rem));
+    padding-inline: 1.2rem;
+  }
+
+  .desktopNav,
+  .ctaRow {
+    display: flex;
+  }
+
+  .mobileMenu {
+    display: none;
+  }
+}
