@@ -56,6 +56,32 @@
   color: var(--muted);
 }
 
+.aside :global(.partnerLogoLink) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: #ffffff;
+}
+
+.aside :global(.partnerLogo) {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.aside :global(.partnerMeta) {
+  margin: 0.9rem 0 0;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.aside :global(.partnerStatus) {
+  margin: 0.35rem 0 0;
+}
+
 .content {
   display: grid;
   gap: 1rem;

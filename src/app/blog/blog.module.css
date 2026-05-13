@@ -1,0 +1,166 @@
+.list {
+  display: grid;
+  gap: 1rem;
+}
+
+.card {
+  padding: 1.35rem;
+  border: 1px solid var(--border);
+  border-radius: 1.5rem;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.cardImageWrap,
+.postImageWrap {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--surface-muted);
+}
+
+.cardImageWrap {
+  aspect-ratio: 16 / 9;
+  margin-bottom: 1rem;
+}
+
+.postImageWrap {
+  aspect-ratio: 16 / 9;
+  margin-bottom: 1rem;
+}
+
+.cardImage,
+.postImage {
+  object-fit: cover;
+}
+
+.meta {
+  margin: 0 0 0.75rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.card h2 {
+  margin: 0;
+  font-size: 1.45rem;
+}
+
+.excerpt {
+  margin: 0.9rem 0 0;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 1rem;
+}
+
+.tag {
+  padding: 0.3rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface-muted);
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.action {
+  display: inline-flex;
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+.post {
+  padding: 1.35rem;
+  border: 1px solid var(--border);
+  border-radius: 1.5rem;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.postMeta {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.postTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 1rem;
+}
+
+.content {
+  margin-top: 1.4rem;
+}
+
+.content h2,
+.content h3 {
+  margin: 1.5rem 0 0.8rem;
+  line-height: 1.15;
+}
+
+.content h2:first-child,
+.content h3:first-child {
+  margin-top: 0;
+}
+
+.content p,
+.content li {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.content a {
+  color: var(--foreground);
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+}
+
+.content blockquote {
+  margin: 1rem 0;
+  padding: 0.1rem 0 0.1rem 1rem;
+  border-left: 3px solid var(--border-strong);
+}
+
+.content pre {
+  overflow-x: auto;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--surface-muted);
+}
+
+.content code {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.92rem;
+}
+
+.videoEmbed {
+  position: relative;
+  width: 100%;
+  margin: 1rem 0;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+}
+
+.videoEmbed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@media (min-width: 900px) {
+  .list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

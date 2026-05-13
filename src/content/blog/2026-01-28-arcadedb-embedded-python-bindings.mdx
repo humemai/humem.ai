@@ -1,0 +1,185 @@
+---
+title: 'ArcadeDB Embedded Python Bindings'
+description: 'Announcing lightweight embedded Python bindings for ArcadeDB and why we built them for HumemAI.'
+date: '2026-01-28'
+excerpt: 'We’ve released arcadedb-embedded-python: lightweight embedded bindings for ArcadeDB, optimized for low-latency, local-first workloads.'
+image: '/blog/2026-01-28/arcadedb_humemai.png'
+author: 'Taewoon Kim'
+tags:
+    - 'HumemAI'
+    - 'ArcadeDB'
+    - 'Python'
+    - 'Open Source'
+    - 'Databases'
+    - 'Graphs'
+    - 'Vectors'
+    - 'Embeddings'
+    - 'JVM'
+---
+
+## Meet ArcadeDB’s embedded Python bindings
+
+We’ve released **ArcadeDB Embedded Python Bindings**, a lightweight way to use ArcadeDB directly from Python without a driver hop. This is the foundation for much of HumemAI’s R&D work and future products.
+
+- **Embedded (JVM) access** for low‑latency local workloads.
+- **Python-first API** while leveraging ArcadeDB’s multi‑model engine.
+- **Self-contained** packaging with bundled JRE and JARs.
+
+## Why ArcadeDB
+
+ArcadeDB is a high‑performance, multi‑model database built for extreme efficiency. It supports **documents**, **graphs**, **key/value**, **full‑text**, and **vector embeddings** in one engine, with ACID transactions and multiple query languages (SQL, OpenCypher, MongoDB queries). It’s Java‑based, which is powerful but not always easy to adopt in the AI world where workflows are dominated by scripting languages like Python—one of the reasons we built the embedded bindings.
+
+- Repo: [ArcadeDB on GitHub](https://github.com/ArcadeData/arcadedb)
+- Docs: [ArcadeDB Documentation](https://docs.arcadedb.com/)
+
+For us, ArcadeDB’s multi‑model design is the right substrate for memory systems that need **structured relationships** and **fast retrieval** at scale.
+
+## Why Embedded Python Bindings
+
+HumemAI favors **local‑first** and **low‑latency** data access. A thin embedded binding removes the networked driver hop and lets Python talk to the JVM engine directly. This improves latency, reduces operational overhead, and makes it easier to ship reliable, testable agents.
+
+It also means we can keep memory-intensive workloads close to the data, while still offering a clean Python interface for experimentation and product integration.
+
+## What’s Included
+
+The repository contains the **original ArcadeDB codebase** plus the Python bindings under `bindings/python`. The bindings expose a Pythonic API over core ArcadeDB functionality:
+
+- **Database & schema management** (types, properties, indexes)
+- **Transactions** and batch APIs
+- **Importer/Exporter utilities** (CSV, JSONL, XML, GraphML, GraphSON)
+- **Vector search** via HNSW (JVector) indexing
+- **Graph helpers** for vertices/edges
+
+You can see the public API surface in the package exports, including `Database`, `Schema`, `VectorIndex`, and `Importer`.
+
+## A truly standalone wheel
+
+The Python wheel is **fully self‑contained**. It ships with everything needed to run ArcadeDB embedded inside your Python process:
+
+- **Lightweight JVM 25** built with **jlink** (no external Java install)
+- **JPype bridge** to call JVM APIs from Python
+- **Only the required JARs**, plus the Python bindings code
+
+Despite bundling the JVM, we keep the package compact: the wheel is **~116MB** compressed.
+
+## Quick Start (Python)
+
+Install the package and create a local database:
+
+```bash
+uv pip install arcadedb-embedded
+```
+
+## Tables (SQL), Graphs (OpenCypher), and Vectors
+
+ArcadeDB gives us all three data models in one embedded engine. We lead with the Python API; SQL and OpenCypher are always available when you want them.
+
+### Tables with SQL
+
+We define schema and insert documents with Python methods, then query with SQL.
+
+```python
+import arcadedb_embedded as arcadedb
+
+with arcadedb.create_database("./mydb") as db:
+    db.schema.create_document_type("User")
+    db.schema.create_property("User", "name", "STRING")
+    db.schema.create_property("User", "age", "INTEGER")
+    db.schema.create_index("User", ["age"])
+
+    with db.transaction():
+        db.new_document("User").set("name", "Ada").set("age", 31).save()
+
+    for row in db.query("sql", "SELECT FROM User WHERE age >= 30"):
+        print(row.get("name"))
+
+    for row in db.query("sql", "SELECT count(*) as total FROM User"):
+        print(row.get("total"))
+```
+
+### Graphs with OpenCypher
+
+OpenCypher is supported, but the Python graph API is often the fastest path.
+
+```python
+import arcadedb_embedded as arcadedb
+
+with arcadedb.create_database("./mydb") as db:
+    db.schema.create_vertex_type("Person")
+    db.schema.create_edge_type("KNOWS")
+
+    with db.transaction():
+        alice = db.new_vertex("Person").set("name", "Alice").save()
+        bob = db.new_vertex("Person").set("name", "Bob").save()
+        alice.new_edge("KNOWS", bob).save()
+
+    for edge in alice.get_out_edges("KNOWS"):
+        print(edge.get_out().get("name"), "->", edge.get_in().get("name"))
+
+    result = db.query(
+        "opencypher",
+        "MATCH (a:Person)-[:KNOWS]->(b:Person) RETURN a.name AS from, b.name AS to",
+    )
+    for r in result:
+        print(r.get("from"), "->", r.get("to"))
+
+    names = db.query(
+        "opencypher",
+        "MATCH (p:Person) RETURN p.name AS name ORDER BY name",
+    )
+    for r in names:
+        print(r.get("name"))
+```
+
+### Vectors (HNSW / JVector)
+
+We build the vector index with a Python builder and query it directly from the API.
+
+```python
+import arcadedb_embedded as arcadedb
+
+with arcadedb.create_database("./mydb") as db:
+    db.schema.create_vertex_type("VecDoc")
+    db.schema.create_property("VecDoc", "name", "STRING")
+    db.schema.create_property("VecDoc", "vector", "ARRAY_OF_FLOATS")
+
+    vector_index = db.create_vector_index(
+        "VecDoc",
+        "vector",
+        dimensions=4,
+        distance_function="cosine",
+        quantization="INT8",
+    )
+
+    with db.transaction():
+        db.new_vertex("VecDoc").set("name", "Apple").set(
+            "vector", arcadedb.to_java_float_array([1.0, 0.0, 0.0, 0.0])
+        ).save()
+        db.new_vertex("VecDoc").set("name", "Banana").set(
+            "vector", arcadedb.to_java_float_array([0.9, 0.1, 0.0, 0.0])
+        ).save()
+        db.new_vertex("VecDoc").set("name", "Car").set(
+            "vector", arcadedb.to_java_float_array([0.0, 0.0, 1.0, 0.0])
+        ).save()
+
+    results = vector_index.find_nearest([0.95, 0.05, 0.0, 0.0], k=2)
+    for record, score in results:
+        print(record.get("name"), score)
+```
+
+## Use Cases We Care About
+
+- **Memory graphs** for agents (long‑term + episodic knowledge)
+- **Vector‑augmented retrieval** with structured context
+- **Local developer environments** that mirror production behavior
+- **Embedded analytics** without running a separate DB server
+
+## Links
+
+- Embedded bindings repo: [arcadedb-embedded-python](https://github.com/humemai/arcadedb-embedded-python)
+- Embedded bindings docs: [HumemAI ArcadeDB Docs](https://docs.humem.ai/arcadedb/)
+- Video: [ArcadeDB Embedded Python Bindings (YouTube)](https://youtu.be/eQ1KrPr_dpk?si=YhBEPfDC_jqJlRKC)
+
+## What’s Next
+
+We’ll share tutorials, benchmarks, and deeper integration notes as we deepen our use of ArcadeDB across HumemAI. We’re also working to unleash its full capability for research, development, and productization across our memory stack. If you’re building similar systems, we’d love to hear from you.

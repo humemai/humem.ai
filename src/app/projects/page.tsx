@@ -20,7 +20,7 @@ export default function ProjectsPage() {
         <section key={project.slug}>
           <h2>{project.title}</h2>
           <p>{project.summary}</p>
-          <p>{project.funding} · {project.status}</p>
+          <p>{project.funding ? `${project.funding} · ${project.status}` : project.status}</p>
           <p>
             <Link href={`/projects/${project.slug}`}>View project page</Link>
           </p>

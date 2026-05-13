@@ -1,0 +1,34 @@
+---
+title: 'A Machine with Human-Like Memory Systems'
+description: 'Exploring episodic and semantic memory in AI through knowledge graphs.'
+date: '2022-04-04'
+image: '/blog/2022-04-04/episodic-semantic.png'
+excerpt: 'My first research paper on creating an AI agent with explicit memory systems inspired by human cognition.'
+author: 'Taewoon Kim'
+tags:
+  - 'HumemAI'
+  - 'Episodic Memory'
+  - 'Semantic Memory'
+  - 'Knowledge Graphs'
+  - 'AI Research'
+---
+
+## The Motivation Behind My Research
+
+This paper was my first attempt to create a conscious AI. My interest in human memory was sparked by reading the works of [Endel Tulving](https://scholar.google.com/citations?user=OxmLLMEAAAAJ&hl=en). Tulving argued that what makes us conscious is our **episodic memory**, one of the two pillars of explicit memory—the other being **semantic memory**. The more I explored his research, the more convinced I became that episodic memory is crucial for human-like cognition.
+
+We humans can mentally travel back in time and space using memory, allowing us to understand the past, make sense of the present, and predict the future. Without an episodic memory system, this might not be possible. This realization led me to my PhD research on computationally modeling AI with **human-like memory systems**.
+
+## Knowledge Graphs as AI Memory
+
+To model AI memory, I explored various ways to store information and ultimately opted for [**knowledge graphs**](https://arxiv.org/abs/2003.02320), which are both human- and machine-readable. The next step was to determine whether an explicit memory system would be beneficial for an AI agent.
+
+To validate this idea, I developed a small toy environment called [RoomEnv-v0](https://github.com/humemai/room-env). I then tested handcrafted memory management functions to evaluate their effectiveness. The conclusion? The system made sense—it successfully demonstrated the value of structured memory in AI.
+
+## Abstract of the Paper
+
+> Inspired by cognitive science theory, we explicitly model an agent with both **semantic** and **episodic** memory systems, demonstrating that a combination of both outperforms a single-memory approach. To validate our approach, we designed and released our own challenging environment, **"The Room"**, compatible with OpenAI Gym. In this environment, an agent must learn to encode, store, and retrieve memories effectively to maximize rewards. The Room environment enables a hybrid intelligence setup where machines and humans can collaborate. Our results show that two agents collaborating with each other achieve better performance than a single agent acting alone.
+
+## Read the Full Paper
+
+Check out the full research paper on **arXiv**: [https://arxiv.org/abs/2204.01611](https://arxiv.org/abs/2204.01611).

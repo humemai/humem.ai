@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -8,6 +9,15 @@ import styles from "./site-header.module.css";
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
+  useEffect(() => {
+    closeMobileMenu();
+  }, [pathname]);
 
   const isActive = (href?: string) => {
     if (!href) {
@@ -71,9 +81,25 @@ export function SiteHeader() {
           </Link>
         </div>
 
-        <details className={styles.mobileMenu}>
-          <summary className={styles.mobileSummary}>Menu</summary>
-          <div className={styles.mobilePanel}>
+        <button
+          aria-controls="mobile-navigation"
+          aria-expanded={isMobileMenuOpen}
+          aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+          className={styles.mobileToggle}
+          onClick={() => setIsMobileMenuOpen((open) => !open)}
+          type="button"
+        >
+          <span className={styles.hamburgerLines} aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </span>
+        </button>
+      </div>
+
+      {isMobileMenuOpen ? (
+        <div className={styles.mobilePanelWrap}>
+          <div className={styles.mobilePanel} id="mobile-navigation">
             {navigationItems.map((item) => (
               <div className={styles.mobileGroup} key={item.label}>
                 {item.items ? (
@@ -83,28 +109,37 @@ export function SiteHeader() {
                     </p>
                     <div className={styles.mobileLinks}>
                       {item.items.map((subItem) => (
-                        <Link className={isActive(subItem.href) ? styles.activeMobileLink : undefined} href={subItem.href} key={subItem.label}>
+                        <Link
+                          className={isActive(subItem.href) ? styles.activeMobileLink : undefined}
+                          href={subItem.href}
+                          key={subItem.label}
+                          onClick={closeMobileMenu}
+                        >
                           {subItem.label}
                         </Link>
                       ))}
                     </div>
                   </>
                 ) : (
-                  <Link className={isActive(item.href) ? styles.activeMobileLink : undefined} href={item.href ?? "/"}>
+                  <Link
+                    className={isActive(item.href) ? styles.activeMobileLink : undefined}
+                    href={item.href ?? "/"}
+                    onClick={closeMobileMenu}
+                  >
                     {item.label}
                   </Link>
                 )}
               </div>
             ))}
             <div className={styles.mobileActions}>
-              <a href="https://github.com/humemai" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/humemai" target="_blank" rel="noopener noreferrer" onClick={closeMobileMenu}>
                 View on GitHub
               </a>
-              <Link href="/contact#early-access">Get early access</Link>
+              <Link href="/contact#early-access" onClick={closeMobileMenu}>Get early access</Link>
             </div>
           </div>
-        </details>
-      </div>
+        </div>
+      ) : null}
     </header>
   );
 }

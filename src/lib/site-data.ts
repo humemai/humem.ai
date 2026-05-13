@@ -13,6 +13,8 @@ export const navigationItems = [
   },
 ];
 
+export const googleAnalyticsId = "G-973VT90SE2";
+
 export const footerColumns = [
   {
     title: "Product",

@@ -2,6 +2,10 @@
 
 Startup website and app repo for HumemAI.
 
+## Analytics
+
+Google Analytics 4 is configured directly in the site config at `src/lib/site-data.ts`.
+
 ## Plan
 
 ### 1. Direction

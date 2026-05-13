@@ -1,0 +1,57 @@
+---
+title: "PromptAgent: An Agent Leveraging LLM Prompting for Text-to-Graph and Graph-to-Text"
+description: "Generating a Knowledge Graph from the Harry Potter Book using LLM prompting."
+date: '2024-11-26'
+image: '/blog/2024-11-26/thumbnail.png'
+excerpt: "Learn how PromptAgent transforms text into structured knowledge graphs and back using LLM-based prompting."
+author: "Taewoon Kim"
+tags:
+  - 'HumemAI'
+  - 'YouTube'
+  - 'Prompting'
+  - 'LLM'
+  - 'PromptAgent'
+---
+
+## PromptAgent: Text-to-Graph and Graph-to-Text with LLM Prompting
+
+We’re excited to showcase **PromptAgent**, an AI system that utilizes **LLM prompting** to convert text into knowledge graphs (text2graph) and reconstruct structured graphs back into textual descriptions (graph2text).
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+  <iframe src="https://www.youtube.com/embed/NU1JZE8kQeo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+</div>
+
+### The HumemAI Python Package
+
+PromptAgent is built on top of the **[HumemAI Python package](https://github.com/humemai/humemai)**, abstracting away complex interactions with graph databases and LLMs. While Python functions make it easy to use, the system operates under the hood with **graph databases, Gremlin queries, and LLM-based prompting**.
+
+### Knowledge Graphs: JanusGraph and Cassandra
+
+For representing structured knowledge, PromptAgent uses **property graphs** instead of RDF, leveraging **JanusGraph** (an open-source graph database) with **Cassandra** as the backend storage system. This combination offers efficient **graph traversal** and **scalability**, making it well-suited for real-world AI applications.
+
+### LLM for Graph Processing
+
+Since LLMs are naturally optimized for sequential text rather than structured graphs, we **serialize** graph structures into **JSON format** before passing them to an LLM. This enables transformations like:
+
+- **Text-to-Graph (text2graph)**: Extracting structured relationships from text.
+- **Graph-to-Text (graph2text)**: Generating meaningful descriptions from graph data.
+
+Post-processing methods, such as **regex-based parsing**, help reconstruct structured knowledge from LLM outputs.
+
+### Human-Like Memory Integration
+
+Inspired by human memory models, PromptAgent distinguishes between **short-term memory** and **long-term memory**:
+
+- **Short-term memory**: Stores newly processed text as a temporary graph with a `current_time` property.
+- **Working memory**: Retrieves only relevant long-term memories, filtering them based on graph distance (`num_hops`).
+- **Long-term memory storage**: Tracks frequently accessed memories by incrementing a `num_retrieved` counter.
+
+This approach ensures that PromptAgent remains scalable, leveraging **graph-based memory retrieval** rather than keeping an entire dataset in context, allowing it to handle vast amounts of knowledge efficiently.
+
+## Future Improvements
+
+- **Enhanced Prompt Optimization**: Refining LLM prompts to improve knowledge extraction.
+- **Integration with Larger LLMs**: Expanding PromptAgent to leverage advanced OpenAI APIs or alternative LLMs to reduce hallucinations.
+- **Interactive Chat Interface**: Enabling real-time interaction with PromptAgent for **assisting users in memory-intensive tasks**.
+
+Stay tuned for further updates as we refine and expand PromptAgent’s capabilities!
