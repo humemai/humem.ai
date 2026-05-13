@@ -2,7 +2,6 @@
 
 Startup website and app repo for HumemAI.
 
-
 ## Plan
 
 ### 1. Direction
