@@ -47,7 +47,7 @@ export default function PricingPage() {
           <span className={styles.action}>Learn more</span>
         </a>
 
-        <Link className={`${styles.card} ${styles.cardLink}`} href="/contact#early-access">
+        <Link className={`${styles.card} ${styles.cardLink}`} href="/contact">
           <p className={styles.label}>Cloud</p>
           <h2>Use the hosted HumemAI experience</h2>
           <p>
