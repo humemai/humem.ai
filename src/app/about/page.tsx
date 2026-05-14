@@ -32,6 +32,15 @@ export default function AboutPage() {
     >
       <section>
         <h2>Origin</h2>
+        <div className="inlineFounderImageWrap">
+          <Image
+            src="/illustrations/taewoon-kim-founder.png"
+            alt="Portrait of Taewoon Kim, founder of HumemAI"
+            fill
+            className="inlineFounderImage"
+            sizes="(max-width: 560px) 112px, 128px"
+          />
+        </div>
         <p>
           The central idea is simple: conversations and data should not be treated as the same thing, and agentic systems need better memory structures than a single flat context window.
         </p>

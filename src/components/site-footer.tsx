@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CookieSettingsButton } from "@/components/cookie-consent";
 import { footerColumns } from "@/lib/site-data";
 import styles from "./site-footer.module.css";
 
@@ -41,7 +42,10 @@ export function SiteFooter() {
 
         <div className={styles.bottomRow}>
           <p>Open-source roots, practical memory systems, and a hosted product direction for teams building agents.</p>
-          <p>© {new Date().getFullYear()} HumemAI</p>
+          <div className={styles.bottomMeta}>
+            <CookieSettingsButton className={styles.cookieSettings} />
+            <p>© {new Date().getFullYear()} HumemAI</p>
+          </div>
         </div>
       </div>
     </footer>

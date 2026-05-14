@@ -145,10 +145,34 @@
   margin-top: 0.8rem;
 }
 
+.content :global(.inlineFounderImageWrap) {
+  position: relative;
+  float: right;
+  overflow: hidden;
+  width: 8rem;
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--surface);
+  margin: 0 0 0.9rem 1rem;
+}
+
+.content :global(.inlineFounderImage) {
+  object-fit: cover;
+}
+
 @media (min-width: 720px) {
   .page {
     width: min(1180px, calc(100% - 3rem));
     padding-top: 2.5rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .content :global(.inlineFounderImageWrap) {
+    float: none;
+    width: min(7rem, 100%);
+    margin: 0 0 1rem;
   }
 }
 

@@ -38,7 +38,6 @@ export const footerColumns = [
       { label: "Blog", href: "/blog" },
       { label: "GitHub", href: "https://github.com/humemai", external: true },
       { label: "Privacy Policy", href: "/privacy-policy" },
-      { label: "Terms of Service", href: "/terms-of-service" },
     ],
   },
 ];

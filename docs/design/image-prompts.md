@@ -368,3 +368,27 @@ No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no 
 
 Filename: `blog-writing-and-research.png`
 Alt text: `Illustration representing technical writing, research updates, and structured knowledge.`
+
+## 16. Privacy Policy Visual
+
+```text
+Generate a privacy policy page image for HumemAI.
+
+Purpose:
+This image will be used on the Privacy Policy page. It should communicate trust, clarity, visitor choice, and careful handling of information without looking legalistic, corporate, or surveillance-themed.
+
+Aspect ratio:
+1:1 or 4:5
+
+What to show:
+Create a calm editorial illustration about privacy, transparency, and user control on a technology website. Show a small number of clear visual elements such as protected information, structured consent choices, simple controls, and a sense of respectful boundaries around data. The composition should suggest clarity and trust rather than fear or security drama. It should feel appropriate for a modern AI infrastructure company that wants to explain analytics and cookie choices in a straightforward way.
+
+Style:
+Clean, structured, product-oriented editorial illustration. Restrained palette: off-white, charcoal, slate, muted blue-gray, very limited accent color. Crisp geometry, calm composition, diagrammatic feeling. Premium, minimal, modern technology brand. Keep it simple, quiet, and trustworthy rather than dense or highly technical.
+
+Avoid:
+No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no stock-photo people, no clutter, no fantasy sci-fi scene, no purple-glow AI art, no low-detail illustration, no text baked into the image, no shield cliché dominating the whole composition, no padlock wallpaper, no creepy surveillance imagery.
+```
+
+Filename: `privacy-policy-trust-and-choice.png`
+Alt text: `Illustration representing privacy, transparency, and user control.`
