@@ -24,6 +24,22 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   return {
     title: project.title,
     description: project.summary,
+    openGraph: project.image
+      ? {
+          images: [
+            {
+              url: project.image.src,
+              alt: project.image.alt,
+            },
+          ],
+        }
+      : undefined,
+    twitter: project.image
+      ? {
+          card: "summary_large_image",
+          images: [project.image.src],
+        }
+      : undefined,
   };
 }
 
@@ -43,6 +59,20 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
       intro={project.summary}
       aside={
         <>
+          {project.image ? (
+            <figure className="heroFigure">
+              <div className="heroFigureImageWrap">
+                <Image
+                  src={project.image.src}
+                  alt={project.image.alt}
+                  fill
+                  className="heroFigureImage"
+                  sizes="(min-width: 1024px) 360px, 100vw"
+                />
+              </div>
+              <figcaption className="heroFigureCaption">{project.title}</figcaption>
+            </figure>
+          ) : null}
           {project.sponsor ? (
             <a
               className="partnerLogoLink"
@@ -65,16 +95,16 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
       }
     >
       <section>
-        <h2>Why it exists</h2>
+        <h2>The problem</h2>
         <p>{project.problem}</p>
       </section>
       <section>
-        <h2>What HumemAI is building</h2>
+        <h2>What we are building</h2>
         <p>{project.solution}</p>
       </section>
       {project.impact ? (
         <section>
-          <h2>Public-interest fit</h2>
+          <h2>Why it matters</h2>
           <p>{project.impact}</p>
         </section>
       ) : null}
@@ -85,7 +115,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
         </section>
       ) : null}
       <section>
-        <h2>Links and next steps</h2>
+        <h2>Links</h2>
         <ul>
           {project.links.map((link) => (
             <li key={link.href}>

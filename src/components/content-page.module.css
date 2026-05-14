@@ -56,6 +56,10 @@
   color: var(--muted);
 }
 
+.aside > * + * {
+  margin-top: 1rem;
+}
+
 .aside :global(.heroFigure) {
   margin: 0;
 }

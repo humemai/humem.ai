@@ -16,8 +16,24 @@ export default function BlogPage() {
   return (
     <ContentPage
       eyebrow="Blog"
-      title="The Latest News From HumemAI"
+      title="Writing from HumemAI"
       intro="Writing from HumemAI on memory systems, research updates, infrastructure work, videos, and product direction."
+      aside={
+        <figure className="heroFigure">
+          <div className="heroFigureImageWrap">
+            <Image
+              src="/illustrations/blog-writing-and-research.png"
+              alt="Illustration representing technical writing, research updates, and structured knowledge"
+              fill
+              className="heroFigureImage"
+              sizes="(min-width: 1024px) 360px, 100vw"
+            />
+          </div>
+          <figcaption className="heroFigureCaption">
+            HumemAI uses the blog to publish technical notes, research progress, infrastructure work, and product thinking in public.
+          </figcaption>
+        </figure>
+      }
     >
       <div className={styles.list}>
         {posts.map((post) => (

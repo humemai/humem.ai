@@ -11,13 +11,13 @@ export default function AboutPage() {
   return (
     <ContentPage
       eyebrow="About"
-      title="HumemAI brings memory research into practical AI systems."
+      title="From memory research to practical AI."
       intro="HumemAI started from research into human-like memory systems for AI, then shifted toward building tools and products that make persistent, inspectable memory usable in real workflows."
       aside={
         <figure className="heroFigure">
           <div className="heroFigureImageWrap">
             <Image
-              src="/illustrations/about.png"
+              src="/illustrations/about-memory-architecture.png"
               alt="Illustration of connected memory structures and stored knowledge"
               fill
               className="heroFigureImage"
@@ -34,6 +34,9 @@ export default function AboutPage() {
         <h2>Origin</h2>
         <p>
           The central idea is simple: conversations and data should not be treated as the same thing, and agentic systems need better memory structures than a single flat context window.
+        </p>
+        <p>
+          HumemAI was founded by <a href="https://taewoon.kim/" target="_blank" rel="noopener noreferrer">Taewoon Kim</a>, an AI researcher and engineer working on agentic memory: systems that help agents remember, organize, and reuse knowledge over time in ways that stay structured, inspectable, and practically useful.
         </p>
       </section>
 

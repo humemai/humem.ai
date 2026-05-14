@@ -17,7 +17,8 @@
 .heroCopy,
 .heroPanel,
 .featureCard,
-.bulletPanel {
+.bulletPanel,
+.copyBlock {
   border-radius: 1.5rem;
 }
 

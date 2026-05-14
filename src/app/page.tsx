@@ -12,7 +12,7 @@ export default function Home() {
             <p className={styles.eyebrow}>Persistent memory for agentic AI</p>
           </div>
           <h1 className={styles.title}>
-            Turn conversations, documents, tables, and graphs into usable long-term memory.
+            Give AI systems memory that lasts.
           </h1>
           <p className={styles.lead}>
             HumemAI gives AI systems a memory layer that stays persistent across sessions,
@@ -32,7 +32,7 @@ export default function Home() {
         <div className={styles.heroPanel}>
           <div className={styles.heroVisualWrap}>
             <Image
-              src="/illustrations/landing.png"
+              src="/illustrations/home-hero-memory-layer.png"
               alt="HumemAI landing illustration"
               fill
               className={styles.heroVisual}
@@ -63,7 +63,7 @@ export default function Home() {
       <section className={styles.sectionGrid}>
         <Link className={styles.featureCard} href="/product">
           <p className={styles.cardEyebrow}>Product</p>
-          <h2>A memory layer designed for real agent workflows</h2>
+          <h2>Built for real agent workflows</h2>
           <p>
             See how HumemAI handles conversational history, structured knowledge, and hybrid retrieval in one system.
           </p>
@@ -71,7 +71,7 @@ export default function Home() {
         </Link>
         <Link className={styles.featureCard} href="/pricing">
           <p className={styles.cardEyebrow}>Pricing</p>
-          <h2>Free open source and paid hosted options</h2>
+          <h2>Open source or hosted</h2>
           <p>
             Developers can self-host from GitHub. Teams that want outcomes can use a managed deployment.
           </p>
@@ -79,7 +79,7 @@ export default function Home() {
         </Link>
         <Link className={styles.featureCard} href="/projects">
           <p className={styles.cardEyebrow}>Projects</p>
-          <h2>Research, prototypes, and funded work in public</h2>
+          <h2>Research and projects in public</h2>
           <p>
             Follow the projects that shaped HumemAI so far, from audit-ready memory systems to embedded database work.
           </p>
@@ -90,7 +90,7 @@ export default function Home() {
       <section className={styles.sectionSplit}>
         <div className={styles.copyBlock}>
           <p className={styles.cardEyebrow}>Why now</p>
-          <h2>Agents can act, but they still forget.</h2>
+          <h2>Agents still forget.</h2>
           <p>
             The world is getting more agentic, but most systems remain stateless chat wrappers.
             HumemAI focuses on the missing layer: persistent, explainable memory that agents can use over time.

@@ -18,11 +18,32 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://humem.ai"),
   title: {
     default: "HumemAI",
     template: "%s | HumemAI",
   },
   description: "Persistent, explainable memory for agentic AI systems.",
+  openGraph: {
+    title: "HumemAI",
+    description: "Persistent, explainable memory for agentic AI systems.",
+    url: "https://humem.ai",
+    siteName: "HumemAI",
+    images: [
+      {
+        url: "/illustrations/og-memory-for-agentic-ai.png",
+        alt: "HumemAI social preview image",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "HumemAI",
+    description: "Persistent, explainable memory for agentic AI systems.",
+    images: ["/illustrations/og-memory-for-agentic-ai.png"],
+  },
   icons: {
     icon: "/favicon.png",
     apple: "/favicon.png",

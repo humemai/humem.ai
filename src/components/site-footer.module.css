@@ -12,10 +12,6 @@
   box-shadow: var(--shadow);
 }
 
-.brandBlock {
-  max-width: 34rem;
-}
-
 .brandHeading {
   display: inline-flex;
   align-items: center;

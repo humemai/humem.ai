@@ -2,6 +2,10 @@ export type Project = {
   slug: string;
   title: string;
   summary: string;
+  image?: {
+    src: string;
+    alt: string;
+  };
   funding?: string;
   sponsor?: {
     name: string;
@@ -32,6 +36,10 @@ export const projects: Project[] = [
     title: "Audit-Ready Memory",
     summary:
       "Open-source, local-first memory for AI agents with transparent logs, deterministic replay, and explicit deletion workflows for public-interest use.",
+    image: {
+      src: "/illustrations/project-audit-ready-memory.png",
+      alt: "Illustration of traceable and explainable AI memory records",
+    },
     funding: "Funded by SIDN Fund",
     sponsor: {
       name: "SIDN Fund",
@@ -64,6 +72,10 @@ export const projects: Project[] = [
     title: "CypherGLOT",
     summary:
       "A compiler-first Cypher frontend that validates a disciplined Neo4j-style subset and lowers it into backend-aware SQL output for embedded runtimes.",
+    image: {
+      src: "/illustrations/project-cypherglot-compiler.png",
+      alt: "Illustration of Cypher query compilation into normalized graph-relational output",
+    },
     status: "Core open-source compiler",
     problem:
       "Cypher is useful, but most teams either depend on one graph database runtime or end up mixing parser logic, compatibility hacks, and execution details in the same layer. That makes portability, testing, and embedded use much harder than it should be.",
@@ -82,6 +94,10 @@ export const projects: Project[] = [
     title: "ArcadeDB Embedded Python",
     summary:
       "Native Python bindings for ArcadeDB with bundled runtime packaging, embedded execution, and a cleaner path to graph, vector, and multi-model workloads from Python.",
+    image: {
+      src: "/illustrations/project-arcadedb-embedded-python.png",
+      alt: "Illustration of Python connected to an embedded multi-model database runtime",
+    },
     status: "Open-source Python integration",
     problem:
       "Using powerful multi-model databases from Python often means extra server setup, Java installation friction, or a weak local developer story. That slows down experimentation for graph, vector, and agent tooling that should run close to the application.",
@@ -100,6 +116,10 @@ export const projects: Project[] = [
     title: "HumemDB",
     summary:
       "A Python-first embedded runtime that orchestrates SQL, Cypher, and vector search across the engines that already do each job well.",
+    image: {
+      src: "/illustrations/project-humemdb-runtime.png",
+      alt: "Illustration of an embedded runtime coordinating SQL, graph, and vector workloads",
+    },
     status: "Core open-source runtime",
     problem:
       "Most data stacks force SQL, graph, and vector workloads through one engine or one marketing story, even when the tradeoffs are weak. That creates confusion around routing, performance, and what is actually happening under the hood.",
@@ -118,6 +138,10 @@ export const projects: Project[] = [
     title: "Machines With Human-Like Memory",
     summary:
       "A foundational PhD project exploring how AI systems can move beyond stateless prompting toward richer, more human-like memory that stays structured, inspectable, and useful over time.",
+    image: {
+      src: "/illustrations/project-human-like-memory.png",
+      alt: "Illustration of human-like memory architecture for AI",
+    },
     status: "Foundational PhD project",
     problem:
       "Most AI systems still treat memory as an afterthought: short-lived context windows, opaque hidden state, or brittle retrieval layers that struggle to represent what should persist, what should fade, and how past experience should shape future behavior.",

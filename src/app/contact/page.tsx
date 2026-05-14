@@ -11,13 +11,13 @@ export default function ContactPage() {
   return (
     <ContentPage
       eyebrow="Contact"
-      title="Early access, partnerships, and customer-specific deployments."
+      title="Early access, partnerships, and custom work."
       intro="Get in touch if you want early access, a hosted deployment, a project collaboration, or a conversation about where memory-heavy AI systems are headed."
       aside={
         <figure className="heroFigure">
           <div className="heroFigureImageWrap">
             <Image
-              src="/illustrations/contact.png"
+              src="/illustrations/contact-collaboration-onboarding.png"
               alt="Contact illustration"
               fill
               className="heroFigureImage"

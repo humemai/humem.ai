@@ -6,6 +6,10 @@ Startup website and app repo for HumemAI.
 
 Google Analytics 4 is configured directly in the site config at `src/lib/site-data.ts`.
 
+## Design Assets
+
+AI image generation prompts for the website illustrations live at `docs/design/image-prompts.md`.
+
 ## Plan
 
 ### 1. Direction

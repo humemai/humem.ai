@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { ContentPage } from "@/components/content-page";
 import styles from "./pricing.module.css";
 
@@ -12,13 +13,13 @@ export default function PricingPage() {
   return (
     <ContentPage
       eyebrow="Pricing"
-      title="Start free, or pay for the integrated hosted experience."
+      title="Start free, or go hosted."
       intro="HumemAI offers an open-source path for developers, a hosted path for teams that want faster outcomes, and custom engagements for integration-heavy deployments."
       aside={
         <figure className="heroFigure">
           <div className="heroFigureImageWrap">
             <Image
-              src="/illustrations/pricing.png"
+              src="/illustrations/pricing-deployment-paths.png"
               alt="Pricing illustration"
               fill
               className="heroFigureImage"
@@ -32,7 +33,7 @@ export default function PricingPage() {
       }
     >
       <div className={styles.grid}>
-        <section className={styles.card}>
+        <a className={`${styles.card} ${styles.cardLink}`} href="https://github.com/humemai" target="_blank" rel="noopener noreferrer">
           <p className={styles.label}>Free</p>
           <h2>Self-host the open-source stack</h2>
           <p>
@@ -43,12 +44,10 @@ export default function PricingPage() {
             <li>Developer-first experimentation</li>
             <li>Bring your own infrastructure</li>
           </ul>
-          <p>
-            <a href="https://github.com/humemai" target="_blank" rel="noopener noreferrer">Learn more</a>
-          </p>
-        </section>
+          <span className={styles.action}>Learn more</span>
+        </a>
 
-        <section className={styles.card}>
+        <Link className={`${styles.card} ${styles.cardLink}`} href="/contact#early-access">
           <p className={styles.label}>Cloud</p>
           <h2>Use the hosted HumemAI experience</h2>
           <p>
@@ -59,9 +58,10 @@ export default function PricingPage() {
             <li>Managed deployment and operations</li>
             <li>Designed for teams that want outcomes fast</li>
           </ul>
-        </section>
+          <span className={styles.action}>Learn more</span>
+        </Link>
 
-        <section className={styles.card}>
+        <Link className={`${styles.card} ${styles.cardLink}`} href="/contact">
           <p className={styles.label}>Custom</p>
           <h2>Tailored setups for specific customer needs</h2>
           <p>
@@ -72,7 +72,8 @@ export default function PricingPage() {
             <li>Customer-specific memory workflows</li>
             <li>Future API and enterprise support</li>
           </ul>
-        </section>
+          <span className={styles.action}>Learn more</span>
+        </Link>
       </div>
     </ContentPage>
   );

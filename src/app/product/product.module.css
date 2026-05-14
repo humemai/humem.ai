@@ -1,0 +1,22 @@
+.sectionFigure {
+  margin: 1rem 0 0;
+}
+
+.sectionImageWrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--surface-muted);
+}
+
+.sectionImage {
+  object-fit: cover;
+}
+
+.sectionCaption {
+  margin: 0.8rem 0 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
