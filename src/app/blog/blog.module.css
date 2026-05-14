@@ -25,6 +25,23 @@
   transform: translateY(-2px);
 }
 
+.cardImageLink {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.cardTitleLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.cardTitleLink:hover,
+.cardTitleLink:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.22rem;
+}
+
 .cardImageWrap,
 .postImageWrap {
   position: relative;
@@ -74,12 +91,26 @@
 }
 
 .tag {
+  display: inline-flex;
+  align-items: center;
   padding: 0.3rem 0.65rem;
   border: 1px solid var(--border);
   border-radius: 999px;
   background: var(--surface-muted);
   color: var(--muted);
   font-size: 0.85rem;
+}
+
+.tagLink {
+  text-decoration: none;
+  transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease;
+}
+
+.tagLink:hover,
+.tagLink:focus-visible {
+  border-color: var(--border-strong);
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--surface-muted) 70%, var(--surface) 30%);
 }
 
 .action {

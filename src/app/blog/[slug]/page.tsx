@@ -9,7 +9,7 @@ import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import { ContentPage } from "@/components/content-page";
-import { getAllBlogPosts, getBlogPost } from "@/lib/blog-posts";
+import { getAllBlogPosts, getBlogPost, getBlogTagHref } from "@/lib/blog-posts";
 import styles from "../blog.module.css";
 
 type Params = {
@@ -63,7 +63,9 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
         ) : null}
         <div className={styles.postTags}>
           {post.tags.map((tag) => (
-            <span className={styles.tag} key={tag}>{tag}</span>
+            <Link className={`${styles.tag} ${styles.tagLink}`} href={getBlogTagHref(tag)} key={tag}>
+              {tag}
+            </Link>
           ))}
         </div>
         <div className={styles.content}>

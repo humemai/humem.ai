@@ -15,6 +15,12 @@ export type BlogPost = {
   content: string;
 };
 
+export type BlogTag = {
+  name: string;
+  slug: string;
+  count: number;
+};
+
 const BLOG_CONTENT_DIR = path.join(process.cwd(), "src/content/blog");
 
 function filenameToSlug(fileName: string) {
@@ -27,6 +33,18 @@ function coerceString(value: unknown) {
 
 function parseDateValue(value: string) {
   return new Date(value).getTime();
+}
+
+export function slugifyTag(tag: string) {
+  return tag
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+export function getBlogTagHref(tag: string) {
+  return `/blog/tags/${slugifyTag(tag)}`;
 }
 
 export const getAllBlogPosts = cache((): BlogPost[] => {
@@ -52,6 +70,32 @@ export const getAllBlogPosts = cache((): BlogPost[] => {
     })
     .sort((left, right) => parseDateValue(right.date) - parseDateValue(left.date));
 });
+
+export const getAllBlogTags = cache((): BlogTag[] => {
+  const counts = new Map<string, number>();
+
+  for (const post of getAllBlogPosts()) {
+    for (const tag of post.tags) {
+      counts.set(tag, (counts.get(tag) ?? 0) + 1);
+    }
+  }
+
+  return [...counts.entries()]
+    .map(([name, count]) => ({
+      name,
+      slug: slugifyTag(name),
+      count,
+    }))
+    .sort((left, right) => left.name.localeCompare(right.name));
+});
+
+export function getBlogTagBySlug(tagSlug: string) {
+  return getAllBlogTags().find((tag) => tag.slug === tagSlug);
+}
+
+export function getBlogPostsByTag(tagName: string) {
+  return getAllBlogPosts().filter((post) => post.tags.includes(tagName));
+}
 
 export function getBlogPost(slug: string) {
   return getAllBlogPosts().find((post) => post.slug === slug);

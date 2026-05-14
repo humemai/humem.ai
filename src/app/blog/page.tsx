@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ContentPage } from "@/components/content-page";
-import { getAllBlogPosts } from "@/lib/blog-posts";
+import { getAllBlogPosts, getBlogTagHref } from "@/lib/blog-posts";
 import styles from "./blog.module.css";
 
 export const metadata: Metadata = {
@@ -37,22 +37,32 @@ export default function BlogPage() {
     >
       <div className={styles.list}>
         {posts.map((post) => (
-          <Link className={`${styles.card} ${styles.cardLink}`} href={`/blog/${post.slug}`} key={post.slug}>
+          <article className={`${styles.card} ${styles.cardLink}`} key={post.slug}>
             {post.image ? (
-              <div className={styles.cardImageWrap}>
-                <Image src={post.image} alt={post.title} fill className={styles.cardImage} sizes="(min-width: 900px) 50vw, 100vw" />
-              </div>
+              <Link className={styles.cardImageLink} href={`/blog/${post.slug}`}>
+                <div className={styles.cardImageWrap}>
+                  <Image src={post.image} alt={post.title} fill className={styles.cardImage} sizes="(min-width: 900px) 50vw, 100vw" />
+                </div>
+              </Link>
             ) : null}
             <p className={styles.meta}>{new Date(post.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })} · {post.author}</p>
-            <h2>{post.title}</h2>
+            <h2>
+              <Link className={styles.cardTitleLink} href={`/blog/${post.slug}`}>
+                {post.title}
+              </Link>
+            </h2>
             <p className={styles.excerpt}>{post.excerpt}</p>
             <div className={styles.tags}>
               {post.tags.map((tag) => (
-                <span className={styles.tag} key={tag}>{tag}</span>
+                <Link className={`${styles.tag} ${styles.tagLink}`} href={getBlogTagHref(tag)} key={tag}>
+                  {tag}
+                </Link>
               ))}
             </div>
-            <span className={styles.action}>Learn more</span>
-          </Link>
+            <Link className={styles.action} href={`/blog/${post.slug}`}>
+              Learn more
+            </Link>
+          </article>
         ))}
       </div>
     </ContentPage>
