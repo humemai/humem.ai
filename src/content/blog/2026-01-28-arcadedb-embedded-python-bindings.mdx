@@ -22,7 +22,7 @@ tags:
 We’ve released **ArcadeDB Embedded Python Bindings**, a lightweight way to use ArcadeDB directly from Python without a driver hop. This is the foundation for much of HumemAI’s R&D work and future products.
 
 - **Embedded (JVM) access** for low‑latency local workloads.
-- **Python-first API** while leveraging ArcadeDB’s multi‑model engine.
+- **DSL-first workflows from Python** using SQL and OpenCypher.
 - **Self-contained** packaging with bundled JRE and JARs.
 
 ## Why ArcadeDB
@@ -38,19 +38,21 @@ For us, ArcadeDB’s multi‑model design is the right substrate for memory syst
 
 HumemAI favors **local‑first** and **low‑latency** data access. A thin embedded binding removes the networked driver hop and lets Python talk to the JVM engine directly. This improves latency, reduces operational overhead, and makes it easier to ship reliable, testable agents.
 
-It also means we can keep memory-intensive workloads close to the data, while still offering a clean Python interface for experimentation and product integration.
+It also means we can keep memory-intensive workloads close to the data, while still using Python to drive lifecycle, transactions, parameters, and experiments.
 
 ## What’s Included
 
 The repository contains the **original ArcadeDB codebase** plus the Python bindings under `bindings/python`. The bindings expose a Pythonic API over core ArcadeDB functionality:
 
-- **Database & schema management** (types, properties, indexes)
-- **Transactions** and batch APIs
-- **Importer/Exporter utilities** (CSV, JSONL, XML, GraphML, GraphSON)
-- **Vector search** via HNSW (JVector) indexing
-- **Graph helpers** for vertices/edges
+The current examples lean **DSL-first** rather than leading with Python object wrappers:
 
-You can see the public API surface in the package exports, including `Database`, `Schema`, `VectorIndex`, and `Importer`.
+- **SQL DDL/DML** from Python for schema, ingest, and analytics
+- **OpenCypher** for graph pattern queries, with SQL MATCH also available
+- **Vector indexing and search** through SQL features like `LSM_VECTOR` and `vectorNeighbors(...)`
+- **Transactions**, batch workloads, and importer/exporter utilities
+- **Embedded runtime** with optional server-mode access when needed
+
+In other words, Python is increasingly the orchestration layer, while SQL and OpenCypher carry most of the data work.
 
 ## A truly standalone wheel
 
@@ -59,8 +61,9 @@ The Python wheel is **fully self‑contained**. It ships with everything needed 
 - **Lightweight JVM 25** built with **jlink** (no external Java install)
 - **JPype bridge** to call JVM APIs from Python
 - **Only the required JARs**, plus the Python bindings code
+- **Prebuilt platform-specific wheels** for Linux x86_64, Linux ARM64, macOS ARM64, and Windows x86_64
 
-Despite bundling the JVM, we keep the package compact: the wheel is **~116MB** compressed.
+Despite bundling the JVM, we keep the package compact: the wheel is **about 74MB** compressed today, with slight variation by platform and version.
 
 ## Quick Start (Python)
 
@@ -72,49 +75,50 @@ uv pip install arcadedb-embedded
 
 ## Tables (SQL), Graphs (OpenCypher), and Vectors
 
-ArcadeDB gives us all three data models in one embedded engine. We lead with the Python API; SQL and OpenCypher are always available when you want them.
+ArcadeDB gives us all three data models in one embedded engine. The current bindings examples lead with **SQL** and **OpenCypher** from Python, rather than a large Python-native object model.
 
 ### Tables with SQL
 
-We define schema and insert documents with Python methods, then query with SQL.
+We define schema, insert records, and query through SQL.
 
 ```python
 import arcadedb_embedded as arcadedb
 
 with arcadedb.create_database("./mydb") as db:
-    db.schema.create_document_type("User")
-    db.schema.create_property("User", "name", "STRING")
-    db.schema.create_property("User", "age", "INTEGER")
-    db.schema.create_index("User", ["age"])
+    db.command("sql", "CREATE DOCUMENT TYPE User")
+    db.command("sql", "CREATE PROPERTY User.name STRING")
+    db.command("sql", "CREATE PROPERTY User.age INTEGER")
+    db.command("sql", "CREATE INDEX ON User (age) NOTUNIQUE")
 
     with db.transaction():
-        db.new_document("User").set("name", "Ada").set("age", 31).save()
+        db.command("sql", "INSERT INTO User SET name = ?, age = ?", "Ada", 31)
+        db.command("sql", "INSERT INTO User SET name = ?, age = ?", "Grace", 28)
 
-    for row in db.query("sql", "SELECT FROM User WHERE age >= 30"):
+    for row in db.query("sql", "SELECT name FROM User WHERE age >= ? ORDER BY age DESC", 30):
         print(row.get("name"))
-
-    for row in db.query("sql", "SELECT count(*) as total FROM User"):
-        print(row.get("total"))
 ```
 
 ### Graphs with OpenCypher
 
-OpenCypher is supported, but the Python graph API is often the fastest path.
+We can still use SQL for graph DDL and edge creation, then query through OpenCypher.
 
 ```python
 import arcadedb_embedded as arcadedb
 
 with arcadedb.create_database("./mydb") as db:
-    db.schema.create_vertex_type("Person")
-    db.schema.create_edge_type("KNOWS")
+    db.command("sql", "CREATE VERTEX TYPE Person")
+    db.command("sql", "CREATE PROPERTY Person.name STRING")
+    db.command("sql", "CREATE EDGE TYPE KNOWS")
 
     with db.transaction():
-        alice = db.new_vertex("Person").set("name", "Alice").save()
-        bob = db.new_vertex("Person").set("name", "Bob").save()
-        alice.new_edge("KNOWS", bob).save()
-
-    for edge in alice.get_out_edges("KNOWS"):
-        print(edge.get_out().get("name"), "->", edge.get_in().get("name"))
+        db.command("sql", "INSERT INTO Person SET name = ?", "Alice")
+        db.command("sql", "INSERT INTO Person SET name = ?", "Bob")
+        db.command(
+            "sql",
+            "CREATE EDGE KNOWS FROM (SELECT FROM Person WHERE name = ?) TO (SELECT FROM Person WHERE name = ?)",
+            "Alice",
+            "Bob",
+        )
 
     result = db.query(
         "opencypher",
@@ -122,49 +126,54 @@ with arcadedb.create_database("./mydb") as db:
     )
     for r in result:
         print(r.get("from"), "->", r.get("to"))
-
-    names = db.query(
-        "opencypher",
-        "MATCH (p:Person) RETURN p.name AS name ORDER BY name",
-    )
-    for r in names:
-        print(r.get("name"))
 ```
 
 ### Vectors (HNSW / JVector)
 
-We build the vector index with a Python builder and query it directly from the API.
+Vector workflows are also driven through SQL, with Python mainly supplying values and parameters.
 
 ```python
 import arcadedb_embedded as arcadedb
 
 with arcadedb.create_database("./mydb") as db:
-    db.schema.create_vertex_type("VecDoc")
-    db.schema.create_property("VecDoc", "name", "STRING")
-    db.schema.create_property("VecDoc", "vector", "ARRAY_OF_FLOATS")
-
-    vector_index = db.create_vector_index(
-        "VecDoc",
-        "vector",
-        dimensions=4,
-        distance_function="cosine",
-        quantization="INT8",
+    db.command("sql", "CREATE VERTEX TYPE VecDoc")
+    db.command("sql", "CREATE PROPERTY VecDoc.name STRING")
+    db.command("sql", "CREATE PROPERTY VecDoc.vector ARRAY_OF_FLOATS")
+    db.command(
+        "sql",
+        """
+        CREATE INDEX ON VecDoc (vector)
+        LSM_VECTOR
+        METADATA {"dimensions": 4, "similarity": "COSINE"}
+        """,
     )
 
     with db.transaction():
-        db.new_vertex("VecDoc").set("name", "Apple").set(
-            "vector", arcadedb.to_java_float_array([1.0, 0.0, 0.0, 0.0])
-        ).save()
-        db.new_vertex("VecDoc").set("name", "Banana").set(
-            "vector", arcadedb.to_java_float_array([0.9, 0.1, 0.0, 0.0])
-        ).save()
-        db.new_vertex("VecDoc").set("name", "Car").set(
-            "vector", arcadedb.to_java_float_array([0.0, 0.0, 1.0, 0.0])
-        ).save()
+        db.command(
+            "sql",
+            "INSERT INTO VecDoc SET name = :name, vector = :vector",
+            {"name": "Apple", "vector": arcadedb.to_java_float_array([1.0, 0.0, 0.0, 0.0])},
+        )
+        db.command(
+            "sql",
+            "INSERT INTO VecDoc SET name = :name, vector = :vector",
+            {"name": "Banana", "vector": arcadedb.to_java_float_array([0.9, 0.1, 0.0, 0.0])},
+        )
+        db.command(
+            "sql",
+            "INSERT INTO VecDoc SET name = :name, vector = :vector",
+            {"name": "Car", "vector": arcadedb.to_java_float_array([0.0, 0.0, 1.0, 0.0])},
+        )
 
-    results = vector_index.find_nearest([0.95, 0.05, 0.0, 0.0], k=2)
-    for record, score in results:
-        print(record.get("name"), score)
+    results = db.query(
+        "sql",
+        "SELECT name, distance FROM (SELECT expand(vectorNeighbors(?, ?, ?))) ORDER BY distance",
+        "VecDoc[vector]",
+        arcadedb.to_java_float_array([0.95, 0.05, 0.0, 0.0]),
+        2,
+    )
+    for row in results:
+        print(row.get("name"), row.get("distance"))
 ```
 
 ## Use Cases We Care About
