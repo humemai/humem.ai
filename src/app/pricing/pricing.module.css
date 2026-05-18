@@ -1,54 +1,222 @@
-.grid {
+.page {
+  width: 100%;
+  padding: 1rem 0 5rem;
+}
+
+.hero,
+.editorialSection,
+.pathSection,
+.mediaSection,
+.ctaSection {
+  width: var(--site-shell-width-mobile);
+  margin: 0 auto;
+}
+
+.hero {
   display: grid;
-  gap: 1rem;
+  gap: 1.5rem;
+  align-items: start;
 }
 
-.card {
-  height: 100%;
+.heroCopy {
+  padding: 1.2rem 0;
 }
 
-.cardLink {
-  display: block;
-  padding: 1.35rem;
-  border: 1px solid var(--border);
-  border-radius: 1.5rem;
-  background: var(--surface);
-  box-shadow: var(--shadow);
-  color: inherit;
-  text-decoration: none;
-  transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
-}
-
-.cardLink:hover,
-.cardLink:focus-visible {
-  border-color: var(--border-strong);
-  background: var(--surface-muted);
-  transform: translateY(-2px);
-}
-
-.label {
-  margin: 0 0 0.8rem;
-  font-size: 0.8rem;
+.eyebrow,
+.pathLabel {
+  margin: 0;
+  font-size: var(--site-eyebrow-size);
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: var(--site-eyebrow-letter-spacing);
   text-transform: uppercase;
   color: var(--accent);
 }
 
-.card ul {
-  margin-top: 1rem;
+.heroCopy h1,
+.editorialLead h2,
+.mediaCopy h2,
+.ctaCopy h2 {
+  margin: 0.5rem 0 0;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
 }
 
-.action {
+.heroCopy h1 {
+  font-size: clamp(3rem, 7vw, 5.4rem);
+}
+
+.intro,
+.editorialBody p,
+.pathItem > p,
+.pathItem li,
+.mediaCopy p,
+.ctaCopy p {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.intro {
+  max-width: var(--site-hero-intro-max);
+  margin: 1.3rem 0 0;
+  font-size: clamp(1.04rem, 2vw, 1.22rem);
+}
+
+.actions,
+.ctaActions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 2rem;
+}
+
+.primaryAction,
+.secondaryAction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.9rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  transition: 160ms ease;
+}
+
+.primaryAction {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+.secondaryAction {
+  border-color: var(--border-strong);
+  background: transparent;
+  color: var(--foreground);
+}
+
+.primaryAction:hover,
+.secondaryAction:hover,
+.primaryAction:focus-visible,
+.secondaryAction:focus-visible,
+.pathAction:hover,
+.pathAction:focus-visible {
+  transform: translateY(-1px);
+}
+
+.heroFigure,
+.mediaFigure {
+  margin: 0;
+}
+
+.heroImageWrap,
+.mediaImageWrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--site-hero-radius);
+  background: linear-gradient(145deg, var(--surface-strong), var(--surface));
+}
+
+.heroImageWrap {
+  aspect-ratio: 5 / 6;
+}
+
+.mediaImageWrap {
+  aspect-ratio: 16 / 10;
+}
+
+.heroImage,
+.mediaImage {
+  object-fit: cover;
+}
+
+.editorialSection,
+.mediaSection,
+.ctaSection {
+  display: grid;
+  gap: 1rem;
+  margin-top: 3.5rem;
+}
+
+.editorialLead,
+.mediaCopy,
+.ctaCopy {
+  max-width: var(--site-section-lead-max);
+}
+
+.editorialLead h2,
+.mediaCopy h2,
+.ctaCopy h2 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+}
+
+.editorialBody {
+  display: grid;
+  gap: 1rem;
+}
+
+.pathSection {
+  display: grid;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--border);
+}
+
+.pathItem {
+  padding-top: 0.2rem;
+}
+
+.pathItem h3 {
+  margin: 0.6rem 0 0;
+  font-size: 1.45rem;
+  line-height: 1.15;
+}
+
+.pathItem ul {
+  margin: 1rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.pathAction {
   display: inline-flex;
   margin-top: 1rem;
   color: var(--accent);
   font-weight: 600;
 }
 
-@media (min-width: 1040px) {
-  .grid {
+.ctaSection {
+  padding: 1.8rem 0 0;
+  border-top: 1px solid var(--border);
+}
+
+@media (min-width: 768px) {
+  .hero,
+  .editorialSection,
+  .pathSection,
+  .mediaSection,
+  .ctaSection {
+    width: var(--site-shell-width-desktop);
+  }
+
+  .actions,
+  .ctaActions {
+    flex-direction: row;
+  }
+
+  .editorialSection,
+  .mediaSection,
+  .ctaSection {
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 30rem);
+    align-items: start;
+  }
+
+  .pathSection {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    align-items: stretch;
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    grid-template-columns: 1.05fr 0.95fr;
   }
 }

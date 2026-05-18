@@ -345,13 +345,13 @@ No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no 
 Filename: `careers-build-with-memory.png`
 Alt text: `Illustration representing collaborative work on AI memory systems.`
 
-## 15. Blog Visual
+## 15. News Visual
 
 ```text
-Generate a blog page image for HumemAI.
+Generate a news page image for HumemAI.
 
 Purpose:
-This image will be used on the main Blog page. It should communicate writing, research updates, technical notes, and product thinking around AI memory systems without looking like a literal article thumbnail grid.
+This image will be used on the main News page. It should communicate writing, research updates, technical notes, and product thinking around AI memory systems without looking like a literal article thumbnail grid.
 
 Aspect ratio:
 1:1 or 4:5
@@ -363,10 +363,10 @@ Style:
 Clean, structured, product-oriented editorial illustration. Restrained palette: off-white, charcoal, slate, muted blue-gray, very limited accent color. Crisp geometry, calm composition, diagrammatic feeling. Premium, minimal, modern technology brand. Keep it thoughtful and idea-oriented rather than product-screenshot-oriented.
 
 Avoid:
-No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no stock-photo people, no clutter, no fantasy sci-fi scene, no purple-glow AI art, no low-detail illustration, no text baked into the image, no literal blog card grid, no open laptop mockup, no screenshot of a writing app.
+No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no stock-photo people, no clutter, no fantasy sci-fi scene, no purple-glow AI art, no low-detail illustration, no text baked into the image, no literal news card grid, no open laptop mockup, no screenshot of a writing app.
 ```
 
-Filename: `blog-writing-and-research.png`
+Filename: `news-writing-and-research.png`
 Alt text: `Illustration representing technical writing, research updates, and structured knowledge.`
 
 ## 16. Privacy Policy Visual

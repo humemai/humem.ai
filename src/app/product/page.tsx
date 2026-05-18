@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ContentPage } from "@/components/content-page";
 import styles from "./product.module.css";
 
 export const metadata: Metadata = {
@@ -11,67 +10,110 @@ export const metadata: Metadata = {
 
 export default function ProductPage() {
   return (
-    <ContentPage
-      eyebrow="Product"
-      title="A memory layer for agentic AI."
-      intro="Users interact through natural language, upload documents and data, and let HumemAI organize knowledge into the right memory structures across text, tables, graphs, and vectors."
-      aside={
-        <figure className="heroFigure">
-          <div className="heroFigureImageWrap">
+    <main className={styles.page}>
+      <section className={styles.hero}>
+        <div className={styles.heroCopy}>
+          <p className={styles.eyebrow}>Product</p>
+          <h1>A memory layer for agentic AI.</h1>
+          <p className={styles.intro}>
+            Users interact through natural language, upload documents and data, and let HumemAI organize knowledge into the right memory structures across text, tables, graphs, and vectors.
+          </p>
+          <div className={styles.actions}>
+            <Link className={styles.primaryAction} href="/pricing">
+              Explore pricing
+            </Link>
+            <Link className={styles.secondaryAction} href="/contact">
+              Contact HumemAI
+            </Link>
+          </div>
+        </div>
+
+        <figure className={styles.heroFigure}>
+          <div className={styles.heroImageWrap}>
             <Image
               src="/illustrations/product-hero-interface.png"
               alt="Illustration of the HumemAI product across memory graph, conversation, and retrieval panels"
               fill
-              className="heroFigureImage"
-              sizes="(min-width: 1024px) 360px, 100vw"
+              className={styles.heroImage}
+              sizes="(min-width: 1024px) 42vw, 100vw"
             />
           </div>
-          <figcaption className="heroFigureCaption">
-            HumemAI combines conversational memory, structured knowledge, and hybrid retrieval so agents can work across sessions without collapsing everything into a single context window.
-          </figcaption>
         </figure>
-      }
-    >
-      <section>
-        <h2>What HumemAI does</h2>
-        <p>
-          HumemAI helps agents remember across sessions. It combines conversational memory with connected knowledge so the system can retrieve context, reason across formats, and remain inspectable instead of acting like a stateless chat wrapper.
-        </p>
       </section>
 
-      <section>
-        <h2>How it works</h2>
-        <ul>
-          <li>Episodic memory captures conversations and interactions over time.</li>
-          <li>Semantic memory keeps documents, tables, graphs, and data in useful structures.</li>
-          <li>Hybrid retrieval lets agents query relationships, vectors, and structured knowledge together.</li>
-        </ul>
+      <section className={styles.editorialSection}>
+        <div className={styles.editorialLead}>
+          <p className={styles.eyebrow}>What it does</p>
+          <h2>HumemAI helps agents remember in structures that stay useful over time.</h2>
+        </div>
+        <div className={styles.editorialBody}>
+          <p>
+            Instead of forcing everything into one rolling chat log, HumemAI separates what happened, what is known, and how that knowledge should be retrieved later. That makes the system easier to inspect, easier to update, and more useful across sessions.
+          </p>
+          <p>
+            The goal is not to simulate memory abstractly. It is to make memory a real product layer that can support ongoing agent workflows across conversations, documents, tables, graphs, and connected data.
+          </p>
+        </div>
       </section>
 
-      <section>
-        <h2>Product paths</h2>
-        <p>
-          HumemAI can be explored in different ways depending on how hands-on you want to be. Some teams start by working directly with the open-source components, while others want a hosted setup or a more tailored deployment around their workflow.
-        </p>
-        <p>
-          For a clearer breakdown of self-hosted, hosted, and custom options, see <Link href="/pricing">Pricing</Link>.
-        </p>
-        <figure className={styles.sectionFigure}>
-          <div className={styles.sectionImageWrap}>
+      <section className={styles.capabilitySection}>
+        <div className={styles.capabilityItem}>
+          <p className={styles.capabilityLabel}>Episodic memory</p>
+          <p>Capture conversations, actions, and interaction history with enough structure to replay what happened over time.</p>
+        </div>
+        <div className={styles.capabilityItem}>
+          <p className={styles.capabilityLabel}>Semantic memory</p>
+          <p>Keep documents, tables, entities, and relationships in the format that best preserves meaning and retrieval quality.</p>
+        </div>
+        <div className={styles.capabilityItem}>
+          <p className={styles.capabilityLabel}>Hybrid retrieval</p>
+          <p>Let agents query vectors, relationships, and structured knowledge together instead of choosing one memory style for everything.</p>
+        </div>
+      </section>
+
+      <section className={styles.mediaSection}>
+        <div className={styles.mediaCopy}>
+          <p className={styles.eyebrow}>Workspace</p>
+          <h2>A workspace shaped around ingestion, retrieval, and long-term memory.</h2>
+          <p>
+            Teams can use HumemAI as an integrated environment for getting information into memory, exploring it in the right structure, and retrieving it later in ways that remain legible to both people and agents.
+          </p>
+          <p>
+            If you want the operational breakdown between self-hosted, hosted, and custom options, the next stop is <Link href="/pricing">Pricing</Link>.
+          </p>
+        </div>
+
+        <figure className={styles.mediaFigure}>
+          <div className={styles.mediaImageWrap}>
             <Image
               src="/illustrations/hosted-workspace-mockup.png"
               alt="Illustration of a hosted HumemAI workspace"
               fill
-              className={styles.sectionImage}
+              className={styles.mediaImage}
               quality={90}
-              sizes="(min-width: 1180px) 1080px, (min-width: 720px) calc(100vw - 6rem), calc(100vw - 4rem)"
+              sizes="(min-width: 1180px) 46vw, 100vw"
             />
           </div>
-          <figcaption className={styles.sectionCaption}>
-            Teams that want the integrated hosted experience can use a workspace shaped around ingestion, retrieval, and long-term memory workflows.
-          </figcaption>
         </figure>
       </section>
-    </ContentPage>
+
+      <section className={styles.ctaSection}>
+        <div className={styles.ctaCopy}>
+          <p className={styles.eyebrow}>Next step</p>
+          <h2>Choose how you want to use HumemAI.</h2>
+          <p>
+            Some teams start with the open source components and self-host. Others want a hosted setup or a deployment shaped around their workflow.
+          </p>
+        </div>
+        <div className={styles.ctaActions}>
+          <Link className={styles.primaryAction} href="/pricing">
+            Explore pricing
+          </Link>
+          <Link className={styles.secondaryAction} href="/projects">
+            View open source projects
+          </Link>
+        </div>
+      </section>
+    </main>
   );
 }

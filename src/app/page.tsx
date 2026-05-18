@@ -1,8 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ProjectRail } from "@/components/project-rail";
+import { getAllNewsPosts } from "@/lib/news-posts";
+import { getFeaturedProjects } from "@/lib/projects";
 import styles from "./page.module.css";
+import newsStyles from "./news/news.module.css";
 
 export default function Home() {
+  const featuredProjects = getFeaturedProjects();
+  const latestNews = getAllNewsPosts().slice(0, 3);
+
   return (
     <main className={styles.page}>
       <section className={styles.heroShell}>
@@ -20,11 +27,11 @@ export default function Home() {
             black box.
           </p>
           <div className={styles.actions}>
-            <Link className={styles.primaryAction} href="/pricing">
-              Explore pricing
-            </Link>
-            <Link className={styles.secondaryAction} href="/product">
+            <Link className={styles.primaryAction} href="/product">
               See the product
+            </Link>
+            <Link className={styles.secondaryAction} href="/pricing">
+              Explore pricing
             </Link>
           </div>
         </div>
@@ -39,70 +46,110 @@ export default function Home() {
               sizes="(min-width: 1024px) 32vw, 100vw"
             />
           </div>
-          <div className={styles.panelHeader}>
-            <span className={styles.panelLabel}>How HumemAI works</span>
-            <span className={styles.panelMeta}>GUI + hosted + API-ready</span>
-          </div>
-          <div className={styles.memoryList}>
-            <article>
-              <h2>Episodic memory</h2>
-              <p>Capture what happened, when it happened, and why it matters across interactions.</p>
-            </article>
-            <article>
-              <h2>Semantic memory</h2>
-              <p>Keep documents, tables, graphs, and connected systems in the most useful structure.</p>
-            </article>
-            <article>
-              <h2>Hybrid retrieval</h2>
-              <p>Let agents query relationships, vectors, and structured knowledge in one memory layer.</p>
-            </article>
-          </div>
         </div>
       </section>
 
-      <section className={styles.sectionGrid}>
-        <Link className={styles.featureCard} href="/product">
+      <section className={styles.editorialSection}>
+        <div className={styles.editorialCopy}>
+          <p className={styles.cardEyebrow}>Why memory</p>
+          <h2>Most agents still behave like stateless interfaces with better wording.</h2>
+        </div>
+        <div className={styles.editorialBody}>
+          <p>
+            HumemAI focuses on what should persist beyond a prompt: what happened, what matters now, and how structured knowledge should stay available over time. That means treating memory as a real system layer instead of a side effect hidden in context windows.
+          </p>
+          <p>
+            The result is a stack that can hold documents, tables, graphs, and traces in forms that remain inspectable, replayable, and useful to both people and agents.
+          </p>
+        </div>
+      </section>
+
+      <section className={styles.ctaSection}>
+        <div className={styles.ctaCopy}>
           <p className={styles.cardEyebrow}>Product</p>
-          <h2>Built for real agent workflows</h2>
+          <h2>Built for real agent workflows.</h2>
           <p>
             See how HumemAI handles conversational history, structured knowledge, and hybrid retrieval in one system.
           </p>
-          <span className={styles.cardAction}>Learn more</span>
-        </Link>
-        <Link className={styles.featureCard} href="/pricing">
-          <p className={styles.cardEyebrow}>Pricing</p>
-          <h2>Open source or hosted</h2>
-          <p>
-            Developers can self-host from GitHub. Teams that want outcomes can use a managed deployment.
-          </p>
-          <span className={styles.cardAction}>Learn more</span>
-        </Link>
-        <Link className={styles.featureCard} href="/projects">
-          <p className={styles.cardEyebrow}>Projects</p>
-          <h2>Research and projects in public</h2>
-          <p>
-            Follow the projects that shaped HumemAI so far, from audit-ready memory systems to embedded database work.
-          </p>
-          <span className={styles.cardAction}>Learn more</span>
+        </div>
+        <Link className={styles.ctaLink} href="/product">
+          <span className={styles.cardAction}>See the product</span>
         </Link>
       </section>
 
-      <section className={styles.sectionSplit}>
-        <div className={styles.copyBlock}>
-          <p className={styles.cardEyebrow}>Why now</p>
-          <h2>Agents still forget.</h2>
+      <section className={styles.ctaSection}>
+        <div className={styles.ctaCopy}>
+          <p className={styles.cardEyebrow}>Pricing</p>
+          <h2>Open source or hosted.</h2>
           <p>
-            The world is getting more agentic, but most systems remain stateless chat wrappers.
-            HumemAI focuses on the missing layer: persistent, explainable memory that agents can use over time.
+            Self-host from GitHub when you want full control, or use a managed deployment when you want outcomes faster.
           </p>
         </div>
-        <div className={styles.bulletPanel}>
-          <ul className={styles.bullets}>
-            <li>Persistent memory across sessions instead of stateless chat</li>
-            <li>Support for documents, tables, graphs, and connected data</li>
-            <li>Open-source foundations with a hosted product path</li>
-            <li>Explainable memory structures that teams can inspect and control</li>
-          </ul>
+        <Link className={styles.ctaLink} href="/pricing">
+          <span className={styles.cardAction}>Explore pricing</span>
+        </Link>
+      </section>
+
+      <section className={styles.railSection}>
+        <div className={styles.railShell}>
+          <div className={styles.railIntro}>
+            <div>
+              <p className={styles.cardEyebrow}>Open source projects</p>
+              <h2>Open source projects shape the work.</h2>
+            </div>
+            <p>
+              Explore the main open source threads behind HumemAI, then move into dedicated project pages for the systems, papers, and implementations inside each one.
+            </p>
+          </div>
+          <ProjectRail projects={featuredProjects} />
+        </div>
+      </section>
+
+      <section className={styles.newsSection}>
+        <div className={styles.newsIntro}>
+          <div>
+            <p className={styles.cardEyebrow}>News</p>
+            <h2>Latest news from the company.</h2>
+          </div>
+          <Link className={styles.newsLink} href="/news">
+            View all news
+          </Link>
+        </div>
+        <div className={newsStyles.articleList}>
+          {latestNews.map((post) => (
+            <article className={newsStyles.articleCard} key={post.slug}>
+              {post.image ? (
+                <Link className={newsStyles.articleMediaLink} href={`/news/${post.slug}`}>
+                  <div className={newsStyles.articleImageWrap}>
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      className={newsStyles.articleImage}
+                      sizes="(min-width: 1024px) 30vw, 100vw"
+                    />
+                  </div>
+                </Link>
+              ) : null}
+              <div className={newsStyles.articleCopy}>
+                <h2>
+                  <Link className={newsStyles.cardTitleLink} href={`/news/${post.slug}`}>
+                    {post.title}
+                  </Link>
+                </h2>
+                <p className={newsStyles.meta}>
+                  {post.author} · {new Date(post.date).toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
+                </p>
+                <Link className={newsStyles.action} href={`/news/${post.slug}`}>
+                  Learn more
+                </Link>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
     </main>

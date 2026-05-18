@@ -3,7 +3,7 @@
 }
 
 .inner {
-  width: min(1180px, calc(100% - 2rem));
+  width: var(--site-shell-width-mobile);
   margin: 0 auto;
   padding: 1.5rem;
   border: 1px solid var(--border);
@@ -20,9 +20,9 @@
 
 .eyebrow {
   margin: 0;
-  font-size: 0.76rem;
+  font-size: var(--site-eyebrow-size);
   font-weight: 700;
-  letter-spacing: 0.2em;
+  letter-spacing: var(--site-eyebrow-letter-spacing);
   text-transform: uppercase;
   color: var(--accent);
 }
@@ -56,6 +56,13 @@
 
 .column a {
   color: var(--muted);
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
+.column a:hover,
+.column a:focus-visible {
+  color: var(--foreground);
 }
 
 .bottomRow {
@@ -86,7 +93,7 @@
 
 @media (min-width: 720px) {
   .inner {
-    width: min(1180px, calc(100% - 3rem));
+    width: var(--site-shell-width-desktop);
     padding: 2rem;
   }
 

@@ -2,7 +2,7 @@ export const navigationItems = [
   { label: "Product", href: "/product" },
   { label: "Pricing", href: "/pricing" },
   { label: "Projects", href: "/projects" },
-  { label: "Blog", href: "/blog" },
+  { label: "News", href: "/news" },
   {
     label: "Company",
     items: [
@@ -35,7 +35,7 @@ export const footerColumns = [
   {
     title: "Resources",
     links: [
-      { label: "Blog", href: "/blog" },
+      { label: "News", href: "/news" },
       { label: "GitHub", href: "https://github.com/humemai", external: true },
       { label: "Privacy Policy", href: "/privacy-policy" },
     ],

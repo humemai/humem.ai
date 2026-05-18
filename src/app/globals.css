@@ -1,5 +1,17 @@
 :root {
   color-scheme: light;
+  --site-shell-max: 1180px;
+  --site-shell-gutter-mobile: 2rem;
+  --site-shell-gutter-desktop: 3rem;
+  --site-shell-width-mobile: min(var(--site-shell-max), calc(100% - var(--site-shell-gutter-mobile)));
+  --site-shell-width-desktop: min(var(--site-shell-max), calc(100% - var(--site-shell-gutter-desktop)));
+  --site-hero-intro-max: 60ch;
+  --site-section-lead-max: 34rem;
+  --site-standalone-copy-max: 46rem;
+  --site-standalone-figure-max: 54rem;
+  --site-eyebrow-size: 0.78rem;
+  --site-eyebrow-letter-spacing: 0.24em;
+  --site-hero-radius: 2rem;
   --background: #ffffff;
   --foreground: #111111;
   --surface: rgba(255, 255, 255, 0.92);

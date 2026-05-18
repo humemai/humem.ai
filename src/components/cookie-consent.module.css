@@ -65,12 +65,23 @@
   transform: translateY(-1px);
 }
 
+.decline:hover,
+.decline:focus-visible {
+  border-color: var(--border-strong);
+  background: var(--surface-muted);
+}
+
 .settings {
   padding-inline: 0;
   border: 0;
   color: var(--muted);
   text-decoration: underline;
   text-underline-offset: 0.2rem;
+}
+
+.settings:hover,
+.settings:focus-visible {
+  color: var(--foreground);
 }
 
 @media (max-width: 719px) {
