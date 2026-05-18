@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ContentPage } from "@/components/content-page";
-import { projects } from "@/lib/projects";
+import { getFeaturedProjects } from "@/lib/projects";
 import styles from "./projects.module.css";
 
 export const metadata: Metadata = {
@@ -11,11 +11,13 @@ export const metadata: Metadata = {
 };
 
 export default function ProjectsPage() {
+  const featuredProjects = getFeaturedProjects();
+
   return (
     <ContentPage
       eyebrow="Projects"
       title="Projects behind HumemAI."
-      intro="Explore the projects that shaped HumemAI so far, including funded work, infrastructure experiments, and product-facing memory systems."
+      intro="Explore the three main public project lines behind HumemAI, then drill down into the dedicated pages for each subproject."
       aside={
         <figure className="heroFigure">
           <div className="heroFigureImageWrap">
@@ -33,14 +35,16 @@ export default function ProjectsPage() {
         </figure>
       }
     >
-      {projects.map((project) => (
-        <Link className={styles.card} href={`/projects/${project.slug}`} key={project.slug}>
-          <h2>{project.title}</h2>
-          <p className={styles.summary}>{project.summary}</p>
-          <p className={styles.meta}>{project.funding ? `${project.funding} · ${project.status}` : project.status}</p>
-          <span className={styles.action}>Learn more</span>
-        </Link>
-      ))}
+      <div className={styles.grid}>
+        {featuredProjects.map((project) => (
+          <Link className={styles.card} href={`/projects/${project.slug}`} key={project.slug}>
+            <h2>{project.title}</h2>
+            <p className={styles.summary}>{project.summary}</p>
+            <p className={styles.meta}>{project.funding ? `${project.funding} · ${project.status}` : project.status}</p>
+            <span className={styles.action}>Learn more</span>
+          </Link>
+        ))}
+      </div>
     </ContentPage>
   );
 }

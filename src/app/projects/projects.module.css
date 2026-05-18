@@ -1,3 +1,8 @@
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
 .card {
   display: block;
   padding: 1.35rem;
@@ -37,4 +42,10 @@
   margin-top: 1rem;
   color: var(--accent);
   font-weight: 600;
+}
+
+@media (min-width: 720px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }

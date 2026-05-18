@@ -3,7 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ContentPage } from "@/components/content-page";
-import { getProject, projects } from "@/lib/projects";
+import { getProject, getSubprojects, projects } from "@/lib/projects";
+import styles from "../projects.module.css";
 
 type Params = {
   slug: string;
@@ -50,6 +51,8 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
   if (!project) {
     notFound();
   }
+
+  const subprojects = getSubprojects(project);
 
   return (
     <ContentPage
@@ -108,26 +111,29 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
           <p>{project.impact}</p>
         </section>
       ) : null}
+      {subprojects.length > 0 ? (
+        <section>
+          <h2>Subprojects</h2>
+          <div className={styles.grid}>
+            {subprojects.map((subproject) => (
+              <Link className={styles.card} href={`/projects/${subproject.slug}`} key={subproject.slug}>
+                <h3>{subproject.title}</h3>
+                <p className={styles.summary}>{subproject.summary}</p>
+                <p className={styles.meta}>
+                  {subproject.funding ? `${subproject.funding} · ${subproject.status}` : subproject.status}
+                </p>
+                <span className={styles.action}>Open project page</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : null}
       {project.acknowledgements ? (
         <section>
           <h2>Acknowledgements</h2>
           <p>{project.acknowledgements}</p>
         </section>
       ) : null}
-      <section>
-        <h2>Links</h2>
-        <ul>
-          {project.links.map((link) => (
-            <li key={link.href}>
-              {link.href.startsWith("/") ? (
-                <Link href={link.href}>{link.label}</Link>
-              ) : (
-                <a href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>
-              )}
-            </li>
-          ))}
-        </ul>
-      </section>
     </ContentPage>
   );
 }
