@@ -33,6 +33,14 @@
   line-height: 1.75;
 }
 
+.contactEmail {
+  display: inline-flex;
+  margin-top: 0.9rem;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
 .columns {
   display: grid;
   gap: 1.5rem;
@@ -85,6 +93,11 @@
 
 .bottomMeta p {
   margin: 0;
+}
+
+.contactEmail:hover,
+.contactEmail:focus-visible {
+  color: var(--foreground);
 }
 
 .cookieSettings {

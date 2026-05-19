@@ -8,7 +8,7 @@ import rehypeKatex from "rehype-katex";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
-import { getAllNewsPosts, getNewsPost, getNewsTopicHref } from "@/lib/news-posts";
+import { getAllNewsPosts, getNewsPost } from "@/lib/news-posts";
 import styles from "../news.module.css";
 
 type Params = {
@@ -70,13 +70,6 @@ export default async function NewsPostPage({ params }: { params: Promise<Params>
       </section>
 
       <article className={styles.post}>
-        <div className={styles.postTags}>
-          {post.tags.map((tag) => (
-            <Link className={`${styles.tag} ${styles.tagLink}`} href={getNewsTopicHref(tag)} key={tag}>
-              {tag}
-            </Link>
-          ))}
-        </div>
         <div className={styles.content}>
           <ReactMarkdown
             rehypePlugins={[rehypeRaw, rehypeKatex, [rehypeHighlight, { ignoreMissing: true }]]}

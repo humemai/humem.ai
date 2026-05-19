@@ -50,7 +50,7 @@
 
 .actions {
   display: flex;
-    width: var(--site-shell-width-desktop);
+  flex-direction: column;
   gap: 0.8rem;
   margin-top: 2rem;
 }
@@ -60,6 +60,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   min-height: 3rem;
   padding: 0.9rem 1.4rem;
   border-radius: 999px;
@@ -176,20 +177,16 @@
 }
 
 .railSection {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
+  width: min(1180px, calc(100% - 2rem));
+  margin: 4rem auto 0;
   margin-top: 4rem;
-  padding: 2rem 0 0;
-  background:
-    radial-gradient(circle at top left, rgba(17, 17, 17, 0.04), transparent 34%),
-    linear-gradient(180deg, var(--surface-strong) 0%, var(--surface) 100%);
+  padding: 0;
   color: var(--foreground);
 }
 
 .railShell {
-  width: var(--site-shell-width-mobile);
-  margin: 0 auto;
-  padding-bottom: 4rem;
+  width: 100%;
+  padding-bottom: 1rem;
 }
 
 .railIntro {
@@ -268,20 +265,18 @@
   display: block;
   overflow: hidden;
   padding: 0 0 1.4rem;
-  border: 1px solid var(--border);
-  border-radius: 1.5rem;
-  background: var(--surface);
-  box-shadow: var(--shadow);
+  border: 0;
+  border-radius: var(--card-radius);
+  background: var(--card-surface);
   color: inherit;
   text-decoration: none;
-  transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+  transition: background-color var(--card-transition), transform var(--card-transition);
 }
 
 .newsCard:hover,
 .newsCard:focus-visible {
-  border-color: var(--border-strong);
-  background: var(--surface-muted);
-  transform: translateY(-2px);
+  background: var(--card-surface-hover);
+  transform: translateY(var(--card-hover-lift-strong));
 }
 
 .newsCard p {
@@ -294,7 +289,7 @@
   overflow: hidden;
   aspect-ratio: 16 / 10;
   margin-bottom: 1.1rem;
-  background: var(--surface-muted);
+  background: var(--card-media-gradient);
 }
 
 .newsImage {
@@ -324,8 +319,12 @@
     flex-direction: row;
   }
 
-  .heroShell,
-  .railShell {
+  .primaryAction,
+  .secondaryAction {
+    width: auto;
+  }
+
+  .heroShell {
     width: var(--site-shell-width-desktop);
   }
 

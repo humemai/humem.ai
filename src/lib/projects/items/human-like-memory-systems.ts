@@ -3,6 +3,7 @@ import type { Project } from "../types";
 export const humanLikeMemorySystems: Project = {
   slug: "human-like-memory-systems",
   title: "Human-Like Memory Systems",
+  timelineOrder: 1,
   subprojectPage: {
     layout: "standalone",
     linksHeading: "Paper and code.",

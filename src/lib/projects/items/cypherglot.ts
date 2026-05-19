@@ -4,6 +4,7 @@ import { cypherglotDocsUrl, cypherglotRepoUrl } from "../shared";
 export const cypherglot: Project = {
   slug: "cypherglot",
   title: "CypherGLOT",
+  timelineOrder: 2,
   subprojectPage: {
     layout: "standalone",
     linksHeading: "Docs and code.",

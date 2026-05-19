@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { ContentPage } from "@/components/content-page";
+import Link from "next/link";
+import styles from "../company-pages.module.css";
 
 export const metadata: Metadata = {
   title: "About",
@@ -9,52 +10,89 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <ContentPage
-      eyebrow="About"
-      title="From memory research to practical AI."
-      intro="HumemAI started from research into human-like memory systems for AI, then shifted toward building tools and products that make persistent, inspectable memory usable in real workflows."
-      aside={
-        <figure className="heroFigure">
-          <div className="heroFigureImageWrap">
+    <main className={styles.page}>
+      <section className={styles.hero}>
+        <div className={styles.heroCopy}>
+          <p className={styles.eyebrow}>About</p>
+          <h1>From memory research to practical AI.</h1>
+          <p className={styles.intro}>
+            HumemAI started from research into human-like memory systems for AI and now focuses on turning that work into practical tools and products.
+          </p>
+        </div>
+
+        <figure className={styles.heroFigure}>
+          <div className={styles.heroImageWrap}>
             <Image
               src="/illustrations/about-memory-architecture.png"
               alt="Illustration of connected memory structures and stored knowledge"
               fill
-              className="heroFigureImage"
-              sizes="(min-width: 1024px) 360px, 100vw"
+              className={styles.heroImage}
+              sizes="(min-width: 1024px) 42vw, 100vw"
             />
           </div>
-          <figcaption className="heroFigureCaption">
-            HumemAI focuses on memory structures that stay inspectable, persistent, and useful over time.
-          </figcaption>
         </figure>
-      }
-    >
-      <section>
-        <h2>Origin</h2>
-        <div className="inlineFounderImageWrap">
-          <Image
-            src="/illustrations/taewoon-kim-founder.png"
-            alt="Portrait of Taewoon Kim, founder of HumemAI"
-            fill
-            className="inlineFounderImage"
-            sizes="(max-width: 560px) 112px, 128px"
-          />
-        </div>
-        <p>
-          The central idea is simple: conversations and data should not be treated as the same thing, and agentic systems need better memory structures than a single flat context window.
-        </p>
-        <p>
-          HumemAI was founded by <a href="https://taewoon.kim/" target="_blank" rel="noopener noreferrer">Taewoon Kim</a>, an AI researcher and engineer working on agentic memory: systems that help agents remember, organize, and reuse knowledge over time in ways that stay structured, inspectable, and practically useful.
-        </p>
       </section>
 
-      <section>
-        <h2>Direction</h2>
-        <p>
-          Today, HumemAI sits between open-source infrastructure, applied research, and a hosted product direction. The goal is not to publish memory ideas in isolation, but to turn them into software that teams can actually use to build reliable agents.
-        </p>
+      <section className={styles.editorialSection}>
+        <div className={styles.editorialLead}>
+          <p className={styles.eyebrow}>Overview</p>
+          <h2>Memory should be a real system layer, not a prompt trick.</h2>
+        </div>
+        <div className={styles.editorialBody}>
+          <p>
+            HumemAI is built around a straightforward idea: conversations and data are not the same thing.
+          </p>
+          <p>
+            Agentic systems need memory structures that stay structured, inspectable, and durable over time.
+          </p>
+        </div>
       </section>
-    </ContentPage>
+
+      <section className={styles.detailSection}>
+        <div className={styles.sectionLead}>
+          <p className={styles.eyebrow}>Origin</p>
+          <h2>From research into usable systems.</h2>
+        </div>
+        <div className={styles.detailLayout}>
+          <div className={styles.detailContent}>
+            <a className={styles.inlineImageLink} href="https://taewoon.kim/" target="_blank" rel="noopener noreferrer">
+              <div className={styles.inlineImageWrap}>
+                <Image
+                  src="/illustrations/taewoon-kim-founder.png"
+                  alt="Portrait of Taewoon Kim, founder of HumemAI"
+                  fill
+                  className={styles.heroImage}
+                  sizes="(max-width: 1024px) 176px, 208px"
+                />
+              </div>
+            </a>
+            <p>
+              HumemAI was founded by <a className={styles.textLink} href="https://taewoon.kim/" target="_blank" rel="noopener noreferrer">Taewoon Kim</a>, an AI researcher and engineer working on agentic memory.
+            </p>
+            <p>
+              The company grows out of research on human-like memory systems and explicit memory architectures for AI, with a practical goal: turn those ideas into software that teams can use to build reliable agents.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.ctaSection}>
+        <div className={styles.ctaCopy}>
+          <p className={styles.eyebrow}>Next</p>
+          <h2>Explore the projects behind the work.</h2>
+          <p>
+            Browse the main project lines behind HumemAI.
+          </p>
+        </div>
+        <div className={styles.ctaActions}>
+          <Link className={styles.primaryAction} href="/projects">
+            View projects
+          </Link>
+          <Link className={styles.secondaryAction} href="/contact">
+            Contact HumemAI
+          </Link>
+        </div>
+      </section>
+    </main>
   );
 }

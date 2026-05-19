@@ -357,7 +357,6 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
                     ) : (
                       <div className={styles.subprojectFallback} />
                     )}
-                    <div className={styles.subprojectOverlay} />
                     <div className={styles.subprojectContent}>
                       <p className={styles.subprojectEyebrow}>{subproject.status}</p>
                       <h4>{subproject.title}</h4>

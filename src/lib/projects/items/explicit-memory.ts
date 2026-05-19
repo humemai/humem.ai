@@ -3,6 +3,7 @@ import type { Project } from "../types";
 export const explicitMemory: Project = {
   slug: "explicit-memory",
   title: "Explicit Memory",
+  timelineOrder: 2,
   subprojectPage: {
     layout: "standalone",
     linksHeading: "Paper and code.",

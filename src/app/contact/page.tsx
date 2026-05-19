@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { ContentPage } from "@/components/content-page";
+import Link from "next/link";
+import styles from "../company-pages.module.css";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -9,41 +10,76 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <ContentPage
-      eyebrow="Contact"
-      title="Early access, partnerships, and custom work."
-      intro="Get in touch if you want early access, a hosted deployment, a project collaboration, or a conversation about where memory-heavy AI systems are headed."
-      aside={
-        <figure className="heroFigure">
-          <div className="heroFigureImageWrap">
+    <main className={styles.page}>
+      <section className={styles.hero}>
+        <div className={styles.heroCopy}>
+          <p className={styles.eyebrow}>Contact</p>
+          <h1>Early access, partnerships, and custom work.</h1>
+          <p className={styles.intro}>
+            Get in touch about early access, hosted deployment, custom work, or collaboration.
+          </p>
+        </div>
+
+        <figure className={styles.heroFigure}>
+          <div className={styles.heroImageWrap}>
             <Image
               src="/illustrations/contact-collaboration-onboarding.png"
-              alt="Contact illustration"
+              alt="Illustration representing collaboration, onboarding, and hosted deployment conversations"
               fill
-              className="heroFigureImage"
-              sizes="(min-width: 1024px) 360px, 100vw"
+              className={styles.heroImage}
+              sizes="(min-width: 1024px) 42vw, 100vw"
             />
           </div>
-          <figcaption className="heroFigureCaption">
-            Reach out for hosted HumemAI, custom memory workflows, research collaborations, or hiring conversations.
-          </figcaption>
         </figure>
-      }
-    >
-      <section id="early-access">
-        <h2>Get early access</h2>
-        <p>
-          If you want a hosted HumemAI setup instead of self-hosting the open-source projects,
-          email <a href="mailto:info@humem.ai?subject=HumemAI%20early%20access">info@humem.ai</a> and include your use case, data types, and whether you need a GUI, hosted deployment, or future API access.
-        </p>
       </section>
 
-      <section>
-        <h2>Get in touch</h2>
-        <p>
-          Email <a href="mailto:info@humem.ai">info@humem.ai</a> to discuss hosted HumemAI, custom memory workflows, project collaborations, or hiring.
-        </p>
+      <section className={styles.editorialSection}>
+        <div className={styles.editorialLead}>
+          <p className={styles.eyebrow}>Overview</p>
+          <h2>Use one contact point for product, research, and partnerships.</h2>
+        </div>
+        <div className={styles.editorialBody}>
+          <p>
+            HumemAI keeps contact simple. The same inbox can be used for early access, hosted deployments, custom memory workflows, project collaborations, and hiring conversations.
+          </p>
+          <p>
+            If you already know what you need, include your use case, data types, current stack, and whether you are looking for open source, hosted deployment, or custom work.
+          </p>
+        </div>
       </section>
-    </ContentPage>
+
+      <section className={styles.detailSection} id="early-access">
+        <div className={styles.sectionLead}>
+          <p className={styles.eyebrow}>Email</p>
+          <h2>Contact HumemAI directly.</h2>
+        </div>
+        <div className={styles.sectionBody}>
+          <p>
+            Email <a className={styles.textLink} href="mailto:info@humem.ai">info@humem.ai</a> for hosted HumemAI, early access, custom memory workflows, research collaborations, partnerships, or hiring conversations.
+          </p>
+          <p>
+            If you want a hosted setup instead of self-hosting the open-source projects, include your use case, data types, and whether you need a GUI, hosted deployment, or future API access.
+          </p>
+        </div>
+      </section>
+
+      <section className={styles.ctaSection}>
+        <div className={styles.ctaCopy}>
+          <p className={styles.eyebrow}>Next</p>
+          <h2>Want more context before reaching out?</h2>
+          <p>
+            Browse the product and pricing pages first if you want more context.
+          </p>
+        </div>
+        <div className={styles.ctaActions}>
+          <Link className={styles.primaryAction} href="/product">
+            See the product
+          </Link>
+          <Link className={styles.secondaryAction} href="/pricing">
+            Explore pricing
+          </Link>
+        </div>
+      </section>
+    </main>
   );
 }

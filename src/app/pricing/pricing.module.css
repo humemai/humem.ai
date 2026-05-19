@@ -153,32 +153,89 @@
   gap: 1rem;
 }
 
+.pathSectionWrap {
+  width: var(--site-shell-width-mobile);
+  margin: 3rem auto 0;
+}
+
 .pathSection {
   display: grid;
-  gap: 1rem;
-  margin-top: 3rem;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(18rem, 88vw);
+  gap: var(--card-gap);
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
   padding-top: 1.6rem;
   border-top: 1px solid var(--border);
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+}
+
+.pathSection::-webkit-scrollbar {
+  display: none;
+}
+
+.pathRailControls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.pathRailControl {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.9rem;
+  height: 2.9rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--foreground);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease;
+}
+
+.pathRailControl:hover,
+.pathRailControl:focus-visible {
+  border-color: var(--border-strong);
+  background: var(--surface-muted);
+  transform: translateY(-1px);
 }
 
 .pathItem {
-  padding-top: 0.2rem;
+  display: grid;
+  align-content: start;
+  gap: var(--card-copy-gap);
+  min-width: 0;
+  padding: var(--card-body-padding);
+  border-radius: var(--card-radius);
+  background: var(--card-surface);
+  scroll-snap-align: start;
+  transition: background-color var(--card-transition), transform var(--card-transition);
+}
+
+.pathItem:hover,
+.pathItem:focus-within {
+  background: var(--card-surface-hover);
+  transform: translateY(var(--card-hover-lift));
 }
 
 .pathItem h3 {
-  margin: 0.6rem 0 0;
+  margin: 0;
   font-size: 1.45rem;
   line-height: 1.15;
 }
 
 .pathItem ul {
-  margin: 1rem 0 0;
+  margin: 0.3rem 0 0;
   padding-left: 1.1rem;
 }
 
 .pathAction {
   display: inline-flex;
-  margin-top: 1rem;
+  margin-top: auto;
   color: var(--accent);
   font-weight: 600;
 }
@@ -191,7 +248,7 @@
 @media (min-width: 768px) {
   .hero,
   .editorialSection,
-  .pathSection,
+  .pathSectionWrap,
   .mediaSection,
   .ctaSection {
     width: var(--site-shell-width-desktop);
@@ -209,9 +266,18 @@
     align-items: start;
   }
 
+  .pathRailControls {
+    display: none;
+  }
+
   .pathSection {
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1.5rem;
+    overflow-x: visible;
+    padding-bottom: 0;
+    scroll-snap-type: none;
   }
 }
 

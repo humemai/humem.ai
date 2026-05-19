@@ -3,6 +3,7 @@ import type { Project } from "../types";
 export const roomkgBaselines: Project = {
   slug: "roomkg-baselines",
   title: "RoomKG Baselines",
+  timelineOrder: 3,
   subprojectPage: {
     layout: "standalone",
     linksHeading: "Paper and code.",

@@ -1,5 +1,6 @@
 .wrap {
   position: relative;
+  margin-top: 1.5rem;
 }
 
 .controls {
@@ -47,40 +48,31 @@
 }
 
 .card {
-  display: block;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
   overflow: hidden;
-  border-radius: var(--card-radius);
   background: var(--card-surface);
-  color: inherit;
-  text-decoration: none;
+  border-radius: var(--card-radius);
   scroll-snap-align: start;
-  transition: transform var(--card-transition), background-color var(--card-transition);
+  transition: background-color var(--card-transition), transform var(--card-transition);
 }
 
 .card:hover,
 .card:focus-visible {
   background: var(--card-surface-hover);
-  transform: translateY(var(--card-hover-lift-strong));
+  transform: translateY(var(--card-hover-lift));
 }
 
-.card:hover .action,
-.card:focus-visible .action {
-  text-decoration: underline;
-  text-underline-offset: 0.22rem;
+.mediaLink {
+  display: block;
+  color: inherit;
+  text-decoration: none;
 }
 
 .imageWrap {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 16 / 11;
-  border-radius: inherit;
-}
-
-.fallback {
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 16 / 11;
-  border-radius: inherit;
+  aspect-ratio: 16 / 10;
   background: var(--card-media-gradient);
 }
 
@@ -88,50 +80,54 @@
   object-fit: cover;
 }
 
-.content {
+.copy {
+  display: grid;
+  align-content: start;
+  gap: var(--card-copy-gap);
   padding: var(--card-body-padding);
 }
 
-.eyebrow {
+.copy h3 {
   margin: 0;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--accent);
+  font-size: clamp(1.08rem, 1.65vw, 1.38rem);
+  line-height: 1.3;
 }
 
-.content h3 {
-  margin: var(--card-title-margin-top) 0 0;
-  max-width: 14ch;
-  font-size: clamp(1.9rem, 4vw, 2.8rem);
-  line-height: 0.98;
-  letter-spacing: -0.04em;
+.titleLink {
+  color: inherit;
+  text-decoration: none;
 }
 
-.summary {
-  max-width: 34rem;
-  margin: 0.9rem 0 0;
-  font-size: 1rem;
-  line-height: 1.7;
+.titleLink:hover,
+.titleLink:focus-visible,
+.action:hover,
+.action:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.22rem;
+}
+
+.meta {
+  margin: 0;
   color: var(--muted);
+  font-size: 0.95rem;
 }
 
 .action {
   display: inline-flex;
-  margin-top: 1.1rem;
+  margin-top: auto;
   font-weight: 600;
   color: var(--accent);
+  text-decoration: none;
 }
 
 @media (min-width: 768px) {
   .rail {
-    grid-auto-columns: minmax(21rem, calc((100% - 2rem) / 3));
+    grid-auto-columns: minmax(20rem, calc((100% - 2rem) / 3));
   }
 }
 
 @media (min-width: 1200px) {
   .rail {
-    grid-auto-columns: minmax(22rem, calc((100% - 2rem) / 3));
+    grid-auto-columns: minmax(21rem, calc((100% - 2rem) / 3));
   }
 }

@@ -17,6 +17,9 @@ export function SiteFooter() {
             Persistent, explainable memory for agentic AI systems across conversations,
             documents, tables, graphs, and connected data.
           </p>
+          <a className={styles.contactEmail} href="mailto:info@humem.ai">
+            info@humem.ai
+          </a>
         </div>
 
         <div className={styles.columns}>

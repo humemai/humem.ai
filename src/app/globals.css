@@ -12,6 +12,14 @@
   --site-eyebrow-size: 0.78rem;
   --site-eyebrow-letter-spacing: 0.24em;
   --site-hero-radius: 2rem;
+  --card-radius: 1.5rem;
+  --card-gap: 1rem;
+  --card-body-padding: 1.25rem;
+  --card-title-margin-top: 0.7rem;
+  --card-copy-gap: 0.5rem;
+  --card-hover-lift: -1px;
+  --card-hover-lift-strong: -2px;
+  --card-transition: 160ms ease;
   --background: #ffffff;
   --foreground: #111111;
   --surface: rgba(255, 255, 255, 0.92);
@@ -19,6 +27,12 @@
   --surface-muted: #f5f5f5;
   --border: rgba(17, 17, 17, 0.12);
   --border-strong: rgba(17, 17, 17, 0.2);
+  --card-surface: #fafafa;
+  --card-surface-hover: #f3f3f3;
+  --card-media-gradient:
+    radial-gradient(circle at 18% 18%, rgba(191, 87, 0, 0.28), transparent 28%),
+    radial-gradient(circle at 82% 22%, rgba(17, 96, 73, 0.24), transparent 30%),
+    linear-gradient(160deg, rgba(14, 18, 24, 0.96), rgba(31, 38, 48, 0.88));
   --accent: #111111;
   --accent-strong: #000000;
   --accent-soft: rgba(17, 17, 17, 0.06);
@@ -51,6 +65,12 @@ html {
     --surface-muted: #171717;
     --border: rgba(255, 255, 255, 0.1);
     --border-strong: rgba(255, 255, 255, 0.18);
+    --card-surface: #141414;
+    --card-surface-hover: #1a1a1a;
+    --card-media-gradient:
+      radial-gradient(circle at 18% 18%, rgba(191, 87, 0, 0.34), transparent 28%),
+      radial-gradient(circle at 82% 22%, rgba(17, 96, 73, 0.28), transparent 30%),
+      linear-gradient(160deg, rgba(10, 12, 18, 0.98), rgba(24, 30, 40, 0.92));
     --accent: #f5f5f5;
     --accent-strong: #ffffff;
     --accent-soft: rgba(255, 255, 255, 0.08);

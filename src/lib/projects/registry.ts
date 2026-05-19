@@ -41,8 +41,31 @@ export function getFeaturedProjects() {
     .filter((project): project is Project => Boolean(project));
 }
 
+export function getProjectsIndexProjects() {
+  return projects.filter((project) => project.showOnProjectsIndex);
+}
+
 export function getSubprojects(project: Project) {
   return (project.subprojectSlugs ?? [])
-    .map((slug) => getProject(slug))
-    .filter((subproject): subproject is Project => Boolean(subproject));
+    .map((slug, index) => ({ project: getProject(slug), index }))
+    .filter((entry): entry is { project: Project; index: number } => Boolean(entry.project))
+    .sort((left, right) => {
+      const leftOrder = left.project.timelineOrder;
+      const rightOrder = right.project.timelineOrder;
+
+      if (leftOrder != null && rightOrder != null) {
+        return rightOrder - leftOrder;
+      }
+
+      if (leftOrder != null) {
+        return -1;
+      }
+
+      if (rightOrder != null) {
+        return 1;
+      }
+
+      return left.index - right.index;
+    })
+    .map((entry) => entry.project)
 }

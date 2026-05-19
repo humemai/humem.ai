@@ -45,6 +45,7 @@ export type Project = {
   slug: string;
   title: string;
   summary: string;
+  timelineOrder?: number;
   showOnProjectsIndex?: boolean;
   subprojectSlugs?: string[];
   featuredPage?: {

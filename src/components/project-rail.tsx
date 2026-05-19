@@ -51,8 +51,9 @@ export function ProjectRail({ projects }: ProjectRailProps) {
                   src={project.image.src}
                 />
               </div>
-            ) : null}
-            <div className={styles.overlay} />
+            ) : (
+              <div className={styles.fallback} />
+            )}
             <div className={styles.content}>
               <p className={styles.eyebrow}>{project.status}</p>
               <h3>{project.title}</h3>

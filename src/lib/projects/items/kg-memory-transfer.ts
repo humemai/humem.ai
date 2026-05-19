@@ -3,6 +3,7 @@ import type { Project } from "../types";
 export const kgMemoryTransfer: Project = {
   slug: "kg-memory-transfer",
   title: "KG Memory Transfer",
+  timelineOrder: 4,
   subprojectPage: {
     layout: "standalone",
     linksHeading: "Code and project links.",

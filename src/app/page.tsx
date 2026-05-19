@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import { NewsRail } from "@/components/news-rail";
 import { ProjectRail } from "@/components/project-rail";
 import { getAllNewsPosts } from "@/lib/news-posts";
 import { getFeaturedProjects } from "@/lib/projects";
 import styles from "./page.module.css";
-import newsStyles from "./news/news.module.css";
 
 export default function Home() {
   const featuredProjects = getFeaturedProjects();
@@ -115,42 +115,7 @@ export default function Home() {
             View all news
           </Link>
         </div>
-        <div className={newsStyles.articleList}>
-          {latestNews.map((post) => (
-            <article className={newsStyles.articleCard} key={post.slug}>
-              {post.image ? (
-                <Link className={newsStyles.articleMediaLink} href={`/news/${post.slug}`}>
-                  <div className={newsStyles.articleImageWrap}>
-                    <Image
-                      src={post.image}
-                      alt={post.title}
-                      fill
-                      className={newsStyles.articleImage}
-                      sizes="(min-width: 1024px) 30vw, 100vw"
-                    />
-                  </div>
-                </Link>
-              ) : null}
-              <div className={newsStyles.articleCopy}>
-                <h2>
-                  <Link className={newsStyles.cardTitleLink} href={`/news/${post.slug}`}>
-                    {post.title}
-                  </Link>
-                </h2>
-                <p className={newsStyles.meta}>
-                  {post.author} · {new Date(post.date).toLocaleDateString("en-US", {
-                    month: "long",
-                    day: "numeric",
-                    year: "numeric",
-                  })}
-                </p>
-                <Link className={newsStyles.action} href={`/news/${post.slug}`}>
-                  Learn more
-                </Link>
-              </div>
-            </article>
-          ))}
-        </div>
+        <NewsRail posts={latestNews} />
       </section>
     </main>
   );

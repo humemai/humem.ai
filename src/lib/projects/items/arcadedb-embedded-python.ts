@@ -4,6 +4,7 @@ import { arcadeDbDocsUrl, arcadeDbRepoUrl, arcadeDbUpstreamRepoUrl, arcadeDbWebs
 export const arcadeDbEmbeddedPython: Project = {
   slug: "arcadedb-embedded-python",
   title: "ArcadeDB Embedded Python",
+  timelineOrder: 1,
   subprojectPage: {
     layout: "standalone",
     linksHeading: "Docs and code.",

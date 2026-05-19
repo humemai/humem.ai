@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { PricingPaths } from "./pricing-paths";
 import styles from "./pricing.module.css";
 
 export const metadata: Metadata = {
@@ -56,55 +57,7 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <section className={styles.pathSection}>
-        <article className={styles.pathItem}>
-          <p className={styles.pathLabel}>Free</p>
-          <h3>Self-host the open source stack</h3>
-          <p>
-            Explore the repositories, run the components yourself, and build memory-enabled systems with full control over your environment.
-          </p>
-          <ul>
-            <li>Open source projects</li>
-            <li>Developer-first experimentation</li>
-            <li>Bring your own infrastructure</li>
-          </ul>
-          <a className={styles.pathAction} href="https://github.com/humemai" target="_blank" rel="noopener noreferrer">
-            Learn more
-          </a>
-        </article>
-
-        <article className={styles.pathItem}>
-          <p className={styles.pathLabel}>Hosted</p>
-          <h3>Use the managed HumemAI workspace</h3>
-          <p>
-            Get the integrated memory environment with ingestion, natural-language interaction, and operations handled for your team.
-          </p>
-          <ul>
-            <li>Hosted workspace</li>
-            <li>Managed deployment and operations</li>
-            <li>Designed for teams that want outcomes fast</li>
-          </ul>
-          <Link className={styles.pathAction} href="/contact">
-            Learn more
-          </Link>
-        </article>
-
-        <article className={styles.pathItem}>
-          <p className={styles.pathLabel}>Custom</p>
-          <h3>Shape a deployment around your use case</h3>
-          <p>
-            Combine the relevant repositories, data connectors, workflows, and support into a setup tailored to your environment.
-          </p>
-          <ul>
-            <li>Custom integrations</li>
-            <li>Deployment design around your workflow</li>
-            <li>Direct collaboration with HumemAI</li>
-          </ul>
-          <Link className={styles.pathAction} href="/contact">
-            Learn more
-          </Link>
-        </article>
-      </section>
+      <PricingPaths />
 
       <section className={styles.mediaSection}>
         <div className={styles.mediaCopy}>

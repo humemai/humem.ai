@@ -4,6 +4,7 @@ import { humemDbDocsUrl, humemDbRepoUrl } from "../shared";
 export const humemdb: Project = {
   slug: "humemdb",
   title: "HumemDB",
+  timelineOrder: 3,
   subprojectPage: {
     layout: "standalone",
     linksHeading: "Docs and code.",
