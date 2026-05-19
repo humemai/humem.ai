@@ -56,6 +56,7 @@
   grid-auto-flow: column;
   grid-auto-columns: minmax(18rem, 88vw);
   gap: var(--card-gap);
+  margin-top: 1.8rem;
   overflow-x: auto;
   padding-bottom: 0.5rem;
   scroll-snap-type: x proximity;
@@ -75,25 +76,7 @@
 }
 
 .mobileRailControl {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.9rem;
-  height: 2.9rem;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: var(--surface);
-  color: var(--foreground);
-  box-shadow: var(--shadow);
-  cursor: pointer;
-  transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease;
-}
-
-.mobileRailControl:hover,
-.mobileRailControl:focus-visible {
-  border-color: var(--border-strong);
-  background: var(--surface-muted);
-  transform: translateY(-1px);
+  composes: control from "../../components/icon-control.module.css";
 }
 
 .pagination {
@@ -391,7 +374,7 @@
   border: 0;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1024px) {
   .editorialSection,
   .section {
     width: var(--site-shell-width-desktop);

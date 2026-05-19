@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { PagedCardGrid } from "@/components/paged-card-grid";
 import type { Project } from "@/lib/projects";
 import styles from "./projects.module.css";
 
@@ -17,22 +17,6 @@ function getProjectsPageHref(page: number) {
 }
 
 export function ProjectsIndexSection({ projects, currentPage, totalPages }: ProjectsIndexSectionProps) {
-  const railRef = useRef<HTMLDivElement>(null);
-
-  const scrollRail = (direction: "left" | "right") => {
-    const rail = railRef.current;
-
-    if (!rail) {
-      return;
-    }
-
-    const amount = Math.max(rail.clientWidth * 0.85, 320);
-    rail.scrollBy({
-      left: direction === "right" ? amount : -amount,
-      behavior: "smooth",
-    });
-  };
-
   return (
     <section className={styles.projectOverview}>
       <div className={styles.projectOverviewIntro}>
@@ -42,19 +26,20 @@ export function ProjectsIndexSection({ projects, currentPage, totalPages }: Proj
         </div>
       </div>
 
-      {projects.length > 1 ? (
-        <div className={styles.mobileOverviewControls}>
-          <button aria-label="Scroll projects left" className={styles.mobileOverviewControl} onClick={() => scrollRail("left")} type="button">
-            <span aria-hidden="true">←</span>
-          </button>
-          <button aria-label="Scroll projects right" className={styles.mobileOverviewControl} onClick={() => scrollRail("right")} type="button">
-            <span aria-hidden="true">→</span>
-          </button>
-        </div>
-      ) : null}
-
-      <div className={styles.overviewGrid} ref={railRef}>
-        {projects.map((project) => (
+      <PagedCardGrid
+        controlsClassName={styles.mobileOverviewControls}
+        controlClassName={styles.mobileOverviewControl}
+        currentPage={currentPage}
+        getPageHref={getProjectsPageHref}
+        items={projects}
+        leftLabel="Scroll projects left"
+        listClassName={styles.overviewGrid}
+        paginationClassName={styles.overviewPagination}
+        paginationLabel="Projects pagination"
+        paginationPageActiveClassName={styles.overviewPaginationPageActive}
+        paginationPageClassName={styles.overviewPaginationPage}
+        paginationPagesClassName={styles.overviewPaginationPages}
+        renderItem={(project) => (
           <Link className={styles.overviewCard} href={`/projects/${project.slug}`} key={project.slug}>
             {project.image ? (
               <div className={styles.overviewImageWrap}>
@@ -76,29 +61,10 @@ export function ProjectsIndexSection({ projects, currentPage, totalPages }: Proj
               <span className={styles.overviewAction}>Learn more</span>
             </div>
           </Link>
-        ))}
-      </div>
-
-      {totalPages > 1 ? (
-        <nav aria-label="Projects pagination" className={styles.overviewPagination}>
-          <div className={styles.overviewPaginationPages}>
-            {Array.from({ length: totalPages }, (_, index) => {
-              const page = index + 1;
-
-              return (
-                <Link
-                  aria-current={page === currentPage ? "page" : undefined}
-                  className={page === currentPage ? styles.overviewPaginationPageActive : styles.overviewPaginationPage}
-                  href={getProjectsPageHref(page)}
-                  key={page}
-                >
-                  {page}
-                </Link>
-              );
-            })}
-          </div>
-        </nav>
-      ) : null}
+        )}
+        rightLabel="Scroll projects right"
+        totalPages={totalPages}
+      />
     </section>
   );
 }

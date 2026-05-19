@@ -67,34 +67,16 @@
   margin-top: 2rem;
 }
 
-.indexPrimaryAction,
-.indexSecondaryAction {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 3rem;
-  padding: var(--site-action-padding);
-  border-radius: 999px;
-  font-weight: 600;
-  border: 1px solid transparent;
-  transition: 160ms ease;
-}
-
 .indexPrimaryAction {
-  background: var(--foreground);
-  color: var(--background);
+  composes: buttonBase from "../../components/action-button.module.css";
+  composes: buttonPrimary from "../../components/action-button.module.css";
 }
 
 .indexSecondaryAction {
-  border-color: var(--border-strong);
-  background: transparent;
-  color: var(--foreground);
+  composes: buttonBase from "../../components/action-button.module.css";
+  composes: buttonSecondary from "../../components/action-button.module.css";
 }
 
-.indexPrimaryAction:hover,
-.indexSecondaryAction:hover,
-.indexPrimaryAction:focus-visible,
-.indexSecondaryAction:focus-visible,
 .subprojectCard:hover,
 .subprojectCard:focus-visible {
   transform: translateY(-1px);
@@ -139,25 +121,7 @@
 }
 
 .mobileOverviewControl {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.9rem;
-  height: 2.9rem;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: var(--surface);
-  color: var(--foreground);
-  box-shadow: var(--shadow);
-  cursor: pointer;
-  transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease;
-}
-
-.mobileOverviewControl:hover,
-.mobileOverviewControl:focus-visible {
-  border-color: var(--border-strong);
-  background: var(--surface-muted);
-  transform: translateY(-1px);
+  composes: control from "../../components/icon-control.module.css";
 }
 
 .projectOverviewIntro h2,
@@ -229,8 +193,7 @@
   letter-spacing: -0.04em;
 }
 
-.overviewSummary,
-.overviewAction {
+.overviewSummary {
   color: var(--muted);
   line-height: 1.75;
 }
@@ -240,10 +203,8 @@
 }
 
 .overviewAction {
-  display: inline-flex;
+  composes: action from "../../components/tertiary-action.module.css";
   margin-top: 1.1rem;
-  color: var(--accent);
-  font-weight: 600;
 }
 
 .overviewCard:hover,
@@ -342,13 +303,25 @@
   margin-top: var(--site-space-roomy);
 }
 
-.subprojectsHeading {
-  margin-bottom: var(--site-space-base);
+.subprojectsSection {
+  width: var(--site-shell-width-mobile);
+  margin: 1.5rem auto 0;
 }
 
 .subprojectGrid {
   display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(18rem, 88vw);
   gap: var(--card-gap);
+  margin-top: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+}
+
+.subprojectGrid::-webkit-scrollbar {
+  display: none;
 }
 
 .subprojectCard {
@@ -360,6 +333,7 @@
   background: var(--card-surface);
   color: inherit;
   text-decoration: none;
+  scroll-snap-align: start;
   transition: background-color var(--card-transition), transform var(--card-transition);
 }
 
@@ -403,10 +377,8 @@
 }
 
 .subprojectAction {
-  display: inline-flex;
+  composes: action from "../../components/tertiary-action.module.css";
   margin-top: auto;
-  color: var(--accent);
-  font-weight: 600;
 }
 
 .projectFocusBody {
@@ -586,10 +558,11 @@
   display: inline-flex;
   gap: 0.4rem;
   padding: 0.45rem;
-  border: 1px solid var(--border);
+  border: 0;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--site-reading-nav-surface);
   box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
 }
 
 .standaloneNavLink {
@@ -609,12 +582,12 @@
 .standaloneNavLink:hover,
 .standaloneNavLink:focus-visible {
   color: var(--foreground);
-  background: var(--surface);
+  background: var(--site-reading-nav-hover-bg);
 }
 
 .standaloneNavLinkActive {
   color: var(--foreground);
-  background: var(--surface);
+  background: var(--site-reading-nav-active-bg);
 }
 
 .detailSubprojects,
@@ -752,8 +725,6 @@
 
 @media (min-width: 768px) {
   .projectOverview,
-  .detailHero,
-  .subprojectHero,
   .detailSubprojects {
     grid-template-columns: var(--site-split-columns);
   }
@@ -762,6 +733,7 @@
   .detailHero,
   .subprojectHero,
   .detailSubprojects,
+  .subprojectsSection,
   .standaloneNav {
     width: var(--site-shell-width-desktop);
   }
@@ -769,6 +741,23 @@
   .indexActions {
     flex-direction: row;
     align-items: center;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .detailHero,
+  .subprojectHero {
+    grid-template-columns: var(--site-split-columns);
+  }
+
+  .projectOverview,
+  .subprojectsSection,
+  .standaloneNav {
+    width: var(--site-shell-width-desktop);
   }
 
   .mobileOverviewControls {
@@ -795,11 +784,12 @@
   }
 
   .subprojectGrid {
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    overflow-x: visible;
+    padding-bottom: 0;
+    scroll-snap-type: none;
   }
 }
 
@@ -809,11 +799,9 @@
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
   .indexHero,
   .projectSectionPanel,
-  .detailHero,
-  .subprojectHero,
   .detailSubprojects {
     grid-template-columns: var(--site-split-columns);
   }

@@ -1,6 +1,6 @@
 import type { Project } from "@/lib/projects";
 
-export const PROJECTS_PER_PAGE = 9;
+export const PROJECTS_PER_PAGE = 6;
 
 export function getProjectPageCount(totalProjects: number) {
   return Math.max(1, Math.ceil(totalProjects / PROJECTS_PER_PAGE));

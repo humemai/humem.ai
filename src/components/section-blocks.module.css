@@ -1,5 +1,6 @@
 .sectionRoot,
-.ctaRoot {
+.ctaRoot,
+.promoRoot {
   width: var(--site-shell-width-mobile);
   margin: 3.5rem auto 0;
   display: grid;
@@ -7,7 +8,8 @@
 }
 
 .lead,
-.ctaCopy {
+.ctaCopy,
+.promoLead {
   max-width: var(--site-section-lead-max);
 }
 
@@ -27,13 +29,27 @@
   letter-spacing: -0.045em;
 }
 
+.promoTitle {
+  margin: 0.5rem 0 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+}
+
 .body {
   display: grid;
   gap: var(--site-space-base);
 }
 
+.aside {
+  max-width: 38rem;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
 .body :global(p),
-.ctaCopy :global(p:last-child) {
+.ctaCopy :global(p:last-child),
+.aside {
   color: var(--muted);
   line-height: 1.8;
 }
@@ -43,6 +59,18 @@
   border-top: 1px solid var(--border);
 }
 
+.promoRoot {
+  padding: 1.6rem 0;
+  border-top: 1px solid var(--border);
+  align-items: end;
+}
+
+.promoBody {
+  display: grid;
+  align-content: start;
+  gap: 1.1rem;
+}
+
 .actions {
   display: flex;
   flex-direction: column;
@@ -50,44 +78,32 @@
   margin-top: 1.2rem;
 }
 
-.primaryAction,
-.secondaryAction {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 3rem;
-  padding: var(--site-action-padding);
-  border-radius: 999px;
-  font-weight: 600;
-  border: 1px solid transparent;
-  transition: 160ms ease;
-  text-decoration: none;
-}
-
 .primaryAction {
-  background: var(--foreground);
-  color: var(--background);
+  composes: buttonBase from "./action-button.module.css";
+  composes: buttonPrimary from "./action-button.module.css";
 }
 
 .secondaryAction {
-  border-color: var(--border-strong);
-  background: transparent;
-  color: var(--foreground);
+  composes: buttonBase from "./action-button.module.css";
+  composes: buttonSecondary from "./action-button.module.css";
 }
 
-.primaryAction:hover,
-.secondaryAction:hover,
-.primaryAction:focus-visible,
-.secondaryAction:focus-visible {
-  transform: translateY(-1px);
+.promoLink {
+  composes: action from "./tertiary-action.module.css";
+  justify-self: start;
 }
 
 @media (min-width: 768px) {
   .sectionRoot,
-  .ctaRoot {
+  .ctaRoot,
+  .promoRoot {
     width: var(--site-shell-width-desktop);
     grid-template-columns: minmax(0, 1fr) minmax(18rem, 30rem);
     align-items: start;
+  }
+
+  .promoRoot .promoBody {
+    justify-self: stretch;
   }
 
   .actions {

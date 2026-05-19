@@ -7,10 +7,16 @@ import { notFound } from "next/navigation";
 import { StandaloneLinkSection, StandaloneSection, StandaloneSectionFigure } from "@/components/standalone-sections";
 import { StandaloneSectionNav } from "@/components/standalone-section-nav";
 import { getProject, getSubprojects, projects } from "@/lib/projects";
+import { getProjectPageCount, getProjectPageItems } from "../projects-pagination";
+import { SubprojectsSection } from "../subprojects-section";
 import styles from "../projects.module.css";
 
 type Params = {
   slug: string;
+};
+
+type SearchParams = {
+  subprojectsPage?: string;
 };
 
 export function generateStaticParams() {
@@ -47,8 +53,9 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   };
 }
 
-export default async function ProjectDetailPage({ params }: { params: Promise<Params> }) {
+export default async function ProjectDetailPage({ params, searchParams }: { params: Promise<Params>; searchParams?: Promise<SearchParams> }) {
   const { slug } = await params;
+  const resolvedSearchParams = searchParams ? await searchParams : undefined;
   const project = getProject(slug);
 
   if (!project) {
@@ -56,6 +63,12 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
   }
 
   const subprojects = getSubprojects(project);
+  const totalSubprojectPages = getProjectPageCount(subprojects.length);
+  const requestedSubprojectsPage = Number.parseInt(resolvedSearchParams?.subprojectsPage ?? "1", 10);
+  const currentSubprojectsPage = Number.isInteger(requestedSubprojectsPage) && requestedSubprojectsPage > 0 && requestedSubprojectsPage <= totalSubprojectPages
+    ? requestedSubprojectsPage
+    : 1;
+  const visibleSubprojects = getProjectPageItems(subprojects, currentSubprojectsPage);
   const parentProject = projects.find((candidate) => candidate.subprojectSlugs?.includes(project.slug));
   const projectContext = (
     <>
@@ -187,48 +200,33 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
   if (project.showOnProjectsIndex) {
     return (
       <main className={styles.detailPage}>
-        <section className={styles.detailHero}>
-          <div className={styles.detailHeroCopy}>
-            <p className={styles.detailContext}>
-              <Link href="/projects">Projects</Link>
-            </p>
-            <p className={styles.sectionEyebrow}>Project</p>
-            <h1>{project.title}</h1>
-            <p className={styles.detailIntro}>{project.summary}</p>
-            {project.sponsor ? (
-              <a
-                className={styles.detailSponsor}
-                href={project.sponsor.href}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image
-                  src={project.sponsor.logoSrc}
-                  alt={project.sponsor.logoAlt}
-                  width={180}
-                  height={52}
-                  className={styles.detailSponsorLogo}
-                />
-              </a>
-            ) : null}
-          </div>
-
-          <figure className={styles.detailHeroFigure}>
-            {project.image ? (
-              <div className={styles.detailHeroImageWrap}>
-                <Image
-                  src={project.image.src}
-                  alt={project.image.alt}
-                  fill
-                  className={styles.detailHeroImage}
-                  sizes="(min-width: 1024px) 42vw, 100vw"
-                />
-              </div>
-            ) : (
-              <div className={styles.detailHeroFallback} />
-            )}
-          </figure>
-        </section>
+        <EditorialMediaHero
+          context={<Link href="/projects">Projects</Link>}
+          eyebrow="Project"
+          title={project.title}
+          intro={project.summary}
+          titleVariant="feature"
+          imageSrc={project.image?.src}
+          imageAlt={project.image?.alt}
+          showFallbackMedia={!project.image}
+        >
+          {project.sponsor ? (
+            <a
+              className={styles.detailSponsor}
+              href={project.sponsor.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src={project.sponsor.logoSrc}
+                alt={project.sponsor.logoAlt}
+                width={180}
+                height={52}
+                className={styles.detailSponsorLogo}
+              />
+            </a>
+          ) : null}
+        </EditorialMediaHero>
 
         <DetailSection
           eyebrow="Why it exists"
@@ -246,44 +244,12 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
         </DetailSection>
 
         {subprojects.length > 0 ? (
-          <section className={styles.detailSubprojects}>
-            <div className={styles.subprojectsHeading}>
-              <div>
-                <p className={styles.sectionEyebrow}>Project structure</p>
-                <h3>Subprojects.</h3>
-              </div>
-            </div>
-
-            <div className={styles.subprojectGrid}>
-              {subprojects.map((subproject) => {
-                const image = subproject.image ?? project.image;
-
-                return (
-                  <Link className={styles.subprojectCard} href={`/projects/${subproject.slug}`} key={subproject.slug}>
-                    {image ? (
-                      <div className={styles.subprojectImageWrap}>
-                        <Image
-                          alt={image.alt}
-                          className={styles.subprojectImage}
-                          fill
-                          sizes="(min-width: 1280px) 24rem, (min-width: 720px) 42vw, 100vw"
-                          src={image.src}
-                        />
-                      </div>
-                    ) : (
-                      <div className={styles.subprojectFallback} />
-                    )}
-                    <div className={styles.subprojectContent}>
-                      <p className={styles.subprojectEyebrow}>{subproject.status}</p>
-                      <h4>{subproject.title}</h4>
-                      <p className={styles.subprojectSummary}>{subproject.summary}</p>
-                      <span className={styles.subprojectAction}>Learn more</span>
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
-          </section>
+          <SubprojectsSection
+            currentPage={currentSubprojectsPage}
+            projectSlug={project.slug}
+            subprojects={visibleSubprojects}
+            totalPages={totalSubprojectPages}
+          />
         ) : null}
 
         {project.acknowledgements ? (
@@ -300,46 +266,33 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
 
   return (
     <main className={styles.subprojectPage}>
-      <section className={styles.subprojectHero}>
-        <div className={styles.subprojectHeroCopy}>
-          <p className={styles.detailContext}>{projectContext}</p>
-          <p className={styles.sectionEyebrow}>Subproject</p>
-          <h1>{project.title}</h1>
-          <p className={styles.detailIntro}>{project.summary}</p>
-          {project.sponsor ? (
-            <a
-              className={styles.detailSponsor}
-              href={project.sponsor.href}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src={project.sponsor.logoSrc}
-                alt={project.sponsor.logoAlt}
-                width={180}
-                height={52}
-                className={styles.detailSponsorLogo}
-              />
-            </a>
-          ) : null}
-        </div>
-
-        <figure className={styles.subprojectHeroFigure}>
-          {project.image ? (
-            <div className={styles.subprojectHeroImageWrap}>
-              <Image
-                src={project.image.src}
-                alt={project.image.alt}
-                fill
-                className={styles.subprojectHeroImage}
-                sizes="(min-width: 1024px) 42vw, 100vw"
-              />
-            </div>
-          ) : (
-            <div className={styles.subprojectHeroFallback} />
-          )}
-        </figure>
-      </section>
+      <EditorialMediaHero
+        context={projectContext}
+        eyebrow="Subproject"
+        title={project.title}
+        intro={project.summary}
+        titleVariant="feature"
+        imageSrc={project.image?.src}
+        imageAlt={project.image?.alt}
+        showFallbackMedia={!project.image}
+      >
+        {project.sponsor ? (
+          <a
+            className={styles.detailSponsor}
+            href={project.sponsor.href}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              src={project.sponsor.logoSrc}
+              alt={project.sponsor.logoAlt}
+              width={180}
+              height={52}
+              className={styles.detailSponsorLogo}
+            />
+          </a>
+        ) : null}
+      </EditorialMediaHero>
 
       <DetailSection eyebrow="Why it exists" title={project.subprojectPage?.problemHeading ?? "The problem"}>
           <p>{project.problem}</p>

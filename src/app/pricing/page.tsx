@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/page-hero";
 import { SectionCta, SectionIntro } from "@/components/section-blocks";
-import { SplitMediaSection } from "@/components/split-media-section";
 import { PricingPaths } from "./pricing-paths";
 import styles from "./pricing.module.css";
 
@@ -36,20 +35,14 @@ export default function PricingPage() {
 
       <PricingPaths />
 
-      <SplitMediaSection
-        eyebrow="Hosted"
-        title="Move from components to an integrated workspace when you want less operational overhead."
-        imageSrc="/illustrations/hosted-workspace-mockup.png"
-        imageAlt="Illustration of the HumemAI hosted workspace"
-        imageQuality={90}
-      >
+      <SectionIntro eyebrow="Hosted" title="Move from components to an integrated workspace when you want less operational overhead.">
           <p>
             Hosted HumemAI is for teams that want the memory layer without spending their first phase assembling infrastructure and interfaces around it.
           </p>
           <p>
             You still get the same underlying orientation toward structured, inspectable memory. The difference is that HumemAI operates the environment with you instead of leaving every operational choice on your side.
           </p>
-      </SplitMediaSection>
+      </SectionIntro>
 
       <SectionCta
         eyebrow="Next step"

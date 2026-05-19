@@ -1,0 +1,23 @@
+.control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--site-control-size);
+  height: var(--site-control-size);
+  padding: 0;
+  border: 1px solid var(--site-control-border);
+  border-radius: 999px;
+  background: var(--site-control-bg);
+  color: var(--site-control-fg);
+  box-shadow: var(--shadow);
+  font: inherit;
+  cursor: pointer;
+  transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.control:hover,
+.control:focus-visible {
+  border-color: var(--site-control-hover-border);
+  background: var(--site-control-hover-bg);
+  transform: translateY(-1px);
+}

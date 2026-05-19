@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/page-hero";
 import { SectionCta, SectionIntro } from "@/components/section-blocks";
-import { SplitMediaSection } from "@/components/split-media-section";
 import styles from "./product.module.css";
 
 export const metadata: Metadata = {
@@ -50,20 +49,14 @@ export default function ProductPage() {
         </div>
       </section>
 
-      <SplitMediaSection
-        eyebrow="Workspace"
-        title="A workspace shaped around ingestion, retrieval, and long-term memory."
-        imageSrc="/illustrations/hosted-workspace-mockup.png"
-        imageAlt="Illustration of a hosted HumemAI workspace"
-        imageQuality={90}
-      >
+      <SectionIntro eyebrow="Workspace" title="A workspace shaped around ingestion, retrieval, and long-term memory.">
           <p>
             Teams can use HumemAI as an integrated environment for getting information into memory, exploring it in the right structure, and retrieving it later in ways that remain legible to both people and agents.
           </p>
           <p>
             If you want the operational breakdown between self-hosted, hosted, and custom options, the next stop is <Link href="/pricing">Pricing</Link>.
           </p>
-      </SplitMediaSection>
+      </SectionIntro>
 
       <SectionCta
         eyebrow="Next step"

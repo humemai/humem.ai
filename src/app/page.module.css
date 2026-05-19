@@ -57,34 +57,17 @@
 
 .primaryAction,
 .secondaryAction {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
-  min-height: 3rem;
-  padding: var(--site-action-padding);
-  border-radius: 999px;
-  font-weight: 600;
-  border: 1px solid transparent;
-  transition: 160ms ease;
 }
 
 .primaryAction {
-  background: var(--foreground);
-  color: var(--background);
+  composes: buttonBase from "../components/action-button.module.css";
+  composes: buttonPrimary from "../components/action-button.module.css";
 }
 
 .secondaryAction {
-  border-color: var(--border-strong);
-  background: transparent;
-  color: var(--foreground);
-}
-
-.primaryAction:hover,
-.secondaryAction:hover,
-.primaryAction:focus-visible,
-.secondaryAction:focus-visible {
-  transform: translateY(-1px);
+  composes: buttonBase from "../components/action-button.module.css";
+  composes: buttonSecondary from "../components/action-button.module.css";
 }
 
 .heroPanel {
@@ -94,7 +77,7 @@
 .heroVisualWrap {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 5 / 6;
+  aspect-ratio: var(--site-lead-media-ratio);
   border-radius: var(--site-hero-radius);
   background: var(--site-hero-surface);
 }
@@ -116,27 +99,23 @@
   backdrop-filter: blur(10px);
 }
 
-.newsSection {
-  width: min(1180px, calc(100% - 2rem));
+.sectionShell {
+  width: var(--site-shell-width-mobile);
   margin: 0 auto;
 }
 
+.newsSection {
+  padding-bottom: 1rem;
+}
+
 .railSection {
-  width: min(1180px, calc(100% - 2rem));
-  margin: 4rem auto 0;
   margin-top: 4rem;
   padding: 0;
   color: var(--foreground);
 }
 
-.railShell {
-  width: 100%;
-  padding-bottom: 1rem;
-}
-
 .newsSection {
   margin-top: 3.5rem;
-  padding-bottom: 1rem;
 }
 
 .newsGrid {
@@ -199,8 +178,7 @@
 }
 
 .cardAction {
-  color: var(--accent);
-  font-weight: 600;
+  composes: action from "../components/tertiary-action.module.css";
 }
 
 @media (min-width: 768px) {
@@ -217,8 +195,12 @@
     width: var(--site-shell-width-desktop);
   }
 
-  .newsSection {
+  .sectionShell {
     width: var(--site-shell-width-desktop);
+  }
+
+  .heroVisualWrap {
+    aspect-ratio: var(--site-lead-media-ratio-desktop);
   }
 
   .newsGrid {

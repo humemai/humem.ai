@@ -12,7 +12,7 @@ type NewsRailProps = {
 
 export function NewsRail({ posts }: NewsRailProps) {
   return (
-    <HorizontalRail className={styles.root} leftLabel="Scroll news left" rightLabel="Scroll news right">
+    <HorizontalRail action={{ href: "/news", label: "View all news" }} className={styles.root} leftLabel="Scroll news left" rightLabel="Scroll news right">
         {posts.map((post) => (
           <article className={styles.card} key={post.slug}>
             {post.image ? (

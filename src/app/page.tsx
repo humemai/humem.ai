@@ -1,15 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import { HomePromoSection, HomeSectionIntro } from "@/components/home-sections";
+import { SectionIntro, SectionPromo } from "@/components/section-blocks";
 import { NewsRail } from "@/components/news-rail";
 import { ProjectRail } from "@/components/project-rail";
 import { getAllNewsPosts } from "@/lib/news-posts";
-import { getFeaturedProjects } from "@/lib/projects";
+import { getProjectsIndexProjects } from "@/lib/projects";
 import styles from "./page.module.css";
 
 export default function Home() {
-  const featuredProjects = getFeaturedProjects();
-  const latestNews = getAllNewsPosts().slice(0, 3);
+  const featuredProjects = getProjectsIndexProjects().slice(0, 9);
+  const latestNews = getAllNewsPosts().slice(0, 9);
 
   return (
     <main className={styles.page}>
@@ -50,46 +50,50 @@ export default function Home() {
         </div>
       </section>
 
-      <HomeSectionIntro eyebrow="Why memory" title="Most agents still behave like stateless interfaces with better wording.">
+      <div className={styles.sectionShell}>
+        <SectionIntro eyebrow="Why memory" title="Most agents still behave like stateless interfaces with better wording.">
+            <p>
+              HumemAI focuses on what should persist beyond a prompt: what happened, what matters now, and how structured knowledge should stay available over time. That means treating memory as a real system layer instead of a side effect hidden in context windows.
+            </p>
+            <p>
+              The result is a stack that can hold documents, tables, graphs, and traces in forms that remain inspectable, replayable, and useful to both people and agents.
+            </p>
+        </SectionIntro>
+      </div>
+
+      <div className={styles.sectionShell}>
+        <SectionPromo eyebrow="Product" title="Built for real agent workflows." href="/product" actionLabel="See the product">
           <p>
-            HumemAI focuses on what should persist beyond a prompt: what happened, what matters now, and how structured knowledge should stay available over time. That means treating memory as a real system layer instead of a side effect hidden in context windows.
+            See how HumemAI handles conversational history, structured knowledge, and hybrid retrieval in one system.
           </p>
+        </SectionPromo>
+      </div>
+
+      <div className={styles.sectionShell}>
+        <SectionPromo eyebrow="Pricing" title="Open source or hosted." href="/pricing" actionLabel="Explore pricing">
           <p>
-            The result is a stack that can hold documents, tables, graphs, and traces in forms that remain inspectable, replayable, and useful to both people and agents.
+            Self-host from GitHub when you want full control, or use a managed deployment when you want outcomes faster.
           </p>
-      </HomeSectionIntro>
+        </SectionPromo>
+      </div>
 
-      <HomePromoSection eyebrow="Product" title="Built for real agent workflows." href="/product" actionLabel="See the product">
-        <p>
-          See how HumemAI handles conversational history, structured knowledge, and hybrid retrieval in one system.
-        </p>
-      </HomePromoSection>
-
-      <HomePromoSection eyebrow="Pricing" title="Open source or hosted." href="/pricing" actionLabel="Explore pricing">
-        <p>
-          Self-host from GitHub when you want full control, or use a managed deployment when you want outcomes faster.
-        </p>
-      </HomePromoSection>
-
-      <section className={styles.railSection}>
-        <div className={styles.railShell}>
-          <HomeSectionIntro
+      <div className={`${styles.sectionShell} ${styles.railSection}`}>
+          <SectionIntro
             eyebrow="Open source projects"
             title="Open source projects shape the work."
             aside="Explore the main open source threads behind HumemAI, then move into dedicated project pages for the systems, papers, and implementations inside each one."
           />
           <ProjectRail projects={featuredProjects} />
-        </div>
-      </section>
+      </div>
 
-      <section className={styles.newsSection}>
-        <HomeSectionIntro
+      <div className={`${styles.sectionShell} ${styles.newsSection}`}>
+        <SectionIntro
           eyebrow="News"
           title="Latest news from the company."
-          action={{ href: "/news", label: "View all news" }}
+          aside="Recent writing, releases, research, and product updates from HumemAI."
         />
         <NewsRail posts={latestNews} />
-      </section>
+      </div>
     </main>
   );
 }

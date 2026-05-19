@@ -25,6 +25,24 @@ function classNames(...names: Array<string | false | null | undefined>) {
   return names.filter(Boolean).join(" ");
 }
 
+function ActionLink({ href, label, variant }: HeroAction) {
+  const className = variant === "secondary" ? styles.secondaryAction : styles.primaryAction;
+
+  if (href.startsWith("/")) {
+    return (
+      <Link className={className} href={href}>
+        {label}
+      </Link>
+    );
+  }
+
+  return (
+    <a className={className} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined}>
+      {label}
+    </a>
+  );
+}
+
 export function PageHero({
   eyebrow,
   title,
@@ -46,13 +64,7 @@ export function PageHero({
         {actions && actions.length > 0 ? (
           <div className={styles.actions}>
             {actions.map((action) => (
-              <Link
-                key={`${action.href}-${action.label}`}
-                className={action.variant === "secondary" ? styles.secondaryAction : styles.primaryAction}
-                href={action.href}
-              >
-                {action.label}
-              </Link>
+              <ActionLink key={`${action.href}-${action.label}`} {...action} />
             ))}
           </div>
         ) : null}

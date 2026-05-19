@@ -30,45 +30,29 @@
 }
 
 .accept,
-.decline,
-.settings {
+.decline {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-height: 2.7rem;
   padding: 0.65rem 1rem;
-  border-radius: 999px;
-  border: 1px solid var(--border);
   font: inherit;
   cursor: pointer;
-  transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
 }
 
 .accept {
-  border-color: var(--foreground);
-  background: var(--foreground);
-  color: var(--background);
+  composes: buttonBase from "./action-button.module.css";
+  composes: buttonSecondary from "./action-button.module.css";
 }
 
-.decline,
+.decline {
+  composes: buttonBase from "./action-button.module.css";
+  composes: buttonSecondary from "./action-button.module.css";
+}
+
 .settings {
   background: transparent;
   color: inherit;
-}
-
-.accept:hover,
-.decline:hover,
-.settings:hover,
-.accept:focus-visible,
-.decline:focus-visible,
-.settings:focus-visible {
-  transform: translateY(-1px);
-}
-
-.decline:hover,
-.decline:focus-visible {
-  border-color: var(--border-strong);
-  background: var(--surface-muted);
 }
 
 .settings {

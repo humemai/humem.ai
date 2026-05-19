@@ -157,10 +157,10 @@ export function SiteHeader() {
               </div>
             ))}
             <div className={styles.mobileActions}>
-              <a href="https://github.com/humemai" target="_blank" rel="noopener noreferrer" onClick={closeMobileMenu}>
+              <a className={styles.mobileSecondaryCta} href="https://github.com/humemai" target="_blank" rel="noopener noreferrer" onClick={closeMobileMenu}>
                 View on GitHub
               </a>
-              <Link href="/contact" onClick={closeMobileMenu}>Get early access</Link>
+              <Link className={styles.mobilePrimaryCta} href="/contact" onClick={closeMobileMenu}>Get early access</Link>
             </div>
           </div>
         </div>

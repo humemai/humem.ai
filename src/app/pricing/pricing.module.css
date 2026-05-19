@@ -4,9 +4,9 @@
   padding: 1rem 0 5rem;
 }
 
-.pathSection {
+.pathSectionWrap {
   width: var(--site-shell-width-mobile);
-  margin: 0 auto;
+  margin: 3rem auto 0;
 }
 
 .pathLabel {
@@ -26,7 +26,8 @@
 
 .pathAction:hover,
 .pathAction:focus-visible {
-  transform: translateY(-1px);
+  text-decoration: underline;
+  text-underline-offset: 0.22rem;
 }
 
 .pathSection {
@@ -54,25 +55,7 @@
 }
 
 .pathRailControl {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.9rem;
-  height: 2.9rem;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: var(--surface);
-  color: var(--foreground);
-  box-shadow: var(--shadow);
-  cursor: pointer;
-  transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease;
-}
-
-.pathRailControl:hover,
-.pathRailControl:focus-visible {
-  border-color: var(--border-strong);
-  background: var(--surface-muted);
-  transform: translateY(-1px);
+  composes: control from "../../components/icon-control.module.css";
 }
 
 .pathItem {
@@ -105,15 +88,19 @@
 }
 
 .pathAction {
-  display: inline-flex;
+  composes: action from "../../components/tertiary-action.module.css";
   margin-top: auto;
-  color: var(--accent);
-  font-weight: 600;
 }
 
-@media (min-width: 768px) {
-  .pathSectionWrap,
-  .pathSection {
+.pathPagination,
+.pathPaginationPages,
+.pathPaginationPage,
+.pathPaginationPageActive {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .pathSectionWrap {
     width: var(--site-shell-width-desktop);
   }
 

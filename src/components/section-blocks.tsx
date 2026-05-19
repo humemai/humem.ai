@@ -11,7 +11,8 @@ type SectionAction = {
 type SectionIntroProps = {
   eyebrow: string;
   title: string;
-  children: ReactNode;
+  children?: ReactNode;
+  aside?: ReactNode;
 };
 
 type SectionCtaProps = {
@@ -19,6 +20,14 @@ type SectionCtaProps = {
   title: string;
   children: ReactNode;
   actions: SectionAction[];
+};
+
+type SectionPromoProps = {
+  eyebrow: string;
+  title: string;
+  children: ReactNode;
+  href: string;
+  actionLabel: string;
 };
 
 function ActionLink({ href, label, variant }: SectionAction) {
@@ -39,14 +48,14 @@ function ActionLink({ href, label, variant }: SectionAction) {
   );
 }
 
-export function SectionIntro({ eyebrow, title, children }: SectionIntroProps) {
+export function SectionIntro({ eyebrow, title, children, aside }: SectionIntroProps) {
   return (
     <section className={styles.sectionRoot}>
       <div className={styles.lead}>
         <p className={styles.eyebrow}>{eyebrow}</p>
         <h2 className={styles.title}>{title}</h2>
       </div>
-      <div className={styles.body}>{children}</div>
+      {children ? <div className={styles.body}>{children}</div> : aside ? <div className={styles.aside}>{aside}</div> : null}
     </section>
   );
 }
@@ -63,6 +72,23 @@ export function SectionCta({ eyebrow, title, children, actions }: SectionCtaProp
         {actions.map((action) => (
           <ActionLink key={`${action.href}-${action.label}`} {...action} />
         ))}
+      </div>
+    </section>
+  );
+}
+
+export function SectionPromo({ eyebrow, title, children, href, actionLabel }: SectionPromoProps) {
+  return (
+    <section className={styles.promoRoot}>
+      <div className={styles.promoLead}>
+        <p className={styles.eyebrow}>{eyebrow}</p>
+        <h2 className={styles.promoTitle}>{title}</h2>
+      </div>
+      <div className={styles.promoBody}>
+        <div className={styles.body}>{children}</div>
+        <Link className={styles.promoLink} href={href}>
+          {actionLabel}
+        </Link>
       </div>
     </section>
   );

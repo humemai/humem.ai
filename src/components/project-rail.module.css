@@ -1,6 +1,6 @@
 .root {
   --rail-column-mobile: minmax(18rem, 88vw);
-  --rail-column-tablet: minmax(21rem, calc((100% - 2rem) / 3));
+  --rail-column-tablet: minmax(21rem, calc((100% - 1rem) / 2));
   --rail-column-desktop: minmax(22rem, calc((100% - 2rem) / 3));
 }
 
@@ -76,8 +76,6 @@
 }
 
 .action {
-  display: inline-flex;
+  composes: action from "./tertiary-action.module.css";
   margin-top: 1.1rem;
-  font-weight: 600;
-  color: var(--accent);
 }

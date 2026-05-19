@@ -155,59 +155,33 @@
 
 .primaryCta,
 .secondaryCta,
-.mobileActions a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+.mobilePrimaryCta,
+.mobileSecondaryCta {
   min-height: 2.6rem;
   padding: 0.7rem 1rem;
-  border-radius: 999px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease;
 }
 
 .primaryCta,
-.mobileActions a:last-child {
-  background: var(--foreground);
-  color: var(--background);
+.mobilePrimaryCta {
+  composes: buttonBase from "./action-button.module.css";
+  composes: buttonPrimary from "./action-button.module.css";
 }
 
 .secondaryCta,
-.mobileActions a:first-child {
-  border: 1px solid var(--border-strong);
-  color: var(--foreground);
+.mobileSecondaryCta {
+  composes: buttonBase from "./action-button.module.css";
+  composes: buttonSecondary from "./action-button.module.css";
 }
 
 .mobileToggle {
   margin-left: auto;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  composes: control from "./icon-control.module.css";
   width: 2.8rem;
   height: 2.8rem;
-  padding: 0;
-  border: 1px solid var(--border-strong);
-  border-radius: 999px;
   background: var(--surface-strong);
-  color: var(--foreground);
-  cursor: pointer;
-  transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease;
+  border-color: var(--border-strong);
 }
 
-.primaryCta:hover,
-.primaryCta:focus-visible,
-.secondaryCta:hover,
-.secondaryCta:focus-visible,
-.mobileActions a:hover,
-.mobileActions a:focus-visible,
-.mobileToggle:hover,
-.mobileToggle:focus-visible {
-  transform: translateY(-1px);
-}
-
-.secondaryCta:hover,
-.secondaryCta:focus-visible,
 .mobileToggle:hover,
 .mobileToggle:focus-visible {
   border-color: var(--border-strong);

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { PagedCardGrid } from "@/components/paged-card-grid";
 import type { NewsPost } from "@/lib/news-posts";
 import styles from "./news.module.css";
 
@@ -17,37 +17,22 @@ function getNewsPageHref(page: number) {
 }
 
 export function NewsIndexSection({ posts, currentPage, totalPages }: NewsIndexSectionProps) {
-  const railRef = useRef<HTMLDivElement>(null);
-
-  const scrollRail = (direction: "left" | "right") => {
-    const rail = railRef.current;
-
-    if (!rail) {
-      return;
-    }
-
-    const amount = Math.max(rail.clientWidth * 0.85, 320);
-    rail.scrollBy({
-      left: direction === "right" ? amount : -amount,
-      behavior: "smooth",
-    });
-  };
-
   return (
     <section className={styles.section}>
-      {posts.length > 1 ? (
-        <div className={styles.mobileRailControls}>
-          <button aria-label="Scroll news left" className={styles.mobileRailControl} onClick={() => scrollRail("left")} type="button">
-            <span aria-hidden="true">←</span>
-          </button>
-          <button aria-label="Scroll news right" className={styles.mobileRailControl} onClick={() => scrollRail("right")} type="button">
-            <span aria-hidden="true">→</span>
-          </button>
-        </div>
-      ) : null}
-
-      <div className={styles.articleList} ref={railRef}>
-        {posts.map((post) => (
+      <PagedCardGrid
+        controlsClassName={styles.mobileRailControls}
+        controlClassName={styles.mobileRailControl}
+        currentPage={currentPage}
+        getPageHref={getNewsPageHref}
+        items={posts}
+        leftLabel="Scroll news left"
+        listClassName={styles.articleList}
+        paginationClassName={styles.pagination}
+        paginationLabel="News pagination"
+        paginationPageActiveClassName={styles.paginationPageActive}
+        paginationPageClassName={styles.paginationPage}
+        paginationPagesClassName={styles.paginationPages}
+        renderItem={(post) => (
           <article className={styles.articleCard} key={post.slug}>
             {post.image ? (
               <Link className={styles.articleMediaLink} href={`/news/${post.slug}`}>
@@ -70,29 +55,10 @@ export function NewsIndexSection({ posts, currentPage, totalPages }: NewsIndexSe
               </Link>
             </div>
           </article>
-        ))}
-      </div>
-
-      {totalPages > 1 ? (
-        <nav aria-label="News pagination" className={styles.pagination}>
-          <div className={styles.paginationPages}>
-            {Array.from({ length: totalPages }, (_, index) => {
-              const page = index + 1;
-
-              return (
-                <Link
-                  aria-current={page === currentPage ? "page" : undefined}
-                  className={page === currentPage ? styles.paginationPageActive : styles.paginationPage}
-                  href={getNewsPageHref(page)}
-                  key={page}
-                >
-                  {page}
-                </Link>
-              );
-            })}
-          </div>
-        </nav>
-      ) : null}
+        )}
+        rightLabel="Scroll news right"
+        totalPages={totalPages}
+      />
     </section>
   );
 }

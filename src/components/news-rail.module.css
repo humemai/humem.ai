@@ -1,7 +1,7 @@
 .root {
   --rail-margin-top: 1.5rem;
   --rail-column-mobile: minmax(18rem, 88vw);
-  --rail-column-tablet: minmax(20rem, calc((100% - 2rem) / 3));
+  --rail-column-tablet: minmax(20rem, calc((100% - 1rem) / 2));
   --rail-column-desktop: minmax(21rem, calc((100% - 2rem) / 3));
 }
 
@@ -57,9 +57,7 @@
 }
 
 .titleLink:hover,
-.titleLink:focus-visible,
-.action:hover,
-.action:focus-visible {
+.titleLink:focus-visible {
   text-decoration: underline;
   text-underline-offset: 0.22rem;
 }
@@ -71,9 +69,6 @@
 }
 
 .action {
-  display: inline-flex;
+  composes: action from "./tertiary-action.module.css";
   margin-top: auto;
-  font-weight: 600;
-  color: var(--accent);
-  text-decoration: none;
 }

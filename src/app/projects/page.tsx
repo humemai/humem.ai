@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
+import { PageHero } from "@/components/page-hero";
 import { getProjectsIndexProjects } from "@/lib/projects";
 import { ProjectsIndexSection } from "./projects-index";
 import { getProjectPageCount, getProjectPageItems } from "./projects-pagination";
@@ -18,35 +17,17 @@ export default function ProjectsPage() {
 
   return (
     <main className={styles.indexPage}>
-      <section className={styles.indexHero}>
-        <div className={styles.indexHeroCopy}>
-          <p className={styles.indexEyebrow}>Projects</p>
-          <h1>Open source projects behind HumemAI.</h1>
-          <p className={styles.indexIntro}>
-            Browse the three major project lines first, then open each dedicated project page to explore the subprojects, systems, and research inside it.
-          </p>
-          <div className={styles.indexActions}>
-            <Link className={styles.indexPrimaryAction} href="https://github.com/humemai" target="_blank" rel="noopener noreferrer">
-              View HumemAI on GitHub
-            </Link>
-            <Link className={styles.indexSecondaryAction} href="/contact">
-              Contact HumemAI
-            </Link>
-          </div>
-        </div>
-
-        <figure className={styles.indexHeroFigure}>
-          <div className={styles.indexHeroImageWrap}>
-            <Image
-              src="/illustrations/projects-overview-portfolio.png"
-              alt="Illustration representing research, systems work, and applied AI memory projects"
-              fill
-              className={styles.indexHeroImage}
-              sizes="(min-width: 1024px) 42vw, 100vw"
-            />
-          </div>
-        </figure>
-      </section>
+      <PageHero
+        eyebrow="Projects"
+        title="Open source projects behind HumemAI."
+        intro="Browse the three major project lines first, then open each dedicated project page to explore the subprojects, systems, and research inside it."
+        imageSrc="/illustrations/projects-overview-portfolio.png"
+        imageAlt="Illustration representing research, systems work, and applied AI memory projects"
+        actions={[
+          { href: "https://github.com/humemai", label: "View HumemAI on GitHub" },
+          { href: "/contact", label: "Contact HumemAI", variant: "secondary" },
+        ]}
+      />
 
       <ProjectsIndexSection currentPage={1} projects={visibleProjects} totalPages={totalPages} />
     </main>
