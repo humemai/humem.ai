@@ -114,14 +114,15 @@
 }
 
 .mobileOverviewControls {
+  composes: controlGroup from "../../components/icon-control.module.css";
   display: flex;
-  justify-content: flex-end;
-  gap: 0.6rem;
+  width: fit-content;
+  margin-left: auto;
   margin-top: 1.2rem;
 }
 
 .mobileOverviewControl {
-  composes: control from "../../components/icon-control.module.css";
+  composes: directionalControl from "../../components/icon-control.module.css";
 }
 
 .projectOverviewIntro h2,

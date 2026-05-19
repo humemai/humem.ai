@@ -15,6 +15,44 @@
   transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease, color 160ms ease;
 }
 
+.controlGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.2rem;
+  border-radius: 999px;
+  background: var(--site-control-group-bg);
+  box-shadow: var(--shadow);
+}
+
+.directionalControl {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--site-control-size);
+  height: var(--site-control-size);
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--site-control-fg);
+  font: inherit;
+  cursor: pointer;
+  transition: transform 160ms ease, background-color 160ms ease, color 160ms ease;
+}
+
+.directionalControl:hover,
+.directionalControl:focus-visible {
+  background: var(--site-control-group-hover-bg);
+  transform: translateY(-1px);
+}
+
+.directionalIcon {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+}
+
 .control:hover,
 .control:focus-visible {
   border-color: var(--site-control-hover-border);

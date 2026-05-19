@@ -48,14 +48,15 @@
 }
 
 .pathRailControls {
+  composes: controlGroup from "../../components/icon-control.module.css";
   display: flex;
-  justify-content: flex-end;
-  gap: 0.6rem;
+  width: fit-content;
+  margin-left: auto;
   margin-bottom: 1rem;
 }
 
 .pathRailControl {
-  composes: control from "../../components/icon-control.module.css";
+  composes: directionalControl from "../../components/icon-control.module.css";
 }
 
 .pathItem {

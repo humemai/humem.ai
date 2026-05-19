@@ -17,12 +17,11 @@
 }
 
 .controls {
-  display: flex;
-  gap: 0.6rem;
+  composes: controlGroup from "./icon-control.module.css";
 }
 
 .control {
-  composes: control from "./icon-control.module.css";
+  composes: directionalControl from "./icon-control.module.css";
 }
 
 .rail {

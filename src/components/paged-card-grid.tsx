@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import Link from "next/link";
+import { DirectionalControlIcon } from "@/components/directional-control-icon";
 import { useRailOverflow } from "@/components/use-rail-overflow";
 
 type PagedCardGridProps<T> = {
@@ -61,10 +62,10 @@ export function PagedCardGrid<T>({
       {hasOverflow ? (
         <div className={controlsClassName}>
           <button aria-label={leftLabel} className={controlClassName} onClick={() => scrollRail("left")} type="button">
-            <span aria-hidden="true">←</span>
+            <DirectionalControlIcon direction="left" />
           </button>
           <button aria-label={rightLabel} className={controlClassName} onClick={() => scrollRail("right")} type="button">
-            <span aria-hidden="true">→</span>
+            <DirectionalControlIcon direction="right" />
           </button>
         </div>
       ) : null}

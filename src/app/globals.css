@@ -30,6 +30,8 @@
   --site-control-border: var(--border);
   --site-control-hover-bg: var(--surface-muted);
   --site-control-hover-border: var(--border-strong);
+  --site-control-group-bg: color-mix(in srgb, var(--foreground) 4%, var(--surface-strong));
+  --site-control-group-hover-bg: color-mix(in srgb, var(--foreground) 8%, var(--surface-strong));
   --site-hero-title-size: clamp(3rem, 7vw, 5.4rem);
   --site-hero-title-size-feature: clamp(3.1rem, 7vw, 5.6rem);
   --site-section-title-size: clamp(2rem, 4vw, 3.2rem);

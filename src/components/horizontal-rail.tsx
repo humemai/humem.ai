@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import Link from "next/link";
+import { DirectionalControlIcon } from "./directional-control-icon";
 import styles from "./horizontal-rail.module.css";
 import { useRailOverflow } from "./use-rail-overflow";
 
@@ -47,10 +48,10 @@ export function HorizontalRail({ leftLabel, rightLabel, className, railClassName
         {hasOverflow ? (
           <div className={styles.controls}>
             <button aria-label={leftLabel} className={styles.control} onClick={() => scrollRail("left")} type="button">
-              <span aria-hidden="true">←</span>
+              <DirectionalControlIcon direction="left" />
             </button>
             <button aria-label={rightLabel} className={styles.control} onClick={() => scrollRail("right")} type="button">
-              <span aria-hidden="true">→</span>
+              <DirectionalControlIcon direction="right" />
             </button>
           </div>
         ) : null}
