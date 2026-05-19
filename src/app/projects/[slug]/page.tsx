@@ -123,7 +123,6 @@ export default async function ProjectDetailPage({ params, searchParams }: { para
           titleVariant="feature"
           imageSrc={project.image?.src}
           imageAlt={project.image?.alt}
-          imageCaption={project.image?.alt}
           actions={heroActionLinks.map((link, index) => ({
             href: link.href,
             label: link.label,

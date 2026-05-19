@@ -81,7 +81,7 @@ export const arcadeDbEmbeddedPython: Project = {
     "A Python-facing distribution built on top of the original Java-based ArcadeDB, with native bindings, embedded execution, and a cleaner path to graph, vector, and multi-model workloads from Python.",
   image: {
     src: "/illustrations/project-arcadedb-embedded-python.png",
-    alt: "Illustration of Python connected to an embedded multi-model database runtime",
+    alt: "Illustration for ArcadeDB Embedded Python",
   },
   status: "Open-source Python integration",
   problem:

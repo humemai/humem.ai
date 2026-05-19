@@ -8,7 +8,6 @@
 }
 
 .lead,
-.ctaCopy,
 .promoLead {
   max-width: var(--site-section-lead-max);
 }
@@ -41,6 +40,11 @@
   gap: var(--site-space-base);
 }
 
+.ctaBody {
+  display: grid;
+  gap: 1.1rem;
+}
+
 .aside {
   max-width: 38rem;
   color: var(--muted);
@@ -48,7 +52,6 @@
 }
 
 .body :global(p),
-.ctaCopy :global(p:last-child),
 .aside {
   color: var(--muted);
   line-height: 1.8;
@@ -74,8 +77,8 @@
 .actions {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   gap: var(--site-space-compact);
-  margin-top: 1.2rem;
 }
 
 .primaryAction {

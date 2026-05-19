@@ -81,7 +81,7 @@ export const humemdb: Project = {
     "A Python orchestration layer that combines SQLite, DuckDB, CypherGLOT, and LanceDB so table, graph, and vector workloads can be routed across embedded engines without forcing one database to do every job.",
   image: {
     src: "/illustrations/project-humemdb-runtime.png",
-    alt: "Illustration of an embedded runtime coordinating SQL, graph, and vector workloads",
+    alt: "Illustration for HumemDB",
   },
   status: "Core open-source runtime",
   problem:

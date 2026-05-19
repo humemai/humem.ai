@@ -82,7 +82,7 @@ export const cypherglot: Project = {
     "A Cypher-to-SQL compiler that lets developers think in graph terms, then lowers admitted Cypher through an internal AST and IR into backend-aware SQL for host runtimes.",
   image: {
     src: "/illustrations/project-cypherglot-compiler.png",
-    alt: "Illustration of Cypher query compilation into normalized graph-relational output",
+    alt: "Illustration for CypherGLOT",
   },
   status: "Core open-source compiler",
   problem:

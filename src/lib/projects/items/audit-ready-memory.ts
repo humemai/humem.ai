@@ -108,7 +108,7 @@ export const auditReadyMemory: Project = {
     "A public-interest project building local-first, inspectable memory infrastructure for AI systems that need audit trails, deterministic replay, and explicit deletion.",
   image: {
     src: "/illustrations/project-audit-ready-memory.png",
-    alt: "Illustration of traceable and explainable AI memory records",
+    alt: "Illustration for Audit-Ready Memory",
   },
   funding: "Funded by SIDN Fund",
   sponsor: {

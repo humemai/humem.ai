@@ -63,15 +63,17 @@ export function SectionIntro({ eyebrow, title, children, aside }: SectionIntroPr
 export function SectionCta({ eyebrow, title, children, actions }: SectionCtaProps) {
   return (
     <section className={styles.ctaRoot}>
-      <div className={styles.ctaCopy}>
+      <div className={styles.lead}>
         <p className={styles.eyebrow}>{eyebrow}</p>
         <h2 className={styles.title}>{title}</h2>
-        <div className={styles.body}>{children}</div>
       </div>
-      <div className={styles.actions}>
-        {actions.map((action) => (
-          <ActionLink key={`${action.href}-${action.label}`} {...action} />
-        ))}
+      <div className={styles.ctaBody}>
+        <div className={styles.body}>{children}</div>
+        <div className={styles.actions}>
+          {actions.map((action) => (
+            <ActionLink key={`${action.href}-${action.label}`} {...action} />
+          ))}
+        </div>
       </div>
     </section>
   );
