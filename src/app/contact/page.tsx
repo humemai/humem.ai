@@ -35,9 +35,7 @@ export default function ContactPage() {
           { href: "/product", label: "See the product" },
           { href: "/pricing", label: "Explore pricing", variant: "secondary" },
         ]}
-      >
-        <p>Browse the product and pricing pages first if you want more context.</p>
-      </SectionCta>
+      />
     </main>
   );
 }

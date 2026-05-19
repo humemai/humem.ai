@@ -59,9 +59,7 @@ export default function AboutPage() {
           { href: "/projects", label: "View projects" },
           { href: "/contact", label: "Contact HumemAI", variant: "secondary" },
         ]}
-      >
-        <p>Browse the main project lines behind HumemAI.</p>
-      </SectionCta>
+      />
     </main>
   );
 }

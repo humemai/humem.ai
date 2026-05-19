@@ -18,7 +18,7 @@ type SectionIntroProps = {
 type SectionCtaProps = {
   eyebrow: string;
   title: string;
-  children: ReactNode;
+  children?: ReactNode;
   actions: SectionAction[];
 };
 
@@ -68,7 +68,7 @@ export function SectionCta({ eyebrow, title, children, actions }: SectionCtaProp
         <h2 className={styles.title}>{title}</h2>
       </div>
       <div className={styles.ctaBody}>
-        <div className={styles.body}>{children}</div>
+        {children ? <div className={styles.body}>{children}</div> : null}
         <div className={styles.actions}>
           {actions.map((action) => (
             <ActionLink key={`${action.href}-${action.label}`} {...action} />
