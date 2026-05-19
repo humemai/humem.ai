@@ -101,6 +101,28 @@ export default async function ProjectDetailPage({ params, searchParams }: { para
       </p>
     )
   ) : null;
+  const sponsorBadge = project.sponsor ? (
+    <a
+      className={styles.detailSponsor}
+      href={project.sponsor.href}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Image
+        src={project.sponsor.logoSrc}
+        alt={project.sponsor.logoAlt}
+        width={180}
+        height={52}
+        className={styles.detailSponsorLogo}
+      />
+    </a>
+  ) : null;
+  const acknowledgementsSectionContent = sponsorBadge || acknowledgementsContent ? (
+    <>
+      {sponsorBadge}
+      {acknowledgementsContent}
+    </>
+  ) : null;
   const projectLinks = project.links.map((link) => ({
     ...link,
     isInternal: link.href.startsWith("/"),
@@ -129,24 +151,7 @@ export default async function ProjectDetailPage({ params, searchParams }: { para
             variant: index === 0 ? "primary" : "secondary",
           }))}
           showFallbackMedia={!project.image}
-        >
-          {project.sponsor ? (
-            <a
-              className={styles.detailSponsor}
-              href={project.sponsor.href}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src={project.sponsor.logoSrc}
-                alt={project.sponsor.logoAlt}
-                width={180}
-                height={52}
-                className={styles.detailSponsorLogo}
-              />
-            </a>
-          ) : null}
-        </EditorialMediaHero>
+        />
 
         <StandaloneSectionNav
           sections={standaloneSections.map((section) => ({ id: section.id, navLabel: section.navLabel }))}
@@ -187,9 +192,9 @@ export default async function ProjectDetailPage({ params, searchParams }: { para
           />
         ) : null}
 
-        {project.acknowledgements ? (
+        {acknowledgementsSectionContent ? (
           <StandaloneSection eyebrow="Acknowledgements" title="Project support." bodyVariant="acknowledgements">
-            {acknowledgementsContent}
+            {acknowledgementsSectionContent}
           </StandaloneSection>
         ) : null}
       </main>
@@ -208,24 +213,7 @@ export default async function ProjectDetailPage({ params, searchParams }: { para
           imageSrc={project.image?.src}
           imageAlt={project.image?.alt}
           showFallbackMedia={!project.image}
-        >
-          {project.sponsor ? (
-            <a
-              className={styles.detailSponsor}
-              href={project.sponsor.href}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src={project.sponsor.logoSrc}
-                alt={project.sponsor.logoAlt}
-                width={180}
-                height={52}
-                className={styles.detailSponsorLogo}
-              />
-            </a>
-          ) : null}
-        </EditorialMediaHero>
+        />
 
         <DetailSection
           eyebrow="Why it exists"
@@ -251,12 +239,12 @@ export default async function ProjectDetailPage({ params, searchParams }: { para
           />
         ) : null}
 
-        {project.acknowledgements ? (
+        {acknowledgementsSectionContent ? (
           <DetailSection
             eyebrow="Acknowledgements"
             title={project.featuredPage?.acknowledgementsHeading ?? "Project support."}
           >
-            {acknowledgementsContent}
+            {acknowledgementsSectionContent}
           </DetailSection>
         ) : null}
       </main>
@@ -274,24 +262,7 @@ export default async function ProjectDetailPage({ params, searchParams }: { para
         imageSrc={project.image?.src}
         imageAlt={project.image?.alt}
         showFallbackMedia={!project.image}
-      >
-        {project.sponsor ? (
-          <a
-            className={styles.detailSponsor}
-            href={project.sponsor.href}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              src={project.sponsor.logoSrc}
-              alt={project.sponsor.logoAlt}
-              width={180}
-              height={52}
-              className={styles.detailSponsorLogo}
-            />
-          </a>
-        ) : null}
-      </EditorialMediaHero>
+      />
 
       <DetailSection eyebrow="Why it exists" title={project.subprojectPage?.problemHeading ?? "The problem"}>
           <p>{project.problem}</p>
@@ -371,9 +342,9 @@ export default async function ProjectDetailPage({ params, searchParams }: { para
         </DetailSection>
       ) : null}
 
-      {project.acknowledgements ? (
+      {acknowledgementsSectionContent ? (
         <DetailSection eyebrow="Acknowledgements" title="Project support.">
-          {acknowledgementsContent}
+          {acknowledgementsSectionContent}
         </DetailSection>
       ) : null}
     </main>

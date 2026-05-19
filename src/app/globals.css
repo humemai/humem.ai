@@ -43,6 +43,7 @@
   --site-section-figure-ratio: 4 / 3;
   --site-split-columns: 1.05fr 0.95fr;
   --site-hero-radius: 2rem;
+  --site-sponsor-logo-width: clamp(10rem, 34vw, 14rem);
   --card-radius: 1.5rem;
   --card-gap: 1rem;
   --card-body-padding: 1.25rem;

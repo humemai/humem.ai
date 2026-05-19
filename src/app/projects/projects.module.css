@@ -485,14 +485,14 @@
   align-items: center;
   justify-content: center;
   margin-top: var(--site-space-roomy);
+  max-width: 100%;
   padding: 0.8rem 1rem;
-  border: 1px solid var(--border);
   border-radius: 1rem;
   background: #ffffff;
 }
 
 .detailSponsorLogo {
-  width: auto;
+  width: var(--site-sponsor-logo-width);
   max-width: 100%;
   height: auto;
 }
