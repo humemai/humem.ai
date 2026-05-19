@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
+import { PageHero } from "@/components/page-hero";
 import styles from "./privacy-policy.module.css";
 
 export const metadata: Metadata = {
@@ -11,31 +11,14 @@ export const metadata: Metadata = {
 export default function PrivacyPolicyPage() {
   return (
     <main className={styles.page}>
-      <section className={styles.hero}>
-        <div className={styles.heroCopy}>
-          <p className={styles.eyebrow}>Legal</p>
-          <h1>Privacy policy</h1>
-          <p className={styles.intro}>
-            How HumemAI handles analytics, cookie choices, and information shared through this website.
-          </p>
-        </div>
-
-        <figure className={styles.heroFigure}>
-          <div className={styles.heroImageWrap}>
-            <Image
-              src="/illustrations/privacy-policy-trust-and-choice.png"
-              alt="Illustration representing privacy, transparency, and user control."
-              fill
-              className={styles.heroImage}
-              sizes="(min-width: 1024px) 42vw, 100vw"
-            />
-          </div>
-          <figcaption className={styles.heroCaption}>
-            HumemAI keeps analytics optional and makes cookie choices available from the footer.
-          </figcaption>
-        </figure>
-
-      </section>
+      <PageHero
+        eyebrow="Legal"
+        title="Privacy policy"
+        intro="How HumemAI handles analytics, cookie choices, and information shared through this website."
+        imageSrc="/illustrations/privacy-policy-trust-and-choice.png"
+        imageAlt="Illustration representing privacy, transparency, and user control."
+        caption="HumemAI keeps analytics optional and makes cookie choices available from the footer."
+      />
 
       <section className={styles.editorialSection}>
         <div className={styles.editorialLead}>

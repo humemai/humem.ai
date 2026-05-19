@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { PageHero } from "@/components/page-hero";
 import { getAllNewsPosts } from "@/lib/news-posts";
 import { NewsIndexSection } from "./news-index";
 import { getNewsPageCount, getNewsPagePosts } from "./news-pagination";
@@ -17,27 +17,14 @@ export default function NewsPage() {
 
   return (
     <main className={styles.page}>
-      <section className={styles.hero}>
-        <div className={styles.heroCopy}>
-          <p className={styles.eyebrow}>News</p>
-          <h1>News and updates.</h1>
-          <p className={styles.intro}>
-            Recent writing, releases, research, and product updates from HumemAI.
-          </p>
-        </div>
-
-        <figure className={styles.heroFigure}>
-          <div className={styles.heroImageWrap}>
-            <Image
-              src="/illustrations/news-writing-and-research.png"
-              alt="Illustration representing HumemAI news, research updates, and structured knowledge"
-              fill
-              className={styles.heroImage}
-              sizes="(min-width: 1024px) 42vw, 100vw"
-            />
-          </div>
-        </figure>
-      </section>
+      <PageHero
+        eyebrow="News"
+        title="News and updates."
+        intro="Recent writing, releases, research, and product updates from HumemAI."
+        imageSrc="/illustrations/news-writing-and-research.png"
+        imageAlt="Illustration representing HumemAI news, research updates, and structured knowledge"
+        titleVariant="feature"
+      />
 
       <NewsIndexSection currentPage={1} posts={visiblePosts} totalPages={totalPages} />
     </main>

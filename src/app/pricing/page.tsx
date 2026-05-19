@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { PageHero } from "@/components/page-hero";
 import { PricingPaths } from "./pricing-paths";
 import styles from "./pricing.module.css";
 
@@ -12,35 +13,17 @@ export const metadata: Metadata = {
 export default function PricingPage() {
   return (
     <main className={styles.page}>
-      <section className={styles.hero}>
-        <div className={styles.heroCopy}>
-          <p className={styles.eyebrow}>Pricing</p>
-          <h1>Start with open source, or move faster with hosted and custom work.</h1>
-          <p className={styles.intro}>
-            HumemAI offers a free developer path, a hosted path for teams that want faster outcomes, and custom engagements for deployments that need integration-heavy support.
-          </p>
-          <div className={styles.actions}>
-            <Link className={styles.primaryAction} href="/contact">
-              Contact HumemAI
-            </Link>
-            <Link className={styles.secondaryAction} href="/projects">
-              View open source projects
-            </Link>
-          </div>
-        </div>
-
-        <figure className={styles.heroFigure}>
-          <div className={styles.heroImageWrap}>
-            <Image
-              src="/illustrations/pricing-deployment-paths.png"
-              alt="Illustration showing HumemAI deployment paths"
-              fill
-              className={styles.heroImage}
-              sizes="(min-width: 1024px) 42vw, 100vw"
-            />
-          </div>
-        </figure>
-      </section>
+      <PageHero
+        eyebrow="Pricing"
+        title="Start with open source, or move faster with hosted and custom work."
+        intro="HumemAI offers a free developer path, a hosted path for teams that want faster outcomes, and custom engagements for deployments that need integration-heavy support."
+        imageSrc="/illustrations/pricing-deployment-paths.png"
+        imageAlt="Illustration showing HumemAI deployment paths"
+        actions={[
+          { href: "/contact", label: "Contact HumemAI" },
+          { href: "/projects", label: "View open source projects", variant: "secondary" },
+        ]}
+      />
 
       <section className={styles.editorialSection}>
         <div className={styles.editorialLead}>

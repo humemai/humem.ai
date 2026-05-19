@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
+import { PageHero } from "@/components/page-hero";
 import styles from "../company-pages.module.css";
 
 export const metadata: Metadata = {
@@ -11,27 +11,13 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <main className={styles.page}>
-      <section className={styles.hero}>
-        <div className={styles.heroCopy}>
-          <p className={styles.eyebrow}>Contact</p>
-          <h1>Early access, partnerships, and custom work.</h1>
-          <p className={styles.intro}>
-            Get in touch about early access, hosted deployment, custom work, or collaboration.
-          </p>
-        </div>
-
-        <figure className={styles.heroFigure}>
-          <div className={styles.heroImageWrap}>
-            <Image
-              src="/illustrations/contact-collaboration-onboarding.png"
-              alt="Illustration representing collaboration, onboarding, and hosted deployment conversations"
-              fill
-              className={styles.heroImage}
-              sizes="(min-width: 1024px) 42vw, 100vw"
-            />
-          </div>
-        </figure>
-      </section>
+      <PageHero
+        eyebrow="Contact"
+        title="Early access, partnerships, and custom work."
+        intro="Get in touch about early access, hosted deployment, custom work, or collaboration."
+        imageSrc="/illustrations/contact-collaboration-onboarding.png"
+        imageAlt="Illustration representing collaboration, onboarding, and hosted deployment conversations"
+      />
 
       <section className={styles.editorialSection}>
         <div className={styles.editorialLead}>

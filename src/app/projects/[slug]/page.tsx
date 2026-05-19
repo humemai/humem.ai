@@ -148,22 +148,22 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
             ) : null}
           </div>
 
-          <figure className={styles.standaloneHeroFigure}>
+          <figure className={styles.leadMediaFigure}>
             {project.image ? (
               <>
-                <div className={styles.standaloneHeroImageWrap}>
+                <div className={styles.leadMediaWrap}>
                   <Image
                     src={project.image.src}
                     alt={project.image.alt}
                     fill
-                    className={styles.standaloneHeroImage}
+                    className={styles.leadMediaImage}
                     sizes="(min-width: 1024px) 42vw, 100vw"
                   />
                 </div>
-                <figcaption className={styles.standaloneHeroCaption}>{project.image.alt}</figcaption>
+                <figcaption className={styles.leadMediaCaption}>{project.image.alt}</figcaption>
               </>
             ) : (
-              <div className={styles.standaloneHeroFallback} />
+              <div className={styles.leadMediaFallback} />
             )}
           </figure>
         </section>
@@ -184,30 +184,30 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
             </div>
 
             {section.figure ? (
-              <figure className={styles.standaloneFigure}>
-                <p className={styles.standaloneFigureLabel}>{section.figure.label}</p>
-                <div className={styles.standaloneFigurePanel}>
+              <figure className={styles.sectionFigure}>
+                <p className={styles.sectionFigureLabel}>{section.figure.label}</p>
+                <div className={styles.sectionFigurePanel}>
                   {section.figure.image ? (
-                    <div className={styles.standaloneFigureImageWrap}>
+                    <div className={styles.sectionFigureImageWrap}>
                       <Image
                         src={section.figure.image.src}
                         alt={section.figure.image.alt}
                         fill
-                        className={styles.standaloneFigureImage}
+                        className={styles.sectionFigureImage}
                         sizes="(min-width: 1024px) 34vw, 100vw"
                       />
                     </div>
                   ) : null}
-                  <p className={styles.standaloneFigureTitle}>{section.figure.title}</p>
+                  <p className={styles.sectionFigureTitle}>{section.figure.title}</p>
                   {section.figure.points?.length ? (
-                    <ul className={styles.standaloneFigurePoints}>
+                    <ul className={styles.sectionFigurePoints}>
                       {section.figure.points.map((point) => (
                         <li key={point}>{point}</li>
                       ))}
                     </ul>
                   ) : null}
                 </div>
-                <figcaption className={styles.standaloneFigureCaption}>{section.figure.caption}</figcaption>
+                <figcaption className={styles.sectionFigureCaption}>{section.figure.caption}</figcaption>
               </figure>
             ) : null}
 

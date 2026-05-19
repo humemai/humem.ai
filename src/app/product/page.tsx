@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { PageHero } from "@/components/page-hero";
 import styles from "./product.module.css";
 
 export const metadata: Metadata = {
@@ -11,35 +12,18 @@ export const metadata: Metadata = {
 export default function ProductPage() {
   return (
     <main className={styles.page}>
-      <section className={styles.hero}>
-        <div className={styles.heroCopy}>
-          <p className={styles.eyebrow}>Product</p>
-          <h1>A memory layer for agentic AI.</h1>
-          <p className={styles.intro}>
-            Users interact through natural language, upload documents and data, and let HumemAI organize knowledge into the right memory structures across text, tables, graphs, and vectors.
-          </p>
-          <div className={styles.actions}>
-            <Link className={styles.primaryAction} href="/pricing">
-              Explore pricing
-            </Link>
-            <Link className={styles.secondaryAction} href="/contact">
-              Contact HumemAI
-            </Link>
-          </div>
-        </div>
-
-        <figure className={styles.heroFigure}>
-          <div className={styles.heroImageWrap}>
-            <Image
-              src="/illustrations/product-hero-interface.png"
-              alt="Illustration of the HumemAI product across memory graph, conversation, and retrieval panels"
-              fill
-              className={styles.heroImage}
-              sizes="(min-width: 1024px) 42vw, 100vw"
-            />
-          </div>
-        </figure>
-      </section>
+      <PageHero
+        eyebrow="Product"
+        title="A memory layer for agentic AI."
+        intro="Users interact through natural language, upload documents and data, and let HumemAI organize knowledge into the right memory structures across text, tables, graphs, and vectors."
+        imageSrc="/illustrations/product-hero-interface.png"
+        imageAlt="Illustration of the HumemAI product across memory graph, conversation, and retrieval panels"
+        actions={[
+          { href: "/pricing", label: "Explore pricing" },
+          { href: "/contact", label: "Contact HumemAI", variant: "secondary" },
+        ]}
+        titleVariant="feature"
+      />
 
       <section className={styles.editorialSection}>
         <div className={styles.editorialLead}>

@@ -61,9 +61,9 @@ export default async function NewsPostPage({ params }: { params: Promise<Params>
         </div>
 
         {post.image ? (
-          <figure className={styles.postHeroFigure}>
-            <div className={styles.postHeroImageWrap}>
-              <Image src={post.image} alt={post.title} fill className={styles.postHeroImage} sizes="(min-width: 1024px) 42vw, 100vw" />
+          <figure className={styles.leadMediaFigure}>
+            <div className={styles.leadMediaWrap}>
+              <Image src={post.image} alt={post.title} fill className={styles.leadMediaImage} sizes="(min-width: 1024px) 42vw, 100vw" />
             </div>
           </figure>
         ) : null}

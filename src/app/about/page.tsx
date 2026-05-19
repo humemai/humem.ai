@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { PageHero } from "@/components/page-hero";
 import styles from "../company-pages.module.css";
 
 export const metadata: Metadata = {
@@ -11,27 +12,13 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <main className={styles.page}>
-      <section className={styles.hero}>
-        <div className={styles.heroCopy}>
-          <p className={styles.eyebrow}>About</p>
-          <h1>From memory research to practical AI.</h1>
-          <p className={styles.intro}>
-            HumemAI started from research into human-like memory systems for AI and now focuses on turning that work into practical tools and products.
-          </p>
-        </div>
-
-        <figure className={styles.heroFigure}>
-          <div className={styles.heroImageWrap}>
-            <Image
-              src="/illustrations/about-memory-architecture.png"
-              alt="Illustration of connected memory structures and stored knowledge"
-              fill
-              className={styles.heroImage}
-              sizes="(min-width: 1024px) 42vw, 100vw"
-            />
-          </div>
-        </figure>
-      </section>
+      <PageHero
+        eyebrow="About"
+        title="From memory research to practical AI."
+        intro="HumemAI started from research into human-like memory systems for AI and now focuses on turning that work into practical tools and products."
+        imageSrc="/illustrations/about-memory-architecture.png"
+        imageAlt="Illustration of connected memory structures and stored knowledge"
+      />
 
       <section className={styles.editorialSection}>
         <div className={styles.editorialLead}>

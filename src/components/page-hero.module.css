@@ -1,0 +1,116 @@
+.root {
+  width: var(--site-shell-width-mobile);
+  margin: 0 auto;
+  display: grid;
+  gap: var(--site-layout-gap);
+  align-items: start;
+}
+
+.copy {
+  padding: var(--site-copy-block-padding);
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: var(--site-eyebrow-size);
+  font-weight: 700;
+  letter-spacing: var(--site-eyebrow-letter-spacing);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.title {
+  margin: 0.5rem 0 0;
+  font-size: var(--site-hero-title-size);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.titleFeature {
+  font-size: var(--site-hero-title-size-feature);
+}
+
+.intro {
+  max-width: var(--site-hero-intro-max);
+  margin: 1.3rem 0 0;
+  font-size: clamp(1.04rem, 2vw, 1.22rem);
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--site-space-compact);
+  margin-top: 2rem;
+}
+
+.primaryAction,
+.secondaryAction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: var(--site-action-padding);
+  border-radius: 999px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition: 160ms ease;
+}
+
+.primaryAction {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+.secondaryAction {
+  border-color: var(--border-strong);
+  background: transparent;
+  color: var(--foreground);
+}
+
+.primaryAction:hover,
+.secondaryAction:hover,
+.primaryAction:focus-visible,
+.secondaryAction:focus-visible {
+  transform: translateY(-1px);
+}
+
+.figure {
+  margin: 0;
+}
+
+.imageWrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 5 / 6;
+  border-radius: var(--site-hero-radius);
+  background: var(--site-hero-surface);
+}
+
+.image {
+  object-fit: cover;
+}
+
+.caption {
+  margin: 0.9rem 0 0;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+@media (min-width: 768px) {
+  .root {
+    width: var(--site-shell-width-desktop);
+  }
+
+  .actions {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 1024px) {
+  .root {
+    grid-template-columns: var(--site-split-columns);
+  }
+}

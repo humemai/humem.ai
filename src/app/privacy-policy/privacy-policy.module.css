@@ -1,24 +1,14 @@
+
 .page {
   width: 100%;
   padding: 1rem 0 5rem;
 }
 
-.hero,
 .editorialSection,
 .policySection,
 .ctaSection {
   width: var(--site-shell-width-mobile);
   margin: 0 auto;
-}
-
-.hero {
-  display: grid;
-  gap: 1.5rem;
-  align-items: start;
-}
-
-.heroCopy {
-  padding: 1.2rem 0;
 }
 
 .eyebrow,
@@ -31,7 +21,6 @@
   color: var(--accent);
 }
 
-.heroCopy h1,
 .editorialLead h2,
 .ctaCopy h2 {
   margin: 0.5rem 0 0;
@@ -39,49 +28,17 @@
   letter-spacing: -0.045em;
 }
 
-.heroCopy h1 {
-  font-size: clamp(3rem, 7vw, 5.4rem);
-}
-
-.intro,
 .editorialBody p,
 .policyItem > p,
-.ctaCopy p,
-.heroCaption {
+.ctaCopy p {
   color: var(--muted);
   line-height: 1.8;
-}
-
-.intro {
-  max-width: var(--site-hero-intro-max);
-  margin: 1.3rem 0 0;
-  font-size: clamp(1.04rem, 2vw, 1.22rem);
-}
-
-.heroFigure {
-  margin: 0;
-}
-
-.heroImageWrap {
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 5 / 6;
-  border-radius: var(--site-hero-radius);
-  background: linear-gradient(145deg, var(--surface-strong), var(--surface));
-}
-
-.heroImage {
-  object-fit: cover;
-}
-
-.heroCaption {
-  margin: 0.9rem 0 0;
 }
 
 .editorialSection,
 .ctaSection {
   display: grid;
-  gap: 1rem;
+  gap: var(--site-space-base);
   margin-top: 3.5rem;
 }
 
@@ -92,17 +49,17 @@
 
 .editorialLead h2,
 .ctaCopy h2 {
-  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-size: var(--site-section-title-size);
 }
 
 .editorialBody {
   display: grid;
-  gap: 1rem;
+  gap: var(--site-space-base);
 }
 
 .policySection {
   display: grid;
-  gap: 1rem;
+  gap: var(--site-space-base);
   margin-top: 3rem;
   padding-top: 1.6rem;
   border-top: 1px solid var(--border);
@@ -126,7 +83,7 @@
 .ctaActions {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: var(--site-space-compact);
   margin-top: 1.2rem;
 }
 
@@ -136,7 +93,7 @@
   align-items: center;
   justify-content: center;
   min-height: 3rem;
-  padding: 0.9rem 1.4rem;
+  padding: var(--site-action-padding);
   border-radius: 999px;
   font-weight: 600;
   border: 1px solid transparent;
@@ -162,7 +119,6 @@
 }
 
 @media (min-width: 768px) {
-  .hero,
   .editorialSection,
   .policySection,
   .ctaSection {
@@ -171,7 +127,7 @@
 
   .policySection {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.5rem;
+    gap: var(--site-layout-gap);
   }
 
   .ctaActions {
@@ -182,11 +138,5 @@
   .ctaSection {
     grid-template-columns: minmax(0, 1fr) minmax(18rem, 30rem);
     align-items: start;
-  }
-}
-
-@media (min-width: 1024px) {
-  .hero {
-    grid-template-columns: 1.05fr 0.95fr;
   }
 }
