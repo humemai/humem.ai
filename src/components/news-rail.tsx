@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { HorizontalRail } from "@/components/horizontal-rail";
 import type { NewsPost } from "@/lib/news-posts";
 import styles from "./news-rail.module.css";
 
@@ -11,34 +11,8 @@ type NewsRailProps = {
 };
 
 export function NewsRail({ posts }: NewsRailProps) {
-  const railRef = useRef<HTMLDivElement>(null);
-
-  const scrollRail = (direction: "left" | "right") => {
-    const rail = railRef.current;
-
-    if (!rail) {
-      return;
-    }
-
-    const amount = Math.max(rail.clientWidth * 0.85, 320);
-    rail.scrollBy({
-      left: direction === "right" ? amount : -amount,
-      behavior: "smooth",
-    });
-  };
-
   return (
-    <div className={styles.wrap}>
-      <div className={styles.controls}>
-        <button aria-label="Scroll news left" className={styles.control} onClick={() => scrollRail("left")} type="button">
-          <span aria-hidden="true">←</span>
-        </button>
-        <button aria-label="Scroll news right" className={styles.control} onClick={() => scrollRail("right")} type="button">
-          <span aria-hidden="true">→</span>
-        </button>
-      </div>
-
-      <div className={styles.rail} ref={railRef}>
+    <HorizontalRail className={styles.root} leftLabel="Scroll news left" rightLabel="Scroll news right">
         {posts.map((post) => (
           <article className={styles.card} key={post.slug}>
             {post.image ? (
@@ -74,7 +48,6 @@ export function NewsRail({ posts }: NewsRailProps) {
             </div>
           </article>
         ))}
-      </div>
-    </div>
+    </HorizontalRail>
   );
 }

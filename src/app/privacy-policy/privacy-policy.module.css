@@ -4,14 +4,11 @@
   padding: 1rem 0 5rem;
 }
 
-.editorialSection,
-.policySection,
-.ctaSection {
+.policySection {
   width: var(--site-shell-width-mobile);
   margin: 0 auto;
 }
 
-.eyebrow,
 .policyLabel {
   margin: 0;
   font-size: var(--site-eyebrow-size);
@@ -21,40 +18,9 @@
   color: var(--accent);
 }
 
-.editorialLead h2,
-.ctaCopy h2 {
-  margin: 0.5rem 0 0;
-  line-height: 0.98;
-  letter-spacing: -0.045em;
-}
-
-.editorialBody p,
-.policyItem > p,
-.ctaCopy p {
+.policyItem > p {
   color: var(--muted);
   line-height: 1.8;
-}
-
-.editorialSection,
-.ctaSection {
-  display: grid;
-  gap: var(--site-space-base);
-  margin-top: 3.5rem;
-}
-
-.editorialLead,
-.ctaCopy {
-  max-width: var(--site-section-lead-max);
-}
-
-.editorialLead h2,
-.ctaCopy h2 {
-  font-size: var(--site-section-title-size);
-}
-
-.editorialBody {
-  display: grid;
-  gap: var(--site-space-base);
 }
 
 .policySection {
@@ -75,68 +41,13 @@
   line-height: 1.15;
 }
 
-.ctaSection {
-  padding: 1.8rem 0 0;
-  border-top: 1px solid var(--border);
-}
-
-.ctaActions {
-  display: flex;
-  flex-direction: column;
-  gap: var(--site-space-compact);
-  margin-top: 1.2rem;
-}
-
-.primaryAction,
-.secondaryAction {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 3rem;
-  padding: var(--site-action-padding);
-  border-radius: 999px;
-  font-weight: 600;
-  border: 1px solid transparent;
-  transition: 160ms ease;
-}
-
-.primaryAction {
-  background: var(--foreground);
-  color: var(--background);
-}
-
-.secondaryAction {
-  border-color: var(--border-strong);
-  background: transparent;
-  color: var(--foreground);
-}
-
-.primaryAction:hover,
-.secondaryAction:hover,
-.primaryAction:focus-visible,
-.secondaryAction:focus-visible {
-  transform: translateY(-1px);
-}
-
 @media (min-width: 768px) {
-  .editorialSection,
-  .policySection,
-  .ctaSection {
+  .policySection {
     width: var(--site-shell-width-desktop);
   }
 
   .policySection {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--site-layout-gap);
-  }
-
-  .ctaActions {
-    flex-direction: row;
-  }
-
-  .editorialSection,
-  .ctaSection {
-    grid-template-columns: minmax(0, 1fr) minmax(18rem, 30rem);
-    align-items: start;
   }
 }

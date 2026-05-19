@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { PageHero } from "@/components/page-hero";
+import { SectionCta, SectionIntro } from "@/components/section-blocks";
+import { SplitMediaSection } from "@/components/split-media-section";
 import styles from "./product.module.css";
 
 export const metadata: Metadata = {
@@ -25,20 +26,14 @@ export default function ProductPage() {
         titleVariant="feature"
       />
 
-      <section className={styles.editorialSection}>
-        <div className={styles.editorialLead}>
-          <p className={styles.eyebrow}>What it does</p>
-          <h2>HumemAI helps agents remember in structures that stay useful over time.</h2>
-        </div>
-        <div className={styles.editorialBody}>
+      <SectionIntro eyebrow="What it does" title="HumemAI helps agents remember in structures that stay useful over time.">
           <p>
             Instead of forcing everything into one rolling chat log, HumemAI separates what happened, what is known, and how that knowledge should be retrieved later. That makes the system easier to inspect, easier to update, and more useful across sessions.
           </p>
           <p>
             The goal is not to simulate memory abstractly. It is to make memory a real product layer that can support ongoing agent workflows across conversations, documents, tables, graphs, and connected data.
           </p>
-        </div>
-      </section>
+      </SectionIntro>
 
       <section className={styles.capabilitySection}>
         <div className={styles.capabilityItem}>
@@ -55,49 +50,33 @@ export default function ProductPage() {
         </div>
       </section>
 
-      <section className={styles.mediaSection}>
-        <div className={styles.mediaCopy}>
-          <p className={styles.eyebrow}>Workspace</p>
-          <h2>A workspace shaped around ingestion, retrieval, and long-term memory.</h2>
+      <SplitMediaSection
+        eyebrow="Workspace"
+        title="A workspace shaped around ingestion, retrieval, and long-term memory."
+        imageSrc="/illustrations/hosted-workspace-mockup.png"
+        imageAlt="Illustration of a hosted HumemAI workspace"
+        imageQuality={90}
+      >
           <p>
             Teams can use HumemAI as an integrated environment for getting information into memory, exploring it in the right structure, and retrieving it later in ways that remain legible to both people and agents.
           </p>
           <p>
             If you want the operational breakdown between self-hosted, hosted, and custom options, the next stop is <Link href="/pricing">Pricing</Link>.
           </p>
-        </div>
+      </SplitMediaSection>
 
-        <figure className={styles.mediaFigure}>
-          <div className={styles.mediaImageWrap}>
-            <Image
-              src="/illustrations/hosted-workspace-mockup.png"
-              alt="Illustration of a hosted HumemAI workspace"
-              fill
-              className={styles.mediaImage}
-              quality={90}
-              sizes="(min-width: 1180px) 46vw, 100vw"
-            />
-          </div>
-        </figure>
-      </section>
-
-      <section className={styles.ctaSection}>
-        <div className={styles.ctaCopy}>
-          <p className={styles.eyebrow}>Next step</p>
-          <h2>Choose how you want to use HumemAI.</h2>
-          <p>
-            Some teams start with the open source components and self-host. Others want a hosted setup or a deployment shaped around their workflow.
-          </p>
-        </div>
-        <div className={styles.ctaActions}>
-          <Link className={styles.primaryAction} href="/pricing">
-            Explore pricing
-          </Link>
-          <Link className={styles.secondaryAction} href="/projects">
-            View open source projects
-          </Link>
-        </div>
-      </section>
+      <SectionCta
+        eyebrow="Next step"
+        title="Choose how you want to use HumemAI."
+        actions={[
+          { href: "/pricing", label: "Explore pricing" },
+          { href: "/projects", label: "View open source projects", variant: "secondary" },
+        ]}
+      >
+        <p>
+          Some teams start with the open source components and self-host. Others want a hosted setup or a deployment shaped around their workflow.
+        </p>
+      </SectionCta>
     </main>
   );
 }

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { PageHero } from "@/components/page-hero";
+import { SectionCta, SectionIntro } from "@/components/section-blocks";
 import styles from "./privacy-policy.module.css";
 
 export const metadata: Metadata = {
@@ -20,20 +20,14 @@ export default function PrivacyPolicyPage() {
         caption="HumemAI keeps analytics optional and makes cookie choices available from the footer."
       />
 
-      <section className={styles.editorialSection}>
-        <div className={styles.editorialLead}>
-          <p className={styles.eyebrow}>Overview</p>
-          <h2>Minimal collection, optional analytics, and clear user choice.</h2>
-        </div>
-        <div className={styles.editorialBody}>
+      <SectionIntro eyebrow="Overview" title="Minimal collection, optional analytics, and clear user choice.">
           <p>
             HumemAI keeps this website simple. We use analytics only when you explicitly accept analytics cookies, and we use contact information only when you choose to send it to us.
           </p>
           <p>
             This page explains what is collected, when it is collected, and how you can revisit those choices later.
           </p>
-        </div>
-      </section>
+      </SectionIntro>
 
       <section className={styles.policySection}>
         <article className={styles.policyItem}>
@@ -69,23 +63,18 @@ export default function PrivacyPolicyPage() {
         </article>
       </section>
 
-      <section className={styles.ctaSection}>
-        <div className={styles.ctaCopy}>
-          <p className={styles.eyebrow}>Questions</p>
-          <h2>Need clarification about privacy or cookies?</h2>
-          <p>
-            If anything here is unclear, contact HumemAI directly. For broader company and product updates, you can also browse the latest news.
-          </p>
-        </div>
-        <div className={styles.ctaActions}>
-          <Link className={styles.primaryAction} href="/contact">
-            Contact HumemAI
-          </Link>
-          <Link className={styles.secondaryAction} href="/news">
-            View latest news
-          </Link>
-        </div>
-      </section>
+      <SectionCta
+        eyebrow="Questions"
+        title="Need clarification about privacy or cookies?"
+        actions={[
+          { href: "/contact", label: "Contact HumemAI" },
+          { href: "/news", label: "View latest news", variant: "secondary" },
+        ]}
+      >
+        <p>
+          If anything here is unclear, contact HumemAI directly. For broader company and product updates, you can also browse the latest news.
+        </p>
+      </SectionCta>
 
     </main>
   );

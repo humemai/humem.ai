@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { DetailSection } from "@/components/detail-section";
 import { PageHero } from "@/components/page-hero";
+import { SectionCta, SectionIntro } from "@/components/section-blocks";
 import styles from "../company-pages.module.css";
 
 export const metadata: Metadata = {
@@ -20,27 +21,16 @@ export default function AboutPage() {
         imageAlt="Illustration of connected memory structures and stored knowledge"
       />
 
-      <section className={styles.editorialSection}>
-        <div className={styles.editorialLead}>
-          <p className={styles.eyebrow}>Overview</p>
-          <h2>Memory should be a real system layer, not a prompt trick.</h2>
-        </div>
-        <div className={styles.editorialBody}>
+      <SectionIntro eyebrow="Overview" title="Memory should be a real system layer, not a prompt trick.">
           <p>
             HumemAI is built around a straightforward idea: conversations and data are not the same thing.
           </p>
           <p>
             Agentic systems need memory structures that stay structured, inspectable, and durable over time.
           </p>
-        </div>
-      </section>
+      </SectionIntro>
 
-      <section className={styles.detailSection}>
-        <div className={styles.sectionLead}>
-          <p className={styles.eyebrow}>Origin</p>
-          <h2>From research into usable systems.</h2>
-        </div>
-        <div className={styles.detailLayout}>
+      <DetailSection eyebrow="Origin" title="From research into usable systems." divider bodyClassName={styles.detailLayout}>
           <div className={styles.detailContent}>
             <a className={styles.inlineImageLink} href="https://taewoon.kim/" target="_blank" rel="noopener noreferrer">
               <div className={styles.inlineImageWrap}>
@@ -60,26 +50,18 @@ export default function AboutPage() {
               The company grows out of research on human-like memory systems and explicit memory architectures for AI, with a practical goal: turn those ideas into software that teams can use to build reliable agents.
             </p>
           </div>
-        </div>
-      </section>
+      </DetailSection>
 
-      <section className={styles.ctaSection}>
-        <div className={styles.ctaCopy}>
-          <p className={styles.eyebrow}>Next</p>
-          <h2>Explore the projects behind the work.</h2>
-          <p>
-            Browse the main project lines behind HumemAI.
-          </p>
-        </div>
-        <div className={styles.ctaActions}>
-          <Link className={styles.primaryAction} href="/projects">
-            View projects
-          </Link>
-          <Link className={styles.secondaryAction} href="/contact">
-            Contact HumemAI
-          </Link>
-        </div>
-      </section>
+      <SectionCta
+        eyebrow="Next"
+        title="Explore the projects behind the work."
+        actions={[
+          { href: "/projects", label: "View projects" },
+          { href: "/contact", label: "Contact HumemAI", variant: "secondary" },
+        ]}
+      >
+        <p>Browse the main project lines behind HumemAI.</p>
+      </SectionCta>
     </main>
   );
 }

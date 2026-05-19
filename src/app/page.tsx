@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { HomePromoSection, HomeSectionIntro } from "@/components/home-sections";
 import { NewsRail } from "@/components/news-rail";
 import { ProjectRail } from "@/components/project-rail";
 import { getAllNewsPosts } from "@/lib/news-posts";
@@ -49,72 +50,44 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={styles.editorialSection}>
-        <div className={styles.editorialCopy}>
-          <p className={styles.cardEyebrow}>Why memory</p>
-          <h2>Most agents still behave like stateless interfaces with better wording.</h2>
-        </div>
-        <div className={styles.editorialBody}>
+      <HomeSectionIntro eyebrow="Why memory" title="Most agents still behave like stateless interfaces with better wording.">
           <p>
             HumemAI focuses on what should persist beyond a prompt: what happened, what matters now, and how structured knowledge should stay available over time. That means treating memory as a real system layer instead of a side effect hidden in context windows.
           </p>
           <p>
             The result is a stack that can hold documents, tables, graphs, and traces in forms that remain inspectable, replayable, and useful to both people and agents.
           </p>
-        </div>
-      </section>
+      </HomeSectionIntro>
 
-      <section className={styles.ctaSection}>
-        <div className={styles.ctaCopy}>
-          <p className={styles.cardEyebrow}>Product</p>
-          <h2>Built for real agent workflows.</h2>
-          <p>
-            See how HumemAI handles conversational history, structured knowledge, and hybrid retrieval in one system.
-          </p>
-        </div>
-        <Link className={styles.ctaLink} href="/product">
-          <span className={styles.cardAction}>See the product</span>
-        </Link>
-      </section>
+      <HomePromoSection eyebrow="Product" title="Built for real agent workflows." href="/product" actionLabel="See the product">
+        <p>
+          See how HumemAI handles conversational history, structured knowledge, and hybrid retrieval in one system.
+        </p>
+      </HomePromoSection>
 
-      <section className={styles.ctaSection}>
-        <div className={styles.ctaCopy}>
-          <p className={styles.cardEyebrow}>Pricing</p>
-          <h2>Open source or hosted.</h2>
-          <p>
-            Self-host from GitHub when you want full control, or use a managed deployment when you want outcomes faster.
-          </p>
-        </div>
-        <Link className={styles.ctaLink} href="/pricing">
-          <span className={styles.cardAction}>Explore pricing</span>
-        </Link>
-      </section>
+      <HomePromoSection eyebrow="Pricing" title="Open source or hosted." href="/pricing" actionLabel="Explore pricing">
+        <p>
+          Self-host from GitHub when you want full control, or use a managed deployment when you want outcomes faster.
+        </p>
+      </HomePromoSection>
 
       <section className={styles.railSection}>
         <div className={styles.railShell}>
-          <div className={styles.railIntro}>
-            <div>
-              <p className={styles.cardEyebrow}>Open source projects</p>
-              <h2>Open source projects shape the work.</h2>
-            </div>
-            <p>
-              Explore the main open source threads behind HumemAI, then move into dedicated project pages for the systems, papers, and implementations inside each one.
-            </p>
-          </div>
+          <HomeSectionIntro
+            eyebrow="Open source projects"
+            title="Open source projects shape the work."
+            aside="Explore the main open source threads behind HumemAI, then move into dedicated project pages for the systems, papers, and implementations inside each one."
+          />
           <ProjectRail projects={featuredProjects} />
         </div>
       </section>
 
       <section className={styles.newsSection}>
-        <div className={styles.newsIntro}>
-          <div>
-            <p className={styles.cardEyebrow}>News</p>
-            <h2>Latest news from the company.</h2>
-          </div>
-          <Link className={styles.newsLink} href="/news">
-            View all news
-          </Link>
-        </div>
+        <HomeSectionIntro
+          eyebrow="News"
+          title="Latest news from the company."
+          action={{ href: "/news", label: "View all news" }}
+        />
         <NewsRail posts={latestNews} />
       </section>
     </main>

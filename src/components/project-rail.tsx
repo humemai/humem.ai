@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { HorizontalRail } from "@/components/horizontal-rail";
 import type { Project } from "@/lib/projects";
 import styles from "./project-rail.module.css";
 
@@ -11,34 +11,8 @@ type ProjectRailProps = {
 };
 
 export function ProjectRail({ projects }: ProjectRailProps) {
-  const railRef = useRef<HTMLDivElement>(null);
-
-  const scrollRail = (direction: "left" | "right") => {
-    const rail = railRef.current;
-
-    if (!rail) {
-      return;
-    }
-
-    const amount = Math.max(rail.clientWidth * 0.85, 320);
-    rail.scrollBy({
-      left: direction === "right" ? amount : -amount,
-      behavior: "smooth",
-    });
-  };
-
   return (
-    <div className={styles.wrap}>
-      <div className={styles.controls}>
-        <button aria-label="Scroll projects left" className={styles.control} onClick={() => scrollRail("left")} type="button">
-          <span aria-hidden="true">←</span>
-        </button>
-        <button aria-label="Scroll projects right" className={styles.control} onClick={() => scrollRail("right")} type="button">
-          <span aria-hidden="true">→</span>
-        </button>
-      </div>
-
-      <div className={styles.rail} ref={railRef}>
+    <HorizontalRail className={styles.root} leftLabel="Scroll projects left" rightLabel="Scroll projects right">
         {projects.map((project) => (
           <Link className={styles.card} href={`/projects/${project.slug}`} key={project.slug}>
             {project.image ? (
@@ -62,7 +36,6 @@ export function ProjectRail({ projects }: ProjectRailProps) {
             </div>
           </Link>
         ))}
-      </div>
-    </div>
+    </HorizontalRail>
   );
 }

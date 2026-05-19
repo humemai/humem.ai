@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
@@ -8,6 +7,7 @@ import rehypeKatex from "rehype-katex";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
+import { EditorialMediaHero } from "@/components/editorial-media-hero";
 import { getAllNewsPosts, getNewsPost } from "@/lib/news-posts";
 import styles from "../news.module.css";
 
@@ -49,25 +49,15 @@ export default async function NewsPostPage({ params }: { params: Promise<Params>
 
   return (
     <main className={styles.page}>
-      <section className={styles.postHero}>
-        <div className={styles.postHeroCopy}>
-          <div className={styles.context}>
-            <Link href="/news">News</Link>
-          </div>
-          <p className={styles.eyebrow}>News</p>
-          <h1>{post.title}</h1>
-          <p className={styles.intro}>{post.description}</p>
-          <p className={styles.postHeroMeta}>{post.author} · {publishedAt}</p>
-        </div>
-
-        {post.image ? (
-          <figure className={styles.leadMediaFigure}>
-            <div className={styles.leadMediaWrap}>
-              <Image src={post.image} alt={post.title} fill className={styles.leadMediaImage} sizes="(min-width: 1024px) 42vw, 100vw" />
-            </div>
-          </figure>
-        ) : null}
-      </section>
+      <EditorialMediaHero
+        context={<Link href="/news">News</Link>}
+        eyebrow="News"
+        title={post.title}
+        intro={post.description}
+        meta={<>{post.author} · {publishedAt}</>}
+        imageSrc={post.image}
+        imageAlt={post.title}
+      />
 
       <article className={styles.post}>
         <div className={styles.content}>

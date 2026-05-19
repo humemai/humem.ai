@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { DetailSection } from "@/components/detail-section";
+import { EditorialMediaHero } from "@/components/editorial-media-hero";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { StandaloneLinkSection, StandaloneSection, StandaloneSectionFigure } from "@/components/standalone-sections";
 import { StandaloneSectionNav } from "@/components/standalone-section-nav";
 import { getProject, getSubprojects, projects } from "@/lib/projects";
 import styles from "../projects.module.css";
@@ -99,74 +102,39 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
 
     return (
       <main className={styles.standalonePage}>
-        <section className={styles.standaloneHero}>
-          <div className={styles.standaloneHeroCopy}>
-            <p className={styles.detailContext}>{projectContext}</p>
-            <p className={styles.sectionEyebrow}>{standaloneLabel}</p>
-            <h1>{project.title}</h1>
-            <p className={styles.detailIntro}>{project.summary}</p>
-            {project.sponsor ? (
-              <a
-                className={styles.detailSponsor}
-                href={project.sponsor.href}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image
-                  src={project.sponsor.logoSrc}
-                  alt={project.sponsor.logoAlt}
-                  width={180}
-                  height={52}
-                  className={styles.detailSponsorLogo}
-                />
-              </a>
-            ) : null}
-            {heroActionLinks.length > 0 ? (
-              <div className={styles.standaloneHeroActions}>
-                {heroActionLinks.map((link, index) =>
-                  link.isInternal ? (
-                    <Link
-                      className={index === 0 ? styles.standalonePrimaryAction : styles.standaloneSecondaryAction}
-                      href={link.href}
-                      key={link.href}
-                    >
-                      {link.label}
-                    </Link>
-                  ) : (
-                    <a
-                      className={index === 0 ? styles.standalonePrimaryAction : styles.standaloneSecondaryAction}
-                      href={link.href}
-                      key={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {link.label}
-                    </a>
-                  ),
-                )}
-              </div>
-            ) : null}
-          </div>
-
-          <figure className={styles.leadMediaFigure}>
-            {project.image ? (
-              <>
-                <div className={styles.leadMediaWrap}>
-                  <Image
-                    src={project.image.src}
-                    alt={project.image.alt}
-                    fill
-                    className={styles.leadMediaImage}
-                    sizes="(min-width: 1024px) 42vw, 100vw"
-                  />
-                </div>
-                <figcaption className={styles.leadMediaCaption}>{project.image.alt}</figcaption>
-              </>
-            ) : (
-              <div className={styles.leadMediaFallback} />
-            )}
-          </figure>
-        </section>
+        <EditorialMediaHero
+          context={projectContext}
+          eyebrow={standaloneLabel}
+          title={project.title}
+          intro={project.summary}
+          titleVariant="feature"
+          imageSrc={project.image?.src}
+          imageAlt={project.image?.alt}
+          imageCaption={project.image?.alt}
+          actions={heroActionLinks.map((link, index) => ({
+            href: link.href,
+            label: link.label,
+            variant: index === 0 ? "primary" : "secondary",
+          }))}
+          showFallbackMedia={!project.image}
+        >
+          {project.sponsor ? (
+            <a
+              className={styles.detailSponsor}
+              href={project.sponsor.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src={project.sponsor.logoSrc}
+                alt={project.sponsor.logoAlt}
+                width={180}
+                height={52}
+                className={styles.detailSponsorLogo}
+              />
+            </a>
+          ) : null}
+        </EditorialMediaHero>
 
         <StandaloneSectionNav
           sections={standaloneSections.map((section) => ({ id: section.id, navLabel: section.navLabel }))}
@@ -177,86 +145,40 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
         />
 
         {standaloneSections.map((section) => (
-          <section className={styles.standaloneSection} id={section.id} key={section.id}>
-            <div className={styles.standaloneSectionLead}>
-              <p className={styles.sectionEyebrow}>{section.eyebrow}</p>
-              <h2>{section.title}</h2>
-            </div>
-
-            {section.figure ? (
-              <figure className={styles.sectionFigure}>
-                <p className={styles.sectionFigureLabel}>{section.figure.label}</p>
-                <div className={styles.sectionFigurePanel}>
-                  {section.figure.image ? (
-                    <div className={styles.sectionFigureImageWrap}>
-                      <Image
-                        src={section.figure.image.src}
-                        alt={section.figure.image.alt}
-                        fill
-                        className={styles.sectionFigureImage}
-                        sizes="(min-width: 1024px) 34vw, 100vw"
-                      />
-                    </div>
-                  ) : null}
-                  <p className={styles.sectionFigureTitle}>{section.figure.title}</p>
-                  {section.figure.points?.length ? (
-                    <ul className={styles.sectionFigurePoints}>
-                      {section.figure.points.map((point) => (
-                        <li key={point}>{point}</li>
-                      ))}
-                    </ul>
-                  ) : null}
-                </div>
-                <figcaption className={styles.sectionFigureCaption}>{section.figure.caption}</figcaption>
-              </figure>
-            ) : null}
-
-            <div className={styles.standaloneSectionBody}>
+          <StandaloneSection
+            id={section.id}
+            key={section.id}
+            eyebrow={section.eyebrow}
+            title={section.title}
+            figure={section.figure ? (
+              <StandaloneSectionFigure
+                label={section.figure.label}
+                title={section.figure.title}
+                caption={section.figure.caption}
+                imageSrc={section.figure.image?.src}
+                imageAlt={section.figure.image?.alt}
+                points={section.figure.points}
+              />
+            ) : undefined}
+          >
               {section.body.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
-            </div>
-          </section>
+          </StandaloneSection>
         ))}
 
         {projectLinks.length > 0 ? (
-          <section className={styles.standaloneResources}>
-            <div className={styles.standaloneSectionLead}>
-              <p className={styles.sectionEyebrow}>Resources</p>
-              <h2>{standalonePage?.linksHeading ?? "Resources."}</h2>
-            </div>
-            <div className={styles.standaloneResourceList}>
-              {projectLinks.map((link) =>
-                link.isInternal ? (
-                  <Link className={styles.standaloneResourceRow} href={link.href} key={link.href}>
-                    <span>{link.label}</span>
-                    <span className={styles.standaloneResourceAction}>Open</span>
-                  </Link>
-                ) : (
-                  <a
-                    className={styles.standaloneResourceRow}
-                    href={link.href}
-                    key={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <span>{link.label}</span>
-                    <span className={styles.standaloneResourceAction}>Open</span>
-                  </a>
-                ),
-              )}
-            </div>
-          </section>
+          <StandaloneLinkSection
+            eyebrow="Resources"
+            title={standalonePage?.linksHeading ?? "Resources."}
+            links={projectLinks.map((link) => ({ href: link.href, content: link.label }))}
+          />
         ) : null}
 
         {project.acknowledgements ? (
-          <section className={styles.standaloneResources}>
-            <div className={styles.standaloneSectionLead}>
-              <p className={styles.sectionEyebrow}>Acknowledgements</p>
-              <h2>Project support.</h2>
-            </div>
-            <div className={styles.standaloneAcknowledgementsBody}>{acknowledgementsContent}</div>
-          </section>
+          <StandaloneSection eyebrow="Acknowledgements" title="Project support." bodyVariant="acknowledgements">
+            {acknowledgementsContent}
+          </StandaloneSection>
         ) : null}
       </main>
     );
@@ -308,26 +230,20 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
           </figure>
         </section>
 
-        <section className={styles.detailSection}>
-          <div className={styles.detailSectionLead}>
-            <p className={styles.sectionEyebrow}>Why it exists</p>
-            <h2>{project.featuredPage?.problemHeading ?? "The project-level problem this work is trying to solve."}</h2>
-          </div>
-          <div className={styles.detailSectionBody}>
+        <DetailSection
+          eyebrow="Why it exists"
+          title={project.featuredPage?.problemHeading ?? "The project-level problem this work is trying to solve."}
+        >
             <p>{project.problem}</p>
-          </div>
-        </section>
+        </DetailSection>
 
-        <section className={styles.detailSection}>
-          <div className={styles.detailSectionLead}>
-            <p className={styles.sectionEyebrow}>What it is building</p>
-            <h2>{project.featuredPage?.solutionHeading ?? "The work is organized as a larger project, not just a list of repositories."}</h2>
-          </div>
-          <div className={styles.detailSectionBody}>
+        <DetailSection
+          eyebrow="What it is building"
+          title={project.featuredPage?.solutionHeading ?? "The work is organized as a larger project, not just a list of repositories."}
+        >
             <p>{project.solution}</p>
             {project.impact ? <p>{project.impact}</p> : null}
-          </div>
-        </section>
+        </DetailSection>
 
         {subprojects.length > 0 ? (
           <section className={styles.detailSubprojects}>
@@ -371,13 +287,12 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
         ) : null}
 
         {project.acknowledgements ? (
-          <section className={styles.detailAcknowledgements}>
-            <div className={styles.detailSectionLead}>
-              <p className={styles.sectionEyebrow}>Acknowledgements</p>
-              <h2>{project.featuredPage?.acknowledgementsHeading ?? "Project support."}</h2>
-            </div>
-            <div className={styles.detailSectionBody}>{acknowledgementsContent}</div>
-          </section>
+          <DetailSection
+            eyebrow="Acknowledgements"
+            title={project.featuredPage?.acknowledgementsHeading ?? "Project support."}
+          >
+            {acknowledgementsContent}
+          </DetailSection>
         ) : null}
       </main>
     );
@@ -426,62 +341,43 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
         </figure>
       </section>
 
-      <section className={styles.detailSection}>
-        <div className={styles.detailSectionLead}>
-          <p className={styles.sectionEyebrow}>Why it exists</p>
-          <h2>{project.subprojectPage?.problemHeading ?? "The problem"}</h2>
-        </div>
-        <div className={styles.detailSectionBody}>
+      <DetailSection eyebrow="Why it exists" title={project.subprojectPage?.problemHeading ?? "The problem"}>
           <p>{project.problem}</p>
-        </div>
-      </section>
+      </DetailSection>
 
-      <section className={styles.detailSection}>
-        <div className={styles.detailSectionLead}>
-          <p className={styles.sectionEyebrow}>What it is building</p>
-          <h2>{project.subprojectPage?.solutionHeading ?? "What we are building"}</h2>
-        </div>
-        <div className={styles.detailSectionBody}>
+      <DetailSection eyebrow="What it is building" title={project.subprojectPage?.solutionHeading ?? "What we are building"}>
           <p>{project.solution}</p>
-        </div>
-      </section>
+      </DetailSection>
 
       {project.impact ? (
-        <section className={styles.detailSection}>
-          <div className={styles.detailSectionLead}>
-            <p className={styles.sectionEyebrow}>Why it matters</p>
-            <h2>{project.subprojectPage?.impactHeading ?? "Why it matters"}</h2>
-          </div>
-          <div className={styles.detailSectionBody}>
+        <DetailSection eyebrow="Why it matters" title={project.subprojectPage?.impactHeading ?? "Why it matters"}>
             <p>{project.impact}</p>
-          </div>
-        </section>
+        </DetailSection>
       ) : null}
 
       {project.subprojectPage?.highlights?.length ? (
-        <section className={styles.subprojectHighlights}>
-          <div className={styles.detailSectionLead}>
-            <p className={styles.sectionEyebrow}>Highlights</p>
-            <h2>{project.subprojectPage.highlightsHeading ?? "Highlights."}</h2>
-          </div>
-          <div className={styles.subprojectHighlightList}>
+        <DetailSection
+          eyebrow="Highlights"
+          title={project.subprojectPage.highlightsHeading ?? "Highlights."}
+          bodyVariant="plain"
+          bodyClassName={styles.subprojectHighlightList}
+        >
             {project.subprojectPage.highlights.map((highlight) => (
               <article className={styles.subprojectHighlightItem} key={highlight.title}>
                 <h3>{highlight.title}</h3>
                 <p>{highlight.description}</p>
               </article>
             ))}
-          </div>
-        </section>
+        </DetailSection>
       ) : null}
 
       {projectLinks.length > 0 ? (
-        <section className={styles.subprojectLinksSection}>
-          <div className={styles.detailSectionLead}>
-            <p className={styles.sectionEyebrow}>Links</p>
-            <h2>{project.subprojectPage?.linksHeading ?? "Links."}</h2>
-          </div>
-          <div className={styles.subprojectLinksList}>
+        <DetailSection
+          eyebrow="Links"
+          title={project.subprojectPage?.linksHeading ?? "Links."}
+          bodyVariant="plain"
+          bodyClassName={styles.subprojectLinksList}
+        >
             {projectLinks.map((link) =>
               link.isInternal ? (
                 <Link className={styles.subprojectLinkRow} href={link.href} key={link.href}>
@@ -501,17 +397,16 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
                 </a>
               ),
             )}
-          </div>
-        </section>
+        </DetailSection>
       ) : null}
 
       {subprojects.length > 0 ? (
-        <section className={styles.subprojectLinksSection}>
-          <div className={styles.detailSectionLead}>
-            <p className={styles.sectionEyebrow}>Project structure</p>
-            <h2>Subprojects.</h2>
-          </div>
-          <div className={styles.subprojectLinksList}>
+        <DetailSection
+          eyebrow="Project structure"
+          title="Subprojects."
+          bodyVariant="plain"
+          bodyClassName={styles.subprojectLinksList}
+        >
             {subprojects.map((subproject) => (
               <Link className={styles.subprojectLinkRow} href={`/projects/${subproject.slug}`} key={subproject.slug}>
                 <span>
@@ -521,18 +416,13 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
                 <span className={styles.subprojectLinkAction}>Open</span>
               </Link>
             ))}
-          </div>
-        </section>
+        </DetailSection>
       ) : null}
 
       {project.acknowledgements ? (
-        <section className={styles.detailAcknowledgements}>
-          <div className={styles.detailSectionLead}>
-            <p className={styles.sectionEyebrow}>Acknowledgements</p>
-            <h2>Project support.</h2>
-          </div>
-          <div className={styles.detailSectionBody}>{acknowledgementsContent}</div>
-        </section>
+        <DetailSection eyebrow="Acknowledgements" title="Project support.">
+          {acknowledgementsContent}
+        </DetailSection>
       ) : null}
     </main>
   );
