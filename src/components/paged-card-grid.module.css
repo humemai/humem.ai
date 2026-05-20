@@ -1,3 +1,7 @@
+.contentStart {
+  scroll-margin-top: 5.8rem;
+}
+
 .paginationDirectionalControl {
   --pagination-page-bg: var(--surface-muted);
   --pagination-page-border: transparent;

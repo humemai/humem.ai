@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { DirectionalControlIcon } from "@/components/directional-control-icon";
 import { getListingPageCount, getListingPageItems, LISTING_ITEMS_PER_PAGE } from "@/lib/listing-pagination";
 import { useRailOverflow } from "@/components/use-rail-overflow";
@@ -40,11 +40,16 @@ export function PagedCardGrid<T>({
   renderItem,
 }: PagedCardGridProps<T>) {
   const { containerRef, canScrollLeft, canScrollRight } = useRailOverflow<HTMLDivElement>();
+  const contentStartRef = useRef<HTMLDivElement>(null);
   const hasOverflow = canScrollLeft || canScrollRight;
   const joinClassNames = (...values: Array<string | undefined | false>) => values.filter(Boolean).join(" ");
   const totalPages = getListingPageCount(items.length, itemsPerPage);
   const [currentPage, setCurrentPage] = useState(1);
   const visibleItems = getListingPageItems(items, currentPage, itemsPerPage);
+
+  const scrollToContentStart = (behavior: ScrollBehavior = "smooth") => {
+    contentStartRef.current?.scrollIntoView({ behavior, block: "start" });
+  };
 
   const readPageFromUrl = () => {
     if (!pageQueryParam || typeof window === "undefined") {
@@ -82,6 +87,7 @@ export function PagedCardGrid<T>({
     const nextPage = Math.min(Math.max(page, 1), totalPages);
     setCurrentPage(nextPage);
     writePageToUrl(nextPage, historyMode);
+    scrollToContentStart();
   };
 
   useEffect(() => {
@@ -99,6 +105,7 @@ export function PagedCardGrid<T>({
 
       const handlePopState = () => {
         setCurrentPage(readPageFromUrl());
+        scrollToContentStart("auto");
       };
 
       window.addEventListener("popstate", handlePopState);
@@ -125,6 +132,8 @@ export function PagedCardGrid<T>({
 
   return (
     <>
+      <div className={styles.contentStart} ref={contentStartRef} />
+
       {hasOverflow ? (
         <div className={controlsClassName}>
           <button aria-label={leftLabel} className={controlClassName} onClick={() => scrollRail("left")} type="button">
