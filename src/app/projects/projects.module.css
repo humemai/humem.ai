@@ -135,18 +135,12 @@
 
 .overviewGrid {
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(18rem, 88vw);
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--card-gap);
   margin-top: 1.8rem;
-  overflow-x: auto;
-  padding-bottom: 0.5rem;
-  scroll-snap-type: x proximity;
-  scrollbar-width: none;
-}
-
-.overviewGrid::-webkit-scrollbar {
-  display: none;
+  overflow-x: visible;
+  padding-bottom: 0;
+  scroll-snap-type: none;
 }
 
 .overviewCard {
@@ -311,18 +305,12 @@
 
 .subprojectGrid {
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(18rem, 88vw);
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--card-gap);
   margin-top: 1.5rem;
-  overflow-x: auto;
-  padding-bottom: 0.5rem;
-  scroll-snap-type: x proximity;
-  scrollbar-width: none;
-}
-
-.subprojectGrid::-webkit-scrollbar {
-  display: none;
+  overflow-x: visible;
+  padding-bottom: 0;
+  scroll-snap-type: none;
 }
 
 .subprojectCard {
@@ -745,6 +733,11 @@
   }
 
   .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .overviewGrid,
+  .subprojectGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
