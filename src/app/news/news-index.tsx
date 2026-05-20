@@ -17,6 +17,7 @@ export function NewsIndexSection({ posts }: NewsIndexSectionProps) {
         controlsClassName={styles.mobileRailControls}
         controlClassName={styles.mobileRailControl}
         items={posts}
+        pageQueryParam="page"
         leftLabel="Scroll news left"
         listClassName={styles.articleList}
         paginationClassName={styles.pagination}

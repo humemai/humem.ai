@@ -25,6 +25,7 @@ export function SubprojectsSection({ subprojects }: SubprojectsSectionProps) {
           controlsClassName={styles.mobileOverviewControls}
           controlClassName={styles.mobileOverviewControl}
           items={subprojects}
+          pageQueryParam="subprojectsPage"
           leftLabel="Scroll subprojects left"
           listClassName={styles.subprojectGrid}
           paginationClassName={styles.overviewPagination}

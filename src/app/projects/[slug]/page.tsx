@@ -3,7 +3,7 @@ import Image from "next/image";
 import { DetailSection } from "@/components/detail-section";
 import { EditorialMediaHero } from "@/components/editorial-media-hero";
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { StandaloneLinkSection, StandaloneSection, StandaloneSectionFigure } from "@/components/standalone-sections";
 import { StandaloneSectionNav } from "@/components/standalone-section-nav";
 import { getProject, getSubprojects, projects } from "@/lib/projects";
@@ -12,10 +12,6 @@ import styles from "../projects.module.css";
 
 type Params = {
   slug: string;
-};
-
-type SearchParams = {
-  subprojectsPage?: string;
 };
 
 export function generateStaticParams() {
@@ -52,13 +48,8 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   };
 }
 
-export default async function ProjectDetailPage({ params, searchParams }: { params: Promise<Params>; searchParams?: Promise<SearchParams> }) {
+export default async function ProjectDetailPage({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
-  const resolvedSearchParams = searchParams ? await searchParams : undefined;
-
-  if (resolvedSearchParams?.subprojectsPage) {
-    redirect(`/projects/${slug}`);
-  }
 
   const project = getProject(slug);
 

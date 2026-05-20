@@ -9,6 +9,7 @@ import styles from "./paged-card-grid.module.css";
 type PagedCardGridProps<T> = {
   items: readonly T[];
   itemsPerPage?: number;
+  pageQueryParam?: string;
   paginationLabel: string;
   leftLabel: string;
   rightLabel: string;
@@ -25,6 +26,7 @@ type PagedCardGridProps<T> = {
 export function PagedCardGrid<T>({
   items,
   itemsPerPage = LISTING_ITEMS_PER_PAGE,
+  pageQueryParam,
   paginationLabel,
   leftLabel,
   rightLabel,
@@ -44,9 +46,68 @@ export function PagedCardGrid<T>({
   const [currentPage, setCurrentPage] = useState(1);
   const visibleItems = getListingPageItems(items, currentPage, itemsPerPage);
 
+  const readPageFromUrl = () => {
+    if (!pageQueryParam || typeof window === "undefined") {
+      return 1;
+    }
+
+    const rawPage = new URLSearchParams(window.location.search).get(pageQueryParam);
+    const parsedPage = Number.parseInt(rawPage ?? "1", 10);
+
+    if (!Number.isInteger(parsedPage) || parsedPage < 2) {
+      return 1;
+    }
+
+    return Math.min(parsedPage, totalPages);
+  };
+
+  const writePageToUrl = (page: number, mode: "push" | "replace") => {
+    if (!pageQueryParam || typeof window === "undefined") {
+      return;
+    }
+
+    const url = new URL(window.location.href);
+
+    if (page <= 1) {
+      url.searchParams.delete(pageQueryParam);
+    } else {
+      url.searchParams.set(pageQueryParam, String(page));
+    }
+
+    const nextUrl = `${url.pathname}${url.search}${url.hash}`;
+    window.history[mode === "push" ? "pushState" : "replaceState"]({}, "", nextUrl);
+  };
+
+  const goToPage = (page: number, historyMode: "push" | "replace" = "push") => {
+    const nextPage = Math.min(Math.max(page, 1), totalPages);
+    setCurrentPage(nextPage);
+    writePageToUrl(nextPage, historyMode);
+  };
+
   useEffect(() => {
-    setCurrentPage((previousPage) => Math.min(previousPage, totalPages));
-  }, [totalPages]);
+    const syncedPage = pageQueryParam ? readPageFromUrl() : 1;
+    setCurrentPage((previousPage) => {
+      if (!pageQueryParam) {
+        return Math.min(previousPage, totalPages);
+      }
+
+      return previousPage === syncedPage ? previousPage : syncedPage;
+    });
+
+    if (pageQueryParam) {
+      writePageToUrl(syncedPage, "replace");
+
+      const handlePopState = () => {
+        setCurrentPage(readPageFromUrl());
+      };
+
+      window.addEventListener("popstate", handlePopState);
+
+      return () => {
+        window.removeEventListener("popstate", handlePopState);
+      };
+    }
+  }, [pageQueryParam, totalPages]);
 
   const scrollRail = (direction: "left" | "right") => {
     const rail = containerRef.current;
@@ -86,7 +147,7 @@ export function PagedCardGrid<T>({
               <button
                 aria-label="Previous page"
                 className={joinClassNames(paginationPageClassName, styles.paginationDirectionalControl)}
-                onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
+                onClick={() => goToPage(currentPage - 1)}
                 type="button"
               >
                 <DirectionalControlIcon direction="left" />
@@ -108,7 +169,7 @@ export function PagedCardGrid<T>({
                 <button
                   className={paginationPageClassName}
                   key={page}
-                  onClick={() => setCurrentPage(page)}
+                  onClick={() => goToPage(page)}
                   type="button"
                 >
                   {page}
@@ -120,7 +181,7 @@ export function PagedCardGrid<T>({
               <button
                 aria-label="Next page"
                 className={joinClassNames(paginationPageClassName, styles.paginationDirectionalControl)}
-                onClick={() => setCurrentPage((page) => Math.min(totalPages, page + 1))}
+                onClick={() => goToPage(currentPage + 1)}
                 type="button"
               >
                 <DirectionalControlIcon direction="right" />

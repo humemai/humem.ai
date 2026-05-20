@@ -24,6 +24,7 @@ export function ProjectsIndexSection({ projects }: ProjectsIndexSectionProps) {
         controlsClassName={styles.mobileOverviewControls}
         controlClassName={styles.mobileOverviewControl}
         items={projects}
+        pageQueryParam="page"
         leftLabel="Scroll projects left"
         listClassName={styles.overviewGrid}
         paginationClassName={styles.overviewPagination}
