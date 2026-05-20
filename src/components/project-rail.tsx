@@ -21,7 +21,7 @@ export function ProjectRail({ projects }: ProjectRailProps) {
                   alt={project.image.alt}
                   className={styles.image}
                   fill
-                  sizes="(min-width: 1280px) 44rem, (min-width: 768px) 72vw, 88vw"
+                  sizes="(min-width: 1280px) 44rem, (min-width: 720px) 72vw, 88vw"
                   src={project.image.src}
                 />
               </div>

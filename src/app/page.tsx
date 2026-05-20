@@ -5,11 +5,12 @@ import { NewsRail } from "@/components/news-rail";
 import { ProjectRail } from "@/components/project-rail";
 import { getAllNewsPosts } from "@/lib/news-posts";
 import { getProjectsIndexProjects } from "@/lib/projects";
+import { HOME_PAGE_RAIL_ITEM_COUNT } from "@/lib/site-data";
 import styles from "./page.module.css";
 
 export default function Home() {
-  const featuredProjects = getProjectsIndexProjects().slice(0, 9);
-  const latestNews = getAllNewsPosts().slice(0, 9);
+  const featuredProjects = getProjectsIndexProjects().slice(0, HOME_PAGE_RAIL_ITEM_COUNT);
+  const latestNews = getAllNewsPosts().slice(0, HOME_PAGE_RAIL_ITEM_COUNT);
 
   return (
     <main className={styles.page}>

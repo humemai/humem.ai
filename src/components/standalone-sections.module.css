@@ -1,7 +1,7 @@
 .section,
 .linkSection {
   width: var(--site-shell-width-mobile);
-  margin: 3.5rem auto 0;
+  margin: var(--site-section-margin-top) auto 0;
   display: grid;
   gap: var(--site-layout-gap);
   align-items: start;
@@ -41,7 +41,7 @@
 .acknowledgementsBody {
   display: grid;
   gap: var(--site-space-base);
-  max-width: 40rem;
+  max-width: var(--site-body-max);
 }
 
 .body :global(p),
@@ -53,7 +53,7 @@
 
 .figure {
   width: 100%;
-  max-width: 48rem;
+  max-width: var(--site-figure-max);
   margin: 0;
 }
 
@@ -121,7 +121,7 @@
 .linkList {
   display: grid;
   gap: 0;
-  max-width: 40rem;
+  max-width: var(--site-body-max);
 }
 
 .linkRow {
@@ -151,7 +151,7 @@
   font-weight: 600;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 720px) {
   .section,
   .linkSection {
     width: var(--site-shell-width-desktop);

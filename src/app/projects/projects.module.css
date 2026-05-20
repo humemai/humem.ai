@@ -1,7 +1,7 @@
 
 .indexPage {
   width: 100%;
-  padding: 1rem 0 5rem;
+  padding: var(--site-page-padding);
 }
 
 .indexHero,
@@ -110,7 +110,7 @@
 }
 
 .projectOverview {
-  margin-top: 3.5rem;
+  margin-top: var(--site-section-margin-top);
 }
 
 .mobileOverviewControls {
@@ -378,17 +378,17 @@
 
 .detailPage {
   width: 100%;
-  padding: 1rem 0 5rem;
+  padding: var(--site-page-padding);
 }
 
 .subprojectPage {
   width: 100%;
-  padding: 1rem 0 5rem;
+  padding: var(--site-page-padding);
 }
 
 .standalonePage {
   width: 100%;
-  padding: 1rem 0 5rem;
+  padding: var(--site-page-padding);
 }
 
 .detailHero,
@@ -583,18 +583,18 @@
 .detailAcknowledgements {
   display: grid;
   gap: var(--site-space-base);
-  margin-top: 3.5rem;
+  margin-top: var(--site-section-margin-top);
 }
 
 .subprojectHighlights,
 .subprojectLinksSection {
   display: grid;
   gap: var(--site-space-base);
-  margin-top: 3.5rem;
+  margin-top: var(--site-section-margin-top);
 }
 
 .detailSectionLead {
-  max-width: 34rem;
+  max-width: var(--site-section-lead-max);
 }
 
 .detailSectionLead h2 {
@@ -712,7 +712,7 @@
   font-weight: 600;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 720px) {
   .projectOverview,
   .detailSubprojects {
     grid-template-columns: var(--site-split-columns);

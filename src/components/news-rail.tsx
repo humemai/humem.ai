@@ -22,7 +22,7 @@ export function NewsRail({ posts }: NewsRailProps) {
                     alt={post.title}
                     className={styles.image}
                     fill
-                    sizes="(min-width: 1280px) 26rem, (min-width: 768px) 56vw, 88vw"
+                    sizes="(min-width: 1280px) 26rem, (min-width: 720px) 56vw, 88vw"
                     src={post.image}
                   />
                 </div>

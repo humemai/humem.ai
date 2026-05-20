@@ -124,7 +124,7 @@
   line-height: 1.7;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 720px) {
   .root {
     width: var(--site-shell-width-desktop);
   }

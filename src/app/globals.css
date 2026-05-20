@@ -15,6 +15,12 @@
   --site-space-compact: 0.8rem;
   --site-space-base: 1rem;
   --site-space-roomy: 1.5rem;
+  --site-page-padding: 1rem 0 5rem;
+  --site-section-margin-top: 3.5rem;
+  --site-divider-padding-top: 1.6rem;
+  --site-aside-column: minmax(18rem, 30rem);
+  --site-body-max: 40rem;
+  --site-figure-max: 48rem;
   --site-copy-block-padding: 1.2rem 0;
   --site-action-padding: 0.9rem 1.4rem;
   --site-button-primary-bg: var(--foreground);

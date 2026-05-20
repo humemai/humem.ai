@@ -15,6 +15,8 @@ export const navigationItems = [
 
 export const googleAnalyticsId = "G-973VT90SE2";
 
+export const HOME_PAGE_RAIL_ITEM_COUNT = 6;
+
 export const footerColumns = [
   {
     title: "Product",

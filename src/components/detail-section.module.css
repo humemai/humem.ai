@@ -1,12 +1,12 @@
 .root {
   width: var(--site-shell-width-mobile);
-  margin: 3.5rem auto 0;
+  margin: var(--site-section-margin-top) auto 0;
   display: grid;
   gap: var(--site-space-base);
 }
 
 .withDivider {
-  padding-top: 1.6rem;
+  padding-top: var(--site-divider-padding-top);
   border-top: 1px solid var(--border);
 }
 
@@ -31,7 +31,7 @@
 }
 
 .body {
-  max-width: 40rem;
+  max-width: var(--site-body-max);
 }
 
 .bodyStack {
@@ -44,10 +44,10 @@
   line-height: 1.8;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 720px) {
   .root {
     width: var(--site-shell-width-desktop);
-    grid-template-columns: minmax(0, 1fr) minmax(18rem, 30rem);
+    grid-template-columns: minmax(0, 1fr) var(--site-aside-column);
     align-items: start;
   }
 }
