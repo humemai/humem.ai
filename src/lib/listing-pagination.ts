@@ -1,0 +1,1 @@
+export const LISTING_ITEMS_PER_PAGE = 9;
