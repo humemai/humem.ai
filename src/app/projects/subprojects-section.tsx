@@ -8,17 +8,10 @@ import type { Project } from "@/lib/projects";
 import styles from "./projects.module.css";
 
 type SubprojectsSectionProps = {
-  projectSlug: string;
   subprojects: Project[];
-  currentPage: number;
-  totalPages: number;
 };
 
-function getSubprojectsPageHref(projectSlug: string, page: number) {
-  return page === 1 ? `/projects/${projectSlug}` : `/projects/${projectSlug}?subprojectsPage=${page}`;
-}
-
-export function SubprojectsSection({ projectSlug, subprojects, currentPage, totalPages }: SubprojectsSectionProps) {
+export function SubprojectsSection({ subprojects }: SubprojectsSectionProps) {
   return (
     <>
       <SectionIntro eyebrow="Project structure" title="Subprojects.">
@@ -31,8 +24,6 @@ export function SubprojectsSection({ projectSlug, subprojects, currentPage, tota
         <PagedCardGrid
           controlsClassName={styles.mobileOverviewControls}
           controlClassName={styles.mobileOverviewControl}
-          currentPage={currentPage}
-          getPageHref={(page) => getSubprojectsPageHref(projectSlug, page)}
           items={subprojects}
           leftLabel="Scroll subprojects left"
           listClassName={styles.subprojectGrid}
@@ -69,7 +60,6 @@ export function SubprojectsSection({ projectSlug, subprojects, currentPage, tota
           );
         }}
           rightLabel="Scroll subprojects right"
-          totalPages={totalPages}
         />
       </section>
     </>

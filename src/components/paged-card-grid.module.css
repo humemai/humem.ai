@@ -1,0 +1,6 @@
+.paginationDirectionalControl {
+  --pagination-page-bg: var(--surface-muted);
+  --pagination-page-border: transparent;
+  --pagination-page-hover-bg: color-mix(in srgb, var(--foreground) 8%, var(--surface-muted));
+  --pagination-page-hover-border: transparent;
+}

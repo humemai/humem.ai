@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/page-hero";
 import { getAllNewsPosts } from "@/lib/news-posts";
 import { NewsIndexSection } from "./news-index";
-import { getNewsPageCount, getNewsPagePosts } from "./news-pagination";
 import styles from "./news.module.css";
 
 export const metadata: Metadata = {
@@ -12,8 +11,6 @@ export const metadata: Metadata = {
 
 export default function NewsPage() {
   const posts = getAllNewsPosts();
-  const totalPages = getNewsPageCount(posts.length);
-  const visiblePosts = getNewsPagePosts(posts, 1);
 
   return (
     <main className={styles.page}>
@@ -26,7 +23,7 @@ export default function NewsPage() {
         titleVariant="feature"
       />
 
-      <NewsIndexSection currentPage={1} posts={visiblePosts} totalPages={totalPages} />
+      <NewsIndexSection posts={posts} />
     </main>
   );
 }

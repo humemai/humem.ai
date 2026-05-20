@@ -8,15 +8,9 @@ import styles from "./projects.module.css";
 
 type ProjectsIndexSectionProps = {
   projects: Project[];
-  currentPage: number;
-  totalPages: number;
 };
 
-function getProjectsPageHref(page: number) {
-  return page === 1 ? "/projects" : `/projects/page/${page}`;
-}
-
-export function ProjectsIndexSection({ projects, currentPage, totalPages }: ProjectsIndexSectionProps) {
+export function ProjectsIndexSection({ projects }: ProjectsIndexSectionProps) {
   return (
     <section className={styles.projectOverview}>
       <div className={styles.projectOverviewIntro}>
@@ -29,8 +23,6 @@ export function ProjectsIndexSection({ projects, currentPage, totalPages }: Proj
       <PagedCardGrid
         controlsClassName={styles.mobileOverviewControls}
         controlClassName={styles.mobileOverviewControl}
-        currentPage={currentPage}
-        getPageHref={getProjectsPageHref}
         items={projects}
         leftLabel="Scroll projects left"
         listClassName={styles.overviewGrid}
@@ -63,7 +55,6 @@ export function ProjectsIndexSection({ projects, currentPage, totalPages }: Proj
           </Link>
         )}
         rightLabel="Scroll projects right"
-        totalPages={totalPages}
       />
     </section>
   );

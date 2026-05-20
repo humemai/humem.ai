@@ -1,15 +1,14 @@
 "use client";
 
-import type { ReactNode } from "react";
-import Link from "next/link";
+import { useEffect, useState, type ReactNode } from "react";
 import { DirectionalControlIcon } from "@/components/directional-control-icon";
+import { getListingPageCount, getListingPageItems, LISTING_ITEMS_PER_PAGE } from "@/lib/listing-pagination";
 import { useRailOverflow } from "@/components/use-rail-overflow";
+import styles from "./paged-card-grid.module.css";
 
 type PagedCardGridProps<T> = {
   items: readonly T[];
-  currentPage: number;
-  totalPages: number;
-  getPageHref: (page: number) => string;
+  itemsPerPage?: number;
   paginationLabel: string;
   leftLabel: string;
   rightLabel: string;
@@ -25,9 +24,7 @@ type PagedCardGridProps<T> = {
 
 export function PagedCardGrid<T>({
   items,
-  currentPage,
-  totalPages,
-  getPageHref,
+  itemsPerPage = LISTING_ITEMS_PER_PAGE,
   paginationLabel,
   leftLabel,
   rightLabel,
@@ -42,6 +39,14 @@ export function PagedCardGrid<T>({
 }: PagedCardGridProps<T>) {
   const { containerRef, canScrollLeft, canScrollRight } = useRailOverflow<HTMLDivElement>();
   const hasOverflow = canScrollLeft || canScrollRight;
+  const joinClassNames = (...values: Array<string | undefined | false>) => values.filter(Boolean).join(" ");
+  const totalPages = getListingPageCount(items.length, itemsPerPage);
+  const [currentPage, setCurrentPage] = useState(1);
+  const visibleItems = getListingPageItems(items, currentPage, itemsPerPage);
+
+  useEffect(() => {
+    setCurrentPage((previousPage) => Math.min(previousPage, totalPages));
+  }, [totalPages]);
 
   const scrollRail = (direction: "left" | "right") => {
     const rail = containerRef.current;
@@ -71,26 +76,56 @@ export function PagedCardGrid<T>({
       ) : null}
 
       <div className={listClassName} ref={containerRef}>
-        {items.map((item, index) => renderItem(item, index))}
+        {visibleItems.map((item, index) => renderItem(item, index))}
       </div>
 
       {totalPages > 1 ? (
         <nav aria-label={paginationLabel} className={paginationClassName}>
           <div className={paginationPagesClassName}>
+            {currentPage > 1 ? (
+              <button
+                aria-label="Previous page"
+                className={joinClassNames(paginationPageClassName, styles.paginationDirectionalControl)}
+                onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
+                type="button"
+              >
+                <DirectionalControlIcon direction="left" />
+              </button>
+            ) : null}
+
             {Array.from({ length: totalPages }, (_, index) => {
               const page = index + 1;
 
+              if (page === currentPage) {
+                return (
+                  <span aria-current="page" className={paginationPageActiveClassName} key={page}>
+                    {page}
+                  </span>
+                );
+              }
+
               return (
-                <Link
-                  aria-current={page === currentPage ? "page" : undefined}
-                  className={page === currentPage ? paginationPageActiveClassName : paginationPageClassName}
-                  href={getPageHref(page)}
+                <button
+                  className={paginationPageClassName}
                   key={page}
+                  onClick={() => setCurrentPage(page)}
+                  type="button"
                 >
                   {page}
-                </Link>
+                </button>
               );
             })}
+
+            {currentPage < totalPages ? (
+              <button
+                aria-label="Next page"
+                className={joinClassNames(paginationPageClassName, styles.paginationDirectionalControl)}
+                onClick={() => setCurrentPage((page) => Math.min(totalPages, page + 1))}
+                type="button"
+              >
+                <DirectionalControlIcon direction="right" />
+              </button>
+            ) : null}
           </div>
         </nav>
       ) : null}

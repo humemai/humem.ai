@@ -3,11 +3,10 @@ import Image from "next/image";
 import { DetailSection } from "@/components/detail-section";
 import { EditorialMediaHero } from "@/components/editorial-media-hero";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { StandaloneLinkSection, StandaloneSection, StandaloneSectionFigure } from "@/components/standalone-sections";
 import { StandaloneSectionNav } from "@/components/standalone-section-nav";
 import { getProject, getSubprojects, projects } from "@/lib/projects";
-import { getProjectPageCount, getProjectPageItems } from "../projects-pagination";
 import { SubprojectsSection } from "../subprojects-section";
 import styles from "../projects.module.css";
 
@@ -56,6 +55,11 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
 export default async function ProjectDetailPage({ params, searchParams }: { params: Promise<Params>; searchParams?: Promise<SearchParams> }) {
   const { slug } = await params;
   const resolvedSearchParams = searchParams ? await searchParams : undefined;
+
+  if (resolvedSearchParams?.subprojectsPage) {
+    redirect(`/projects/${slug}`);
+  }
+
   const project = getProject(slug);
 
   if (!project) {
@@ -63,12 +67,6 @@ export default async function ProjectDetailPage({ params, searchParams }: { para
   }
 
   const subprojects = getSubprojects(project);
-  const totalSubprojectPages = getProjectPageCount(subprojects.length);
-  const requestedSubprojectsPage = Number.parseInt(resolvedSearchParams?.subprojectsPage ?? "1", 10);
-  const currentSubprojectsPage = Number.isInteger(requestedSubprojectsPage) && requestedSubprojectsPage > 0 && requestedSubprojectsPage <= totalSubprojectPages
-    ? requestedSubprojectsPage
-    : 1;
-  const visibleSubprojects = getProjectPageItems(subprojects, currentSubprojectsPage);
   const parentProject = projects.find((candidate) => candidate.subprojectSlugs?.includes(project.slug));
   const projectContext = (
     <>
@@ -232,10 +230,7 @@ export default async function ProjectDetailPage({ params, searchParams }: { para
 
         {subprojects.length > 0 ? (
           <SubprojectsSection
-            currentPage={currentSubprojectsPage}
-            projectSlug={project.slug}
-            subprojects={visibleSubprojects}
-            totalPages={totalSubprojectPages}
+            subprojects={subprojects}
           />
         ) : null}
 

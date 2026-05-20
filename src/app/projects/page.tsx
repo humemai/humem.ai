@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/page-hero";
 import { getProjectsIndexProjects } from "@/lib/projects";
 import { ProjectsIndexSection } from "./projects-index";
-import { getProjectPageCount, getProjectPageItems } from "./projects-pagination";
 import styles from "./projects.module.css";
 
 export const metadata: Metadata = {
@@ -12,8 +11,6 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   const indexProjects = getProjectsIndexProjects();
-  const totalPages = getProjectPageCount(indexProjects.length);
-  const visibleProjects = getProjectPageItems(indexProjects, 1);
 
   return (
     <main className={styles.indexPage}>
@@ -29,7 +26,7 @@ export default function ProjectsPage() {
         ]}
       />
 
-      <ProjectsIndexSection currentPage={1} projects={visibleProjects} totalPages={totalPages} />
+      <ProjectsIndexSection projects={indexProjects} />
     </main>
   );
 }

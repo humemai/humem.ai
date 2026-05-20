@@ -8,22 +8,14 @@ import styles from "./news.module.css";
 
 type NewsIndexSectionProps = {
   posts: NewsPost[];
-  currentPage: number;
-  totalPages: number;
 };
 
-function getNewsPageHref(page: number) {
-  return page === 1 ? "/news" : `/news/page/${page}`;
-}
-
-export function NewsIndexSection({ posts, currentPage, totalPages }: NewsIndexSectionProps) {
+export function NewsIndexSection({ posts }: NewsIndexSectionProps) {
   return (
     <section className={styles.section}>
       <PagedCardGrid
         controlsClassName={styles.mobileRailControls}
         controlClassName={styles.mobileRailControl}
-        currentPage={currentPage}
-        getPageHref={getNewsPageHref}
         items={posts}
         leftLabel="Scroll news left"
         listClassName={styles.articleList}
@@ -57,7 +49,6 @@ export function NewsIndexSection({ posts, currentPage, totalPages }: NewsIndexSe
           </article>
         )}
         rightLabel="Scroll news right"
-        totalPages={totalPages}
       />
     </section>
   );

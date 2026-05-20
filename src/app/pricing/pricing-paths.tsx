@@ -48,9 +48,6 @@ export function PricingPaths() {
     <section className={styles.pathSectionWrap}>
       <PagedCardGrid
         items={pricingPaths}
-        currentPage={1}
-        totalPages={1}
-        getPageHref={() => "/pricing"}
         paginationLabel="Pricing paths pagination"
         leftLabel="Scroll pricing paths left"
         rightLabel="Scroll pricing paths right"
