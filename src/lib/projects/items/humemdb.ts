@@ -83,7 +83,6 @@ export const humemdb: Project = {
     src: "/illustrations/project-humemdb-runtime.png",
     alt: "Illustration for HumemDB",
   },
-  status: "Core open-source runtime",
   problem:
     "Most systems that want tables, graphs, and vectors either duplicate data across separate stores or force everything through one engine and call it multi-model. That makes routing unclear, weakens performance tradeoffs, and often leaves developers writing graph-shaped SQL by hand or maintaining separate table and graph representations of the same data.",
   solution:

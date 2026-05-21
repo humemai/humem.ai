@@ -22,7 +22,6 @@ export const machinesWithHumanLikeMemory: Project = {
     src: "/illustrations/project-human-like-memory.png",
     alt: "Illustration of human-like memory architecture for AI",
   },
-  status: "PhD research project",
   problem:
     "Most AI systems still treat memory as an afterthought: short-lived context windows, opaque hidden state, or retrieval layers that struggle to represent what should persist, what should fade, and how past experience should shape later behavior. That makes it difficult to study memory itself as an architecture rather than a side effect of prompting or scale.",
   solution:

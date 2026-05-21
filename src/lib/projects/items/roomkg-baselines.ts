@@ -75,7 +75,6 @@ export const roomkgBaselines: Project = {
   },
   summary:
     "The RoomKG benchmark and baseline implementations accompanying Temporal Knowledge-Graph Memory in a Partially Observable Environment.",
-  status: "Benchmark and baselines",
   problem:
     "As the earlier RoomEnv work evolved, the benchmark needed a stronger symbolic and neurosymbolic framing where memory is represented as knowledge graphs and evaluated more systematically under partial observability.",
   solution:
@@ -84,12 +83,12 @@ export const roomkgBaselines: Project = {
     "This project turns the memory question into a benchmark object in its own right, making it easier to compare symbolic, neural, and temporal knowledge-graph approaches under shared conditions.",
   links: [
     {
-      label: "View GitHub",
-      href: "https://github.com/humemai/roomkg-baselines",
-    },
-    {
       label: "Read paper",
       href: "https://arxiv.org/abs/2408.05861",
+    },
+    {
+      label: "View GitHub",
+      href: "https://github.com/humemai/roomkg-baselines",
     },
     {
       label: "Parent project",

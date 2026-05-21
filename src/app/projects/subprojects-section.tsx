@@ -52,7 +52,6 @@ export function SubprojectsSection({ subprojects }: SubprojectsSectionProps) {
                 <div className={styles.subprojectFallback} />
               )}
               <div className={styles.subprojectContent}>
-                <p className={styles.subprojectEyebrow}>{subproject.status}</p>
                 <h4>{subproject.title}</h4>
                 <p className={styles.subprojectSummary}>{subproject.summary}</p>
                 <span className={styles.subprojectAction}>Learn more</span>

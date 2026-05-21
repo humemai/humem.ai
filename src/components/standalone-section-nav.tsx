@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type StandaloneSectionNavProps = {
   sections: { id: string; navLabel: string }[];
@@ -18,6 +18,7 @@ export function StandaloneSectionNav({
   activeLinkClassName,
 }: StandaloneSectionNavProps) {
   const [activeId, setActiveId] = useState(sections[0]?.id ?? "");
+  const navRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (sections.length === 0) {
@@ -53,12 +54,30 @@ export function StandaloneSectionNav({
     };
   }, [sections]);
 
+  useEffect(() => {
+    if (!activeId || !navRef.current) {
+      return;
+    }
+
+    const activeLink = navRef.current.querySelector<HTMLAnchorElement>(`a[data-section-id="${activeId}"]`);
+
+    if (!activeLink) {
+      return;
+    }
+
+    activeLink.scrollIntoView({
+      block: "nearest",
+      inline: "nearest",
+    });
+  }, [activeId]);
+
   return (
-    <nav aria-label="On this page" className={navClassName}>
+    <nav aria-label="On this page" className={navClassName} ref={navRef}>
       <div className={innerClassName}>
         {sections.map((section) => (
           <a
             className={`${linkClassName} ${activeId === section.id ? activeLinkClassName : ""}`.trim()}
+            data-section-id={section.id}
             href={`#${section.id}`}
             key={section.id}
           >

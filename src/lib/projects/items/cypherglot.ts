@@ -84,7 +84,6 @@ export const cypherglot: Project = {
     src: "/illustrations/project-cypherglot-compiler.png",
     alt: "Illustration for CypherGLOT",
   },
-  status: "Core open-source compiler",
   problem:
     "Developers often want to think in graph terms, but implementing graph queries on top of SQL backends usually means hand-writing complex SQL with joins, traversal patterns, and storage-specific tricks. That is hard to maintain, hard to port, and easy to get wrong when the real intent started as a Cypher query in the first place.",
   solution:

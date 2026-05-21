@@ -83,7 +83,6 @@ export const arcadeDbEmbeddedPython: Project = {
     src: "/illustrations/project-arcadedb-embedded-python.png",
     alt: "Illustration for ArcadeDB Embedded Python",
   },
-  status: "Open-source Python integration",
   problem:
     "The original ArcadeDB project is powerful, but its Java-first setup creates friction for Python developers who want to install it like a package, run it locally, and embed it directly inside application workflows. That slows down experimentation for graph, vector, and agent tooling that should run close to the application.",
   solution:

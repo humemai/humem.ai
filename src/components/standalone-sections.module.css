@@ -45,10 +45,161 @@
 }
 
 .body :global(p),
+.body :global(li),
 .acknowledgementsBody :global(p),
 .figurePoints li {
   color: var(--muted);
   line-height: 1.8;
+}
+
+.body :global(a),
+.acknowledgementsBody :global(a) {
+  color: var(--foreground);
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+}
+
+.body :global(h3),
+.body :global(h4) {
+  margin: 1.5rem 0 0.8rem;
+  line-height: 1.15;
+}
+
+.body :global(h3:first-child),
+.body :global(h4:first-child) {
+  margin-top: 0;
+}
+
+.body :global(ul),
+.body :global(ol) {
+  margin: 0;
+  padding-left: 1.4rem;
+}
+
+.body :global(blockquote) {
+  margin: 1rem 0;
+  padding: 0.1rem 0 0.1rem 1rem;
+  border-left: 3px solid var(--border-strong);
+}
+
+.body :global(pre) {
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--surface) 82%, var(--foreground) 18%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.body :global(code) {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.92rem;
+}
+
+.body :global(:not(pre) > code) {
+  padding: 0.18rem 0.38rem;
+  border: 1px solid var(--border);
+  border-radius: 0.45rem;
+  background: var(--surface-muted);
+}
+
+.body :global(pre code) {
+  display: block;
+  min-width: max-content;
+  color: #d9e1ef;
+}
+
+.body :global(pre code .hljs-comment),
+.body :global(pre code .hljs-quote) {
+  color: #7f8ea3;
+}
+
+.body :global(pre code .hljs-keyword),
+.body :global(pre code .hljs-selector-tag),
+.body :global(pre code .hljs-literal),
+.body :global(pre code .hljs-section),
+.body :global(pre code .hljs-link) {
+  color: #ff8f70;
+}
+
+.body :global(pre code .hljs-string),
+.body :global(pre code .hljs-title),
+.body :global(pre code .hljs-name),
+.body :global(pre code .hljs-type),
+.body :global(pre code .hljs-attribute),
+.body :global(pre code .hljs-symbol),
+.body :global(pre code .hljs-bullet),
+.body :global(pre code .hljs-addition) {
+  color: #98d891;
+}
+
+.body :global(pre code .hljs-number),
+.body :global(pre code .hljs-built_in),
+.body :global(pre code .hljs-builtin-name),
+.body :global(pre code .hljs-meta),
+.body :global(pre code .hljs-variable),
+.body :global(pre code .hljs-template-variable) {
+  color: #7ad3ff;
+}
+
+.body :global(pre code .hljs-regexp),
+.body :global(pre code .hljs-subst),
+.body :global(pre code .hljs-operator),
+.body :global(pre code .hljs-punctuation) {
+  color: #f2cd75;
+}
+
+.body :global(pre code .hljs-emphasis) {
+  font-style: italic;
+}
+
+.body :global(pre code .hljs-strong) {
+  font-weight: 700;
+}
+
+.body :global(.katex) {
+  color: var(--foreground);
+}
+
+.body :global(.katex-display) {
+  margin: 1.25rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.2rem 0;
+}
+
+.body :global(.katex-display > .katex) {
+  white-space: nowrap;
+}
+
+.body :global(img) {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1rem 0;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+}
+
+.body :global(table) {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+
+.body :global(th),
+.body :global(td) {
+  min-width: 10rem;
+  padding: 0.8rem;
+  border: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.body :global(th) {
+  color: var(--foreground);
 }
 
 .figure {
@@ -155,5 +306,15 @@
   .section,
   .linkSection {
     width: var(--site-shell-width-desktop);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .body :global(pre) {
+    background: #0f1720;
+  }
+
+  .body :global(pre code) {
+    color: #e5ecf5;
   }
 }

@@ -29,7 +29,6 @@ export function ProjectRail({ projects }: ProjectRailProps) {
               <div className={styles.fallback} />
             )}
             <div className={styles.content}>
-              <p className={styles.eyebrow}>{project.status}</p>
               <h3>{project.title}</h3>
               <p className={styles.summary}>{project.summary}</p>
               <span className={styles.action}>Learn more</span>

@@ -48,7 +48,6 @@ export function ProjectsIndexSection({ projects }: ProjectsIndexSectionProps) {
               <div className={styles.overviewFallback} />
             )}
             <div className={styles.overviewCardBody}>
-              <p className={styles.overviewEyebrow}>{project.status}</p>
               <h2>{project.title}</h2>
               <p className={styles.overviewSummary}>{project.summary}</p>
               <span className={styles.overviewAction}>Learn more</span>

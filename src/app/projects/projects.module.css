@@ -172,17 +172,8 @@
   padding: var(--card-body-padding);
 }
 
-.overviewEyebrow {
-  margin: 0;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
 .overviewCardBody h2 {
-  margin: var(--card-title-margin-top) 0 0;
+  margin: 0;
   font-size: clamp(1.9rem, 4vw, 2.8rem);
   line-height: 0.98;
   letter-spacing: -0.04em;
@@ -341,17 +332,8 @@
   padding: var(--card-body-padding);
 }
 
-.subprojectEyebrow {
-  margin: 0;
-  font-size: var(--site-eyebrow-size);
-  font-weight: 700;
-  letter-spacing: var(--site-eyebrow-letter-spacing);
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
 .subprojectContent h4 {
-  margin: var(--card-title-margin-top) 0 0;
+  margin: 0;
   max-width: 14ch;
   font-size: clamp(1.9rem, 4vw, 2.8rem);
   line-height: 0.98;
@@ -540,7 +522,13 @@
   z-index: 20;
   margin-top: 2rem;
   overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   text-align: center;
+}
+
+.standaloneNav::-webkit-scrollbar {
+  display: none;
 }
 
 .standaloneNavInner {

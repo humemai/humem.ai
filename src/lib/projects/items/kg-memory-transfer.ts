@@ -75,7 +75,6 @@ export const kgMemoryTransfer: Project = {
   },
   summary:
     "The public repository for Short-Term-to-Long-Term Memory Transfer for Knowledge Graphs under Partial Observability.",
-  status: "Research repository",
   problem:
     "Temporal knowledge-graph memory improves performance in partially observable environments, but the next question is how an agent should move information from transient observations into longer-term graph memory without storing everything indiscriminately.",
   solution:

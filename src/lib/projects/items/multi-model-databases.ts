@@ -15,7 +15,6 @@ export const multiModelDatabases: Project = {
     src: "/illustrations/projects-overview-portfolio.png",
     alt: "Illustration representing interconnected database and systems projects",
   },
-  status: "Open-source multi-model database project",
   problem:
     "AI systems increasingly need relational queries, graph structure, and vector search in the same application, but most products collapse those differences behind one platform story. That usually hides which engine is responsible for what, makes routing and debugging harder, and turns local development into a weaker version of a hosted stack instead of a first-class environment.",
   solution:

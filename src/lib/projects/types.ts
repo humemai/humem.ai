@@ -66,7 +66,6 @@ export type Project = {
     logoSrc: string;
     logoAlt: string;
   };
-  status: string;
   problem: string;
   solution: string;
   impact?: string;

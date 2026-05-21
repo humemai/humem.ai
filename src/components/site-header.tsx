@@ -99,7 +99,7 @@ export function SiteHeader() {
 
         <div className={styles.ctaRow}>
           <a className={styles.secondaryCta} href="https://github.com/humemai" target="_blank" rel="noopener noreferrer">
-            View on GitHub
+            View GitHub
           </a>
           <Link className={styles.primaryCta} href="/contact">
             Get early access
@@ -158,7 +158,7 @@ export function SiteHeader() {
             ))}
             <div className={styles.mobileActions}>
               <a className={styles.mobileSecondaryCta} href="https://github.com/humemai" target="_blank" rel="noopener noreferrer" onClick={closeMobileMenu}>
-                View on GitHub
+                View GitHub
               </a>
               <Link className={styles.mobilePrimaryCta} href="/contact" onClick={closeMobileMenu}>Get early access</Link>
             </div>

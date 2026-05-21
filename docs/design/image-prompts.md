@@ -392,3 +392,27 @@ No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no 
 
 Filename: `privacy-policy-trust-and-choice.png`
 Alt text: `Illustration representing privacy, transparency, and user control.`
+
+## 17. Human-Like Memory Systems Project Visual
+
+```text
+Generate a project image for Human-Like Memory Systems by HumemAI.
+
+Purpose:
+This image will be used on the Human-Like Memory Systems project page and project card. It should communicate the first concrete benchmark-and-agent implementation in the broader Machines With Human-Like Memory research line.
+
+Aspect ratio:
+1:1 or 4:5
+
+What to show:
+Create a clean editorial illustration of a partially observable room benchmark with two explicit memory layers. Show a simple room or room-layout motif, object-location events being observed over time, a delayed question about where something is, and retrieval from two different memory systems: episodic memory for specific remembered events and semantic memory for generalized world knowledge. The composition should suggest that the agent remembers individual episodes, compresses patterns into semantic knowledge, and uses those memories to answer later questions. It is fine to hint at two agents or a human-machine collaboration setup, but keep the image centered on explicit memory structure rather than on characters.
+
+Style:
+Clean, structured, product-oriented editorial illustration. Restrained palette: off-white, charcoal, slate, muted blue-gray, very limited accent color. Crisp geometry, calm composition, diagrammatic feeling. Premium, minimal, modern technology brand. Keep it more concrete and benchmark-like than the broader Machines With Human-Like Memory image, but still simplified enough for a product site rather than an academic paper figure.
+
+Avoid:
+No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no stock-photo people, no clutter, no fantasy sci-fi scene, no purple-glow AI art, no low-detail illustration, no text baked into the image, no literal screenshot of the environment, no dense academic diagram, no performance plot, no tiny labels, no paper-figure recreation.
+```
+
+Filename: `project-human-like-memory-systems.png`
+Alt text: `Illustration of RoomEnv-v0 with explicit episodic and semantic memory.`

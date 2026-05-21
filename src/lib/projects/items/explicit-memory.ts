@@ -75,7 +75,6 @@ export const explicitMemory: Project = {
   },
   summary:
     "The reinforcement-learning implementation behind A Machine with Short-Term, Episodic, and Semantic Memory Systems.",
-  status: "RL agent implementation",
   problem:
     "Heuristic policies show that structured memory can help, but they do not answer whether an agent can learn when to retain, move, or forget information across short-term, episodic, and semantic memory systems.",
   solution:
@@ -84,12 +83,12 @@ export const explicitMemory: Project = {
     "The project extends the earlier human-like memory work from handcrafted rules to learned policies, showing how explicit memory architectures can be integrated into trainable agents while remaining interpretable enough for analysis.",
   links: [
     {
-      label: "View GitHub",
-      href: "https://github.com/humemai/explicit-memory",
-    },
-    {
       label: "Read paper",
       href: "https://arxiv.org/abs/2212.02098",
+    },
+    {
+      label: "View GitHub",
+      href: "https://github.com/humemai/explicit-memory",
     },
     {
       label: "Parent project",

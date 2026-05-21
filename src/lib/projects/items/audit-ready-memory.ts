@@ -117,7 +117,6 @@ export const auditReadyMemory: Project = {
     logoSrc: "/partners/sidn-fund-wordmark.png",
     logoAlt: "SIDN Fund wordmark",
   },
-  status: "Pioneer project · 2026",
   problem:
     "Many AI systems still handle memory in opaque model state or hosted tooling that was not designed for public-interest accountability. That makes it difficult to inspect what the system retained, understand why it behaved a certain way, replay past decisions, or carry out meaningful deletion when the deployment context requires governance rather than vague trust.",
   solution:
