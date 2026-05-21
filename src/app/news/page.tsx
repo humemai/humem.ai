@@ -18,7 +18,7 @@ export default function NewsPage() {
         eyebrow="News"
         title="News and updates."
         intro="Recent writing, releases, research, and product updates from HumemAI."
-        imageSrc="/illustrations/news-writing-and-research.png"
+        imageSrc="/images/site/news-writing-and-research.png"
         imageAlt="Illustration representing HumemAI news, research updates, and structured knowledge"
         titleVariant="feature"
       />

@@ -41,7 +41,7 @@ export default function Home() {
         <div className={styles.heroPanel}>
           <div className={styles.heroVisualWrap}>
             <Image
-              src="/illustrations/home-hero-memory-layer.png"
+              src="/images/site/home-hero-memory-layer.png"
               alt="HumemAI landing illustration"
               fill
               className={styles.heroVisual}

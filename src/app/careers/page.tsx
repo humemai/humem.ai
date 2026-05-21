@@ -15,7 +15,7 @@ export default function CareersPage() {
         eyebrow="Careers"
         title="Help build AI memory that lasts."
         intro="HumemAI is looking for people who care about building AI systems with memory, structure, and long-term usefulness."
-        imageSrc="/illustrations/careers-build-with-memory.png"
+        imageSrc="/images/site/careers-build-with-memory.png"
         imageAlt="Illustration representing collaborative work on AI memory systems"
       />
 

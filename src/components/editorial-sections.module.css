@@ -32,7 +32,7 @@
 
 .title {
   margin: 0.5rem 0 0;
-  font-size: var(--site-section-title-size);
+  font-size: var(--site-editorial-section-title-size);
   line-height: 0.98;
   letter-spacing: -0.045em;
 }
@@ -41,7 +41,7 @@
 .acknowledgementsBody {
   display: grid;
   gap: var(--site-space-base);
-  max-width: var(--site-body-max);
+  max-width: var(--site-editorial-copy-max);
 }
 
 .body :global(p),
@@ -63,6 +63,14 @@
 .body :global(h4) {
   margin: 1.5rem 0 0.8rem;
   line-height: 1.15;
+}
+
+.body :global(h3) {
+  font-size: var(--site-editorial-subsection-title-size);
+}
+
+.body :global(h4) {
+  font-size: var(--site-editorial-minor-title-size);
 }
 
 .body :global(h3:first-child),
@@ -175,11 +183,16 @@
 
 .body :global(img) {
   display: block;
+  width: 100%;
   max-width: 100%;
   height: auto;
   margin: 1rem auto;
-  border: 1px solid var(--border);
   border-radius: 1rem;
+}
+
+.body :global(img.editorial-image-compact) {
+  width: 100%;
+  max-width: calc(var(--site-editorial-copy-max) * 0.7);
 }
 
 .body :global(table) {
@@ -204,8 +217,45 @@
 
 .figure {
   width: 100%;
-  max-width: var(--site-figure-max);
+  max-width: var(--site-editorial-copy-max);
   margin: 0;
+}
+
+.figureGrid {
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.figureGridItems {
+  display: grid;
+  gap: 1rem;
+}
+
+.figureGridItem {
+  min-width: 0;
+}
+
+.figureGridItemLabel {
+  margin: 0 0 0.6rem;
+  color: var(--foreground);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.figureGridImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--site-hero-radius);
+}
+
+.figureGridCaption {
+  margin: 0.8rem 0 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+  font-style: italic;
+  line-height: 1.7;
 }
 
 .figureLabel {
@@ -219,7 +269,6 @@
 
 .figurePanel {
   padding: 1.25rem;
-  border: 1px solid var(--border);
   border-radius: 1.8rem;
   background: var(--surface);
   box-shadow: var(--shadow);
@@ -266,13 +315,14 @@
   margin: 0.8rem 0 0;
   color: var(--muted);
   font-size: 0.98rem;
+  font-style: italic;
   line-height: 1.7;
 }
 
 .linkList {
   display: grid;
   gap: 0;
-  max-width: var(--site-body-max);
+  max-width: var(--site-editorial-copy-max);
 }
 
 .linkRow {
@@ -306,6 +356,10 @@
   .section,
   .linkSection {
     width: var(--site-shell-width-desktop);
+  }
+
+  .figureGridItems {
+    grid-template-columns: repeat(var(--editorial-figure-grid-columns, 2), minmax(0, 1fr));
   }
 }
 

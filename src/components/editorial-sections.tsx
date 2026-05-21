@@ -1,9 +1,9 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import styles from "./standalone-sections.module.css";
+import styles from "./editorial-sections.module.css";
 
-type StandaloneSectionProps = {
+type EditorialSectionProps = {
   id?: string;
   eyebrow: string;
   title: string;
@@ -12,7 +12,7 @@ type StandaloneSectionProps = {
   bodyVariant?: "copy" | "acknowledgements";
 };
 
-type StandaloneSectionFigureProps = {
+type EditorialSectionFigureProps = {
   label: string;
   title: string;
   caption: string;
@@ -21,23 +21,33 @@ type StandaloneSectionFigureProps = {
   points?: string[];
 };
 
-type StandaloneLinkItem = {
+type EditorialFigureGridProps = {
+  items: Array<{
+    label?: string;
+    imageSrc: string;
+    imageAlt: string;
+  }>;
+  caption: string;
+  columns?: 1 | 2 | 3 | 4;
+};
+
+type EditorialLinkItem = {
   href: string;
   content: ReactNode;
   actionLabel?: string;
 };
 
-type StandaloneLinkSectionProps = {
+type EditorialLinkSectionProps = {
   eyebrow: string;
   title: string;
-  links: StandaloneLinkItem[];
+  links: EditorialLinkItem[];
 };
 
 function joinClassNames(...values: Array<string | undefined | false>) {
   return values.filter(Boolean).join(" ");
 }
 
-export function StandaloneSection({ id, eyebrow, title, children, figure, bodyVariant = "copy" }: StandaloneSectionProps) {
+export function EditorialSection({ id, eyebrow, title, children, figure, bodyVariant = "copy" }: EditorialSectionProps) {
   return (
     <section className={styles.section} id={id}>
       <div className={styles.lead}>
@@ -52,7 +62,7 @@ export function StandaloneSection({ id, eyebrow, title, children, figure, bodyVa
   );
 }
 
-export function StandaloneSectionFigure({ label, title, caption, imageSrc, imageAlt, points }: StandaloneSectionFigureProps) {
+export function EditorialSectionFigure({ label, title, caption, imageSrc, imageAlt, points }: EditorialSectionFigureProps) {
   return (
     <figure className={styles.figure}>
       <p className={styles.figureLabel}>{label}</p>
@@ -76,7 +86,29 @@ export function StandaloneSectionFigure({ label, title, caption, imageSrc, image
   );
 }
 
-export function StandaloneLinkSection({ eyebrow, title, links }: StandaloneLinkSectionProps) {
+export function EditorialFigureGrid({ items, caption, columns = 2 }: EditorialFigureGridProps) {
+  const gridStyle = {
+    ["--editorial-figure-grid-columns" as string]: columns,
+  } as CSSProperties;
+
+  return (
+    <figure className={styles.figureGrid}>
+      <div className={styles.figureGridItems} style={gridStyle}>
+        {items.map((item) => (
+          <div className={styles.figureGridItem} key={`${item.imageSrc}-${item.label ?? item.imageAlt}`}>
+            {item.label ? <p className={styles.figureGridItemLabel}>{item.label}</p> : null}
+            {/* Charts in editorial grids must preserve their full intrinsic aspect ratio. */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={item.imageSrc} alt={item.imageAlt} className={styles.figureGridImage} loading="lazy" />
+          </div>
+        ))}
+      </div>
+      <figcaption className={styles.figureGridCaption}>{caption}</figcaption>
+    </figure>
+  );
+}
+
+export function EditorialLinkSection({ eyebrow, title, links }: EditorialLinkSectionProps) {
   return (
     <section className={styles.linkSection}>
       <div className={styles.lead}>

@@ -15,7 +15,7 @@ export default function ContactPage() {
         eyebrow="Contact"
         title="Early access, partnerships, and custom work."
         intro="Get in touch about early access, hosted deployment, custom work, or collaboration."
-        imageSrc="/illustrations/contact-collaboration-onboarding.png"
+        imageSrc="/images/site/contact-collaboration-onboarding.png"
         imageAlt="Illustration representing collaboration, onboarding, and hosted deployment conversations"
       />
 

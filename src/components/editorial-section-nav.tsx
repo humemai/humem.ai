@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-type StandaloneSectionNavProps = {
+type EditorialSectionNavProps = {
   sections: { id: string; navLabel: string }[];
   navClassName: string;
   innerClassName: string;
@@ -10,13 +10,13 @@ type StandaloneSectionNavProps = {
   activeLinkClassName: string;
 };
 
-export function StandaloneSectionNav({
+export function EditorialSectionNav({
   sections,
   navClassName,
   innerClassName,
   linkClassName,
   activeLinkClassName,
-}: StandaloneSectionNavProps) {
+}: EditorialSectionNavProps) {
   const [activeId, setActiveId] = useState(sections[0]?.id ?? "");
   const navRef = useRef<HTMLElement | null>(null);
 

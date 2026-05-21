@@ -5,7 +5,7 @@ export const kgMemoryTransfer: Project = {
   title: "KG Memory Transfer",
   timelineOrder: 4,
   subprojectPage: {
-    layout: "standalone",
+    layout: "editorial",
     linksHeading: "Code and project links.",
     sections: [
       {

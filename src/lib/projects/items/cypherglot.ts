@@ -6,7 +6,7 @@ export const cypherglot: Project = {
   title: "CypherGLOT",
   timelineOrder: 2,
   subprojectPage: {
-    layout: "standalone",
+    layout: "editorial",
     linksHeading: "Docs and code.",
     sections: [
       {
@@ -81,7 +81,7 @@ export const cypherglot: Project = {
   summary:
     "A Cypher-to-SQL compiler that lets developers think in graph terms, then lowers admitted Cypher through an internal AST and IR into backend-aware SQL for host runtimes.",
   image: {
-    src: "/illustrations/project-cypherglot-compiler.png",
+    src: "/images/projects/project-cypherglot-compiler.png",
     alt: "Illustration for CypherGLOT",
   },
   problem:

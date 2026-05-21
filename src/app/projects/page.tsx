@@ -18,7 +18,7 @@ export default function ProjectsPage() {
         eyebrow="Projects"
         title="Open source projects behind HumemAI."
         intro="Browse the three major project lines first, then open each dedicated project page to explore the subprojects, systems, and research inside it."
-        imageSrc="/illustrations/projects-overview-portfolio.png"
+        imageSrc="/images/projects/projects-overview-portfolio.png"
         imageAlt="Illustration representing research, systems work, and applied AI memory projects"
         actions={[
           { href: "https://github.com/humemai", label: "View HumemAI on GitHub" },

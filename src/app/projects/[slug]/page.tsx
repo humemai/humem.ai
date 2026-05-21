@@ -10,9 +10,10 @@ import rehypeKatex from "rehype-katex";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
-import { StandaloneLinkSection, StandaloneSection, StandaloneSectionFigure } from "@/components/standalone-sections";
-import { StandaloneSectionNav } from "@/components/standalone-section-nav";
+import { EditorialFigureGrid, EditorialLinkSection, EditorialSection, EditorialSectionFigure } from "@/components/editorial-sections";
+import { EditorialSectionNav } from "@/components/editorial-section-nav";
 import { getProject, getSubprojects, projects } from "@/lib/projects";
+import type { ProjectEditorialBodyBlock } from "@/lib/projects/types";
 import { SubprojectsSection } from "../subprojects-section";
 import styles from "../projects.module.css";
 
@@ -122,26 +123,70 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
     ...link,
     isInternal: link.href.startsWith("/"),
   }));
-  const standalonePage = project.standalonePage ?? project.subprojectPage;
-  const standaloneSections = standalonePage?.sections ?? [];
-  const citationSection = standaloneSections.find((section) => section.id === "citation");
-  const mainStandaloneSections = citationSection
-    ? standaloneSections.filter((section) => section.id !== "citation")
-    : standaloneSections;
-  const isStandalonePage = standalonePage?.layout === "standalone" && standaloneSections.length > 0;
+  const editorialPage = project.editorialPage ?? project.subprojectPage;
+  const editorialSections = editorialPage?.sections ?? [];
+  const citationSection = editorialSections.find((section) => section.id === "citation");
+  const mainEditorialSections = citationSection
+    ? editorialSections.filter((section) => section.id !== "citation")
+    : editorialSections;
+  const isEditorialPage = editorialPage?.layout === "editorial" && editorialSections.length > 0;
   const heroActionLinks = projectLinks.slice(0, 2);
+  const renderEditorialBodyBlock = (sectionId: string, block: ProjectEditorialBodyBlock, index: number) => {
+    if (typeof block === "string") {
+      return (
+        <ReactMarkdown
+          key={`${sectionId}-${index}`}
+          rehypePlugins={[rehypeRaw, rehypeKatex, [rehypeHighlight, { ignoreMissing: true }]]}
+          remarkPlugins={[remarkGfm, remarkMath]}
+          components={{
+            a: ({ href, children, ...props }) => {
+              const normalizedHref = String(href ?? "");
 
-  if (isStandalonePage) {
-    const standaloneLabel = project.showOnProjectsIndex ? "Project" : "Subproject";
+              if (normalizedHref.startsWith("/")) {
+                return <Link href={normalizedHref}>{children}</Link>;
+              }
+
+              return (
+                <a href={normalizedHref} target="_blank" rel="noopener noreferrer" {...props}>
+                  {children}
+                </a>
+              );
+            },
+          }}
+        >
+          {block}
+        </ReactMarkdown>
+      );
+    }
+
+    if (block.type === "figureGrid") {
+      return (
+        <EditorialFigureGrid
+          key={`${sectionId}-${index}`}
+          columns={block.columns}
+          caption={block.caption}
+          items={block.items.map((item) => ({
+            label: item.label,
+            imageSrc: item.image.src,
+            imageAlt: item.image.alt,
+          }))}
+        />
+      );
+    }
+
+    return null;
+  };
+
+  if (isEditorialPage) {
+    const editorialLabel = project.showOnProjectsIndex ? "Project" : "Subproject";
 
     return (
-      <main className={styles.standalonePage}>
+      <main className={styles.editorialPage}>
         <EditorialMediaHero
           context={projectContext}
-          eyebrow={standaloneLabel}
+          eyebrow={editorialLabel}
           title={project.title}
           intro={project.summary}
-          titleVariant="feature"
           imageSrc={project.image?.src}
           imageAlt={project.image?.alt}
           actions={heroActionLinks.map((link, index) => ({
@@ -152,22 +197,22 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
           showFallbackMedia={!project.image}
         />
 
-        <StandaloneSectionNav
-          sections={mainStandaloneSections.map((section) => ({ id: section.id, navLabel: section.navLabel }))}
-          navClassName={styles.standaloneNav}
-          innerClassName={styles.standaloneNavInner}
-          linkClassName={styles.standaloneNavLink}
-          activeLinkClassName={styles.standaloneNavLinkActive}
+        <EditorialSectionNav
+          sections={mainEditorialSections.map((section) => ({ id: section.id, navLabel: section.navLabel }))}
+          navClassName={styles.editorialNav}
+          innerClassName={styles.editorialNavInner}
+          linkClassName={styles.editorialNavLink}
+          activeLinkClassName={styles.editorialNavLinkActive}
         />
 
-        {mainStandaloneSections.map((section) => (
-          <StandaloneSection
+        {mainEditorialSections.map((section) => (
+          <EditorialSection
             id={section.id}
             key={section.id}
             eyebrow={section.eyebrow}
             title={section.title}
             figure={section.figure ? (
-              <StandaloneSectionFigure
+              <EditorialSectionFigure
                 label={section.figure.label}
                 title={section.figure.title}
                 caption={section.figure.caption}
@@ -177,54 +222,31 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
               />
             ) : undefined}
           >
-              {section.body.map((block, index) => (
-                <ReactMarkdown
-                  key={`${section.id}-${index}`}
-                  rehypePlugins={[rehypeRaw, rehypeKatex, [rehypeHighlight, { ignoreMissing: true }]]}
-                  remarkPlugins={[remarkGfm, remarkMath]}
-                  components={{
-                    a: ({ href, children, ...props }) => {
-                      const normalizedHref = String(href ?? "");
-
-                      if (normalizedHref.startsWith("/")) {
-                        return <Link href={normalizedHref}>{children}</Link>;
-                      }
-
-                      return (
-                        <a href={normalizedHref} target="_blank" rel="noopener noreferrer" {...props}>
-                          {children}
-                        </a>
-                      );
-                    },
-                  }}
-                >
-                  {block}
-                </ReactMarkdown>
-              ))}
-          </StandaloneSection>
+              {section.body.map((block, index) => renderEditorialBodyBlock(section.id, block, index))}
+          </EditorialSection>
         ))}
 
         {projectLinks.length > 0 ? (
-          <StandaloneLinkSection
+          <EditorialLinkSection
             eyebrow="Resources"
-            title={standalonePage?.linksHeading ?? "Resources."}
+            title={editorialPage?.linksHeading ?? "Resources."}
             links={projectLinks.map((link) => ({ href: link.href, content: link.label }))}
           />
         ) : null}
 
         {acknowledgementsSectionContent ? (
-          <StandaloneSection eyebrow="Acknowledgements" title="Project support." bodyVariant="acknowledgements">
+          <EditorialSection eyebrow="Acknowledgements" title="Project support." bodyVariant="acknowledgements">
             {acknowledgementsSectionContent}
-          </StandaloneSection>
+          </EditorialSection>
         ) : null}
 
         {citationSection ? (
-          <StandaloneSection
+          <EditorialSection
             id={citationSection.id}
             eyebrow={citationSection.eyebrow}
             title={citationSection.title}
             figure={citationSection.figure ? (
-              <StandaloneSectionFigure
+              <EditorialSectionFigure
                 label={citationSection.figure.label}
                 title={citationSection.figure.title}
                 caption={citationSection.figure.caption}
@@ -234,31 +256,8 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
               />
             ) : undefined}
           >
-              {citationSection.body.map((block, index) => (
-                <ReactMarkdown
-                  key={`${citationSection.id}-${index}`}
-                  rehypePlugins={[rehypeRaw, rehypeKatex, [rehypeHighlight, { ignoreMissing: true }]]}
-                  remarkPlugins={[remarkGfm, remarkMath]}
-                  components={{
-                    a: ({ href, children, ...props }) => {
-                      const normalizedHref = String(href ?? "");
-
-                      if (normalizedHref.startsWith("/")) {
-                        return <Link href={normalizedHref}>{children}</Link>;
-                      }
-
-                      return (
-                        <a href={normalizedHref} target="_blank" rel="noopener noreferrer" {...props}>
-                          {children}
-                        </a>
-                      );
-                    },
-                  }}
-                >
-                  {block}
-                </ReactMarkdown>
-              ))}
-          </StandaloneSection>
+              {citationSection.body.map((block, index) => renderEditorialBodyBlock(citationSection.id, block, index))}
+          </EditorialSection>
         ) : null}
       </main>
     );

@@ -15,7 +15,7 @@ type EditorialMediaHeroProps = {
   title: string;
   intro: string;
   meta?: ReactNode;
-  titleVariant?: "article" | "feature";
+  titleVariant?: "editorial" | "feature";
   imageSrc?: string;
   imageAlt?: string;
   imageCaption?: string;
@@ -53,7 +53,7 @@ export function EditorialMediaHero({
   title,
   intro,
   meta,
-  titleVariant = "article",
+  titleVariant = "editorial",
   imageSrc,
   imageAlt,
   imageCaption,
@@ -67,7 +67,7 @@ export function EditorialMediaHero({
       <div className={styles.copy}>
         {context ? <div className={styles.context}>{context}</div> : null}
         <p className={styles.eyebrow}>{eyebrow}</p>
-        <h1 className={joinClassNames(styles.title, titleVariant === "feature" ? styles.titleFeature : styles.titleArticle)}>{title}</h1>
+        <h1 className={joinClassNames(styles.title, titleVariant === "feature" ? styles.titleFeature : styles.titleEditorial)}>{title}</h1>
         <p className={styles.intro}>{intro}</p>
         {children || actions?.length || meta ? (
           <div className={styles.supporting}>

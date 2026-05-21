@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     siteName: "HumemAI",
     images: [
       {
-        url: "/illustrations/og-memory-for-agentic-ai.png",
+        url: "/images/social/og-memory-for-agentic-ai.png",
         alt: "HumemAI social preview image",
       },
     ],
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "HumemAI",
     description: "Persistent, explainable memory for agentic AI systems.",
-    images: ["/illustrations/og-memory-for-agentic-ai.png"],
+    images: ["/images/social/og-memory-for-agentic-ai.png"],
   },
   icons: {
     icon: "/favicon.png",

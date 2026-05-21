@@ -5,7 +5,7 @@ export const explicitMemory: Project = {
   title: "Explicit Memory",
   timelineOrder: 2,
   subprojectPage: {
-    layout: "standalone",
+    layout: "editorial",
     linksHeading: "Paper and code.",
     sections: [
       {
@@ -18,7 +18,11 @@ export const explicitMemory: Project = {
           "Explicit Memory extends the earlier heuristic work by training an agent to decide what to retain, move, and forget across short-term, episodic, and semantic memory systems. The paper keeps memory explicit and interpretable, but turns memory management itself into a reinforcement-learning problem.",
           "The implementation is built around RoomEnv-v1, where an agent observes object-location events under partial observability and must answer questions correctly to maximize reward. Instead of hiding memory inside a recurrent state, the project models three explicit memory systems and learns when information should stay short-term, move into long-term memory, or be dropped.",
           "The paper's three main contributions are to model short-term, episodic, and semantic memory as explicit knowledge-graph structures, release the RoomEnv-v1 reinforcement-learning benchmark, and show that a deep Q-learning agent can learn a useful memory-management policy. [Read the full paper on arXiv](https://arxiv.org/abs/2212.02098).",
-          `![Explicit memory systems](/illustrations/explicit-memory-memory-systems.png)
+          `<img
+src="/images/papers/explicit-memory/explicit-memory-memory-systems.png"
+alt="Explicit memory systems"
+class="editorial-image-compact"
+/>
 
 *The agent uses short-term memory together with episodic and semantic long-term memory rather than a single opaque memory state.*`,
         ],
@@ -32,7 +36,11 @@ export const explicitMemory: Project = {
           "Every observation is first stored in short-term memory. When that short-term buffer is full, the agent must choose one of three actions: forget the oldest memory, move it to episodic memory, or move it to semantic memory. Memory retrieval remains structured: the agent answers from the most recent relevant episodic memory or the strongest relevant semantic memory.",
           "To make those memory systems learnable, the repository converts knowledge-graph memories into embeddings and feeds them into an LSTM-based Q-network. The learned policy predicts which storage action is most valuable in the current memory state, while still keeping the memory contents inspectable enough to analyze after training.",
           "The experiments train two variants: one starts semantic memory from scratch, and another starts with ConceptNet-based world knowledge already loaded into semantic memory. Both are compared with simple baselines that always move short-term memories to episodic memory, always move them to semantic memory, or choose uniformly at random.",
-          `![Memory to embedding pipeline](/illustrations/explicit-memory-kge-conversion.png)
+          `<img
+src="/images/papers/explicit-memory/explicit-memory-kge-conversion.png"
+alt="Memory to embedding pipeline"
+class="editorial-image-compact"
+/>
 
 *Knowledge-graph-based memories are converted into embeddings so a Q-network can learn storage decisions over explicit memory state.*`,
         ],
@@ -45,10 +53,10 @@ export const explicitMemory: Project = {
         body: [
           "At a memory capacity of 32, the learned agents outperform the episodic-only, semantic-only, and random baselines. The pretrained-semantic variant not only learns faster, but also reaches a better average test reward than the scratch variant, showing that explicit symbolic world knowledge can function like a useful prior for later learning.",
           "When memory capacity changes, the tradeoffs become clearer. Semantic-only memory works surprisingly well at very small capacities because it prioritizes general knowledge, while episodic-only memory keeps improving as capacity grows and eventually has enough room to remember far more individual events. The learned agents sit on top of that design space by deciding what deserves long-term storage instead of following a fixed rule.",
-          `![Performance across capacities](/illustrations/explicit-memory-capacity-results.png)
+          `![Performance across capacities](/images/papers/explicit-memory/explicit-memory-capacity-results.png)
 
 *Average total test rewards show how learned explicit-memory agents compare with simpler fixed storage strategies as memory capacity changes.*`,
-          `![Learned Q-values during test time](/illustrations/explicit-memory-q-values-pretrained.png)
+          `![Learned Q-values during test time](/images/papers/explicit-memory/explicit-memory-q-values-pretrained.png)
 
 *Learned Q-values during test time show that the pretrained agent preserves useful general knowledge and routes more individual-specific memories into episodic storage.*`,
         ],
@@ -90,7 +98,7 @@ export const explicitMemory: Project = {
   summary:
     "A reinforcement-learning agent with explicit short-term, episodic, and semantic memory in RoomEnv-v1.",
   image: {
-    src: "/illustrations/project-explicit-memory.png",
+    src: "/images/projects/project-explicit-memory.png",
     alt: "Illustration for Explicit Memory",
   },
   problem:

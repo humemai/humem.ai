@@ -19,7 +19,7 @@ export const machinesWithHumanLikeMemory: Project = {
   summary:
     "A PhD research project on explicit memory architectures for AI, spanning benchmarks, handcrafted agents, learned policies, and temporal knowledge-graph memory.",
   image: {
-    src: "/illustrations/project-human-like-memory.png",
+    src: "/images/projects/project-human-like-memory.png",
     alt: "Illustration of human-like memory architecture for AI",
   },
   problem:

@@ -8,6 +8,11 @@
   --site-hero-intro-max: 60ch;
   --site-section-lead-max: 34rem;
   --site-editorial-copy-max: 46rem;
+  --site-editorial-title-size: clamp(2.4rem, 5vw, 4.4rem);
+  --site-editorial-intro-size: clamp(1.04rem, 2vw, 1.16rem);
+  --site-editorial-section-title-size: clamp(1.85rem, 3.6vw, 2.35rem);
+  --site-editorial-subsection-title-size: clamp(1.3rem, 2.2vw, 1.55rem);
+  --site-editorial-minor-title-size: clamp(1.08rem, 1.7vw, 1.2rem);
   --site-lead-media-max: 54rem;
   --site-eyebrow-size: 0.78rem;
   --site-eyebrow-letter-spacing: 0.24em;

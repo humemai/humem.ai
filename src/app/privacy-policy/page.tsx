@@ -15,7 +15,7 @@ export default function PrivacyPolicyPage() {
         eyebrow="Legal"
         title="Privacy policy"
         intro="How HumemAI handles analytics, cookie choices, and information shared through this website."
-        imageSrc="/illustrations/privacy-policy-trust-and-choice.png"
+        imageSrc="/images/site/privacy-policy-trust-and-choice.png"
         imageAlt="Illustration representing privacy, transparency, and user control."
         caption="HumemAI keeps analytics optional and makes cookie choices available from the footer."
       />

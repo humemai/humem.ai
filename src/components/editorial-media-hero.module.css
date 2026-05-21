@@ -43,8 +43,8 @@
   letter-spacing: -0.045em;
 }
 
-.titleArticle {
-  font-size: clamp(2.4rem, 5vw, 4.4rem);
+.titleEditorial {
+  font-size: var(--site-editorial-title-size);
   line-height: 1.02;
 }
 
@@ -53,10 +53,10 @@
 }
 
 .intro {
-  max-width: var(--site-hero-intro-max);
+  max-width: 100%;
   margin: 1.3rem 0 0;
   color: var(--muted);
-  font-size: clamp(1.04rem, 2vw, 1.22rem);
+  font-size: var(--site-editorial-intro-size);
   line-height: 1.8;
 }
 

@@ -222,14 +222,34 @@
 }
 
 .content h2,
-.content h3 {
+.content h3,
+.content h4 {
   margin: 1.5rem 0 0.8rem;
   line-height: 1.15;
 }
 
 .content h2:first-child,
-.content h3:first-child {
+.content h3:first-child,
+.content h4:first-child {
   margin-top: 0;
+}
+
+.content h2 {
+  font-size: var(--site-editorial-section-title-size);
+}
+
+.content h3 {
+  font-size: var(--site-editorial-subsection-title-size);
+}
+
+.content h4 {
+  font-size: var(--site-editorial-minor-title-size);
+}
+
+.content ul,
+.content ol {
+  margin: 0;
+  padding-left: 1.4rem;
 }
 
 .content p,
@@ -339,6 +359,35 @@
 
 .content :global(.katex-display > .katex) {
   white-space: nowrap;
+}
+
+.content img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin: 1rem auto;
+  border-radius: 1rem;
+}
+
+.content table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+
+.content th,
+.content td {
+  min-width: 10rem;
+  padding: 0.8rem;
+  border: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.content th {
+  color: var(--foreground);
 }
 
 @media (prefers-color-scheme: light) {

@@ -440,3 +440,27 @@ No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no 
 
 Filename: `project-explicit-memory.png`
 Alt text: `Illustration of a reinforcement-learning agent managing short-term, episodic, and semantic memory in RoomEnv-v1.`
+
+## 19. RoomKG Baselines Project Visual
+
+```text
+Generate a project image for RoomKG Baselines by HumemAI.
+
+Purpose:
+This image will be used on the RoomKG Baselines project page and project card. It should communicate a benchmark for temporal knowledge-graph memory in a partially observable room environment, together with symbolic and neural baseline comparisons.
+
+Aspect ratio:
+1:1 or 4:5
+
+What to show:
+Create a clean editorial illustration that connects three views of the same benchmark: a simple room environment with people, objects, and locations; a graph view where those changing object-location facts become a temporal knowledge graph; and a comparison layer where different baseline approaches operate over the same benchmark. Suggest symbolic temporal knowledge-graph memory, sequence-based neural baselines, and question answering over hidden state, but do not turn the image into a dense benchmark poster. The composition should communicate that the environment, memory representation, and evaluation protocol are all aligned around graph-structured long-term memory under partial observability.
+
+Style:
+Clean, structured, product-oriented editorial illustration. Restrained palette: off-white, charcoal, slate, muted blue-gray, very limited accent color. Crisp geometry, calm composition, diagrammatic feeling. Premium, minimal, modern technology brand. Keep it more benchmark-and-comparison oriented than the earlier Explicit Memory visual, with a stronger sense of graph structure and evaluation framing.
+
+Avoid:
+No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no stock-photo people, no clutter, no fantasy sci-fi scene, no purple-glow AI art, no low-detail illustration, no text baked into the image, no literal screenshot of the benchmark, no leaderboard screenshot, no dense academic poster, no tiny chart labels, no paper-figure recreation.
+```
+
+Filename: `project-roomkg-baselines.png`
+Alt text: `Illustration of a partially observable room benchmark connected to temporal knowledge-graph memory and baseline comparisons.`

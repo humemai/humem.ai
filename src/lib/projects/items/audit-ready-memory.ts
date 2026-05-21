@@ -5,8 +5,8 @@ export const auditReadyMemory: Project = {
   slug: "audit-ready-memory",
   title: "Audit-Ready Memory",
   showOnProjectsIndex: true,
-  standalonePage: {
-    layout: "standalone",
+  editorialPage: {
+    layout: "editorial",
     linksHeading: "Links and code.",
     sections: [
       {
@@ -107,7 +107,7 @@ export const auditReadyMemory: Project = {
   summary:
     "A public-interest project building local-first, inspectable memory infrastructure for AI systems that need audit trails, deterministic replay, and explicit deletion.",
   image: {
-    src: "/illustrations/project-audit-ready-memory.png",
+    src: "/images/projects/project-audit-ready-memory.png",
     alt: "Illustration for Audit-Ready Memory",
   },
   funding: "Funded by SIDN Fund",

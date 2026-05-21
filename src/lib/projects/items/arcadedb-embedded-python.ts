@@ -6,7 +6,7 @@ export const arcadeDbEmbeddedPython: Project = {
   title: "ArcadeDB Embedded Python",
   timelineOrder: 1,
   subprojectPage: {
-    layout: "standalone",
+    layout: "editorial",
     linksHeading: "Docs and code.",
     sections: [
       {
@@ -80,7 +80,7 @@ export const arcadeDbEmbeddedPython: Project = {
   summary:
     "A Python-facing distribution built on top of the original Java-based ArcadeDB, with native bindings, embedded execution, and a cleaner path to graph, vector, and multi-model workloads from Python.",
   image: {
-    src: "/illustrations/project-arcadedb-embedded-python.png",
+    src: "/images/projects/project-arcadedb-embedded-python.png",
     alt: "Illustration for ArcadeDB Embedded Python",
   },
   problem:

@@ -16,7 +16,7 @@ export default function PricingPage() {
         eyebrow="Pricing"
         title="Start with open source, or move faster with hosted and custom work."
         intro="HumemAI offers a free developer path, a hosted path for teams that want faster outcomes, and custom engagements for deployments that need integration-heavy support."
-        imageSrc="/illustrations/pricing-deployment-paths.png"
+        imageSrc="/images/site/pricing-deployment-paths.png"
         imageAlt="Illustration showing HumemAI deployment paths"
         actions={[
           { href: "/contact", label: "Contact HumemAI" },

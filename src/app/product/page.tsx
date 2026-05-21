@@ -16,7 +16,7 @@ export default function ProductPage() {
         eyebrow="Product"
         title="A memory layer for agentic AI."
         intro="Users interact through natural language, upload documents and data, and let HumemAI organize knowledge into the right memory structures across text, tables, graphs, and vectors."
-        imageSrc="/illustrations/product-hero-interface.png"
+        imageSrc="/images/site/product-hero-interface.png"
         imageAlt="Illustration of the HumemAI product across memory graph, conversation, and retrieval panels"
         actions={[
           { href: "/pricing", label: "Explore pricing" },

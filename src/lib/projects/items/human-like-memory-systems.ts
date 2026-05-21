@@ -6,7 +6,7 @@ export const humanLikeMemorySystems: Project = {
   title: "Human-Like Memory Systems",
   timelineOrder: 1,
   subprojectPage: {
-    layout: "standalone",
+    layout: "editorial",
     linksHeading: "Paper, code, and project links.",
     sections: [
       {
@@ -72,20 +72,47 @@ Each agent maintains bounded **episodic** and **semantic** memory stores. Episod
         title: "Mixed memory and collaboration deliver the strongest results.",
         body: [
           `The first result is simple but important: structured forgetting and retrieval policies beat random baselines. If the agent both forgets memories and answers questions uniformly at random, performance collapses. Once the memory system becomes explicit and retrieval policies become coherent, even heuristic agents become much stronger baselines than random memory behavior.`,
-          `| Handcrafted 1 | Handcrafted 2 |
-| --- | --- |
-| ![Handcrafted 1 episodic result](/illustrations/human-like-memory-systems-episodic-1.png) | ![Handcrafted 2 semantic result](/illustrations/human-like-memory-systems-semantic-1.png) |`,
-          `| Handcrafted 3 | Handcrafted 4 |
-| --- | --- |
-| ![Handcrafted 3 episodic semantic result](/illustrations/human-like-memory-systems-episodic-semantic-1.png) | ![Handcrafted 4 episodic semantic pretrain result](/illustrations/human-like-memory-systems-episodic-semantic-pretrain-1.png) |
-
-*Figure: handcrafted vs. random policies for the four explicit-memory baselines.*`,
+          {
+            type: "figureGrid",
+            columns: 2,
+            caption: "Handcrafted vs. random policies for the four explicit-memory baselines.",
+            items: [
+              {
+                label: "Handcrafted 1",
+                image: {
+                  src: "/images/papers/human-like-memory-systems/human-like-memory-systems-episodic-1.png",
+                  alt: "Handcrafted 1 episodic result",
+                },
+              },
+              {
+                label: "Handcrafted 2",
+                image: {
+                  src: "/images/papers/human-like-memory-systems/human-like-memory-systems-semantic-1.png",
+                  alt: "Handcrafted 2 semantic result",
+                },
+              },
+              {
+                label: "Handcrafted 3",
+                image: {
+                  src: "/images/papers/human-like-memory-systems/human-like-memory-systems-episodic-semantic-1.png",
+                  alt: "Handcrafted 3 episodic semantic result",
+                },
+              },
+              {
+                label: "Handcrafted 4",
+                image: {
+                  src: "/images/papers/human-like-memory-systems/human-like-memory-systems-episodic-semantic-pretrain-1.png",
+                  alt: "Handcrafted 4 episodic semantic pretrain result",
+                },
+              },
+            ],
+          },
           `When memory capacity is small, episodic-only memory can perform better because there is not enough space to learn stable general world knowledge. As capacity increases, semantic memory becomes increasingly useful because the agent can generalize across many observations instead of treating every event as isolated.`,
           `The most interesting case is the agent with pretrained semantic memory. Because the general world knowledge is already present, the agent can focus more of its finite capacity on episodic recall, which yields the strongest overall results in the paper's setup. The collaboration result is similarly important: two agents sharing memories can outperform a single agent with the same total budget because they cover different parts of the room and contribute complementary recall.`,
-          `![Best strategies across memory capacities](/illustrations/human-like-memory-systems-best-strategies.png)
+          `![Best strategies across memory capacities](/images/papers/human-like-memory-systems/human-like-memory-systems-best-strategies.png)
 
 *Total rewards with respect to different handcrafted policies and memory capacities.*`,
-          `![Single-agent versus two-agent performance](/illustrations/human-like-memory-systems-single-and-double-agents.png)
+          `![Single-agent versus two-agent performance](/images/papers/human-like-memory-systems/human-like-memory-systems-single-and-double-agents.png)
 
 *Total rewards with respect to the number of agents. Collaboration improves recall and answer quality even under a fixed total memory budget.*`,
         ],
@@ -125,7 +152,7 @@ Each agent maintains bounded **episodic** and **semantic** memory stores. Episod
   summary:
     "A paper and codebase introducing RoomEnv-v0 and heuristic agents with explicit episodic and semantic memory.",
   image: {
-    src: "/illustrations/project-human-like-memory-systems.png",
+    src: "/images/projects/project-human-like-memory-systems.png",
     alt: "Illustration for Human-Like Memory Systems",
   },
   problem:

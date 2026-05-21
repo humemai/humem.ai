@@ -17,7 +17,7 @@ export default function AboutPage() {
         eyebrow="About"
         title="From memory research to practical AI."
         intro="HumemAI started from research into human-like memory systems for AI and now focuses on turning that work into practical tools and products."
-        imageSrc="/illustrations/about-memory-architecture.png"
+        imageSrc="/images/site/about-memory-architecture.png"
         imageAlt="Illustration of connected memory structures and stored knowledge"
       />
 
@@ -35,7 +35,7 @@ export default function AboutPage() {
             <a className={styles.inlineImageLink} href="https://taewoon.kim/" target="_blank" rel="noopener noreferrer">
               <div className={styles.inlineImageWrap}>
                 <Image
-                  src="/illustrations/taewoon-kim-founder.png"
+                  src="/images/site/taewoon-kim-founder.png"
                   alt="Portrait of Taewoon Kim, founder of HumemAI"
                   fill
                   className={styles.heroImage}

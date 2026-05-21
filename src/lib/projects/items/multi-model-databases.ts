@@ -12,7 +12,7 @@ export const multiModelDatabases: Project = {
   summary:
     "A systems project exploring how tables (SQL), graphs (Cypher), and semantic vector search (ANN search) can coexist in one developer experience without pretending one engine should do every job.",
   image: {
-    src: "/illustrations/projects-overview-portfolio.png",
+    src: "/images/projects/projects-overview-portfolio.png",
     alt: "Illustration representing interconnected database and systems projects",
   },
   problem:

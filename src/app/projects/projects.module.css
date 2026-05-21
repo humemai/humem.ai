@@ -368,7 +368,7 @@
   padding: var(--site-page-padding);
 }
 
-.standalonePage {
+.editorialPage {
   width: 100%;
   padding: var(--site-page-padding);
 }
@@ -386,7 +386,7 @@
   margin: 0 auto;
 }
 
-.standaloneNav {
+.editorialNav {
   width: var(--site-shell-width-mobile);
   margin: 0 auto;
 }
@@ -516,7 +516,7 @@
     linear-gradient(160deg, rgba(14, 18, 24, 0.96), rgba(31, 38, 48, 0.88));
 }
 
-.standaloneNav {
+.editorialNav {
   position: sticky;
   top: 5.9rem;
   z-index: 20;
@@ -527,11 +527,11 @@
   text-align: center;
 }
 
-.standaloneNav::-webkit-scrollbar {
+.editorialNav::-webkit-scrollbar {
   display: none;
 }
 
-.standaloneNavInner {
+.editorialNavInner {
   display: inline-flex;
   gap: 0.4rem;
   padding: 0.45rem;
@@ -542,7 +542,7 @@
   backdrop-filter: blur(18px);
 }
 
-.standaloneNavLink {
+.editorialNavLink {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -556,13 +556,13 @@
   transition: color 160ms ease, background-color 160ms ease;
 }
 
-.standaloneNavLink:hover,
-.standaloneNavLink:focus-visible {
+.editorialNavLink:hover,
+.editorialNavLink:focus-visible {
   color: var(--foreground);
   background: var(--site-reading-nav-hover-bg);
 }
 
-.standaloneNavLinkActive {
+.editorialNavLinkActive {
   color: var(--foreground);
   background: var(--site-reading-nav-active-bg);
 }
@@ -711,7 +711,7 @@
   .subprojectHero,
   .detailSubprojects,
   .subprojectsSection,
-  .standaloneNav {
+  .editorialNav {
     width: var(--site-shell-width-desktop);
   }
 
@@ -738,7 +738,7 @@
 
   .projectOverview,
   .subprojectsSection,
-  .standaloneNav {
+  .editorialNav {
     width: var(--site-shell-width-desktop);
   }
 
@@ -776,7 +776,7 @@
 }
 
 @media (max-width: 719px) {
-  .standaloneNav {
+  .editorialNav {
     top: 5.2rem;
   }
 }

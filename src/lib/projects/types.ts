@@ -9,8 +9,25 @@ export type ProjectAcknowledgements =
       trailingText?: string;
     };
 
+export type ProjectEditorialFigureGridItem = {
+  label?: string;
+  image: {
+    src: string;
+    alt: string;
+  };
+};
+
+export type ProjectEditorialBodyBlock =
+  | string
+  | {
+      type: "figureGrid";
+      columns?: 1 | 2 | 3 | 4;
+      caption: string;
+      items: ProjectEditorialFigureGridItem[];
+    };
+
 export type ProjectSubprojectPage = {
-  layout?: "default" | "standalone";
+  layout?: "default" | "editorial";
   problemHeading?: string;
   solutionHeading?: string;
   impactHeading?: string;
@@ -21,7 +38,7 @@ export type ProjectSubprojectPage = {
     navLabel: string;
     eyebrow: string;
     title: string;
-    body: string[];
+    body: ProjectEditorialBodyBlock[];
     figure?: {
       label: string;
       title: string;
@@ -39,7 +56,7 @@ export type ProjectSubprojectPage = {
   }[];
 };
 
-export type ProjectStandalonePage = ProjectSubprojectPage;
+export type ProjectEditorialPage = ProjectSubprojectPage;
 
 export type Project = {
   slug: string;
@@ -53,7 +70,7 @@ export type Project = {
     solutionHeading: string;
     acknowledgementsHeading?: string;
   };
-  standalonePage?: ProjectStandalonePage;
+  editorialPage?: ProjectEditorialPage;
   subprojectPage?: ProjectSubprojectPage;
   image?: {
     src: string;
