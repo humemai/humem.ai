@@ -416,3 +416,27 @@ No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no 
 
 Filename: `project-human-like-memory-systems.png`
 Alt text: `Illustration of RoomEnv-v0 with explicit episodic and semantic memory.`
+
+## 18. Explicit Memory Project Visual
+
+```text
+Generate a project image for Explicit Memory by HumemAI.
+
+Purpose:
+This image will be used on the Explicit Memory project page and project card. It should communicate the shift from handcrafted memory policies to a learned reinforcement-learning agent that manages short-term, episodic, and semantic memory explicitly.
+
+Aspect ratio:
+1:1 or 4:5
+
+What to show:
+Create a clean editorial illustration of a reinforcement-learning agent operating in RoomEnv-v1 with three explicit memory systems: short-term memory, episodic memory, and semantic memory. Show a simple room-benchmark motif, a stream of observed events, and a policy layer that decides whether information is kept briefly, stored as episodic memory, generalized into semantic memory, or forgotten. The composition should make the learning aspect visible without turning into a training dashboard: suggest action selection, memory routing, and long-term structure emerging from repeated experience. Emphasize explicit memory control and structured memory flow rather than opaque neural hidden state.
+
+Style:
+Clean, structured, product-oriented editorial illustration. Restrained palette: off-white, charcoal, slate, muted blue-gray, very limited accent color. Crisp geometry, calm composition, diagrammatic feeling. Premium, minimal, modern technology brand. Keep it more dynamic and policy-oriented than the Human-Like Memory Systems visual, but still simplified enough for a product site rather than an academic figure.
+
+Avoid:
+No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no stock-photo people, no clutter, no fantasy sci-fi scene, no purple-glow AI art, no low-detail illustration, no text baked into the image, no literal training dashboard, no reward plot, no Q-learning equation poster, no paper-figure recreation, no tiny labels.
+```
+
+Filename: `project-explicit-memory.png`
+Alt text: `Illustration of a reinforcement-learning agent managing short-term, episodic, and semantic memory in RoomEnv-v1.`

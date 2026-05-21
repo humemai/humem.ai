@@ -9,72 +9,90 @@ export const explicitMemory: Project = {
     linksHeading: "Paper and code.",
     sections: [
       {
-        id: "rl-memory",
-        navLabel: "RL memory",
-        eyebrow: "RL memory",
-        title: "Learn memory management instead of hand-coding it.",
+        id: "overview",
+        navLabel: "Overview",
+        eyebrow: "Overview",
+        title: "Learn how memory should be stored instead of hand-coding the policy.",
         body: [
-          "Explicit Memory extends the earlier heuristic work by training agents to decide what to retain, move, and forget across short-term, episodic, and semantic memory systems. The goal is not just better performance, but a learnable memory architecture that remains structurally explicit.",
-          "That shifts the project from manually specified memory rules to reinforcement learning over memory operations while keeping the memory system itself visible enough to analyze.",
+          `**Authors:** [Taewoon Kim](https://taewoon.kim/), [Michael Cochez](https://www.cochez.nl/), [Vincent Francois-Lavet](http://vincent.francois-l.be/), [Mark Neerincx](https://ocw.tudelft.nl/teachers/m_a_neerincx/), and [Piek Vossen](https://vossen.info/).`,
+          "Explicit Memory extends the earlier heuristic work by training an agent to decide what to retain, move, and forget across short-term, episodic, and semantic memory systems. The paper keeps memory explicit and interpretable, but turns memory management itself into a reinforcement-learning problem.",
+          "The implementation is built around RoomEnv-v1, where an agent observes object-location events under partial observability and must answer questions correctly to maximize reward. Instead of hiding memory inside a recurrent state, the project models three explicit memory systems and learns when information should stay short-term, move into long-term memory, or be dropped.",
+          "The paper's three main contributions are to model short-term, episodic, and semantic memory as explicit knowledge-graph structures, release the RoomEnv-v1 reinforcement-learning benchmark, and show that a deep Q-learning agent can learn a useful memory-management policy. [Read the full paper on arXiv](https://arxiv.org/abs/2212.02098).",
+          `![Explicit memory systems](/illustrations/explicit-memory-memory-systems.png)
+
+*The agent uses short-term memory together with episodic and semantic long-term memory rather than a single opaque memory state.*`,
         ],
-        figure: {
-          label: "Figure 1",
-          title: "Learned memory management",
-          caption: "The repository trains policies over explicit memory systems rather than hiding memory inside a single recurrent state.",
-          points: [
-            "Short-term memory",
-            "Episodic memory",
-            "Semantic memory",
-            "Learned memory-management behavior",
-          ],
-        },
       },
       {
-        id: "roomenv-v1",
-        navLabel: "RoomEnv-v1",
-        eyebrow: "RoomEnv-v1",
-        title: "Move the benchmark forward with a richer memory setting.",
+        id: "training",
+        navLabel: "Training",
+        eyebrow: "Deep Q-learning",
+        title: "Learn a memory-routing policy over explicit knowledge-graph memories.",
         body: [
-          "The implementation is built around RoomEnv-v1, where reinforcement learning agents operate with explicit memory structures rather than opaque hidden-state memory. This makes it possible to test whether the agent can learn to use structured memory well under partial observability.",
-          "The environment and training setup turn memory control into part of the policy-learning problem instead of treating it as a fixed subsystem.",
+          "Every observation is first stored in short-term memory. When that short-term buffer is full, the agent must choose one of three actions: forget the oldest memory, move it to episodic memory, or move it to semantic memory. Memory retrieval remains structured: the agent answers from the most recent relevant episodic memory or the strongest relevant semantic memory.",
+          "To make those memory systems learnable, the repository converts knowledge-graph memories into embeddings and feeds them into an LSTM-based Q-network. The learned policy predicts which storage action is most valuable in the current memory state, while still keeping the memory contents inspectable enough to analyze after training.",
+          "The experiments train two variants: one starts semantic memory from scratch, and another starts with ConceptNet-based world knowledge already loaded into semantic memory. Both are compared with simple baselines that always move short-term memories to episodic memory, always move them to semantic memory, or choose uniformly at random.",
+          `![Memory to embedding pipeline](/illustrations/explicit-memory-kge-conversion.png)
+
+*Knowledge-graph-based memories are converted into embeddings so a Q-network can learn storage decisions over explicit memory state.*`,
         ],
-        figure: {
-          label: "Figure 2",
-          title: "Training setting",
-          caption: "RoomEnv-v1 supports learned explicit-memory agents in a benchmark where memory decisions affect downstream behavior.",
-          points: [
-            "Reinforcement learning in partial observability",
-            "Structured memory actions",
-            "Knowledge-graph-oriented memory representation",
-            "Analysis of learned memory behavior",
-          ],
-        },
       },
       {
-        id: "bridge",
-        navLabel: "Bridge",
-        eyebrow: "Bridge",
-        title: "Bridge early heuristic memory work to later graph-memory systems.",
+        id: "results",
+        navLabel: "Results",
+        eyebrow: "Results",
+        title: "Learned explicit memory beats fixed storage baselines.",
         body: [
-          "Explicit Memory sits in the middle of the broader research line. It keeps the commitment to explicit memory systems, but moves from handcrafted agents toward learned behavior.",
-          "That makes it the connective step between the first human-like memory systems paper and the later temporal knowledge-graph work.",
+          "At a memory capacity of 32, the learned agents outperform the episodic-only, semantic-only, and random baselines. The pretrained-semantic variant not only learns faster, but also reaches a better average test reward than the scratch variant, showing that explicit symbolic world knowledge can function like a useful prior for later learning.",
+          "When memory capacity changes, the tradeoffs become clearer. Semantic-only memory works surprisingly well at very small capacities because it prioritizes general knowledge, while episodic-only memory keeps improving as capacity grows and eventually has enough room to remember far more individual events. The learned agents sit on top of that design space by deciding what deserves long-term storage instead of following a fixed rule.",
+          `![Performance across capacities](/illustrations/explicit-memory-capacity-results.png)
+
+*Average total test rewards show how learned explicit-memory agents compare with simpler fixed storage strategies as memory capacity changes.*`,
+          `![Learned Q-values during test time](/illustrations/explicit-memory-q-values-pretrained.png)
+
+*Learned Q-values during test time show that the pretrained agent preserves useful general knowledge and routes more individual-specific memories into episodic storage.*`,
         ],
-        figure: {
-          label: "Figure 3",
-          title: "Research bridge",
-          caption: "The project connects the first explicit-memory agents to the later temporal knowledge-graph direction.",
-          points: [
-            "From heuristics to learning",
-            "Keeps memory explicit",
-            "Intermediate step in the research line",
-            "Groundwork for later graph-memory systems",
-          ],
-        },
+      },
+      {
+        id: "takeaways",
+        navLabel: "Takeaways",
+        eyebrow: "Takeaways",
+        title: "This paper makes memory management part of the learned policy.",
+        body: [
+          "The core contribution of Explicit Memory is not just that reinforcement learning works in RoomEnv-v1, but that it works while memory remains explicit enough to inspect. The paper keeps short-term, episodic, and semantic memory as separate architectural objects rather than collapsing everything into a hidden neural state.",
+          "That makes this project the bridge between the earlier handcrafted memory agents and the later graph-memory systems work. It shows that explicit memory can remain structured, analyzable, and still be integrated into trainable agents.",
+        ],
+      },
+      {
+        id: "citation",
+        navLabel: "Cite",
+        eyebrow: "Cite",
+        title: "Cite our paper.",
+        body: [
+          `~~~bibtex
+@article{Kim_Cochez_Francois-Lavet_Neerincx_Vossen_2023,
+  title={A Machine with Short-Term, Episodic, and Semantic Memory Systems},
+  volume={37},
+  url={https://ojs.aaai.org/index.php/AAAI/article/view/25075},
+  DOI={10.1609/aaai.v37i1.25075},
+  number={1},
+  journal={Proceedings of the AAAI Conference on Artificial Intelligence},
+  author={Kim, Taewoon and Cochez, Michael and Francois-Lavet, Vincent and Neerincx, Mark and Vossen, Piek},
+  year={2023},
+  month={Jun.},
+  pages={48-56}
+}
+~~~`,
+        ],
       },
     ],
   },
   summary:
-    "The reinforcement-learning implementation behind A Machine with Short-Term, Episodic, and Semantic Memory Systems.",
+    "A reinforcement-learning agent with explicit short-term, episodic, and semantic memory in RoomEnv-v1.",
+  image: {
+    src: "/illustrations/project-explicit-memory.png",
+    alt: "Illustration for Explicit Memory",
+  },
   problem:
     "Heuristic policies show that structured memory can help, but they do not answer whether an agent can learn when to retain, move, or forget information across short-term, episodic, and semantic memory systems.",
   solution:
