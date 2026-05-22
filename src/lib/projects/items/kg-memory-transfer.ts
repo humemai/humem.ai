@@ -50,7 +50,30 @@ export const kgMemoryTransfer: Project = {
 				title: "Learn a per-item keep-drop transfer policy instead of using a fixed rule.",
 				body: [
 					"We isolate transfer so the result can be attributed to consolidation rather than to many changing policies at once. Question answering, exploration, and forgetting stay fixed, while the learned policy decides only whether each short-term fact should be promoted into long-term temporal RDF memory.",
+					`The central formal step is to treat transfer as a variable-cardinality binary decision problem. If short-term memory contains $n_t = |\\mathcal{M}^{\\text{short}}_t|$ candidate triples at step $t$, then the transfer action space is
+
+$$
+\\mathcal{A}^{\\text{tr}}_t = \\{0,1\\}^{n_t},
+$$
+
+where $1$ means keep and $0$ means drop for one short-term item. That makes transfer an explicit per-item policy instead of a hidden side effect of a larger recurrent model.`,
 					"That creates a non-standard control problem because the number of short-term candidates changes at every step. The solution is a shared-parameter per-item Q-learning design: score each candidate triple independently with keep-drop values, then learn those values through temporal-difference updates over matched short-term memories across steps.",
+					`The symbolic memory state then evolves as
+
+$$
+M_{t+1} = U(M_t, o_{t+1}, \\mathbf{a}^{\\text{tr}}_t),
+$$
+
+where $U$ applies short-term refresh, selective insertion into long-term memory, and the fixed eviction rule. The learned part is only the keep-drop vector $\\mathbf{a}^{\\text{tr}}_t$.`,
+					`To handle changing short-term set size, the network outputs one pair of Q-values per candidate item rather than one monolithic action score:
+
+$$
+Q_\\theta(M_t) \\to \\{\\mathbf{q}_{t,i}\\}_{i=1}^{n_t},
+\\qquad
+\\mathbf{q}_{t,i} \\in \\mathbb{R}^{2}.
+$$
+
+Each row contains the keep/drop values for one short-term triple, with shared parameters across all rows.`,
 					"The experiments focus on a controlled setting at long-term memory capacity 128. We evaluate symbolic temporal-RDF baselines such as Always-Transfer, Novel-Only, and Random-Transfer ($p=0.5$), compare them against end-to-end LSTM and Transformer baselines, and then study learned DQN temporal-RDF transfer policies with GCN, R-GCN, and StarE-GNN encoders under local and global transfer variants.",
 				],
 			},
@@ -61,6 +84,13 @@ export const kgMemoryTransfer: Project = {
 				title: "A local learned transfer policy beats both symbolic heuristics and neural baselines.",
 				body: [
 					"At long-term memory capacity 128, the strongest configuration is the **DQN temporal-RDF agent with a GCN encoder and Local-STM transfer policy**. It reaches **38.920 test QA accuracy**, improving over the strongest symbolic baseline, **Novel-Only** at **31.960**, and staying far ahead of the end-to-end neural baselines, where the Transformer reaches **11.800** and the LSTM **7.600**.",
+					`The temporal-difference target used for the per-item transfer updates is
+
+$$
+y_{b,j} = r_b + \\gamma (1-d_b) \\max_a Q_{\\bar{\\theta}}(M_{b+1}, j, a),
+$$
+
+and the loss averages those matched item-level TD errors over the current transition. This is what makes the keep-drop policy trainable even though short-term memory size changes from step to step.`,
 					"The ablation pattern matters as much as the best score. With the same GCN encoder, the Local-STM transfer policy outperforms Local-Full, Global-Full, and Global-STM. In this regime, a lightweight per-item policy over short-term input works better than pooled global transfer decisions, which suggests that explicit local transfer is the right inductive bias for this memory-constrained symbolic setting.",
 					`<img
 src="/images/papers/kg-memory-transfer/keep_rate_over_time.png"

@@ -49,7 +49,9 @@ export const roomkgBaselines: Project = {
         title: "Compare explicit symbolic memory against sequence-based neural baselines.",
         body: [
           "We evaluate four agents. Two symbolic agents store explicit graph structure: a plain KG agent keeps unannotated RDF triples, while a TKG agent stores RDF 1.2 annotated triples with temporal metadata such as when a fact was added, when it was last accessed, and how often it was recalled. Two neural baselines instead keep tokenized observation histories and learn question answering end to end with either an LSTM or a Transformer.",
+          `The symbolic memory used in the strongest agent is not just a set of triples. Each observed fact is stored as an annotated RDF-star triple, $\\ll s\\, r\\, o \\gg$, together with the annotation fields $\\texttt{time\\_added}$, $\\texttt{last\\_accessed}$, and $\\texttt{num\\_recalled}$. That is the paper's key move: the memory is a temporal knowledge graph built from annotated triples rather than a plain bag of observations.`,
           "Those agent families face the same task but behave very differently. Symbolic agents answer questions through graph querying and graph-based exploration, while neural agents must jointly learn exploration and question answering through a single policy over longer and longer observation histories as memory capacity grows.",
+          `Those annotations induce concrete answer-selection rules, but they read better in words than as notation here. **MRA** means *most recently added*, **MRU** means *most recently used*, and **MFU** means *most frequently used*. When several triples match a query, the TKG agent can rank them by when they were added, when they were last accessed, or how often they have been recalled. That gives it recency- and usage-aware answer, exploration, and eviction behavior that the plain RDF agent simply does not have.`,
           "A key design choice is that all four agents share one benchmark and one evaluation surface. That makes RoomKG Baselines more than an implementation repo for one model: it is the comparative layer that shows what different memory representations gain or lose under the same partially observable environment.",
         ],
       },
@@ -60,6 +62,7 @@ export const roomkgBaselines: Project = {
         title: "Temporal knowledge-graph memory outperforms the neural baselines on the same benchmark.",
         body: [
           "The main quantitative result is that symbolic agents begin to outperform neural agents once long-term memory becomes large enough to matter. At a capacity of 512, the best TKG variant reaches 45.64 test QA accuracy, while the best neural baseline reaches 11.2, a roughly four-fold difference under the same benchmark conditions.",
+          `At the environment level, the hidden state is an RDF graph $s_t$, while the observation is only a local fragment $o_t \\subset s_t$. That partial-observability gap is exactly why long-term temporal memory matters in this benchmark.`,
           "The qualitative picture is consistent with that result. Symbolic agents keep exploring until they cover all 49 rooms and accumulate nearly complete internal maps, while the neural agents plateau much earlier and stop discovering new rooms. Temporal annotations give the TKG agent an additional advantage over the plain KG agent because recency and recall statistics make exploration, answering, and eviction more informative under a fixed memory budget.",
           `<img
 src="/images/papers/roomkg-baselines/agent_train_test_qa_accuracy.png"
