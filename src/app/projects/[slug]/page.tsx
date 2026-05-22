@@ -167,6 +167,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
           caption={block.caption}
           items={block.items.map((item) => ({
             label: item.label,
+            title: item.title,
             imageSrc: item.image.src,
             imageAlt: item.image.alt,
           }))}

@@ -235,14 +235,6 @@
   min-width: 0;
 }
 
-.figureGridItemLabel {
-  margin: 0 0 0.6rem;
-  color: var(--foreground);
-  font-size: 0.95rem;
-  font-weight: 600;
-  line-height: 1.4;
-}
-
 .figureGridImage {
   display: block;
   width: 100%;

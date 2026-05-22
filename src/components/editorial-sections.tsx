@@ -24,6 +24,7 @@ type EditorialSectionFigureProps = {
 type EditorialFigureGridProps = {
   items: Array<{
     label?: string;
+    title?: string;
     imageSrc: string;
     imageAlt: string;
   }>;
@@ -94,14 +95,15 @@ export function EditorialFigureGrid({ items, caption, columns = 2 }: EditorialFi
   return (
     <figure className={styles.figureGrid}>
       <div className={styles.figureGridItems} style={gridStyle}>
-        {items.map((item) => (
-          <div className={styles.figureGridItem} key={`${item.imageSrc}-${item.label ?? item.imageAlt}`}>
-            {item.label ? <p className={styles.figureGridItemLabel}>{item.label}</p> : null}
+        {items.map((item) => {
+          return (
+          <div className={styles.figureGridItem} key={`${item.imageSrc}-${item.imageAlt}`}>
             {/* Charts in editorial grids must preserve their full intrinsic aspect ratio. */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={item.imageSrc} alt={item.imageAlt} className={styles.figureGridImage} loading="lazy" />
           </div>
-        ))}
+          );
+        })}
       </div>
       <figcaption className={styles.figureGridCaption}>{caption}</figcaption>
     </figure>

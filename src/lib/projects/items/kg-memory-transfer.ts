@@ -73,16 +73,6 @@ Q_\\theta(M_t) \\to \\{\\mathbf{q}_{t,i}\\}_{i=1}^{n_t},
 $$
 
 Here $i$ indexes the current short-term candidates, and each row $\\mathbf{q}_{t,i}$ contains the keep/drop values for one short-term triple. The shared parameters let one network score variable-length short-term sets without assuming a fixed action count.`,
-					"The experiments focus on a controlled setting at long-term memory capacity 128. We evaluate symbolic temporal-RDF baselines such as Always-Transfer, Novel-Only, and Random-Transfer ($p=0.5$), compare them against end-to-end LSTM and Transformer baselines, and then study learned DQN temporal-RDF transfer policies with GCN, R-GCN, and StarE-GNN encoders under local and global transfer variants.",
-				],
-			},
-			{
-				id: "results",
-				navLabel: "Results",
-				eyebrow: "Results",
-				title: "A local learned transfer policy beats both symbolic heuristics and neural baselines.",
-				body: [
-					"At long-term memory capacity 128, the strongest configuration is the **DQN temporal-RDF agent with a GCN encoder and Local-STM transfer policy**. It reaches **38.920 test QA accuracy**, improving over the strongest symbolic baseline, **Novel-Only** at **31.960**, and staying far ahead of the end-to-end neural baselines, where the Transformer reaches **11.800** and the LSTM **7.600**.",
 					`The temporal-difference target used for the per-item transfer updates can be written more simply as
 
 $$
@@ -96,6 +86,16 @@ $$
 $$
 
 where $\\ell$ is the number of matched pairs used in that transition. This is what makes the keep-drop policy trainable even though short-term memory size changes from step to step.`,
+					"The experiments focus on a controlled setting at long-term memory capacity 128. We evaluate symbolic temporal-RDF baselines such as Always-Transfer, Novel-Only, and Random-Transfer ($p=0.5$), compare them against end-to-end LSTM and Transformer baselines, and then study learned DQN temporal-RDF transfer policies with GCN, R-GCN, and StarE-GNN encoders under local and global transfer variants.",
+				],
+			},
+			{
+				id: "results",
+				navLabel: "Results",
+				eyebrow: "Results",
+				title: "A local learned transfer policy beats both symbolic heuristics and neural baselines.",
+				body: [
+					"At long-term memory capacity 128, the strongest configuration is the **DQN temporal-RDF agent with a GCN encoder and Local-STM transfer policy**. It reaches **38.920 test QA accuracy**, improving over the strongest symbolic baseline, **Novel-Only** at **31.960**, and staying far ahead of the end-to-end neural baselines, where the Transformer reaches **11.800** and the LSTM **7.600**.",
 					"The ablation pattern matters as much as the best score. With the same GCN encoder, the Local-STM transfer policy outperforms Local-Full, Global-Full, and Global-STM. In this regime, a lightweight per-item policy over short-term input works better than pooled global transfer decisions, which suggests that explicit local transfer is the right inductive bias for this memory-constrained symbolic setting.",
 					`<img
 src="/images/papers/kg-memory-transfer/keep_rate_over_time.png"

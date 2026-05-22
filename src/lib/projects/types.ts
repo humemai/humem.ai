@@ -11,6 +11,7 @@ export type ProjectAcknowledgements =
 
 export type ProjectEditorialFigureGridItem = {
   label?: string;
+  title?: string;
   image: {
     src: string;
     alt: string;
