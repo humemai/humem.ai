@@ -6,7 +6,7 @@ export const roomkgBaselines: Project = {
   timelineOrder: 3,
   subprojectPage: {
     layout: "editorial",
-    linksHeading: "Paper and code.",
+    linksHeading: "Paper and GitHub links.",
     sections: [
       {
         id: "overview",
@@ -14,14 +14,15 @@ export const roomkgBaselines: Project = {
         eyebrow: "Overview",
         title: "Turn partial observability into a benchmark for graph-structured long-term memory.",
         body: [
-          `**Authors:** [Taewoon Kim](https://taewoon.kim/), Vincent Francois-Lavet, and [Michael Cochez](https://www.cochez.nl/).`,
+          `**Authors:** [Taewoon Kim](https://taewoon.kim/), [Vincent Francois-Lavet](http://vincent.francois-l.be/), and [Michael Cochez](https://www.cochez.nl/).`,
           "RoomKG Baselines turns long-term memory into the main object of study rather than a side effect of policy learning. The hidden world state is an RDF knowledge graph, observations are RDF triples over locally visible structure, and agents must answer object-location questions while navigating a changing environment under partial observability.",
+          "The benchmark builds on RoomEnv-v3, so the public [RoomEnv repository](https://github.com/humemai/room-env) is part of the contribution here too: these baselines are the agents, but the environment itself is the shared benchmark surface that makes the comparison meaningful and reproducible.",
           "That shift makes the benchmark itself graph-native. Instead of asking whether one memory architecture happens to work inside one environment, the project aligns hidden state, observations, long-term memory, and evaluation around knowledge-graph structure so symbolic and neural approaches can be compared on the same controlled task.",
-          "The paper contributes a configurable RoomKG benchmark, a set of symbolic and neural baselines, and public benchmark artifacts for reproducible comparison. [Read the full paper on arXiv](https://arxiv.org/abs/2408.05861).",
+          "We contribute a configurable RoomKG benchmark, a set of symbolic and neural baselines, and public benchmark artifacts for reproducible comparison. [Read the full paper on arXiv](https://arxiv.org/abs/2408.05861).",
           {
             type: "figureGrid",
             columns: 2,
-            caption: "Bird's-eye schematic of the hidden state at $t=99$ alongside the same hidden state expressed as an RDF knowledge graph.",
+            caption: "Bird's-eye schematic of the hidden state at step 99 alongside the same hidden state expressed as an RDF knowledge graph.",
             items: [
               {
                 label: "Bird's-eye view",
@@ -47,9 +48,9 @@ export const roomkgBaselines: Project = {
         eyebrow: "Agents",
         title: "Compare explicit symbolic memory against sequence-based neural baselines.",
         body: [
-          "The paper evaluates four agents. Two symbolic agents store explicit graph structure: a plain KG agent keeps unannotated RDF triples, while a TKG agent stores RDF 1.2 annotated triples with temporal metadata such as when a fact was added, when it was last accessed, and how often it was recalled. Two neural baselines instead keep tokenized observation histories and learn question answering end to end with either an LSTM or a Transformer.",
+          "We evaluate four agents. Two symbolic agents store explicit graph structure: a plain KG agent keeps unannotated RDF triples, while a TKG agent stores RDF 1.2 annotated triples with temporal metadata such as when a fact was added, when it was last accessed, and how often it was recalled. Two neural baselines instead keep tokenized observation histories and learn question answering end to end with either an LSTM or a Transformer.",
           "Those agent families face the same task but behave very differently. Symbolic agents answer questions through graph querying and graph-based exploration, while neural agents must jointly learn exploration and question answering through a single policy over longer and longer observation histories as memory capacity grows.",
-          "The important design choice is that all four agents share one benchmark and one evaluation surface. That makes RoomKG Baselines more than an implementation repo for one model: it is the comparative layer that exposes what different memory representations gain or lose under the same partially observable environment.",
+          "A key design choice is that all four agents share one benchmark and one evaluation surface. That makes RoomKG Baselines more than an implementation repo for one model: it is the comparative layer that shows what different memory representations gain or lose under the same partially observable environment.",
         ],
       },
       {
@@ -83,7 +84,7 @@ class="editorial-image-compact"
         title: "This project makes long-term memory explicit, inspectable, and benchmarkable.",
         body: [
           "RoomKG Baselines marks the point in the broader research line where long-term memory becomes a benchmark object in its own right. The hidden state is graph-structured, the observations are graph-structured, the symbolic memories are graph-structured, and the evaluation is designed to reveal whether an agent actually remembers over time rather than merely appearing to do so.",
-          "That gives the project a different role from the earlier memory papers. It is not only a new memory architecture or a stronger agent; it is the benchmark and baseline surface needed to compare future symbolic, temporal, and neurosymbolic memory systems under shared conditions.",
+          "That gives the project a different role from the earlier memory papers. It is not only a new memory architecture or a stronger agent; it is the benchmark and baseline surface for comparing future symbolic, temporal, and neurosymbolic memory systems under shared conditions.",
         ],
       },
       {
@@ -125,8 +126,12 @@ class="editorial-image-compact"
       href: "https://arxiv.org/abs/2408.05861",
     },
     {
-      label: "View GitHub",
+      label: "View GitHub (Agent)",
       href: "https://github.com/humemai/roomkg-baselines",
+    },
+    {
+      label: "View GitHub (RoomEnv)",
+      href: "https://github.com/humemai/room-env",
     },
     {
       label: "Parent project",

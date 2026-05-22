@@ -6,7 +6,7 @@ export const explicitMemory: Project = {
   timelineOrder: 2,
   subprojectPage: {
     layout: "editorial",
-    linksHeading: "Paper and code.",
+    linksHeading: "Paper and GitHub links.",
     sections: [
       {
         id: "overview",
@@ -15,9 +15,9 @@ export const explicitMemory: Project = {
         title: "Learn how memory should be stored instead of hand-coding the policy.",
         body: [
           `**Authors:** [Taewoon Kim](https://taewoon.kim/), [Michael Cochez](https://www.cochez.nl/), [Vincent Francois-Lavet](http://vincent.francois-l.be/), [Mark Neerincx](https://ocw.tudelft.nl/teachers/m_a_neerincx/), and [Piek Vossen](https://vossen.info/).`,
-          "Explicit Memory extends the earlier heuristic work by training an agent to decide what to retain, move, and forget across short-term, episodic, and semantic memory systems. The paper keeps memory explicit and interpretable, but turns memory management itself into a reinforcement-learning problem.",
-          "The implementation is built around RoomEnv-v1, where an agent observes object-location events under partial observability and must answer questions correctly to maximize reward. Instead of hiding memory inside a recurrent state, the project models three explicit memory systems and learns when information should stay short-term, move into long-term memory, or be dropped.",
-          "The paper's three main contributions are to model short-term, episodic, and semantic memory as explicit knowledge-graph structures, release the RoomEnv-v1 reinforcement-learning benchmark, and show that a deep Q-learning agent can learn a useful memory-management policy. [Read the full paper on arXiv](https://arxiv.org/abs/2212.02098).",
+          "Explicit Memory extends the earlier heuristic work by training an agent to decide what to retain, move, and forget across short-term, episodic, and semantic memory systems. We keep memory explicit and interpretable, but turn memory management itself into a reinforcement-learning problem.",
+          "The implementation is built around RoomEnv-v1, where an agent observes object-location events under partial observability and must answer questions correctly to maximize reward. The public [RoomEnv repository](https://github.com/humemai/room-env) is part of the contribution here as well, because this project extends that benchmark from handcrafted agents to learned memory-management policies. Instead of hiding memory inside a recurrent state, we model three explicit memory systems and learn when information should stay short-term, move into long-term memory, or be dropped.",
+          "Our three main contributions are to model short-term, episodic, and semantic memory as explicit knowledge-graph structures, release the RoomEnv-v1 reinforcement-learning benchmark, and show that a deep Q-learning agent can learn a useful memory-management policy. [Read the full paper on arXiv](https://arxiv.org/abs/2212.02098).",
           `<img
 src="/images/papers/explicit-memory/explicit-memory-memory-systems.png"
 alt="Explicit memory systems"
@@ -35,7 +35,7 @@ class="editorial-image-compact"
         body: [
           "Every observation is first stored in short-term memory. When that short-term buffer is full, the agent must choose one of three actions: forget the oldest memory, move it to episodic memory, or move it to semantic memory. Memory retrieval remains structured: the agent answers from the most recent relevant episodic memory or the strongest relevant semantic memory.",
           "To make those memory systems learnable, the repository converts knowledge-graph memories into embeddings and feeds them into an LSTM-based Q-network. The learned policy predicts which storage action is most valuable in the current memory state, while still keeping the memory contents inspectable enough to analyze after training.",
-          "The experiments train two variants: one starts semantic memory from scratch, and another starts with ConceptNet-based world knowledge already loaded into semantic memory. Both are compared with simple baselines that always move short-term memories to episodic memory, always move them to semantic memory, or choose uniformly at random.",
+          "We train two variants: one starts semantic memory from scratch, and another starts with ConceptNet-based world knowledge already loaded into semantic memory. Both are compared with simple baselines that always move short-term memories to episodic memory, always move them to semantic memory, or choose uniformly at random.",
           `<img
 src="/images/papers/explicit-memory/explicit-memory-kge-conversion.png"
 alt="Memory to embedding pipeline"
@@ -65,10 +65,10 @@ class="editorial-image-compact"
         id: "takeaways",
         navLabel: "Takeaways",
         eyebrow: "Takeaways",
-        title: "This paper makes memory management part of the learned policy.",
+        title: "Memory management becomes part of the learned policy.",
         body: [
-          "The core contribution of Explicit Memory is not just that reinforcement learning works in RoomEnv-v1, but that it works while memory remains explicit enough to inspect. The paper keeps short-term, episodic, and semantic memory as separate architectural objects rather than collapsing everything into a hidden neural state.",
-          "That makes this project the bridge between the earlier handcrafted memory agents and the later graph-memory systems work. It shows that explicit memory can remain structured, analyzable, and still be integrated into trainable agents.",
+          "The core contribution of Explicit Memory is not just that reinforcement learning works in RoomEnv-v1, but that it works while memory remains explicit enough to inspect. We keep short-term, episodic, and semantic memory as separate architectural objects rather than collapsing everything into a hidden neural state.",
+          "This work bridges the earlier handcrafted memory agents and the later graph-memory systems work. It shows that explicit memory can remain structured, analyzable, and still be integrated into trainable agents.",
         ],
       },
       {
@@ -113,8 +113,12 @@ class="editorial-image-compact"
       href: "https://arxiv.org/abs/2212.02098",
     },
     {
-      label: "View GitHub",
+      label: "View GitHub (Agent)",
       href: "https://github.com/humemai/explicit-memory",
+    },
+    {
+      label: "View GitHub (RoomEnv)",
+      href: "https://github.com/humemai/room-env",
     },
     {
       label: "Parent project",

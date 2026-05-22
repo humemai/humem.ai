@@ -464,3 +464,27 @@ No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no 
 
 Filename: `project-roomkg-baselines.png`
 Alt text: `Illustration of a partially observable room benchmark connected to temporal knowledge-graph memory and baseline comparisons.`
+
+## 20. KG Memory Transfer Project Visual
+
+```text
+Generate a project image for KG Memory Transfer by HumemAI.
+
+Purpose:
+This image will be used on the KG Memory Transfer project page and project card. It should communicate short-term-to-long-term memory transfer for knowledge graphs under partial observability, with the transfer decision itself treated as the core research problem.
+
+Aspect ratio:
+1:1 or 4:5
+
+What to show:
+Create a clean editorial illustration of an agent in a partially observable room benchmark observing a small stream of object-location events and deciding what should persist into long-term graph memory. Show three clearly related layers: transient short-term observations, a selective transfer or consolidation policy, and a durable temporal knowledge-graph memory. Suggest that some observations are kept, some are dropped, and some become structured long-term graph facts that support later question answering and navigation. The image should feel like a follow-on to RoomKG Baselines: less about comparing many baselines, and more about the specific boundary between fleeting observations and persistent graph memory.
+
+Style:
+Clean, structured, product-oriented editorial illustration. Restrained palette: off-white, charcoal, slate, muted blue-gray, very limited accent color. Crisp geometry, calm composition, diagrammatic feeling. Premium, minimal, modern technology brand. Keep the transfer boundary visually legible, with a few bold modules and a strong sense of selective retention rather than a dense benchmark poster.
+
+Avoid:
+No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no stock-photo people, no clutter, no fantasy sci-fi scene, no purple-glow AI art, no low-detail illustration, no text baked into the image, no literal screenshot of the benchmark, no reward plot, no dense academic diagram, no paper-figure recreation, no tiny labels, no generic pipeline stock graphic.
+```
+
+Filename: `project-kg-memory-transfer.png`
+Alt text: `Illustration of selective transfer from short-term observations into long-term temporal knowledge-graph memory under partial observability.`

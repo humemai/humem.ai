@@ -42,7 +42,7 @@
 
 .accept {
   composes: buttonBase from "./action-button.module.css";
-  composes: buttonSecondary from "./action-button.module.css";
+  composes: buttonPrimary from "./action-button.module.css";
 }
 
 .decline {

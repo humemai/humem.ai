@@ -33,7 +33,7 @@ export function ProjectsIndexSection({ projects }: ProjectsIndexSectionProps) {
         paginationPageClassName={styles.overviewPaginationPage}
         paginationPagesClassName={styles.overviewPaginationPages}
         renderItem={(project) => (
-          <Link className={styles.overviewCard} href={`/projects/${project.slug}`} key={project.slug}>
+          <Link className={styles.overviewCard} href={`/projects/${project.slug}`} key={project.slug} scroll>
             {project.image ? (
               <div className={styles.overviewImageWrap}>
                 <Image

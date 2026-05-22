@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import styles from "./cookie-consent.module.css";
 
 export const COOKIE_CONSENT_KEY = "humem-cookie-consent";
 export const COOKIE_CONSENT_EVENT = "humem-cookie-consent-change";
 export const OPEN_COOKIE_SETTINGS_EVENT = "humem-open-cookie-settings";
+const COOKIE_CONSENT_OFFSET_VAR = "--cookie-consent-offset";
 
 type ConsentValue = "accepted" | "declined" | null;
 
@@ -26,6 +27,7 @@ function writeConsent(value: Exclude<ConsentValue, null>) {
 
 export function CookieConsentBanner() {
   const [isOpen, setIsOpen] = useState(false);
+  const bannerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const syncConsent = () => {
@@ -49,12 +51,46 @@ export function CookieConsentBanner() {
     };
   }, []);
 
+  useEffect(() => {
+    const root = document.documentElement;
+
+    if (!isOpen) {
+      root.style.removeProperty(COOKIE_CONSENT_OFFSET_VAR);
+      return;
+    }
+
+    const element = bannerRef.current;
+    if (!element) {
+      return;
+    }
+
+    const updateOffset = () => {
+      const { height } = element.getBoundingClientRect();
+      root.style.setProperty(COOKIE_CONSENT_OFFSET_VAR, `${Math.ceil(height) + 32}px`);
+    };
+
+    updateOffset();
+
+    const resizeObserver = new ResizeObserver(() => {
+      updateOffset();
+    });
+
+    resizeObserver.observe(element);
+    window.addEventListener("resize", updateOffset);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", updateOffset);
+      root.style.removeProperty(COOKIE_CONSENT_OFFSET_VAR);
+    };
+  }, [isOpen]);
+
   if (!isOpen) {
     return null;
   }
 
   return (
-    <aside className={styles.banner} aria-live="polite">
+    <aside className={styles.banner} aria-live="polite" ref={bannerRef}>
       <p className={styles.copy}>
         This site uses analytics only if you say yes. See the <Link href="/privacy-policy">privacy policy</Link> for details.
       </p>

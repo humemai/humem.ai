@@ -7,7 +7,7 @@ export const humanLikeMemorySystems: Project = {
   timelineOrder: 1,
   subprojectPage: {
     layout: "editorial",
-    linksHeading: "Paper, code, and project links.",
+    linksHeading: "Paper, GitHub, and project links.",
     sections: [
       {
         id: "overview",
@@ -16,13 +16,9 @@ export const humanLikeMemorySystems: Project = {
         title: "Why explicit episodic and semantic memory matter for AI agents.",
         body: [
           `**Authors:** [Taewoon Kim](https://taewoon.kim/), [Michael Cochez](https://www.cochez.nl/), [Vincent Francois-Lavet](http://vincent.francois-l.be/), [Mark Neerincx](https://ocw.tudelft.nl/teachers/m_a_neerincx/), and [Piek Vossen](https://vossen.info/).`,
-          `Inspired by cognitive science theory, this paper explicitly models an agent with both semantic and episodic memory systems and asks whether that combination is better than relying on only one of the two. To make the question concrete, it introduces **RoomEnv-v0**, a challenging OpenAI Gym compatible environment where an agent must encode, store, retrieve, and use memories to answer object-location questions over time.`,
-          `The benchmark also allows multiple agents to collaborate, so the paper studies hybrid intelligence in addition to single-agent memory. The main findings are that mixed episodic-plus-semantic memory outperforms simpler baselines, pretrained commonsense helps further, and two agents collaborating can outperform one agent acting alone with the same total memory budget.`,
-          `In cognitive science, explicit human memory is commonly discussed as a combination of **semantic memory** and **episodic memory**. This project turns that distinction into an AI design problem: if an agent stores both kinds of memory explicitly, does it answer questions better under partial observability? The paper's three main contributions are to model mixed memory explicitly, introduce RoomEnv-v0 as the benchmark, and show that collaborative settings can improve results too.
-
-**Keywords:** explicit memory, episodic memory, semantic memory, hybrid intelligence.
-
-[Read the full paper on arXiv](https://arxiv.org/abs/2204.01611).`,
+          `Inspired by cognitive science theory, we explicitly model an agent with both semantic and episodic memory systems and ask whether that combination is better than relying on only one of the two. To make the question concrete, we introduce **RoomEnv-v0**, a challenging OpenAI Gym compatible environment where an agent must encode, store, retrieve, and use memories to answer object-location questions over time. The public [RoomEnv repository](https://github.com/humemai/room-env) is therefore part of the contribution alongside the agent repository for this project.`,
+          `The benchmark also allows multiple agents to collaborate, so we study hybrid intelligence in addition to single-agent memory. The main findings are that mixed episodic-plus-semantic memory outperforms simpler baselines, pretrained commonsense helps further, and two agents collaborating can outperform one agent acting alone with the same total memory budget.`,
+          `In cognitive science, explicit human memory is commonly discussed as a combination of **semantic memory** and **episodic memory**. Here we turn that distinction into an AI design problem: if an agent stores both kinds of memory explicitly, does it answer questions better under partial observability? Our three main contributions are to model mixed memory explicitly, introduce RoomEnv-v0 as the benchmark, and show that collaborative settings can improve results too. [Read the full paper on arXiv](https://arxiv.org/abs/2204.01611).`,
         ],
       },
       {
@@ -40,7 +36,7 @@ $$
 \\mathbf{q}^{(t)} = (\\mathbf{h}, \\mathbf{r}).
 $$
 
-For example, \`<James's laptop, AtLocation, James's desk, 42>\` records a specific observation, while \`<Karen's cat, AtLocation>\` asks where Karen's cat is. A correct answer yields a reward of $+1$ and an incorrect answer yields $0$.`,
+For example, $\\texttt{(laptop,\ at\\_location,\ desk,\ 42)}$ records a specific observation, while $\\texttt{(cat,\ at\\_location)}$ asks where the cat is. A correct answer yields a reward of $+1$ and an incorrect answer yields $0$.`,
           `The environment remains intentionally dynamic. At every step, several Bernoulli-controlled changes can happen:
 
 - with probability $p_{commonsense}$, an object is placed in a commonsense location sourced from [ConceptNet](https://conceptnet.io/)
@@ -56,7 +52,7 @@ A_t = (\\text{memory operation}, \\text{answer}), \\qquad
 R_t \\in \\{0, 1\\}.
 $$
 
-Each agent maintains bounded **episodic** and **semantic** memory stores. Episodic memory keeps person-specific events with timestamps, while semantic memory compresses repeated experience into generalized world knowledge with strengths instead of timestamps. The paper compares four handcrafted policies under equal memory budgets: episodic only, semantic only, both episodic and semantic, and both with pretrained ConceptNet commonsense knowledge. It also evaluates a multi-agent setting where memories can be combined across agents.`,
+Each agent maintains bounded **episodic** and **semantic** memory stores. Episodic memory keeps person-specific events with timestamps, while semantic memory compresses repeated experience into generalized world knowledge with strengths instead of timestamps. We compare four handcrafted policies under equal memory budgets: episodic only, semantic only, both episodic and semantic, and both with pretrained ConceptNet commonsense knowledge. We also evaluate a multi-agent setting where memories can be combined across agents.`,
           `To simplify the benchmark, the experiments use a restricted subset of ConceptNet. The setup fixes **10 objects**, **10 random human names**, a single relation \`AtLocation\`, and a maximum episode length of **1,000** steps. The main environment probabilities are:
 
 - $p_{commonsense} = 0.7$
@@ -71,7 +67,7 @@ Each agent maintains bounded **episodic** and **semantic** memory stores. Episod
         eyebrow: "Results",
         title: "Mixed memory and collaboration deliver the strongest results.",
         body: [
-          `The first result is simple but important: structured forgetting and retrieval policies beat random baselines. If the agent both forgets memories and answers questions uniformly at random, performance collapses. Once the memory system becomes explicit and retrieval policies become coherent, even heuristic agents become much stronger baselines than random memory behavior.`,
+          `The first result is straightforward but important: structured forgetting and retrieval policies beat random baselines. If the agent both forgets memories and answers questions uniformly at random, performance collapses. Once the memory system becomes explicit and retrieval policies become coherent, even heuristic agents become much stronger baselines than random memory behavior.`,
           {
             type: "figureGrid",
             columns: 2,
@@ -108,7 +104,7 @@ Each agent maintains bounded **episodic** and **semantic** memory stores. Episod
             ],
           },
           `When memory capacity is small, episodic-only memory can perform better because there is not enough space to learn stable general world knowledge. As capacity increases, semantic memory becomes increasingly useful because the agent can generalize across many observations instead of treating every event as isolated.`,
-          `The most interesting case is the agent with pretrained semantic memory. Because the general world knowledge is already present, the agent can focus more of its finite capacity on episodic recall, which yields the strongest overall results in the paper's setup. The collaboration result is similarly important: two agents sharing memories can outperform a single agent with the same total budget because they cover different parts of the room and contribute complementary recall.`,
+          `The most interesting case is the agent with pretrained semantic memory. Because the general world knowledge is already present, the agent can focus more of its finite capacity on episodic recall, which yields the strongest overall results in this setup. The collaboration result is similarly important: two agents sharing memories can outperform a single agent with the same total budget because they cover different parts of the room and contribute complementary recall.`,
           `![Best strategies across memory capacities](/images/papers/human-like-memory-systems/human-like-memory-systems-best-strategies.png)
 
 *Total rewards with respect to different handcrafted policies and memory capacities.*`,
@@ -121,11 +117,11 @@ Each agent maintains bounded **episodic** and **semantic** memory stores. Episod
         id: "takeaways",
         navLabel: "Takeaways",
         eyebrow: "Takeaways",
-        title: "This paper lays the foundation for the broader research line.",
+        title: "Explicit episodic and semantic memory provide the foundation for the later work.",
         body: [
-          `Theoretically, the paper is closest to cognitive-science work on human memory, including traditions such as ACT-R and Soar. Those systems provide strong conceptual motivation, but they do not provide the same kind of computational benchmark surface used here. Human-Like Memory Systems tries to turn the theory into something experimentally comparable.`,
-          `On the machine-learning side, some work studies memory and question answering computationally, but often focuses on episodic memory alone or stores memory in opaque numeric embeddings rather than structured symbolic records. The paper's contribution is to keep the memory systems explicit, interpretable, and directly comparable while still evaluating them in a nontrivial partially observable task.`,
-          `The main takeaway is that explicit episodic and semantic memory systems are useful architectural primitives for AI agents operating under partial observability. Mixed memory outperforms single-memory baselines, commonsense pretraining helps, and collaboration between agents can further improve question answering. That makes this paper the benchmark-and-agents starting point for the later explicit-memory and RoomKG work.`,
+          `Theoretically, this work is closest to cognitive-science traditions such as ACT-R and Soar. Those systems provide strong conceptual motivation, but they do not provide the same kind of computational benchmark surface used here. Human-Like Memory Systems turns that theory into something experimentally comparable.`,
+          `On the machine-learning side, some work studies memory and question answering computationally, but often focuses on episodic memory alone or stores memory in opaque numeric embeddings rather than structured symbolic records. Our contribution is to keep the memory systems explicit, interpretable, and directly comparable while still evaluating them in a nontrivial partially observable task.`,
+          `The main takeaway is that explicit episodic and semantic memory systems are useful architectural primitives for AI agents operating under partial observability. Mixed memory outperforms single-memory baselines, commonsense pretraining helps, and collaboration between agents can further improve question answering. That makes Human-Like Memory Systems the benchmark-and-agents starting point for the later Explicit Memory and RoomKG work.`,
         ],
       },
       {
@@ -158,7 +154,7 @@ Each agent maintains bounded **episodic** and **semantic** memory stores. Episod
   problem:
     "Most agent systems collapse memory into opaque hidden state or short-lived context, which makes it hard to study the difference between general world knowledge and personally observed events. Without a benchmark that forces remembering under partial observability, it is difficult to test whether explicit semantic and episodic memory are architecturally useful.",
   solution:
-    "Human-Like Memory Systems introduces RoomEnv-v0 and compares handcrafted agents with bounded episodic and semantic memory stores. By making storage, forgetting, retrieval, and collaboration explicit, the paper turns memory from an implicit model side effect into something that can be inspected and compared directly.",
+    "Human-Like Memory Systems introduces RoomEnv-v0 and compares handcrafted agents with bounded episodic and semantic memory stores. By making storage, forgetting, retrieval, and collaboration explicit, this work turns memory from an implicit model side effect into something that can be inspected and compared directly.",
   impact:
     "This work established the benchmark, the first explicit-memory agents, and the initial empirical claim behind the broader research line: mixed episodic-plus-semantic memory helps, commonsense pretraining helps further, and collaboration can improve question answering under partial observability.",
   acknowledgements: {
@@ -175,8 +171,12 @@ Each agent maintains bounded **episodic** and **semantic** memory stores. Episod
       href: "https://arxiv.org/abs/2204.01611",
     },
     {
-      label: "View GitHub",
+      label: "View GitHub (Agent)",
       href: "https://github.com/humemai/human-like-memory-systems",
+    },
+    {
+      label: "View GitHub (RoomEnv)",
+      href: "https://github.com/humemai/room-env",
     },
     {
       label: "Parent project",
