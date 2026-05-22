@@ -14,7 +14,6 @@ import { EditorialFigureGrid, EditorialLinkSection, EditorialSection, EditorialS
 import { EditorialSectionNav } from "@/components/editorial-section-nav";
 import { getProject, getSubprojects, projects } from "@/lib/projects";
 import type { ProjectEditorialBodyBlock } from "@/lib/projects/types";
-import { ProjectScrollReset } from "../project-scroll-reset";
 import { SubprojectsSection } from "../subprojects-section";
 import styles from "../projects.module.css";
 
@@ -69,11 +68,11 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
   const parentProject = projects.find((candidate) => candidate.subprojectSlugs?.includes(project.slug));
   const projectContext = (
     <>
-      <Link href="/projects" scroll>Projects</Link>
+      <Link href="/projects">Projects</Link>
       {parentProject ? (
         <>
           {" / "}
-          <Link href={`/projects/${parentProject.slug}`} scroll>{parentProject.title}</Link>
+          <Link href={`/projects/${parentProject.slug}`}>{parentProject.title}</Link>
         </>
       ) : null}
     </>
@@ -144,7 +143,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
               const normalizedHref = String(href ?? "");
 
               if (normalizedHref.startsWith("/")) {
-                return <Link href={normalizedHref} scroll>{children}</Link>;
+                return <Link href={normalizedHref}>{children}</Link>;
               }
 
               return (
@@ -183,7 +182,6 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
 
     return (
       <main className={styles.editorialPage}>
-        <ProjectScrollReset />
         <EditorialMediaHero
           context={projectContext}
           eyebrow={editorialLabel}
@@ -268,9 +266,8 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
   if (project.showOnProjectsIndex) {
     return (
       <main className={styles.detailPage}>
-        <ProjectScrollReset />
         <EditorialMediaHero
-          context={<Link href="/projects" scroll>Projects</Link>}
+          context={<Link href="/projects">Projects</Link>}
           eyebrow="Project"
           title={project.title}
           intro={project.summary}
@@ -315,7 +312,6 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
 
   return (
     <main className={styles.subprojectPage}>
-      <ProjectScrollReset />
       <EditorialMediaHero
         context={projectContext}
         eyebrow="Subproject"
@@ -366,7 +362,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
         >
             {projectLinks.map((link) =>
               link.isInternal ? (
-                <Link className={styles.subprojectLinkRow} href={link.href} key={link.href} scroll>
+                <Link className={styles.subprojectLinkRow} href={link.href} key={link.href}>
                   <span>{link.label}</span>
                   <span className={styles.subprojectLinkAction}>Open</span>
                 </Link>
@@ -394,7 +390,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
           bodyClassName={styles.subprojectLinksList}
         >
             {subprojects.map((subproject) => (
-              <Link className={styles.subprojectLinkRow} href={`/projects/${subproject.slug}`} key={subproject.slug} scroll>
+              <Link className={styles.subprojectLinkRow} href={`/projects/${subproject.slug}`} key={subproject.slug}>
                 <span>
                   <strong>{subproject.title}</strong>
                   <small className={styles.subprojectLinkSummary}>{subproject.summary}</small>

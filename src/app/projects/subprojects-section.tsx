@@ -37,7 +37,7 @@ export function SubprojectsSection({ subprojects }: SubprojectsSectionProps) {
           const image = subproject.image;
 
           return (
-            <Link className={styles.subprojectCard} href={`/projects/${subproject.slug}`} key={subproject.slug} scroll>
+            <Link className={styles.subprojectCard} href={`/projects/${subproject.slug}`} key={subproject.slug}>
               {image ? (
                 <div className={styles.subprojectImageWrap}>
                   <Image

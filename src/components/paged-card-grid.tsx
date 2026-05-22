@@ -80,7 +80,8 @@ export function PagedCardGrid<T>({
     }
 
     const nextUrl = `${url.pathname}${url.search}${url.hash}`;
-    window.history[mode === "push" ? "pushState" : "replaceState"]({}, "", nextUrl);
+    const historyState = window.history.state ?? null;
+    window.history[mode === "push" ? "pushState" : "replaceState"](historyState, "", nextUrl);
   };
 
   const goToPage = (page: number, historyMode: "push" | "replace" = "push") => {
@@ -105,7 +106,6 @@ export function PagedCardGrid<T>({
 
       const handlePopState = () => {
         setCurrentPage(readPageFromUrl());
-        scrollToContentStart("auto");
       };
 
       window.addEventListener("popstate", handlePopState);

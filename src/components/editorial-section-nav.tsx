@@ -59,16 +59,24 @@ export function EditorialSectionNav({
       return;
     }
 
-    const activeLink = navRef.current.querySelector<HTMLAnchorElement>(`a[data-section-id="${activeId}"]`);
+    const nav = navRef.current;
+    const activeLink = nav.querySelector<HTMLAnchorElement>(`a[data-section-id="${activeId}"]`);
 
     if (!activeLink) {
       return;
     }
 
-    activeLink.scrollIntoView({
-      block: "nearest",
-      inline: "nearest",
-    });
+    const navRect = nav.getBoundingClientRect();
+    const linkRect = activeLink.getBoundingClientRect();
+    const targetLeft = activeLink.offsetLeft - (nav.clientWidth - activeLink.offsetWidth) / 2;
+    const isOutOfView = linkRect.left < navRect.left || linkRect.right > navRect.right;
+
+    if (isOutOfView) {
+      nav.scrollTo({
+        left: Math.max(0, targetLeft),
+        behavior: "auto",
+      });
+    }
   }, [activeId]);
 
   return (

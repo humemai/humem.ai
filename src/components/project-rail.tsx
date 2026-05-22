@@ -14,7 +14,7 @@ export function ProjectRail({ projects }: ProjectRailProps) {
   return (
     <HorizontalRail action={{ href: "/projects", label: "View all projects" }} className={styles.root} leftLabel="Scroll projects left" rightLabel="Scroll projects right">
         {projects.map((project) => (
-          <Link className={styles.card} href={`/projects/${project.slug}`} key={project.slug} scroll>
+          <Link className={styles.card} href={`/projects/${project.slug}`} key={project.slug}>
             {project.image ? (
               <div className={styles.imageWrap}>
                 <Image
