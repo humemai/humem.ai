@@ -150,7 +150,7 @@ class="editorial-image-compact"
 		],
 	},
 	summary:
-		"A paper and codebase on learned short-term-to-long-term transfer for temporal knowledge-graph memory under partial observability.",
+		"A learned keep-drop transfer policy for long-term knowledge-graph memory under partial observability.",
 	image: {
 		src: "/images/projects/project-kg-memory-transfer.png",
 		alt: "Illustration for KG Memory Transfer",
