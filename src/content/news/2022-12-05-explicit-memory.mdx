@@ -1,0 +1,54 @@
+---
+title: "Introducing Explicit Memory"
+description: "Our second explicit-memory paper shows how reinforcement learning can learn memory-management policies in RoomEnv-v1."
+date: '2022-12-05'
+image: '/news/2022-12-05/q-network-diagram.png'
+excerpt: "Explicit Memory is our reinforcement-learning follow-up to Human-Like Memory Systems."
+author: "HumemAI"
+heroActions:
+  - label: 'View project page'
+    href: '/projects/explicit-memory'
+    variant: 'primary'
+  - label: 'Read paper'
+    href: 'https://arxiv.org/abs/2212.02098'
+    variant: 'secondary'
+resourcesHeading: 'Paper, code, and related project pages.'
+resources:
+  - label: 'View project page'
+    href: '/projects/explicit-memory'
+  - label: 'Read paper'
+    href: 'https://arxiv.org/abs/2212.02098'
+  - label: 'View GitHub (Agent)'
+    href: 'https://github.com/humemai/explicit-memory'
+  - label: 'View GitHub (RoomEnv)'
+    href: 'https://github.com/humemai/room-env'
+tags:
+  - 'HumemAI'
+  - 'Long-Term Memory'
+  - 'Episodic Memory'
+  - 'Semantic Memory'
+  - 'Reinforcement Learning'
+  - 'AI Research'
+---
+
+## A learned explicit-memory agent
+
+**Explicit Memory** is our second research paper on AI systems with explicit memory. This release takes the original [Human-Like Memory Systems](/projects/human-like-memory-systems) direction one step further: instead of hand-writing the memory policy, we train the agent to decide what should be forgotten, stored episodically, or stored semantically.
+
+The full technical breakdown is available on the related [project page](/projects/explicit-memory). This announcement focuses on the product and research significance of the release.
+
+## What changed from the first paper
+
+Our first paper showed that explicit episodic and semantic memory could outperform simpler alternatives, but its policies were still handcrafted. That made the result promising, but incomplete. We still needed to answer a harder question: can an agent **learn** how to manage explicit memory rather than rely on rules we wrote ourselves?
+
+Explicit Memory answers that question with **reinforcement learning** in **RoomEnv-v1**, a more demanding version of our environment. The agent now observes events, stores them in short-term memory, and learns which items should be routed into episodic or semantic long-term memory to maximize future reward.
+
+## Why this release matters
+
+This is an important step for HumemAI because it keeps the memory system **explicit and inspectable** while still making it trainable. We do not have to choose between symbolic structure and learning. In this work, the agent learns the memory-management policy while the memory contents remain separate enough to analyze.
+
+The experiments show that the learned agent can outperform fixed storage baselines, and that pretrained semantic knowledge can improve learning further. For us, that makes Explicit Memory more than a follow-up paper. It is evidence that explicit memory can scale from handcrafted prototypes toward trainable agent systems.
+
+## Where this fits in our roadmap
+
+Explicit Memory is part of the broader [Machines with Human-Like Memory](/projects/machines-with-human-like-memory) project. If the first paper established the benchmark and the architectural claim, this release establishes that memory management itself can become part of the learned policy.

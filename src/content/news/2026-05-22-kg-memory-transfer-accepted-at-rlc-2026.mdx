@@ -1,0 +1,54 @@
+---
+title: 'KG Memory Transfer accepted at RLC 2026'
+description: 'Our paper on learned short-term-to-long-term transfer for knowledge graphs under partial observability has been accepted at the Reinforcement Learning Conference 2026.'
+date: '2026-05-22'
+image: '/images/papers/kg-memory-transfer/memory_state_099.png'
+excerpt: 'Short-Term-to-Long-Term Memory Transfer for Knowledge Graphs under Partial Observability has been accepted at RLC 2026.'
+author: 'HumemAI'
+heroActions:
+  - label: 'View project page'
+    href: '/projects/kg-memory-transfer'
+    variant: 'primary'
+  - label: 'Read paper'
+    href: 'https://arxiv.org/abs/2605.22142'
+    variant: 'secondary'
+resourcesHeading: 'Project, paper, and conference links.'
+resources:
+  - label: 'View project page'
+    href: '/projects/kg-memory-transfer'
+  - label: 'Read paper'
+    href: 'https://arxiv.org/abs/2605.22142'
+  - label: 'View GitHub'
+    href: 'https://github.com/humemai/kg-memory-transfer'
+  - label: 'Visit RLC 2026'
+    href: 'https://rl-conference.cc/'
+tags:
+  - 'HumemAI'
+  - 'RLC 2026'
+  - 'Reinforcement Learning'
+  - 'Knowledge Graphs'
+  - 'Memory Transfer'
+  - 'AI Research'
+---
+
+## Our KG Memory Transfer paper has been accepted at RLC 2026
+
+We are announcing that **Short-Term-to-Long-Term Memory Transfer for Knowledge Graphs under Partial Observability** has been accepted at **RLC 2026**, the [Reinforcement Learning Conference](https://rl-conference.cc/).
+
+The paper is also now part of the broader [KG Memory Transfer project page](/projects/kg-memory-transfer), where we explain the method, results, and implementation context in more detail.
+
+## What the paper is about
+
+This work studies a specific memory problem inside partially observable reinforcement learning: when short-term symbolic observations arrive under memory constraints, which facts should be transferred into long-term memory and which should be dropped?
+
+Our approach treats that decision as an explicit **keep/drop** policy over knowledge-graph facts. Rather than hiding consolidation inside a latent recurrent state, the method keeps transfer decisions inspectable at the level of individual triples. That makes the learned behavior easier to analyze while still improving downstream question answering in the RoomKG setting.
+
+## Why this acceptance matters
+
+For us, this paper is important because it pushes the memory-centric line of work beyond explicit storage and retrieval alone. It treats the move from short-term observation to long-term memory as the learned decision problem and shows that selective symbolic transfer can outperform both symbolic heuristics and history-based neural baselines in a controlled setting.
+
+It is also a good example of the broader HumemAI direction: explicit memory structures, interpretable decisions, and reinforcement learning systems that remain analyzable instead of collapsing everything into opaque hidden state.
+
+## Read more
+
+If you want the full technical story, start with the [project page](/projects/kg-memory-transfer) and then read the paper on [arXiv](https://arxiv.org/abs/2605.22142).

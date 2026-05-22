@@ -8,6 +8,7 @@ import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import { EditorialMediaHero } from "@/components/editorial-media-hero";
+import { EditorialLinkSection } from "@/components/editorial-sections";
 import { getAllNewsPosts, getNewsPost } from "@/lib/news-posts";
 import styles from "../news.module.css";
 
@@ -54,6 +55,11 @@ export default async function NewsPostPage({ params }: { params: Promise<Params>
         eyebrow="News"
         title={post.title}
         intro={post.description}
+        actions={post.heroActions.map((action) => ({
+          href: action.href,
+          label: action.label,
+          variant: action.variant,
+        }))}
         meta={<>{post.author} · {publishedAt}</>}
         imageSrc={post.image}
         imageAlt={post.title}
@@ -83,6 +89,18 @@ export default async function NewsPostPage({ params }: { params: Promise<Params>
             {post.content}
           </ReactMarkdown>
         </div>
+
+        {post.resources.length > 0 ? (
+          <EditorialLinkSection
+            eyebrow="Resources"
+            title={post.resourcesHeading ?? "Links related to this announcement."}
+            links={post.resources.map((resource) => ({
+              href: resource.href,
+              content: resource.label,
+              actionLabel: resource.actionLabel,
+            }))}
+          />
+        ) : null}
       </article>
     </main>
   );

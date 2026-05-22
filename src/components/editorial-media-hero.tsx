@@ -72,6 +72,7 @@ export function EditorialMediaHero({
         {children || actions?.length || meta ? (
           <div className={styles.supporting}>
             {children}
+            {meta ? <div className={styles.meta}>{meta}</div> : null}
             {actions?.length ? (
               <div className={styles.actions}>
                 {actions.map((action) => (
@@ -79,7 +80,6 @@ export function EditorialMediaHero({
                 ))}
               </div>
             ) : null}
-            {meta ? <div className={styles.meta}>{meta}</div> : null}
           </div>
         ) : null}
       </div>
