@@ -27,7 +27,7 @@ export const humanLikeMemorySystems: Project = {
         eyebrow: "Benchmark",
         title: "RoomEnv-v0 tests memory under partial observability.",
         body: [
-          `The OpenAI-Gym-compatible Room environment is one large room with $N_{people}$ people, $N_{objects}$ objects, $N_{locations}$ locations, and $N_{agents}$ agents. A human places an object at some location, but each agent can observe only one such placement event at a time. At the same step, the environment asks a question about an object's location, so the agent must answer from memory rather than from privileged access to the full room state.`,
+          `The OpenAI-Gym-compatible Room environment is one large room with $N_{\\text{people}}$ people, $N_{\\text{objects}}$ objects, $N_{\\text{locations}}$ locations, and $N_{\\text{agents}}$ agents. A human places an object at some location, but each agent can observe only one such placement event at a time. At the same step, the environment asks a question about an object's location, so the agent must answer from memory rather than from privileged access to the full room state.`,
           `Observations are represented as RDF-like quadruples and questions as structured relation queries:
 
 $$
@@ -39,10 +39,10 @@ $$
 For example, $\\texttt{(laptop,\ at\\_location,\ desk,\ 42)}$ records a specific observation, while $\\texttt{(cat,\ at\\_location)}$ asks where the cat is. A correct answer yields a reward of $+1$ and an incorrect answer yields $0$.`,
           `The environment remains intentionally dynamic. At every step, several Bernoulli-controlled changes can happen:
 
-- with probability $p_{commonsense}$, an object is placed in a commonsense location sourced from [ConceptNet](https://conceptnet.io/)
-- with probability $p_{new\\_location}$, a human changes an object's location
-- with probability $p_{new\\_object}$, a human changes which object they carry
-- with probability $p_{switch\\_person}$, two people swap locations to mimic movement through the room
+- with probability $p_{\\text{commonsense}}$, an object is placed in a commonsense location sourced from [ConceptNet](https://conceptnet.io/)
+- with probability $p_{\\text{new\\_location}}$, a human changes an object's location
+- with probability $p_{\\text{new\\_object}}$, a human changes which object they carry
+- with probability $p_{\\text{switch\\_person}}$, two people swap locations to mimic movement through the room
 
 With one agent, the setup can be summarized as
 
@@ -55,10 +55,10 @@ $$
 Each agent maintains bounded **episodic** and **semantic** memory stores. Episodic memory keeps person-specific events with timestamps, while semantic memory compresses repeated experience into generalized world knowledge with strengths instead of timestamps. We compare four handcrafted policies under equal memory budgets: episodic only, semantic only, both episodic and semantic, and both with pretrained ConceptNet commonsense knowledge. We also evaluate a multi-agent setting where memories can be combined across agents.`,
           `To simplify the benchmark, the experiments use a restricted subset of ConceptNet. The setup fixes **10 objects**, **10 random human names**, a single relation \`AtLocation\`, and a maximum episode length of **1,000** steps. The main environment probabilities are:
 
-- $p_{commonsense} = 0.7$
-- $p_{new\\_location} = 0.1$
-- $p_{new\\_object} = 0.1$
-- $p_{switch\\_person} = 0.5$`,
+- $p_{\\text{commonsense}} = 0.7$
+- $p_{\\text{new\\_location}} = 0.1$
+- $p_{\\text{new\\_object}} = 0.1$
+- $p_{\\text{switch\\_person}} = 0.5$`,
         ],
       },
       {
