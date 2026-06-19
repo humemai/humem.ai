@@ -2,6 +2,7 @@ import type { Project } from "./types";
 import {
   arcadeDbEmbeddedPython,
   auditReadyMemory,
+  coLearning,
   cypherglot,
   explicitMemory,
   humanLikeMemorySystems,
@@ -23,6 +24,7 @@ export const projects: Project[] = [
   explicitMemory,
   roomkgBaselines,
   kgMemoryTransfer,
+  coLearning,
   auditReadyMemory,
   multiModelDatabases,
   cypherglot,

@@ -1,0 +1,56 @@
+---
+title: 'Co-Learning accepted at RO-MAN 2026'
+description: 'Our paper on reusing prior human-robot collaboration patterns as knowledge-graph episodic memory has been accepted at the IEEE RO-MAN 2026 conference.'
+date: '2026-06-19'
+image: '/images/papers/co-learning/usar-simulation.png'
+excerpt: 'Improving Human-Robot Teamwork in Urban Search and Rescue Through Episodic Memory of Prior Collaboration has been accepted at RO-MAN 2026.'
+author: 'HumemAI'
+heroActions:
+  - label: 'View project page'
+    href: '/projects/co-learning'
+    variant: 'primary'
+  - label: 'Read paper'
+    href: 'https://arxiv.org/abs/2606.18836'
+    variant: 'secondary'
+resourcesHeading: 'Project, paper, and conference links.'
+resources:
+  - label: 'View project page'
+    href: '/projects/co-learning'
+  - label: 'Read paper'
+    href: 'https://arxiv.org/abs/2606.18836'
+  - label: 'View GitHub'
+    href: 'https://github.com/humemai/co-learning'
+  - label: 'Visit RO-MAN 2026'
+    href: 'https://ro-man2026.org/'
+tags:
+  - 'HumemAI'
+  - 'RO-MAN 2026'
+  - 'Human-Robot Interaction'
+  - 'Episodic Memory'
+  - 'Knowledge Graphs'
+  - 'AI Research'
+---
+
+## Our Co-Learning paper has been accepted at RO-MAN 2026
+
+We are announcing that **Improving Human-Robot Teamwork in Urban Search and Rescue Through Episodic Memory of Prior Collaboration** has been accepted at **RO-MAN 2026**, the [35th IEEE International Conference on Robot and Human Interactive Communication](https://ro-man2026.org/), held in Fukuoka, Japan.
+
+The work was carried out in collaboration with [TNO](https://www.tno.nl/) and [TU Delft](https://www.tudelft.nl/), and is now part of the broader [Co-Learning project page](/projects/co-learning), where we explain the method, results, and experimental setup in more detail.
+
+## What the paper is about
+
+This work studies a specific memory problem in human-robot teamwork: when a robot joins a new collaboration, can it reuse prior team experience to be a better teammate from the very start, instead of beginning with an empty memory?
+
+In the MATRX Urban Search and Rescue environment, a human and a collaborative robot work together to rescue a buried victim. People externalize the collaboration patterns they discover during teamwork, and we treat those patterns as explicit **knowledge-graph episodic memories**. Using graph representation learning, we organize past collaboration patterns and select a representative one to preload into the robot before a new interaction begins. Because the reused experience stays an inspectable situation-action structure rather than opaque policy weights, the robot's later behavior remains auditable.
+
+In a study with 20 participants, initializing the robot with a single prior collaboration pattern raised rescue success from 25.7% to 41.3% and reduced average task time by 283 seconds, with the strongest gains at the very beginning of collaboration.
+
+## Why this acceptance matters
+
+For us, this paper extends the memory-centric line of work into human-robot interaction. It shows that explicit, reusable team memory can shape how a robot enters a collaboration, not just how it adapts during one, and that this prior knowledge can stay interpretable rather than hidden inside a learned policy.
+
+It is also a good example of the broader HumemAI direction: explicit memory structures, interpretable decisions, and systems that remain analyzable instead of collapsing experience into opaque hidden state.
+
+## Read more
+
+If you want the full technical story, start with the [project page](/projects/co-learning) and then read the paper on [arXiv](https://arxiv.org/abs/2606.18836).

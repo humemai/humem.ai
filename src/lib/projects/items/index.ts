@@ -1,5 +1,6 @@
 export { arcadeDbEmbeddedPython } from "./arcadedb-embedded-python";
 export { auditReadyMemory } from "./audit-ready-memory";
+export { coLearning } from "./co-learning";
 export { cypherglot } from "./cypherglot";
 export { explicitMemory } from "./explicit-memory";
 export { humanLikeMemorySystems } from "./human-like-memory-systems";

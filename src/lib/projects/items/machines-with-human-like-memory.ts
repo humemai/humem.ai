@@ -15,6 +15,7 @@ export const machinesWithHumanLikeMemory: Project = {
     "explicit-memory",
     "roomkg-baselines",
     "kg-memory-transfer",
+    "co-learning",
   ],
   summary:
     "A PhD research project on explicit memory architectures for AI, spanning benchmarks, handcrafted agents, learned policies, and temporal knowledge-graph memory.",
@@ -41,6 +42,7 @@ export const machinesWithHumanLikeMemory: Project = {
     { label: "Explicit Memory", href: "/projects/explicit-memory" },
     { label: "RoomKG Baselines", href: "/projects/roomkg-baselines" },
     { label: "KG Memory Transfer", href: "/projects/kg-memory-transfer" },
+    { label: "Co-Learning", href: "/projects/co-learning" },
     { label: "Contact", href: "/contact" },
   ],
 };
