@@ -488,3 +488,27 @@ No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no 
 
 Filename: `project-kg-memory-transfer.png`
 Alt text: `Illustration of selective transfer from short-term observations into long-term temporal knowledge-graph memory under partial observability.`
+
+## 21. Co-Learning Project Visual
+
+```text
+Generate a project image for Co-Learning by HumemAI.
+
+Purpose:
+This image will be used on the Co-Learning project page and project card. It should communicate reusing prior human-robot collaboration experience as knowledge-graph episodic memory, so a robot enters a new urban search-and-rescue team interaction already holding a useful prior memory instead of starting empty.
+
+Aspect ratio:
+1:1 or 4:5
+
+What to show:
+Create a clean editorial illustration about carrying a prior collaboration pattern into a new human-robot team interaction. Suggest an urban search-and-rescue task abstractly: a simple rubble or debris field with a buried target and an access route being cleared. Hint at two collaborating roles, one human and one machine, as simple symbolic markers rather than literal characters or a humanoid robot. Show past collaboration patterns stored as small knowledge graphs that capture a situation, an ordered action sequence, and an outcome, being organized into groups, with one representative pattern selected and preloaded into the robot before a new episode begins. The composition should communicate that the robot starts the new collaboration already holding a reusable, inspectable memory of how the team worked before, and that this prior experience is a structured situation-action memory rather than hidden policy weights.
+
+Style:
+Clean, structured, product-oriented editorial illustration. Restrained palette: off-white, charcoal, slate, muted blue-gray, very limited accent color. Crisp geometry, calm composition, diagrammatic feeling. Premium, minimal, modern technology brand. Keep it focused on collaboration and reusable team memory, with a few bold modules and a clear sense of a prior pattern being carried into a fresh interaction, rather than a dense benchmark poster or simulation screenshot.
+
+Avoid:
+No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no stock-photo people, no clutter, no fantasy sci-fi scene, no purple-glow AI art, no low-detail illustration, no text baked into the image, no literal screenshot of the simulation, no video-game UI, no paper-figure recreation, no dense academic diagram, no tiny labels, no disaster or gore imagery.
+```
+
+Filename: `project-co-learning.png`
+Alt text: `Illustration of reusing a prior human-robot collaboration pattern as knowledge-graph episodic memory in a search-and-rescue task.`
