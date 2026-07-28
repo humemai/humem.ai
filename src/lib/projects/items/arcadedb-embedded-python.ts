@@ -59,7 +59,7 @@ export const arcadeDbEmbeddedPython: Project = {
         eyebrow: "Surface",
         title: "Expose a real Python package surface instead of a thin wrapper.",
         body: [
-          "This subproject is not just a launcher around the upstream engine. It exposes transactions, schema management, graph helpers, export paths, and vector-related capabilities as a maintained Python package surface.",
+          "This subproject is more than a launcher around the upstream engine. It exposes transactions, schema management, graph helpers, export paths, and vector-related capabilities as a maintained Python package surface.",
           "That is the real reason it exists as a standalone subproject: to make ArcadeDB feel like a usable Python dependency rather than a one-off interoperability experiment.",
         ],
         figure: {

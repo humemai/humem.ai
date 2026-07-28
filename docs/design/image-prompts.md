@@ -5,6 +5,28 @@ The set is intentionally redundant so you do not need to remember shared style r
 Important overall direction:
 Bias strongly toward simplified editorial illustration, not screenshot realism. Use a small number of large visual elements, clear shapes, and calm negative space. Suggest systems and structure without rendering tiny UI chrome, tiny text, dense dashboards, or photoreal software screens.
 
+## House theme (2026-07 revision)
+
+Derived from the HumemAI icon (a single-color head silhouette holding a small
+knowledge graph) and the site's existing accents. Every prompt below should be read
+with, and every new prompt should include, these constraints:
+
+- Palette, exactly four roles: warm off-white background (#faf8f5), deep brand teal
+  (#1a5f7a) as the one structural ink for shapes and strokes, soft charcoal
+  (#2a2a2a) only where teal needs contrast, and warm coral (#ff8f70) as a single
+  small accent for the one element that matters. Nothing else. No gradients, no
+  lighting, no texture.
+- Flat diagram language: thick even strokes, simple filled shapes, five to eight
+  visual elements total. If it could not be redrawn by hand in two minutes, it is
+  too detailed.
+- Composition must be center-weighted with at least 15 percent quiet margin on every
+  side, because the site crops the same source to both 5:6 portrait and 16:11
+  landscape. Nothing important near any edge.
+- Absolutely no text, letters, numbers, or letter-like glyph rows baked into the
+  image.
+- Motif kinship with the icon is welcome: small knowledge graphs of a few round
+  nodes and plain edges are the house symbol for memory.
+
 ## 1. Homepage Hero
 
 ```text
