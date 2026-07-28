@@ -88,10 +88,11 @@
 /* Tablets and unfolded foldables: between the two-column breakpoint and desktop,
    the aside's 30rem max starves the lead column. At a 776px viewport the tracks
    resolved to 169px against 480px, wrapping section headings to seven lines.
-   Capping the aside keeps the two columns comparable across this range. */
+   Capping the aside keeps the two columns comparable, with the body still
+   marginally the wider of the two as it is on desktop. */
 @media (min-width: 720px) and (max-width: 1023px) {
   :root {
-    --site-aside-column: minmax(0, 20rem);
+    --site-aside-column: minmax(0, 22rem);
   }
 }
 
