@@ -21,6 +21,14 @@ with, and every new prompt should include, these constraints:
   containers, the shapes that enclose something, are drawn as thick outlines. A
   composition made entirely of hollow outlined shapes reads thin and generic; the
   house look is chunky and confident.
+- **Name only three colors in a prompt unless a fourth is genuinely needed.** Listing
+  charcoal as an available color makes the generator insert a stray charcoal element
+  (a cross, a rogue block, a floating capsule) even when nothing in the brief calls
+  for one. Mention charcoal only in prompts that actually depict something rejected
+  or discarded.
+- **State content discipline explicitly.** Add a line telling the generator to draw
+  only the listed elements and nothing else: no decorative marks, stray dots,
+  sparkles, or badges. Without it, empty space gets filled with noise.
 - Flat diagram language: thick even strokes, five to eight visual elements total. If
   it could not be redrawn by hand in two minutes, it is too detailed.
 - Composition must be center-weighted with at least 15 percent quiet margin on every
@@ -34,22 +42,35 @@ with, and every new prompt should include, these constraints:
 ## 1. Homepage Hero
 
 ```text
-Generate a website hero image for HumemAI.
+Generate a 16:10 landscape illustration for the HumemAI website.
 
 Purpose:
 This image will be used on the homepage above the fold. It should represent HumemAI as the memory layer for agentic AI systems across conversations, documents, tables, and graphs.
 
-Aspect ratio:
-16:10
-
 What to show:
-Create a flagship visual showing multiple information types flowing into one structured memory system. Suggest chat threads, document pages, table-like data, graph nodes and edges, retrieval links, and persistent memory layers using simplified shapes and a few clear modules rather than a literal product UI. The memory system should feel orderly, inspectable, long-lived, and useful over time.
+Down the left side, three solid filled teal shapes stacked with space between them: a speech bubble, a plain page rectangle, and a small three-by-three grid of solid squares. From each, one thick teal line runs rightward and converges into a large rounded-rectangle container drawn as a thick teal outline. Inside the container sits a small knowledge graph of five solid filled circles joined by thick edges; four circles are teal and one is coral. Eight elements total.
 
 Style:
-Clean, structured, product-oriented editorial illustration. Restrained palette: off-white, charcoal, slate, muted blue-gray, very limited accent color. Crisp geometry, calm composition, diagrammatic feeling. Premium, minimal, modern technology brand. Strong hierarchy and breathing room. Use a few large forms instead of many tiny details. It should feel like a real product company hero, not a research poster.
+Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
 
-Avoid:
-No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no stock-photo people, no clutter, no fantasy sci-fi scene, no purple-glow AI art, no low-detail illustration, no generic AI swirls, no cheesy futurism, no random 3D blobs, no text baked into the image, no realistic app screenshot, no tiny interface chrome, no dense dashboard.
+Fills:
+Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
+
+Palette, exactly these three colors and nothing else:
+- background: warm off-white #faf8f5
+- every shape and every stroke: deep teal #1a5f7a
+- the single most important element only: warm coral #ff8f70
+Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
+
+Content discipline:
+Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
+
+Composition:
+Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
+
+Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
+
+Aspect ratio: 16:10 landscape.
 ```
 
 Filename: `home-hero-memory-layer.png`
@@ -58,22 +79,35 @@ Alt text: `Illustration of conversations, documents, tables, and graph data flow
 ## 2. Product Hero
 
 ```text
-Generate a product page hero image for HumemAI.
+Generate a 16:9 landscape illustration for the HumemAI website.
 
 Purpose:
 This image will be used on the product page. It should imply what the HumemAI product feels like in use.
 
-Aspect ratio:
-16:9
-
 What to show:
-Create a simplified product-system illustration for an AI memory platform. Show a central memory graph or knowledge graph, a conversation area, document context, retrieval results, and structured memory traces as a few bold panels or modules. Do not make it look like a realistic software screenshot. Emphasize inspectable memory, structured knowledge, persistent context, and calm enterprise-grade design.
+On the left, three solid filled teal rounded bars stacked vertically, of slightly different widths. In the centre, a large rounded-rectangle container drawn as a thick teal outline holding a small knowledge graph of five solid filled teal circles with thick edges. One circle is coral. From that coral circle, a single thick coral line exits to the right and ends in a solid coral dot. Seven elements total.
 
 Style:
-Clean, structured, product-oriented editorial illustration. Restrained palette: off-white, charcoal, slate, muted blue-gray, very limited accent color. Crisp geometry, calm composition, diagrammatic feeling. Premium, minimal, modern technology brand. Keep the layout simple and legible, with three to five major areas at most. It should feel usable, trustworthy, and product-oriented without becoming a dashboard.
+Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
 
-Avoid:
-No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no stock-photo people, no clutter, no fantasy sci-fi scene, no purple-glow AI art, no low-detail illustration, no generic analytics dashboard, no fake branding text, no text baked into the image, no realistic software screenshot, no laptop mockup, no tiny labels, no detailed UI chrome.
+Fills:
+Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
+
+Palette, exactly these three colors and nothing else:
+- background: warm off-white #faf8f5
+- every shape and every stroke: deep teal #1a5f7a
+- the single most important element only: warm coral #ff8f70
+Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
+
+Content discipline:
+Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
+
+Composition:
+Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
+
+Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
+
+Aspect ratio: 16:9 landscape.
 ```
 
 Filename: `product-hero-interface.png`
@@ -82,22 +116,35 @@ Alt text: `Mock product interface showing chat, memory graph, and structured ret
 ## 3. About Page Visual
 
 ```text
-Generate an About page image for HumemAI.
+Generate a 1:1 square illustration for the HumemAI website.
 
 Purpose:
 This image will be used on the About page. It should connect human-like memory ideas to practical AI systems.
 
-Aspect ratio:
-1:1 or 4:5
-
 What to show:
-Create a conceptual but disciplined visual about human-like memory structures for AI. Show episodic memory, semantic memory, persistence, selective recall, and linked knowledge as structured components of one system. Keep the composition simple, using a few symbolic forms instead of a dense technical diagram. It should suggest that memory is organized, inspectable, and useful over time.
+Two rounded-square containers side by side, both drawn as thick teal outlines. The left container holds three solid filled teal dots arranged in a line, suggesting a sequence of events. The right container holds three solid filled teal circles joined by thick teal edges into a small graph. A single thick coral line connects the two containers through the middle. Six elements total.
 
 Style:
-Clean, structured, product-oriented editorial illustration. Restrained palette: off-white, charcoal, slate, muted blue-gray, very limited accent color. Crisp geometry, calm composition, diagrammatic feeling. Premium, minimal, modern technology brand. This should feel like research translated into product direction, not an academic slide.
+Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
 
-Avoid:
-No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no stock-photo people, no clutter, no fantasy sci-fi scene, no purple-glow AI art, no low-detail illustration, no text baked into the image, no dense technical diagram.
+Fills:
+Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
+
+Palette, exactly these three colors and nothing else:
+- background: warm off-white #faf8f5
+- every shape and every stroke: deep teal #1a5f7a
+- the single most important element only: warm coral #ff8f70
+Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
+
+Content discipline:
+Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
+
+Composition:
+Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
+
+Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
+
+Aspect ratio: 1:1 square.
 ```
 
 Filename: `about-memory-architecture.png`
@@ -106,22 +153,35 @@ Alt text: `Conceptual illustration of structured memory systems for AI.`
 ## 4. Pricing Visual
 
 ```text
-Generate a pricing page image for HumemAI.
+Generate a 1:1 square illustration for the HumemAI website.
 
 Purpose:
 This image will be used on the Pricing page. It should show different ways of using HumemAI without looking like a literal pricing table.
 
-Aspect ratio:
-1:1
-
 What to show:
-Create a clean systems illustration that communicates three ways to use an AI memory platform: self-hosted, hosted, and custom deployment. Show three distinct but related paths or operating modes inside one cohesive composition. Keep each path simple and graphic, using clear lanes or blocks rather than detailed infrastructure diagrams. The image should imply deployment choices, infrastructure paths, and product usage models without using numbers or SaaS pricing-table tropes.
+One solid filled teal rounded square at the top centre. From its bottom edge, three thick lines fan downward to three separate rounded-square shapes along the bottom. The left and right bottom shapes are solid teal; the middle bottom shape and the middle line connecting to it are coral. Seven elements total.
 
 Style:
-Clean, structured, product-oriented editorial illustration. Restrained palette: off-white, charcoal, slate, muted blue-gray, very limited accent color. Crisp geometry, calm composition, diagrammatic feeling. Premium, minimal, modern technology brand. Make it structured, clear, and enterprise-ready.
+Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
 
-Avoid:
-No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no stock-photo people, no clutter, no fantasy sci-fi scene, no purple-glow AI art, no low-detail illustration, no literal pricing boxes, no text baked into the image, no dense cloud architecture diagram.
+Fills:
+Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
+
+Palette, exactly these three colors and nothing else:
+- background: warm off-white #faf8f5
+- every shape and every stroke: deep teal #1a5f7a
+- the single most important element only: warm coral #ff8f70
+Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
+
+Content discipline:
+Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
+
+Composition:
+Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
+
+Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
+
+Aspect ratio: 1:1 square.
 ```
 
 Filename: `pricing-deployment-paths.png`
@@ -130,22 +190,35 @@ Alt text: `Illustration showing self-hosted, hosted, and custom deployment paths
 ## 5. Contact / Early Access Visual
 
 ```text
-Generate a contact page image for HumemAI.
+Generate a 1:1 square illustration for the HumemAI website.
 
 Purpose:
 This image will be used on the Contact page. It should communicate collaboration, onboarding, and working together without feeling like generic customer support imagery.
 
-Aspect ratio:
-1:1
-
 What to show:
-Create a minimal supporting visual for collaboration and onboarding around an AI memory platform. Show connected workflows, setup steps, coordination, or guided integration into a structured system. Keep it sparse and symbolic rather than detailed. It should feel welcoming and professional, but still product- and system-oriented.
+Four solid filled circles arranged along a gently rising path from lower left to upper right, joined by thick straight connecting lines. The first three circles are teal and increase slightly in size; the final upper-right circle is coral and largest. Seven elements total.
 
 Style:
-Clean, structured, product-oriented editorial illustration. Restrained palette: off-white, charcoal, slate, muted blue-gray, very limited accent color. Crisp geometry, calm composition, diagrammatic feeling. Premium, minimal, modern technology brand.
+Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
 
-Avoid:
-No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no stock-photo people, no customer-support cliché, no clutter, no fantasy sci-fi scene, no purple-glow AI art, no low-detail illustration, no text baked into the image.
+Fills:
+Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
+
+Palette, exactly these three colors and nothing else:
+- background: warm off-white #faf8f5
+- every shape and every stroke: deep teal #1a5f7a
+- the single most important element only: warm coral #ff8f70
+Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
+
+Content discipline:
+Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
+
+Composition:
+Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
+
+Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
+
+Aspect ratio: 1:1 square.
 ```
 
 Filename: `contact-collaboration-onboarding.png`
@@ -154,22 +227,35 @@ Alt text: `Illustration representing collaboration and onboarding around an AI m
 ## 6. Projects Overview Visual
 
 ```text
-Generate a projects overview image for HumemAI.
+Generate a 16:9 landscape illustration for the HumemAI website.
 
 Purpose:
 This image will be used on the Projects overview page or section. It should represent public work, research, prototypes, and funded efforts.
 
-Aspect ratio:
-16:9
-
 What to show:
-Create a structured portfolio-style visual for an AI memory company’s public projects. Combine research artifacts, system diagrams, database motifs, graph structures, vector retrieval, and applied prototypes into one coherent composition. Keep the composition broad and editorial, with a handful of larger motifs rather than many tiny artifacts. The image should communicate that multiple serious efforts connect back to one broader memory platform.
+Five rounded-square tiles of varied sizes arranged in a loose balanced cluster with clear gaps between them. Four tiles are solid filled teal; one tile, slightly larger and near the centre, is coral. Thin teal lines connect a few of the tiles to each other. Six elements total.
 
 Style:
-Clean, structured, product-oriented editorial illustration. Restrained palette: off-white, charcoal, slate, muted blue-gray, very limited accent color. Crisp geometry, calm composition, diagrammatic feeling. Premium, minimal, modern technology brand. It should feel like proof, substance, and technical depth, not marketing fluff.
+Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
 
-Avoid:
-No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no stock-photo people, no clutter, no fantasy sci-fi scene, no purple-glow AI art, no low-detail illustration, no text baked into the image, no dense collage of tiny screenshots.
+Fills:
+Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
+
+Palette, exactly these three colors and nothing else:
+- background: warm off-white #faf8f5
+- every shape and every stroke: deep teal #1a5f7a
+- the single most important element only: warm coral #ff8f70
+Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
+
+Content discipline:
+Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
+
+Composition:
+Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
+
+Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
+
+Aspect ratio: 16:9 landscape.
 ```
 
 Filename: `projects-overview-portfolio.png`
@@ -178,26 +264,35 @@ Alt text: `Structured illustration representing research, systems work, and appl
 ## 7. Social / Open Graph Image
 
 ```text
-Generate a social preview image for HumemAI.
+Generate a 2:1 wide landscape illustration for the HumemAI website.
 
 Purpose:
 This image will be used as the site-wide Open Graph / social share image. It needs to be immediately readable on X, LinkedIn, Slack, and Discord.
 
-Aspect ratio:
-2:1
-
 What to show:
-Create a premium social share image for HumemAI. Keep the composition simple and immediately legible at small sizes. Use a refined structured background with memory graph, document, and retrieval motifs, but keep those motifs abstract and low-detail. Keep the layout clean with strong contrast and lots of negative space.
-
-Required text in the image:
-HumemAI
-Memory for Agentic AI
+One large rounded-rectangle container drawn as a thick teal outline, centred. Inside it, a small knowledge graph of six solid filled circles joined by thick teal edges; five circles are teal and the central one is coral. Nothing else at all. Very simple and legible at small sizes.
 
 Style:
-Clean, structured, product-oriented editorial illustration. Restrained palette: off-white, charcoal, slate, muted blue-gray, very limited accent color. Crisp geometry, calm composition, diagrammatic feeling. Premium, minimal, modern technology brand. The text should feel elegant and modern, not loud or ad-like.
+Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
 
-Avoid:
-No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no stock-photo people, no clutter, no fantasy sci-fi scene, no purple-glow AI art, no low-detail illustration.
+Fills:
+Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
+
+Palette, exactly these three colors and nothing else:
+- background: warm off-white #faf8f5
+- every shape and every stroke: deep teal #1a5f7a
+- the single most important element only: warm coral #ff8f70
+Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
+
+Content discipline:
+Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
+
+Composition:
+Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
+
+Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
+
+Aspect ratio: 2:1 wide landscape.
 ```
 
 Filename: `og-memory-for-agentic-ai.png`
@@ -206,22 +301,35 @@ Alt text: `Branded social preview image for HumemAI.`
 ## 8. Hosted Workspace Mockup
 
 ```text
-Generate a hosted workspace illustration for HumemAI.
+Generate a 16:9 landscape illustration for the HumemAI website.
 
 Purpose:
 This image will be used lower on the product page, pricing page, or a future hosted page. It should show a somewhat more concrete workspace than the product hero image, but still as an illustration rather than a screenshot.
 
-Aspect ratio:
-16:9
-
 What to show:
-Create a polished workspace-inspired illustration for a hosted AI memory platform. Show files, chat, a structured memory graph, retrieval history, and connected knowledge panels as a simplified composition with only a few bold panels. It should suggest that users can ingest information, inspect memory, and retrieve context over time without looking like a real SaaS screenshot.
+One very large rounded-rectangle container drawn as a thick teal outline filling most of the frame. Inside it, on the left, three solid filled teal bars stacked vertically; on the right, a small knowledge graph of four solid filled teal circles with thick edges. One of the left bars is coral. Six elements total.
 
 Style:
-Clean, structured, product-oriented editorial illustration. Restrained palette: off-white, charcoal, slate, muted blue-gray, very limited accent color. Crisp geometry, calm composition, diagrammatic feeling. Premium, minimal, modern technology brand. The interface-inspired composition should feel calm, powerful, and enterprise-ready while staying stylized and simplified.
+Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
 
-Avoid:
-No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no stock-photo people, no clutter, no fantasy sci-fi scene, no purple-glow AI art, no low-detail illustration, no generic analytics dashboard, no fake branding text, no text baked into the image, no realistic software screenshot, no browser chrome, no laptop frame, no tiny controls.
+Fills:
+Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
+
+Palette, exactly these three colors and nothing else:
+- background: warm off-white #faf8f5
+- every shape and every stroke: deep teal #1a5f7a
+- the single most important element only: warm coral #ff8f70
+Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
+
+Content discipline:
+Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
+
+Composition:
+Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
+
+Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
+
+Aspect ratio: 16:9 landscape.
 ```
 
 Filename: `hosted-workspace-mockup.png`
@@ -230,22 +338,35 @@ Alt text: `Conceptual hosted workspace for an AI memory platform.`
 ## 9. Audit-Ready Memory Project Visual
 
 ```text
-Generate a project image for Audit-Ready Memory by HumemAI.
+Generate a 16:9 landscape illustration for the HumemAI website.
 
 Purpose:
 This image will be used on the Audit-Ready Memory project page. It should communicate traceability, explainability, records, and evidence.
 
-Aspect ratio:
-16:9
-
 What to show:
-Create a technical illustration for an audit-ready AI memory system. Show traceability, evidence links, structured recall, memory records, inspection trails, and explainable retrieval. Use a clear chain of evidence and a few strong symbols rather than a dense compliance dashboard. The visual should communicate that memory is not a black box, but something that can be reviewed and followed step by step.
+Four solid filled teal rounded rectangles arranged in a horizontal row with even gaps, like records in a chain. A single thick coral line threads horizontally through all four, entering at the far left and exiting at the far right, ending in a solid coral dot. Six elements total.
 
 Style:
-Clean, structured, product-oriented editorial illustration. Restrained palette: off-white, charcoal, slate, muted blue-gray, very limited accent color. Crisp geometry, calm composition, diagrammatic feeling. Premium, minimal, modern technology brand. The image should feel reliable, accountable, and enterprise-grade.
+Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
 
-Avoid:
-No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no stock-photo people, no clutter, no fantasy sci-fi scene, no purple-glow AI art, no low-detail illustration, no text baked into the image, no compliance dashboard screenshot, no tiny audit tables.
+Fills:
+Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
+
+Palette, exactly these three colors and nothing else:
+- background: warm off-white #faf8f5
+- every shape and every stroke: deep teal #1a5f7a
+- the single most important element only: warm coral #ff8f70
+Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
+
+Content discipline:
+Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
+
+Composition:
+Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
+
+Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
+
+Aspect ratio: 16:9 landscape.
 ```
 
 Filename: `project-audit-ready-memory.png`
@@ -254,22 +375,35 @@ Alt text: `Illustration of traceable and explainable AI memory records.`
 ## 10. Machines With Human-Like Memory Project Visual
 
 ```text
-Generate a project image for Machines With Human-Like Memory by HumemAI.
+Generate a 16:9 landscape illustration for the HumemAI website.
 
 Purpose:
 This image will be used on the Machines With Human-Like Memory project page. It should communicate the deeper research thread behind HumemAI.
 
-Aspect ratio:
-16:9 or 1:1
-
 What to show:
-Create a research-oriented but product-compatible visual about human-like memory for AI. Show episodic memory, semantic memory, persistence, selective recall, memory evolution over time, and structured relationships between remembered events and knowledge. Use a simplified layered composition rather than a dense diagram. The visual should feel foundational, conceptually deep, and serious, while still clean enough to live on a product website.
+One large rounded-rectangle container drawn as a thick teal outline. Inside, a knowledge graph of six solid filled teal circles joined by thick teal edges. Outside the container to the left, three small solid filled teal dots feed in via one thick teal line. One circle inside the graph is coral. Six elements total.
 
 Style:
-Clean, structured, product-oriented editorial illustration. Restrained palette: off-white, charcoal, slate, muted blue-gray, very limited accent color. Crisp geometry, calm composition, diagrammatic feeling. Premium, minimal, modern technology brand.
+Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
 
-Avoid:
-No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no stock-photo people, no clutter, no fantasy sci-fi scene, no purple-glow AI art, no low-detail illustration, no text baked into the image, no dense academic diagram.
+Fills:
+Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
+
+Palette, exactly these three colors and nothing else:
+- background: warm off-white #faf8f5
+- every shape and every stroke: deep teal #1a5f7a
+- the single most important element only: warm coral #ff8f70
+Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
+
+Content discipline:
+Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
+
+Composition:
+Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
+
+Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
+
+Aspect ratio: 16:9 landscape.
 ```
 
 Filename: `project-human-like-memory.png`
@@ -278,22 +412,35 @@ Alt text: `Illustration of human-like memory architecture for AI.`
 ## 11. CypherGLOT Project Visual
 
 ```text
-Generate a project image for CypherGLOT by HumemAI.
+Generate a 1:1 square illustration for the HumemAI website.
 
 Purpose:
 This image will be used on the CypherGLOT project page. It should communicate that CypherGLOT is a compiler-first Cypher frontend that parses, validates, normalizes, and lowers admitted Cypher into backend-aware SQL-backed output for embedded runtimes.
 
-Aspect ratio:
-1:1 or 4:5
-
 What to show:
-Create a clean compiler-and-query-pipeline illustration. Show a Cypher-like graph query entering a structured transformation pipeline with distinct stages such as parse, validate, normalize, graph-relational intermediate representation, and backend-aware lowering into SQL-backed output. Suggest graph patterns, typed schema tables, and compiler boundaries, but do not render literal code or tiny labels. The image should communicate that this is a disciplined compiler layer between graph query language and host runtime execution.
+A solid filled coral capsule on the left. From it, a thick teal line runs rightward through three solid filled teal rounded squares arranged in a row, like pipeline stages, and exits on the right into a small knowledge graph of three solid filled teal circles joined by thick edges. Eight elements total.
 
 Style:
-Clean, structured, product-oriented editorial illustration. Restrained palette: off-white, charcoal, slate, muted blue-gray, very limited accent color. Crisp geometry, calm composition, diagrammatic feeling. Premium, minimal, modern technology brand. Use a small number of strong pipeline stages and graph-to-table motifs rather than a dense technical schematic.
+Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
 
-Avoid:
-No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no stock-photo people, no clutter, no fantasy sci-fi scene, no purple-glow AI art, no low-detail illustration, no text baked into the image, no code screenshot, no terminal screenshot, no dense compiler flowchart with tiny boxes.
+Fills:
+Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
+
+Palette, exactly these three colors and nothing else:
+- background: warm off-white #faf8f5
+- every shape and every stroke: deep teal #1a5f7a
+- the single most important element only: warm coral #ff8f70
+Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
+
+Content discipline:
+Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
+
+Composition:
+Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
+
+Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
+
+Aspect ratio: 1:1 square.
 ```
 
 Filename: `project-cypherglot-compiler.png`
@@ -302,22 +449,35 @@ Alt text: `Illustration of Cypher query compilation into normalized graph-relati
 ## 12. ArcadeDB Embedded Python Project Visual
 
 ```text
-Generate a project image for ArcadeDB Embedded Python by HumemAI.
+Generate a 1:1 square illustration for the HumemAI website.
 
 Purpose:
 This image will be used on the ArcadeDB Embedded Python project page. It should communicate native Python bindings for a powerful embedded multi-model database with graph, vector, document, and local in-process usage.
 
-Aspect ratio:
-1:1 or 4:5
-
 What to show:
-Create a clean illustration of Python connected directly to an embedded multi-model database runtime. Suggest a Python environment, a bundled local engine, and several data modes such as graph, vector, document, and key-value inside one cohesive system. Emphasize that the database runs locally and in-process rather than as a distant external server. The composition should feel practical, developer-friendly, and technically strong, with a clear sense of local power and portability.
+One large rounded-square container drawn as a thick teal outline. Inside it, four small solid filled teal shapes arranged in a two-by-two block: a circle, a diamond, a square and a short capsule, representing different data modes. Attached to the top-left of the container by a short thick coral line is a solid filled coral capsule. Seven elements total.
 
 Style:
-Clean, structured, product-oriented editorial illustration. Restrained palette: off-white, charcoal, slate, muted blue-gray, very limited accent color. Crisp geometry, calm composition, diagrammatic feeling. Premium, minimal, modern technology brand. Keep the visual bold and simplified, with a few large modules rather than detailed interface panels.
+Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
 
-Avoid:
-No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no stock-photo people, no clutter, no fantasy sci-fi scene, no purple-glow AI art, no low-detail illustration, no text baked into the image, no laptop mockup, no realistic IDE screenshot, no dense dashboard.
+Fills:
+Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
+
+Palette, exactly these three colors and nothing else:
+- background: warm off-white #faf8f5
+- every shape and every stroke: deep teal #1a5f7a
+- the single most important element only: warm coral #ff8f70
+Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
+
+Content discipline:
+Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
+
+Composition:
+Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
+
+Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
+
+Aspect ratio: 1:1 square.
 ```
 
 Filename: `project-arcadedb-embedded-python.png`
@@ -326,22 +486,35 @@ Alt text: `Illustration of Python connected to an embedded multi-model database 
 ## 13. HumemDB Project Visual
 
 ```text
-Generate a project image for HumemDB by HumemAI.
+Generate a 1:1 square illustration for the HumemAI website.
 
 Purpose:
 This image will be used on the HumemDB project page. It should communicate a Python-first embedded orchestration runtime that routes SQL, Cypher, and vector workloads across the engines best suited for each job.
 
-Aspect ratio:
-1:1 or 4:5
-
 What to show:
-Create a structured orchestration-system illustration. Show one calm central runtime layer coordinating several specialized paths: relational OLTP, analytical SQL, graph query execution, and vector search. Suggest SQLite, DuckDB, Cypher over SQL-backed graph storage, and vector search as distinct capabilities inside one embedded stack, without turning the image into a literal architecture diagram. The visual should communicate explicit routing, defensible tradeoffs, and multiple engines working together rather than one fake all-in-one engine.
+One solid filled teal rounded square at the centre. Four thick teal lines radiate from it to four smaller shapes placed up, down, left and right: a circle, a square, a diamond and a capsule. Three of the four outer shapes are solid teal; the one on the right is coral. Nine elements total.
 
 Style:
-Clean, structured, product-oriented editorial illustration. Restrained palette: off-white, charcoal, slate, muted blue-gray, very limited accent color. Crisp geometry, calm composition, diagrammatic feeling. Premium, minimal, modern technology brand. Keep the layout modular and balanced, with a few clear lanes or blocks.
+Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
 
-Avoid:
-No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no stock-photo people, no clutter, no fantasy sci-fi scene, no purple-glow AI art, no low-detail illustration, no text baked into the image, no overloaded architecture poster, no tiny infrastructure icons everywhere.
+Fills:
+Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
+
+Palette, exactly these three colors and nothing else:
+- background: warm off-white #faf8f5
+- every shape and every stroke: deep teal #1a5f7a
+- the single most important element only: warm coral #ff8f70
+Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
+
+Content discipline:
+Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
+
+Composition:
+Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
+
+Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
+
+Aspect ratio: 1:1 square.
 ```
 
 Filename: `project-humemdb-runtime.png`
@@ -350,22 +523,35 @@ Alt text: `Illustration of an embedded runtime coordinating SQL, graph, and vect
 ## 14. Careers Visual
 
 ```text
-Generate a careers page image for HumemAI.
+Generate a 1:1 square illustration for the HumemAI website.
 
 Purpose:
 This image will be used on the Careers page. It should communicate that HumemAI is building serious AI memory systems and is looking for people who want to build that future together.
 
-Aspect ratio:
-1:1 or 4:5
-
 What to show:
-Create an editorial illustration about building memory systems together. Show a calm collaborative environment through abstract work surfaces, connected system components, notes, prototypes, graph structures, documents, and long-term memory motifs. The focus should be on shared construction, thoughtful engineering, and ambitious technical work rather than recruitment clichés. It should feel like joining a small serious technology company working on deep infrastructure.
+Three solid filled teal circles arranged in a triangle around a central rounded-square container drawn as a thick teal outline. Each circle connects to the container by a thick teal line. Inside the container is a small graph of three solid filled circles, one of which is coral. Eight elements total.
 
 Style:
-Clean, structured, product-oriented editorial illustration. Restrained palette: off-white, charcoal, slate, muted blue-gray, very limited accent color. Crisp geometry, calm composition, diagrammatic feeling. Premium, minimal, modern technology brand. Keep it warm enough to feel human, but still aligned with the rest of the HumemAI visual system.
+Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
 
-Avoid:
-No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no stock-photo people, no generic diversity poster, no smiling office-team photo aesthetic, no clutter, no fantasy sci-fi scene, no purple-glow AI art, no low-detail illustration, no text baked into the image.
+Fills:
+Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
+
+Palette, exactly these three colors and nothing else:
+- background: warm off-white #faf8f5
+- every shape and every stroke: deep teal #1a5f7a
+- the single most important element only: warm coral #ff8f70
+Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
+
+Content discipline:
+Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
+
+Composition:
+Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
+
+Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
+
+Aspect ratio: 1:1 square.
 ```
 
 Filename: `careers-build-with-memory.png`
@@ -374,22 +560,35 @@ Alt text: `Illustration representing collaborative work on AI memory systems.`
 ## 15. News Visual
 
 ```text
-Generate a news page image for HumemAI.
+Generate a 1:1 square illustration for the HumemAI website.
 
 Purpose:
 This image will be used on the main News page. It should communicate writing, research updates, technical notes, and product thinking around AI memory systems without looking like a literal article thumbnail grid.
 
-Aspect ratio:
-1:1 or 4:5
-
 What to show:
-Create an editorial illustration about publishing ideas, experiments, and technical progress around AI memory. Show a calm composition with structured documents, notes, diagrams, graph motifs, retrieval links, and evolving knowledge artifacts. It should feel like serious technical writing and ongoing research translated into a clean visual system. The image should suggest that HumemAI writes about infrastructure, memory systems, experiments, and product direction.
+Three plain page rectangles drawn as thick teal outlines, overlapping in a loose stack, slightly rotated from each other. The topmost page is coral. Beside the stack on the right, a small knowledge graph of three solid filled teal circles joined by thick edges. Six elements total. The pages must be completely empty outlines with no lines or marks inside them.
 
 Style:
-Clean, structured, product-oriented editorial illustration. Restrained palette: off-white, charcoal, slate, muted blue-gray, very limited accent color. Crisp geometry, calm composition, diagrammatic feeling. Premium, minimal, modern technology brand. Keep it thoughtful and idea-oriented rather than product-screenshot-oriented.
+Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
 
-Avoid:
-No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no stock-photo people, no clutter, no fantasy sci-fi scene, no purple-glow AI art, no low-detail illustration, no text baked into the image, no literal news card grid, no open laptop mockup, no screenshot of a writing app.
+Fills:
+Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
+
+Palette, exactly these three colors and nothing else:
+- background: warm off-white #faf8f5
+- every shape and every stroke: deep teal #1a5f7a
+- the single most important element only: warm coral #ff8f70
+Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
+
+Content discipline:
+Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
+
+Composition:
+Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
+
+Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
+
+Aspect ratio: 1:1 square.
 ```
 
 Filename: `news-writing-and-research.png`
@@ -398,22 +597,35 @@ Alt text: `Illustration representing technical writing, research updates, and st
 ## 16. Privacy Policy Visual
 
 ```text
-Generate a privacy policy page image for HumemAI.
+Generate a 1:1 square illustration for the HumemAI website.
 
 Purpose:
 This image will be used on the Privacy Policy page. It should communicate trust, clarity, visitor choice, and careful handling of information without looking legalistic, corporate, or surveillance-themed.
 
-Aspect ratio:
-1:1 or 4:5
-
 What to show:
-Create a calm editorial illustration about privacy, transparency, and user control on a technology website. Show a small number of clear visual elements such as protected information, structured consent choices, simple controls, and a sense of respectful boundaries around data. The composition should suggest clarity and trust rather than fear or security drama. It should feel appropriate for a modern AI infrastructure company that wants to explain analytics and cookie choices in a straightforward way.
+Three horizontal toggle switches stacked vertically with even spacing. Each toggle is a capsule outline in thick teal with a solid filled circle inside it. The top two toggles have teal circles positioned to the left; the bottom toggle has a coral circle positioned to the right, showing it is switched on. Six elements total.
 
 Style:
-Clean, structured, product-oriented editorial illustration. Restrained palette: off-white, charcoal, slate, muted blue-gray, very limited accent color. Crisp geometry, calm composition, diagrammatic feeling. Premium, minimal, modern technology brand. Keep it simple, quiet, and trustworthy rather than dense or highly technical.
+Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
 
-Avoid:
-No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no stock-photo people, no clutter, no fantasy sci-fi scene, no purple-glow AI art, no low-detail illustration, no text baked into the image, no shield cliché dominating the whole composition, no padlock wallpaper, no creepy surveillance imagery.
+Fills:
+Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
+
+Palette, exactly these three colors and nothing else:
+- background: warm off-white #faf8f5
+- every shape and every stroke: deep teal #1a5f7a
+- the single most important element only: warm coral #ff8f70
+Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
+
+Content discipline:
+Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
+
+Composition:
+Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
+
+Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
+
+Aspect ratio: 1:1 square.
 ```
 
 Filename: `privacy-policy-trust-and-choice.png`
@@ -422,22 +634,35 @@ Alt text: `Illustration representing privacy, transparency, and user control.`
 ## 17. Human-Like Memory Systems Project Visual
 
 ```text
-Generate a project image for Human-Like Memory Systems by HumemAI.
+Generate a 1:1 square illustration for the HumemAI website.
 
 Purpose:
 This image will be used on the Human-Like Memory Systems project page and project card. It should communicate the first concrete benchmark-and-agent implementation in the broader Machines With Human-Like Memory research line.
 
-Aspect ratio:
-1:1 or 4:5
-
 What to show:
-Create a clean editorial illustration of a partially observable room benchmark with two explicit memory layers. Show a simple room or room-layout motif, object-location events being observed over time, a delayed question about where something is, and retrieval from two different memory systems: episodic memory for specific remembered events and semantic memory for generalized world knowledge. The composition should suggest that the agent remembers individual episodes, compresses patterns into semantic knowledge, and uses those memories to answer later questions. It is fine to hint at two agents or a human-machine collaboration setup, but keep the image centered on explicit memory structure rather than on characters.
+At the top, a two-by-two grid of four solid filled teal squares with visible gaps, suggesting rooms. One solid coral dot sits inside one of the squares. Below the grid, two rounded-rectangle containers drawn as thick teal outlines are stacked with a gap between them, each holding two small solid filled teal dots. One thick teal line runs from the grid down into the upper container. Eight elements total.
 
 Style:
-Clean, structured, product-oriented editorial illustration. Restrained palette: off-white, charcoal, slate, muted blue-gray, very limited accent color. Crisp geometry, calm composition, diagrammatic feeling. Premium, minimal, modern technology brand. Keep it more concrete and benchmark-like than the broader Machines With Human-Like Memory image, but still simplified enough for a product site rather than an academic paper figure.
+Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
 
-Avoid:
-No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no stock-photo people, no clutter, no fantasy sci-fi scene, no purple-glow AI art, no low-detail illustration, no text baked into the image, no literal screenshot of the environment, no dense academic diagram, no performance plot, no tiny labels, no paper-figure recreation.
+Fills:
+Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
+
+Palette, exactly these three colors and nothing else:
+- background: warm off-white #faf8f5
+- every shape and every stroke: deep teal #1a5f7a
+- the single most important element only: warm coral #ff8f70
+Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
+
+Content discipline:
+Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
+
+Composition:
+Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
+
+Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
+
+Aspect ratio: 1:1 square.
 ```
 
 Filename: `project-human-like-memory-systems.png`
@@ -446,22 +671,35 @@ Alt text: `Illustration of RoomEnv-v0 with explicit episodic and semantic memory
 ## 18. Explicit Memory Project Visual
 
 ```text
-Generate a project image for Explicit Memory by HumemAI.
+Generate a 1:1 square illustration for the HumemAI website.
 
 Purpose:
 This image will be used on the Explicit Memory project page and project card. It should communicate the shift from handcrafted memory policies to a learned reinforcement-learning agent that manages short-term, episodic, and semantic memory explicitly.
 
-Aspect ratio:
-1:1 or 4:5
-
 What to show:
-Create a clean editorial illustration of a reinforcement-learning agent operating in RoomEnv-v1 with three explicit memory systems: short-term memory, episodic memory, and semantic memory. Show a simple room-benchmark motif, a stream of observed events, and a policy layer that decides whether information is kept briefly, stored as episodic memory, generalized into semantic memory, or forgotten. The composition should make the learning aspect visible without turning into a training dashboard: suggest action selection, memory routing, and long-term structure emerging from repeated experience. Emphasize explicit memory control and structured memory flow rather than opaque neural hidden state.
+Three rounded-rectangle containers drawn as thick teal outlines, stacked vertically with even gaps, each one slightly wider than the one above it. The top container holds one solid coral dot; the middle holds two solid teal dots; the bottom holds three solid teal dots joined by thick teal edges into a small graph. Seven elements total.
 
 Style:
-Clean, structured, product-oriented editorial illustration. Restrained palette: off-white, charcoal, slate, muted blue-gray, very limited accent color. Crisp geometry, calm composition, diagrammatic feeling. Premium, minimal, modern technology brand. Keep it more dynamic and policy-oriented than the Human-Like Memory Systems visual, but still simplified enough for a product site rather than an academic figure.
+Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
 
-Avoid:
-No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no stock-photo people, no clutter, no fantasy sci-fi scene, no purple-glow AI art, no low-detail illustration, no text baked into the image, no literal training dashboard, no reward plot, no Q-learning equation poster, no paper-figure recreation, no tiny labels.
+Fills:
+Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
+
+Palette, exactly these three colors and nothing else:
+- background: warm off-white #faf8f5
+- every shape and every stroke: deep teal #1a5f7a
+- the single most important element only: warm coral #ff8f70
+Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
+
+Content discipline:
+Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
+
+Composition:
+Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
+
+Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
+
+Aspect ratio: 1:1 square.
 ```
 
 Filename: `project-explicit-memory.png`
@@ -470,94 +708,146 @@ Alt text: `Illustration of a reinforcement-learning agent managing short-term, e
 ## 19. RoomKG Baselines Project Visual
 
 ```text
-Generate a project image for RoomKG Baselines by HumemAI.
+Generate a 1:1 square illustration for the HumemAI website.
 
 Purpose:
 This image will be used on the RoomKG Baselines project page and project card. It should communicate a benchmark for temporal knowledge-graph memory in a partially observable room environment, together with symbolic and neural baseline comparisons.
 
-Aspect ratio:
-1:1 or 4:5
-
 What to show:
-Create a clean editorial illustration that connects three views of the same benchmark: a simple room environment with people, objects, and locations; a graph view where those changing object-location facts become a temporal knowledge graph; and a comparison layer where different baseline approaches operate over the same benchmark. Suggest symbolic temporal knowledge-graph memory, sequence-based neural baselines, and question answering over hidden state, but do not turn the image into a dense benchmark poster. The composition should communicate that the environment, memory representation, and evaluation protocol are all aligned around graph-structured long-term memory under partial observability.
+Three stages arranged left to right with thick teal arrows between them. First, a two-by-two grid of solid filled teal squares. Second, a small knowledge graph of four solid filled teal circles joined by thick edges. Third, a rounded-square container drawn as a thick teal outline holding two solid filled dots, one of which is coral. Eight elements total.
 
 Style:
-Clean, structured, product-oriented editorial illustration. Restrained palette: off-white, charcoal, slate, muted blue-gray, very limited accent color. Crisp geometry, calm composition, diagrammatic feeling. Premium, minimal, modern technology brand. Keep it more benchmark-and-comparison oriented than the earlier Explicit Memory visual, with a stronger sense of graph structure and evaluation framing.
+Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
 
-Avoid:
-No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no stock-photo people, no clutter, no fantasy sci-fi scene, no purple-glow AI art, no low-detail illustration, no text baked into the image, no literal screenshot of the benchmark, no leaderboard screenshot, no dense academic poster, no tiny chart labels, no paper-figure recreation.
+Fills:
+Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
+
+Palette, exactly these three colors and nothing else:
+- background: warm off-white #faf8f5
+- every shape and every stroke: deep teal #1a5f7a
+- the single most important element only: warm coral #ff8f70
+Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
+
+Content discipline:
+Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
+
+Composition:
+Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
+
+Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
+
+Aspect ratio: 1:1 square.
 ```
 
 Filename: `project-roomkg-baselines.png`
 Alt text: `Illustration of a partially observable room benchmark connected to temporal knowledge-graph memory and baseline comparisons.`
 
-## 20. KG Memory Transfer Project Visual
+## 20. Co-Learning Project Visual
 
 ```text
-Generate a project image for KG Memory Transfer by HumemAI.
-
-Purpose:
-This image will be used on the KG Memory Transfer project page and project card. It should communicate short-term-to-long-term memory transfer for knowledge graphs under partial observability, with the transfer decision itself treated as the core research problem.
-
-Aspect ratio:
-1:1 or 4:5
-
-What to show:
-Create a clean editorial illustration of an agent in a partially observable room benchmark observing a small stream of object-location events and deciding what should persist into long-term graph memory. Show three clearly related layers: transient short-term observations, a selective transfer or consolidation policy, and a durable temporal knowledge-graph memory. Suggest that some observations are kept, some are dropped, and some become structured long-term graph facts that support later question answering and navigation. The image should feel like a follow-on to RoomKG Baselines: less about comparing many baselines, and more about the specific boundary between fleeting observations and persistent graph memory.
-
-Style:
-Clean, structured, product-oriented editorial illustration. Restrained palette: off-white, charcoal, slate, muted blue-gray, very limited accent color. Crisp geometry, calm composition, diagrammatic feeling. Premium, minimal, modern technology brand. Keep the transfer boundary visually legible, with a few bold modules and a strong sense of selective retention rather than a dense benchmark poster.
-
-Avoid:
-No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no stock-photo people, no clutter, no fantasy sci-fi scene, no purple-glow AI art, no low-detail illustration, no text baked into the image, no literal screenshot of the benchmark, no reward plot, no dense academic diagram, no paper-figure recreation, no tiny labels, no generic pipeline stock graphic.
-```
-
-Filename: `project-kg-memory-transfer.png`
-Alt text: `Illustration of selective transfer from short-term observations into long-term temporal knowledge-graph memory under partial observability.`
-
-## 21. Co-Learning Project Visual
-
-```text
-Generate a project image for Co-Learning by HumemAI.
+Generate a 1:1 square illustration for the HumemAI website.
 
 Purpose:
 This image will be used on the Co-Learning project page and project card. It should communicate reusing prior human-robot collaboration experience as knowledge-graph episodic memory, so a robot enters a new urban search-and-rescue team interaction already holding a useful prior memory instead of starting empty.
 
-Aspect ratio:
-1:1 or 4:5
-
 What to show:
-Create a clean editorial illustration about carrying a prior collaboration pattern into a new human-robot team interaction. Suggest an urban search-and-rescue task abstractly: a simple rubble or debris field with a buried target and an access route being cleared. Hint at two collaborating roles, one human and one machine, as simple symbolic markers rather than literal characters or a humanoid robot. Show past collaboration patterns stored as small knowledge graphs that capture a situation, an ordered action sequence, and an outcome, being organized into groups, with one representative pattern selected and preloaded into the robot before a new episode begins. The composition should communicate that the robot starts the new collaboration already holding a reusable, inspectable memory of how the team worked before, and that this prior experience is a structured situation-action memory rather than hidden policy weights.
+Two solid filled teal circles of equal size sit side by side at the right, suggesting two partners. To their left, a small knowledge graph of three solid filled coral circles joined by thick coral edges. One thick coral line carries that small graph rightward into a rounded-square container drawn as a thick teal outline that encloses the two teal circles. Seven elements total.
 
 Style:
-Clean, structured, product-oriented editorial illustration. Restrained palette: off-white, charcoal, slate, muted blue-gray, very limited accent color. Crisp geometry, calm composition, diagrammatic feeling. Premium, minimal, modern technology brand. Keep it focused on collaboration and reusable team memory, with a few bold modules and a clear sense of a prior pattern being carried into a fresh interaction, rather than a dense benchmark poster or simulation screenshot.
+Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
 
-Avoid:
-No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no stock-photo people, no clutter, no fantasy sci-fi scene, no purple-glow AI art, no low-detail illustration, no text baked into the image, no literal screenshot of the simulation, no video-game UI, no paper-figure recreation, no dense academic diagram, no tiny labels, no disaster or gore imagery.
+Fills:
+Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
+
+Palette, exactly these three colors and nothing else:
+- background: warm off-white #faf8f5
+- every shape and every stroke: deep teal #1a5f7a
+- the single most important element only: warm coral #ff8f70
+Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
+
+Content discipline:
+Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
+
+Composition:
+Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
+
+Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
+
+Aspect ratio: 1:1 square.
 ```
 
 Filename: `project-co-learning.png`
 Alt text: `Illustration of reusing a prior human-robot collaboration pattern as knowledge-graph episodic memory in a search-and-rescue task.`
 
+## 21. KG Memory Transfer Project Visual
+
+```text
+Generate a 1:1 square illustration for the HumemAI website.
+
+Purpose:
+This image will be used on the KG Memory Transfer project page and project card. It should communicate short-term-to-long-term memory transfer for knowledge graphs under partial observability, with the transfer decision itself treated as the core research problem.
+
+What to show:
+On the left, three solid filled capsule shapes stacked vertically, representing newly observed facts: the top one teal, the middle one coral, the bottom one charcoal. In the middle, a simple gate drawn as two short thick vertical teal strokes. To the right, a rounded-square container drawn as a thick teal outline holding a small knowledge graph of four solid filled teal circles joined by thick edges. The coral capsule passes through the gate into the container; the charcoal capsule falls away below the gate. Nine elements total. This is the one prompt that legitimately needs charcoal, because it depicts a discarded fact.
+
+Style:
+Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
+
+Fills:
+Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
+
+Palette, exactly these three colors and nothing else:
+- background: warm off-white #faf8f5
+- every shape and every stroke: deep teal #1a5f7a
+- the single most important element only: warm coral #ff8f70
+Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
+
+Content discipline:
+Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
+
+Composition:
+Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
+
+Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
+
+Aspect ratio: 1:1 square.
+```
+
+Filename: `project-kg-memory-transfer.png`
+Alt text: `Illustration of selective transfer from short-term observations into long-term temporal knowledge-graph memory under partial observability.`
+
 ## 22. RoomKG Meta-Policies Project Visual
 
 ```text
-Generate a project image for RoomKG Meta-Policies by HumemAI.
+Generate a 1:1 square illustration for the HumemAI website.
 
 Purpose:
 This image will be used on the RoomKG Meta-Policies project page and project card. It should communicate one idea: a learned controller choosing which named symbolic memory rule to apply, while the rules themselves stay explicit and inspectable.
 
-Aspect ratio:
-1:1
-
 What to show:
-One small knowledge graph of a handful of nodes and edges, and beside or above it a row of three simple labeled-looking tokens or cards representing named rules, with exactly one of the three visibly selected (highlighted, lifted, or framed) and connected down to the graph. That is the whole story: many named rules, one chosen, applied to an explicit graph memory. At most seven or eight visual elements in total.
+A row of three solid filled capsule shapes across the top representing candidate rules: left capsule teal, middle capsule coral, right capsule teal. Below them, a small knowledge graph of five solid filled teal circles joined by thick teal edges. One short straight vertical coral line drops from the bottom of the coral capsule and ends at the topmost circle of the graph. The coral line must be perfectly vertical, short, and must not bend, wrap, or touch anything except the coral capsule above it and the single circle below it. No container or enclosing box anywhere. Nine elements total.
 
 Style:
-Minimal editorial illustration, much closer to a flat diagram than a rendered scene. Large simple shapes, thick clean strokes, generous negative space, flat color fills, no gradients or lighting effects. Restrained palette: off-white background, charcoal, slate, muted blue-gray, one warm accent used only for the selected rule. It should read instantly as a small diagram someone drew with intent, not as detailed AI art.
+Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
 
-Avoid:
-No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no clutter, no dense network hairballs, no more than roughly eight elements, no tiny detail work, no texture, no 3D rendering, no depth-of-field, no text or letters baked into the image, no dashboards, no circuit patterns, no purple-glow AI art.
+Fills:
+Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
+
+Palette, exactly these three colors and nothing else:
+- background: warm off-white #faf8f5
+- every shape and every stroke: deep teal #1a5f7a
+- the single most important element only: warm coral #ff8f70
+Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
+
+Content discipline:
+Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
+
+Composition:
+Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
+
+Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
+
+Aspect ratio: 1:1 square.
 ```
 
 Filename: `project-roomkg-meta-policies.png`
