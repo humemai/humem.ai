@@ -13,12 +13,16 @@ with, and every new prompt should include, these constraints:
 
 - Palette, exactly four roles: warm off-white background (#faf8f5), deep brand teal
   (#1a5f7a) as the one structural ink for shapes and strokes, soft charcoal
-  (#2a2a2a) only where teal needs contrast, and warm coral (#ff8f70) as a single
-  small accent for the one element that matters. Nothing else. No gradients, no
-  lighting, no texture.
-- Flat diagram language: thick even strokes, simple filled shapes, five to eight
-  visual elements total. If it could not be redrawn by hand in two minutes, it is
-  too detailed.
+  (#2a2a2a) for the one element being rejected, discarded, or contrasted, and warm
+  coral (#ff8f70) for the single element that matters most. Nothing else. No
+  gradients, no lighting, no texture.
+- **Solid fills, not hollow outlines.** This is the strongest single rule. Small
+  shapes (capsules, pills, nodes, dots) are filled solid in their color. Only large
+  containers, the shapes that enclose something, are drawn as thick outlines. A
+  composition made entirely of hollow outlined shapes reads thin and generic; the
+  house look is chunky and confident.
+- Flat diagram language: thick even strokes, five to eight visual elements total. If
+  it could not be redrawn by hand in two minutes, it is too detailed.
 - Composition must be center-weighted with at least 15 percent quiet margin on every
   side, because the site crops the same source to both 5:6 portrait and 16:11
   landscape. Nothing important near any edge.
