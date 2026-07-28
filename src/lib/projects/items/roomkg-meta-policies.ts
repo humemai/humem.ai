@@ -120,13 +120,13 @@ class="editorial-image-compact"
 				body: [
 					`~~~bibtex
 @misc{kim2026neurosymbolicmetapoliciestemporalknowledgegraph,
-      title={Neuro-Symbolic Meta-Policies for Temporal Knowledge-Graph Memory under Partial Observability},
+      title={Neuro-Symbolic Meta-Policies for Temporal Knowledge-Graph Memory under Partial Observability}, 
       author={Taewoon Kim and Vincent François-Lavet and Michael Cochez},
       year={2026},
       eprint={2607.18368},
       archivePrefix={arXiv},
       primaryClass={cs.AI},
-      url={https://arxiv.org/abs/2607.18368},
+      url={https://arxiv.org/abs/2607.18368}, 
 }
 ~~~`,
 				],
