@@ -54,15 +54,15 @@ export const roomkgMetaPolicies: Project = {
 
 $$
 \\mathbf{g}^{(k)}_v = \\sigma\\!\\left(\\sum_{(u,r)\\in\\mathcal{N}(v)}
-W^{(k)}_{\\lambda(r)}\\,\\phi_r\\!\\big(\\mathbf{g}^{(k-1)}_u,\\,\\psi(\\mathbf{g}_r,\\mathbf{q}_{u,r,v})\\big)\\right),
+\\mathbf{W}^{(k)}_{\\lambda(r)}\\,\\phi_r\\!\\big(\\mathbf{g}^{(k-1)}_u,\\,\\psi(\\mathbf{g}_r,\\mathbf{q}_{u,r,v})\\big)\\right),
 $$
 
 where $\\mathbf{q}_{u,r,v}$ embeds the temporal annotations of the fact connecting $u$ and $v$. Only the StarE-GNN can condition its representation on the very annotation values the heuristics rank over, which is what makes it qualifier-aware.`,
 					`Head-specific attention pooling turns the variable-size set of fact embeddings into one fixed-size summary per decision:
 
 $$
-\\mathbf{m}^{(p)}_t = \\sum_j \\alpha^{(p)}_{t,j} W_V \\mathbf{z}_{t,j},
-\\qquad p \\in \\{qa, e, f\\},
+\\mathbf{m}^{(p)}_t = \\sum_j \\alpha^{(p)}_{t,j} \\mathbf{W}_V \\mathbf{z}_{t,j},
+\\qquad p \\in \\{\\mathrm{qa}, e, f\\},
 $$
 
 so the question-answering, exploration, and forgetting heads each attend to different parts of the same memory. Each head then scores its named heuristic candidates with Q-values, the selected triple of heuristics is executed by deterministic symbolic procedures, and the heads are trained with standard temporal-difference updates. At test time selection is greedy.`,
