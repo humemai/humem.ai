@@ -11,6 +11,7 @@ import {
   machinesWithHumanLikeMemory,
   multiModelDatabases,
   roomkgBaselines,
+  roomkgMetaPolicies,
 } from "./items";
 
 const featuredProjectSlugs = [
@@ -24,6 +25,7 @@ export const projects: Project[] = [
   explicitMemory,
   roomkgBaselines,
   kgMemoryTransfer,
+  roomkgMetaPolicies,
   coLearning,
   auditReadyMemory,
   multiModelDatabases,

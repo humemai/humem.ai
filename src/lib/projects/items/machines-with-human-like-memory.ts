@@ -15,6 +15,7 @@ export const machinesWithHumanLikeMemory: Project = {
     "explicit-memory",
     "roomkg-baselines",
     "kg-memory-transfer",
+    "roomkg-meta-policies",
     "co-learning",
   ],
   summary:
@@ -42,6 +43,7 @@ export const machinesWithHumanLikeMemory: Project = {
     { label: "Explicit Memory", href: "/projects/explicit-memory" },
     { label: "RoomKG Baselines", href: "/projects/roomkg-baselines" },
     { label: "KG Memory Transfer", href: "/projects/kg-memory-transfer" },
+    { label: "RoomKG Meta-Policies", href: "/projects/roomkg-meta-policies" },
     { label: "Co-Learning", href: "/projects/co-learning" },
     { label: "Contact", href: "/contact" },
   ],

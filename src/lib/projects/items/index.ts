@@ -9,3 +9,4 @@ export { kgMemoryTransfer } from "./kg-memory-transfer";
 export { machinesWithHumanLikeMemory } from "./machines-with-human-like-memory";
 export { multiModelDatabases } from "./multi-model-databases";
 export { roomkgBaselines } from "./roomkg-baselines";
+export { roomkgMetaPolicies } from "./roomkg-meta-policies";

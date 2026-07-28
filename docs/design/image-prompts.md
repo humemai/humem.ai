@@ -512,3 +512,27 @@ No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no 
 
 Filename: `project-co-learning.png`
 Alt text: `Illustration of reusing a prior human-robot collaboration pattern as knowledge-graph episodic memory in a search-and-rescue task.`
+
+## 22. RoomKG Meta-Policies Project Visual
+
+```text
+Generate a project image for RoomKG Meta-Policies by HumemAI.
+
+Purpose:
+This image will be used on the RoomKG Meta-Policies project page and project card. It should communicate one idea: a learned controller choosing which named symbolic memory rule to apply, while the rules themselves stay explicit and inspectable.
+
+Aspect ratio:
+1:1
+
+What to show:
+One small knowledge graph of a handful of nodes and edges, and beside or above it a row of three simple labeled-looking tokens or cards representing named rules, with exactly one of the three visibly selected (highlighted, lifted, or framed) and connected down to the graph. That is the whole story: many named rules, one chosen, applied to an explicit graph memory. At most seven or eight visual elements in total.
+
+Style:
+Minimal editorial illustration, much closer to a flat diagram than a rendered scene. Large simple shapes, thick clean strokes, generous negative space, flat color fills, no gradients or lighting effects. Restrained palette: off-white background, charcoal, slate, muted blue-gray, one warm accent used only for the selected rule. It should read instantly as a small diagram someone drew with intent, not as detailed AI art.
+
+Avoid:
+No neon cyberpunk, no glowing brain, no humanoid robot, no hologram cliché, no clutter, no dense network hairballs, no more than roughly eight elements, no tiny detail work, no texture, no 3D rendering, no depth-of-field, no text or letters baked into the image, no dashboards, no circuit patterns, no purple-glow AI art.
+```
+
+Filename: `project-roomkg-meta-policies.png`
+Alt text: `Illustration of a controller selecting one of three named symbolic rules to apply to a small knowledge-graph memory.`
