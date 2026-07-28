@@ -1,0 +1,58 @@
+---
+title: 'RoomKG Meta-Policies accepted at ISWC 2026'
+description: 'Our paper on learning which symbolic memory heuristic to apply, while keeping execution symbolic, has been accepted at the International Semantic Web Conference 2026.'
+date: '2026-07-28'
+image: '/images/papers/roomkg-meta-policies/q_values_qa.png'
+excerpt: 'Neuro-Symbolic Meta-Policies for Temporal Knowledge-Graph Memory under Partial Observability has been accepted at ISWC 2026.'
+author: 'HumemAI'
+heroActions:
+  - label: 'View project page'
+    href: '/projects/roomkg-meta-policies'
+    variant: 'primary'
+  - label: 'Read paper'
+    href: 'https://arxiv.org/abs/2607.18368'
+    variant: 'secondary'
+resourcesHeading: 'Project, paper, and conference links.'
+resources:
+  - label: 'View project page'
+    href: '/projects/roomkg-meta-policies'
+  - label: 'Read paper'
+    href: 'https://arxiv.org/abs/2607.18368'
+  - label: 'View GitHub'
+    href: 'https://github.com/humemai/roomkg-meta-policies'
+  - label: 'Visit ISWC 2026'
+    href: 'https://iswc2026.semanticweb.org/'
+tags:
+  - 'HumemAI'
+  - 'ISWC 2026'
+  - 'Neuro-Symbolic AI'
+  - 'Knowledge Graphs'
+  - 'Semantic Web'
+  - 'AI Research'
+---
+
+## Our meta-policy paper has been accepted at ISWC 2026
+
+We are announcing that **Neuro-Symbolic Meta-Policies for Temporal Knowledge-Graph Memory under Partial Observability** has been accepted at **ISWC 2026**, the [25th International Semantic Web Conference](https://iswc2026.semanticweb.org/), held in Bari, Italy.
+
+The work is now part of the [RoomKG Meta-Policies project page](/projects/roomkg-meta-policies), where we explain the method, the results, and the decision traces in more detail.
+
+## What the paper is about
+
+Our earlier RoomKG work showed that agents keeping an explicit temporal knowledge-graph memory outperform end-to-end neural agents by a wide margin. But one thing stayed fixed throughout: the memory rules themselves. The agent answered questions with one predetermined heuristic, explored with another, and forgot with a third, applied identically at every step regardless of what its memory contained.
+
+No single rule is right everywhere. Ask where an object is, and trusting the most recently added fact wins when the object has just moved, while trusting the most frequently used fact wins when an older observation keeps being confirmed. So this paper learns a **meta-policy**: a controller that reads the current memory graph and selects which named heuristic to apply for question answering, exploration, and forgetting. Deterministic symbolic procedures then execute the selected rules. The learned part only ever chooses among named options; it never replaces symbolic control with an opaque latent action.
+
+Memory is an RDF graph in which every fact carries the annotations `time_added`, `last_accessed`, and `num_recalled`, and the heuristics are rankings over exactly those values. That makes the choice of graph encoder the interesting variable. We compare a GCN, which sees only topology, an R-GCN, which adds relation types, and a qualifier-aware StarE-GNN, which embeds the annotations themselves into its messages.
+
+At a long-term memory capacity of 512, the qualifier-aware StarE-GNN configuration reaches the best held-out accuracy of the systems we compared, ahead of the relation-aware and topology-only encoders, ahead of every fixed symbolic rule, and far ahead of the end-to-end LSTM and Transformer baselines. The ordering across encoders follows the design logic: the more of the annotation structure an encoder can see, the better it selects among heuristics defined over that structure.
+
+## Why this acceptance matters
+
+For us, the result is that adaptivity and inspectability did not have to be traded against each other. Learned selection improved held-out performance while every memory operation remained a named heuristic over explicit annotations, so an episode can be read back as a decision trace. In one held-out run, the controller visibly shifts from preferring recently used facts early on to preferring newly added facts later, once the world has moved on. That switching is legible precisely because the actions have names.
+
+ISWC is a fitting venue for it. The whole construction rests on RDF representation, annotation-compatible graph semantics, and symbolic operations over explicit memory state, which places the work squarely in the Semantic Web tradition rather than merely borrowing its vocabulary.
+
+## Read more
+
+If you want the full technical story, start with the [project page](/projects/roomkg-meta-policies) and then read the paper on [arXiv](https://arxiv.org/abs/2607.18368).
