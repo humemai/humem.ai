@@ -9,7 +9,9 @@
   gap: var(--site-layout-gap);
   width: var(--site-shell-width-mobile);
   margin: 0 auto;
-  padding: 1rem 0 0;
+  /* No top padding of its own: PageHero has none either, so the gap below the
+     navbar comes from --site-page-padding on both and stays consistent. */
+  padding: 0;
 }
 
 .heroEyebrowRow {
@@ -226,7 +228,6 @@
        other page's hero instead of running 1.2fr / 0.8fr. */
     grid-template-columns: var(--site-split-columns);
     align-items: stretch;
-    padding-top: 2rem;
   }
 
   .heroCopy {
