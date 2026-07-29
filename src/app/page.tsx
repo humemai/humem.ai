@@ -84,7 +84,9 @@ export default function Home() {
             title="Open source projects shape the work."
             aside="Explore the main open source threads behind HumemAI, then move into dedicated project pages for the systems, papers, and implementations inside each one."
           />
+          <div className={styles.railShell}>
           <ProjectRail projects={featuredProjects} />
+        </div>
       </div>
 
       <div className={`${styles.sectionShell} ${styles.newsSection}`}>
@@ -93,7 +95,9 @@ export default function Home() {
           title="Latest news from the company."
           aside="Recent writing, releases, research, and product updates from HumemAI."
         />
-        <NewsRail posts={latestNews} />
+        <div className={styles.railShell}>
+          <NewsRail posts={latestNews} />
+        </div>
       </div>
     </main>
   );

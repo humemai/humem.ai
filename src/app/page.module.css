@@ -99,7 +99,18 @@
   backdrop-filter: blur(10px);
 }
 
+/* The children here (SectionIntro, SectionPromo) already constrain themselves to the
+   shell width, so constraining again applied the gutter twice and made the homepage
+   48px narrower than every other page. Only the rails, which do not self-constrain,
+   need the shell applied here. */
 .sectionShell {
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Rails do not constrain themselves, so they get the shell here. The SectionIntro
+   beside them must stay outside this wrapper or it would be constrained twice. */
+.railShell {
   width: var(--site-shell-width-mobile);
   margin: 0 auto;
 }
@@ -195,7 +206,7 @@
     width: var(--site-shell-width-desktop);
   }
 
-  .sectionShell {
+  .railShell {
     width: var(--site-shell-width-desktop);
   }
 
