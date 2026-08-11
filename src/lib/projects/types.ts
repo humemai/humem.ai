@@ -25,6 +25,26 @@ export type ProjectEditorialBodyBlock =
       columns?: 1 | 2 | 3 | 4;
       caption: string;
       items: ProjectEditorialFigureGridItem[];
+    }
+  // Renders measurements from src/data/*.json rather than from this file.
+  // Benchmark numbers move every time the suite is re-run, so hard-coding them
+  // into a project page guarantees the page and the data drift apart. The
+  // block names a table; the numbers, the image digests and the fairness
+  // conditions all travel with the data.
+  | {
+      type: "benchmarkTable";
+      /** Table `id` in the dataset (for ArcadeDB: l3s, l3d, l2, l1, l1tpc, e2). */
+      tableId: string;
+      /** Optional: restrict to one scale tier, e.g. "medium". */
+      scale?: string;
+      /** Optional lead-in shown above the table. */
+      caption?: string;
+      /**
+       * Show each backend's pinned sha256 image digest. On by default for
+       * cross-engine tables: "which version did you benchmark" is the first
+       * question a published comparison gets, and a digest answers it exactly.
+       */
+      showDigests?: boolean;
     };
 
 export type ProjectSubprojectPage = {

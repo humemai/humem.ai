@@ -1,6 +1,6 @@
 import type { Project } from "./types";
 import {
-  arcadeDbEmbeddedPython,
+  arcadeDb,
   auditReadyMemory,
   coLearning,
   cypherglot,
@@ -30,7 +30,7 @@ export const projects: Project[] = [
   auditReadyMemory,
   multiModelDatabases,
   cypherglot,
-  arcadeDbEmbeddedPython,
+  arcadeDb,
   humemdb,
   machinesWithHumanLikeMemory,
 ];

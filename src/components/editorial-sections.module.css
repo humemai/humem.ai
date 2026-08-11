@@ -364,3 +364,73 @@
     color: #e5ecf5;
   }
 }
+/* Benchmark tables render measurements imported from src/data, so they must
+   stay readable at any column count and must never make the page scroll
+   sideways: the table scrolls inside its own container instead. */
+.benchmarkTable {
+  margin: 2.5rem 0;
+}
+
+.benchmarkLead {
+  margin: 0 0 0.75rem;
+}
+
+.benchmarkScroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.benchmarkGrid {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 40rem;
+  font-size: 0.9rem;
+}
+
+.benchmarkCaption {
+  caption-side: top;
+  text-align: left;
+  font-weight: 600;
+  padding-bottom: 0.5rem;
+}
+
+.benchmarkDataset {
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+.benchmarkGrid th,
+.benchmarkGrid td {
+  border-bottom: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+  padding: 0.45rem 0.7rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.benchmarkGrid thead th {
+  border-bottom-width: 2px;
+  white-space: nowrap;
+}
+
+/* Our own rows are marked so a reader can tell at a glance which engine is
+   ours, rather than having to parse backend names. */
+.benchmarkOwnRow {
+  background: color-mix(in srgb, currentColor 5%, transparent);
+}
+
+.benchmarkNumber {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.benchmarkDigest {
+  font-size: 0.78rem;
+  opacity: 0.75;
+  white-space: nowrap;
+}
+
+.benchmarkConditions {
+  margin-top: 0.85rem;
+  font-size: 0.85rem;
+  opacity: 0.85;
+}

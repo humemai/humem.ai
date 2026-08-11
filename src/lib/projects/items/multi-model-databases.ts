@@ -8,7 +8,7 @@ export const multiModelDatabases: Project = {
     problemHeading: "AI applications span table, graph, and vector workloads.",
     solutionHeading: "Connecting multiple engines without pretending they are one.",
   },
-  subprojectSlugs: ["arcadedb-embedded-python", "cypherglot", "humemdb"],
+  subprojectSlugs: ["arcadedb", "cypherglot", "humemdb"],
   summary:
     "A systems project exploring how tables (SQL), graphs (Cypher), and semantic vector search (ANN search) can coexist in one developer experience without pretending one engine should do every job.",
   image: {
@@ -22,7 +22,7 @@ export const multiModelDatabases: Project = {
   impact:
     "This project forms the infrastructure layer behind HumemAI's database direction. It connects the pieces that make a more honest multi-model stack possible, from embedded Python bindings and Cypher compilation to a runtime that coordinates the engines instead of pretending they are all the same system.",
   links: [
-    { label: "ArcadeDB Embedded Python", href: "/projects/arcadedb-embedded-python" },
+    { label: "ArcadeDB", href: "/projects/arcadedb" },
     { label: "CypherGLOT", href: "/projects/cypherglot" },
     { label: "HumemDB", href: "/projects/humemdb" },
     { label: "Contact", href: "/contact" },

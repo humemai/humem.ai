@@ -110,6 +110,145 @@ export function EditorialFigureGrid({ items, caption, columns = 2 }: EditorialFi
   );
 }
 
+export type BenchmarkStat = { median: number; min: number; max: number; n: number };
+
+export type BenchmarkTable = {
+  id: string;
+  title: string;
+  dataset: string;
+  conditions: string[];
+  columns: string[];
+  entries: BenchmarkEntry[];
+};
+
+/**
+ * Shape of src/data/arcadedb-benchmarks.json. Declared here rather than
+ * inferred, because a direct JSON import narrows every null to `null` and
+ * every metric key to the literals present in the first table, so the inferred
+ * type stops matching as soon as a lane reports a different metric set.
+ */
+export type BenchmarkDataset = {
+  source: string;
+  generator: string;
+  arcadedb_version: string;
+  conditions: string[];
+  provenance_note: string;
+  hosts_recorded: string[];
+  tables: BenchmarkTable[];
+};
+
+export type BenchmarkEntry = {
+  backend: string;
+  is_arcadedb: boolean;
+  scale: string;
+  workload: string;
+  n_docs: string | null;
+  deployment: string;
+  image: string | null;
+  version_name: string | null;
+  host: string | null;
+  metrics: Record<string, BenchmarkStat>;
+};
+
+export type EditorialBenchmarkTableProps = {
+  title: string;
+  dataset: string;
+  columns: string[];
+  entries: BenchmarkEntry[];
+  conditions: string[];
+  caption?: string;
+  showDigests?: boolean;
+};
+
+function formatStat(stat: BenchmarkStat | undefined) {
+  if (!stat) return "—";
+  const digits = Math.abs(stat.median) < 10 ? 3 : 1;
+  const median = stat.median.toFixed(digits);
+  // The spread is shown, never hidden: a bare median invites the reader to
+  // treat one number as the whole result when n=5 runs produced a range.
+  if (stat.min === stat.max) return median;
+  return `${median} [${stat.min.toFixed(digits)}–${stat.max.toFixed(digits)}]`;
+}
+
+function shortDigest(image: string | null) {
+  if (!image) return "in-process";
+  const at = image.indexOf("@sha256:");
+  if (at === -1) return image;
+  return `${image.slice(0, at)}@${image.slice(at + 8, at + 20)}…`;
+}
+
+export function EditorialBenchmarkTable({
+  title,
+  dataset,
+  columns,
+  entries,
+  conditions,
+  caption,
+  showDigests = true,
+}: EditorialBenchmarkTableProps) {
+  return (
+    <figure className={styles.benchmarkTable}>
+      {caption ? <p className={styles.benchmarkLead}>{caption}</p> : null}
+      <div className={styles.benchmarkScroll}>
+        <table className={styles.benchmarkGrid}>
+          <caption className={styles.benchmarkCaption}>
+            {title} <span className={styles.benchmarkDataset}>{dataset}</span>
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Engine</th>
+              <th scope="col">Mode</th>
+              <th scope="col">Scale</th>
+              {columns.map((column) => (
+                <th scope="col" key={column}>
+                  {column}
+                </th>
+              ))}
+              {showDigests ? <th scope="col">Image</th> : null}
+            </tr>
+          </thead>
+          <tbody>
+            {entries.map((entry) => (
+              <tr
+                key={`${entry.backend}-${entry.scale}-${entry.workload}`}
+                className={entry.is_arcadedb ? styles.benchmarkOwnRow : undefined}
+              >
+                <th scope="row">{entry.backend}</th>
+                <td>{entry.deployment}</td>
+                <td>{entry.scale}</td>
+                {columns.map((column) => (
+                  <td key={column} className={styles.benchmarkNumber}>
+                    {formatStat(entry.metrics[column])}
+                  </td>
+                ))}
+                {showDigests ? (
+                  <td className={styles.benchmarkDigest}>
+                    <code>{shortDigest(entry.image)}</code>
+                    {entry.version_name ? ` (${entry.version_name})` : ""}
+                  </td>
+                ) : null}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <figcaption className={styles.benchmarkConditions}>
+        <p>
+          Median of repeated runs, with the full range in brackets. Every engine ran in
+          Docker under the same cpuset and memory cap, one job at a time.
+        </p>
+        {conditions.length > 0 ? (
+          <ul className={styles.figurePoints}>
+            {conditions.map((condition) => (
+              <li key={condition}>{condition}</li>
+            ))}
+          </ul>
+        ) : null}
+      </figcaption>
+    </figure>
+  );
+}
+
 export function EditorialLinkSection({ eyebrow, title, links }: EditorialLinkSectionProps) {
   return (
     <section className={styles.linkSection}>

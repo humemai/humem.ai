@@ -1,4 +1,4 @@
-export { arcadeDbEmbeddedPython } from "./arcadedb-embedded-python";
+export { arcadeDb } from "./arcadedb";
 export { auditReadyMemory } from "./audit-ready-memory";
 export { coLearning } from "./co-learning";
 export { cypherglot } from "./cypherglot";
