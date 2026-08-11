@@ -19,18 +19,6 @@ export const arcadeDb: Project = {
           "The indexes work the same way. LSM trees, full-text, geo, hash, and both dense and sparse vector indexes are all commit in the same transaction as the records they index. Replication comes along for the ride: Raft ships page changes from that shared log, so every model replicates correctly without anyone writing replication code per model.",
           "One caveat, because a careful reader will check it. The vector records themselves are transactional, logged and replicated, but the nearest-neighbour graph used to search them is built in the background and can be rebuilt. So the data is the source of truth and the search structure catches up. That is still more than a standalone vector store gives you, and it is not the same as a fully transactional index.",
         ],
-        figure: {
-          label: "Figure 1",
-          title: "One engine underneath",
-          caption:
-            "Everything sits on the same pages and the same log, which is what makes a write across several models one transaction.",
-          points: [
-            "Documents, graph, key-value, time series, vectors",
-            "Shared pages, one write-ahead log",
-            "Indexes committed in the same transaction",
-            "Raft replicates pages, so every model replicates",
-          ],
-        },
       },
       {
         id: "embedded",
@@ -42,18 +30,6 @@ export const arcadeDb: Project = {
           "This is a real package surface rather than a launcher. Transactions and lifecycle, schema and graph helpers, bulk ingest, import and export paths, and the vector features are all exposed and tested, with the example suite run in CI on every change.",
           "Both halves of this work are maintained here. Fixes and features found through the benchmarking below are filed and, where possible, contributed upstream, so the engine and the Python distribution improve together rather than diverging.",
         ],
-        figure: {
-          label: "Figure 2",
-          title: "What the wheel contains",
-          caption:
-            "The engine is not reimplemented or forked in behaviour; it is repackaged so Python can use it without a separate runtime or service.",
-          points: [
-            "Upstream ArcadeDB engine, unmodified",
-            "Bundled runtime, no separate Java install",
-            "Platform wheels, installed with pip",
-            "Optional in-process server for wire protocols",
-          ],
-        },
       },
       {
         id: "vectors",
@@ -63,6 +39,16 @@ export const arcadeDb: Project = {
         body: [
           "The sharpest test of a multi-model engine is whether its vector search survives contact with systems that do nothing else. These runs use real SPLADE vectors over MS MARCO for the sparse case and real image descriptors for the dense case, not synthetic vectors, because synthetic distributions are unrepresentatively kind to approximate indexes.",
           "Recall is reported next to every latency. A vector benchmark without a quality number is not a comparison, since any engine can be made faster by searching less thoroughly, and the engines here sit at genuinely different points on that trade.",
+          {
+            type: "figureGrid",
+            columns: 2,
+            caption:
+              "Left: ArcadeDB against the best specialist at each corpus size, log scale. Right: how sparse search scales as the corpus grows.",
+            items: [
+              { image: { src: "/images/projects/arcadedb/f4_one_vs_n.svg", alt: "ArcadeDB latency against the best specialist engine at each corpus size" } },
+              { image: { src: "/images/projects/arcadedb/f5_sparse_scaling.svg", alt: "Sparse vector search latency as the corpus grows" } },
+            ],
+          },
           {
             type: "benchmarkTable",
             tableId: "l3s",
@@ -96,6 +82,15 @@ export const arcadeDb: Project = {
               "Both ArcadeDB arms are shown: the native time-series type and the general-purpose document path. The distance between them is what the specialized layout buys.",
           },
           {
+            type: "figureGrid",
+            columns: 1,
+            caption:
+              "The cross-model operation: one engine doing it in a single transaction against a composed stack that cannot.",
+            items: [
+              { image: { src: "/images/projects/arcadedb/f7_e2_hybrid.svg", alt: "Latency of a vector to graph to document operation, single engine against a composed stack" } },
+            ],
+          },
+          {
             type: "benchmarkTable",
             tableId: "e2",
             caption:
@@ -112,6 +107,14 @@ export const arcadeDb: Project = {
           "Both deployments appear in the tables above running the same engine version, which makes the comparison a deployment measurement rather than an engine one. The table below then splits that gap in two, by measuring a third arm: an HTTP server running inside the same process. Going from embedded to that arm isolates the wire format with the process boundary held constant, and going from it to a separate container adds the boundary with the wire format held constant.",
           "The split is lopsided, and usefully so. The wire format costs something at every size and grows with the result. The process boundary is so small that at the smaller sizes it disappears into the noise and measures slightly negative. So the cost of running client and server as separate processes on one machine is essentially the serialization, not the separation, and the lever that would actually move it is a cheaper wire format rather than co-location.",
           {
+            type: "figureGrid",
+            columns: 1,
+            caption: "What the server deployment costs relative to embedded, by result size.",
+            items: [
+              { image: { src: "/images/projects/arcadedb/f8_deployment.svg", alt: "Server deployment cost relative to embedded, by result size" } },
+            ],
+          },
+          {
             type: "benchmarkTable",
             tableId: "e4",
             caption:
@@ -122,18 +125,6 @@ export const arcadeDb: Project = {
           "Use the server when more than one process or machine needs the same data, when you want the Postgres, Redis, Bolt or HTTP wire protocols, or when you need Raft replication and failover. The embedded package can also start a server in-process, so this is not a one-way door.",
           "The honest summary is that this is a deployment decision and not a performance one. The engine is the same in both, and the difference you will feel is the boundary you put around it.",
         ],
-        figure: {
-          label: "Figure 3",
-          title: "Which one to reach for",
-          caption:
-            "The same engine either way. Choose by how many processes need the data, not by expected speed.",
-          points: [
-            "One process, local data: embedded",
-            "Many clients or machines: server",
-            "Need Postgres, Redis, Bolt or HTTP: server",
-            "Need replication and failover: server",
-          ],
-        },
       },
       {
         id: "reproducing",

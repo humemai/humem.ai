@@ -547,3 +547,21 @@
   padding-left: 1.1rem;
   line-height: 1.7;
 }
+
+/* Chart figures come from the papers as vector line plots with pure-black
+   ink and a transparent background, so on the dark theme they would be
+   invisible. Give them their own light surface in both themes rather than
+   recolouring: the series colours carry meaning and inverting would lie
+   about them. */
+.figureGridItem {
+  background: #fff;
+  border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+  border-radius: 0.6rem;
+  padding: 0.85rem;
+}
+
+.figureGridImage {
+  width: 100%;
+  height: auto;
+  display: block;
+}
