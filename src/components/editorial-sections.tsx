@@ -121,6 +121,8 @@ export type BenchmarkTable = {
   /** Scales the comparators reach but we have no publishable row for. */
   withheld_scales: string[];
   withheld_reason: string | null;
+  source_path: string | null;
+  source_url: string | null;
   entries: BenchmarkEntry[];
 };
 
@@ -163,6 +165,8 @@ export type EditorialBenchmarkTableProps = {
   showDigests?: boolean;
   withheldScales?: string[];
   withheldReason?: string | null;
+  sourcePath?: string | null;
+  sourceUrl?: string | null;
 };
 
 function formatStat(stat: BenchmarkStat | undefined) {
@@ -195,6 +199,8 @@ export function EditorialBenchmarkTable({
   showDigests = true,
   withheldScales = [],
   withheldReason,
+  sourcePath,
+  sourceUrl,
 }: EditorialBenchmarkTableProps) {
   const showMode = new Set(entries.map((e) => e.deployment)).size > 1;
   const showScale = new Set(entries.map((e) => e.scale)).size > 1;
@@ -248,6 +254,14 @@ export function EditorialBenchmarkTable({
           Median of repeated runs, with the full range in brackets. Every engine ran in
           Docker under the same cpuset and memory cap, one job at a time.
         </p>
+        {sourceUrl && sourcePath ? (
+          <p className={styles.benchmarkSource}>
+            Measured rows:{" "}
+            <a href={sourceUrl} target="_blank" rel="noopener noreferrer">
+              <code>{sourcePath}</code>
+            </a>
+          </p>
+        ) : null}
         {showDigests && builds.length > 0 ? (
           <details className={styles.benchmarkBuilds}>
             <summary>Exact builds measured</summary>

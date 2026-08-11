@@ -210,6 +210,8 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
           showDigests={block.showDigests}
           withheldScales={table.withheld_scales}
           withheldReason={table.withheld_reason}
+          sourcePath={table.source_path}
+          sourceUrl={table.source_url}
         />
       );
     }

@@ -565,3 +565,14 @@
   height: auto;
   display: block;
 }
+
+.benchmarkSource {
+  margin: 0.7rem 0 0;
+  font-size: 0.82rem;
+  opacity: 0.75;
+}
+
+.benchmarkSource code {
+  font-size: 0.78rem;
+  word-break: break-all;
+}
