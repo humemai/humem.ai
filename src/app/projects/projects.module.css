@@ -389,6 +389,7 @@
 .editorialNav {
   width: var(--site-shell-width-mobile);
   margin: 0 auto;
+  --editorial-nav-offset: 4.6rem;
 }
 
 .detailHero {
@@ -518,8 +519,13 @@
 
 .editorialNav {
   position: sticky;
-  top: 5.9rem;
-  z-index: 20;
+  /* Must clear the sticky site header (top:0, z-index:40). 5.9rem was tuned
+     for the desktop header; on narrower widths the header wraps taller and
+     paints over the pills, which reads as the nav vanishing on scroll. Use a
+     variable so both can move together, and sit just under the header rather
+     than at a guessed offset. */
+  top: var(--editorial-nav-offset, 5.9rem);
+  z-index: 30;
   margin-top: 2rem;
   overflow-x: auto;
   scrollbar-width: none;

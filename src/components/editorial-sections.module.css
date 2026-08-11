@@ -364,11 +364,17 @@
     color: #e5ecf5;
   }
 }
-/* Benchmark tables render measurements imported from src/data, so they must
-   stay readable at any column count and must never make the page scroll
-   sideways: the table scrolls inside its own container instead. */
+/* Benchmark tables.
+
+   The hard constraint: a table must never make the PAGE scroll sideways. A
+   grid child defaults to min-width:auto, so an inner min-width on the table
+   pushes the whole column wider and the body text gets clipped. min-width:0
+   on the figure and the scroller is what actually contains it; overflow-x
+   alone does not. */
 .benchmarkTable {
-  margin: 2.5rem 0;
+  margin: 2.25rem 0;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .benchmarkLead {
@@ -376,6 +382,8 @@
 }
 
 .benchmarkScroll {
+  min-width: 0;
+  max-width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
@@ -383,8 +391,7 @@
 .benchmarkGrid {
   border-collapse: collapse;
   width: 100%;
-  min-width: 40rem;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
 }
 
 .benchmarkCaption {
@@ -392,45 +399,151 @@
   text-align: left;
   font-weight: 600;
   padding-bottom: 0.5rem;
+  line-height: 1.4;
 }
 
 .benchmarkDataset {
+  display: block;
   font-weight: 400;
-  opacity: 0.7;
+  font-size: 0.85rem;
+  opacity: 0.65;
 }
 
 .benchmarkGrid th,
 .benchmarkGrid td {
-  border-bottom: 1px solid color-mix(in srgb, currentColor 15%, transparent);
-  padding: 0.45rem 0.7rem;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+  padding: 0.55rem 0.6rem;
   text-align: left;
-  vertical-align: top;
+  vertical-align: baseline;
 }
 
 .benchmarkGrid thead th {
   border-bottom-width: 2px;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  opacity: 0.7;
   white-space: nowrap;
 }
 
-/* Our own rows are marked so a reader can tell at a glance which engine is
-   ours, rather than having to parse backend names. */
+/* Our rows are marked so a reader can tell at a glance which engine is ours. */
 .benchmarkOwnRow {
   background: color-mix(in srgb, currentColor 5%, transparent);
 }
 
-.benchmarkNumber {
+.benchmarkOwnRow th[scope="row"] {
+  font-weight: 700;
+}
+
+.benchmarkGrid td {
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
 
-.benchmarkDigest {
+.benchmarkGrid th[scope="row"] {
+  font-weight: 500;
+  white-space: normal;
+  min-width: 8rem;
+}
+
+.benchmarkBuilds {
+  margin-top: 0.75rem;
+  font-size: 0.82rem;
+  opacity: 0.8;
+}
+
+.benchmarkBuilds summary {
+  cursor: pointer;
+}
+
+.benchmarkBuilds ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.benchmarkBuilds code {
   font-size: 0.78rem;
-  opacity: 0.75;
-  white-space: nowrap;
+  opacity: 0.8;
 }
 
 .benchmarkConditions {
-  margin-top: 0.85rem;
+  margin-top: 0.9rem;
   font-size: 0.85rem;
   opacity: 0.85;
+  line-height: 1.55;
+}
+
+/* Phones: a four-column numeric table does not fit, so each row becomes its
+   own labelled block. The header row is hidden and each cell carries its
+   column name from a data attribute. */
+@media (max-width: 40rem) {
+  .benchmarkGrid,
+  .benchmarkGrid tbody,
+  .benchmarkGrid tr,
+  .benchmarkGrid td,
+  .benchmarkGrid th {
+    display: block;
+  }
+
+  .benchmarkGrid thead {
+    display: none;
+  }
+
+  .benchmarkGrid tr {
+    border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+    border-radius: 0.5rem;
+    padding: 0.6rem 0.75rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .benchmarkGrid th[scope="row"] {
+    border: 0;
+    padding: 0 0 0.35rem;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+
+  .benchmarkGrid td {
+    border: 0;
+    padding: 0.15rem 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    white-space: normal;
+  }
+
+  .benchmarkGrid td::before {
+    content: attr(data-label);
+    opacity: 0.65;
+    font-variant-numeric: normal;
+  }
+}
+
+/* Figure panels were a bare list and did not read as figures at all. Give the
+   panel a surface and the label some weight so it is visibly a diagram-ish
+   block rather than another paragraph. */
+.figurePanel {
+  border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+  border-radius: 0.75rem;
+  padding: 1.1rem 1.25rem;
+  background: color-mix(in srgb, currentColor 3%, transparent);
+}
+
+.figureLabel {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+.figureTitle {
+  font-weight: 650;
+  margin: 0 0 0.6rem;
+}
+
+.figurePoints {
+  margin: 0;
+  padding-left: 1.1rem;
+  line-height: 1.7;
 }

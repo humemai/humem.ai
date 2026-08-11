@@ -13,20 +13,20 @@ export const arcadeDb: Project = {
         id: "engine",
         navLabel: "Engine",
         eyebrow: "Engine",
-        title: "One storage substrate underneath documents, graphs, key-value, time series and vectors.",
+        title: "Documents, graphs, key-value, time series and vectors share one storage engine.",
         body: [
-          "Most systems that claim to be multi-model are several engines behind one API. ArcadeDB is not. Everything persistent is a paginated component over one page manager, committed through one write-ahead log by one transaction pipeline, which is why a write that touches a document, an edge and a vector index is a single ACID transaction rather than a coordinated set of them.",
-          "Every index rides that same substrate. LSM trees, full-text, geo, hash, and both dense and sparse vector indexes are committed in-transaction alongside the records they index. Replication inherits this for free: Raft ships shared write-ahead log page diffs, so it is automatically correct for every model without per-model replication logic.",
-          "One caveat worth stating plainly, because it is the kind of thing a careful reader checks. Vector records are transactional, logged and replicated, but the approximate-nearest-neighbour graph itself is an asynchronously built, rebuildable derived structure. The honest description is a transactional source of truth with an eventually consistent search structure, which is still a stronger guarantee than a standalone vector store offers, and it is not the same as a fully transactional index.",
+          "Most databases that call themselves multi-model are several engines behind one API. ArcadeDB is not. Everything it stores sits on the same pages, goes through the same write-ahead log, and commits in the same transaction, so a write that touches a document, an edge and a vector index is one ACID transaction instead of three that have to be coordinated.",
+          "The indexes work the same way. LSM trees, full-text, geo, hash, and both dense and sparse vector indexes are all commit in the same transaction as the records they index. Replication comes along for the ride: Raft ships page changes from that shared log, so every model replicates correctly without anyone writing replication code per model.",
+          "One caveat, because a careful reader will check it. The vector records themselves are transactional, logged and replicated, but the nearest-neighbour graph used to search them is built in the background and can be rebuilt. So the data is the source of truth and the search structure catches up. That is still more than a standalone vector store gives you, and it is not the same as a fully transactional index.",
         ],
         figure: {
           label: "Figure 1",
-          title: "One substrate",
+          title: "One engine underneath",
           caption:
-            "Every model and every index sits on the same page manager and the same write-ahead log, which is what makes a cross-model write one transaction.",
+            "Everything sits on the same pages and the same log, which is what makes a write across several models one transaction.",
           points: [
             "Documents, graph, key-value, time series, vectors",
-            "One page manager and one write-ahead log",
+            "Shared pages, one write-ahead log",
             "Indexes committed in the same transaction",
             "Raft replicates pages, so every model replicates",
           ],
@@ -83,7 +83,7 @@ export const arcadeDb: Project = {
         title: "Graph, tabular, and the transaction that spans both plus vectors.",
         body: [
           "The same harness runs graph traversal on LDBC-SNB, tabular work in both OLTP and OLAP shapes, and a cross-model transaction that starts from a vector hit, traverses the graph, and updates a document.",
-          "That last one is the argument for a unified engine stated as an experiment rather than a claim. Against a composed stack of a vector store plus a graph database, the interesting output is not the latency, it is what a failure part-way through leaves behind. A composed stack has no transaction spanning both engines, so it can be interrupted into a state where the two disagree, and the single-substrate engine cannot.",
+          "That last one is the argument for a unified engine stated as an experiment rather than a claim. Against a composed stack of a vector store plus a graph database, the interesting output is not the latency, it is what a failure part-way through leaves behind. A composed stack has no transaction spanning both engines, so it can be interrupted into a state where the two disagree, and a single engine cannot.",
           {
             type: "benchmarkTable",
             tableId: "l2",
@@ -151,7 +151,7 @@ export const arcadeDb: Project = {
     ],
   },
   summary:
-    "A multi-model database engine that keeps documents, graphs, key-value, time series and vectors on one transactional substrate, plus the Python distribution that runs that engine in process, benchmarked against the specialist systems in each category.",
+    "A multi-model database engine that keeps documents, graphs, key-value, time series and vectors in one transactional engine, plus the Python distribution that runs that engine in process, benchmarked against the specialist systems in each category.",
   image: {
     src: "/images/projects/project-arcadedb-embedded-python.png",
     alt: "Illustration for ArcadeDB",
@@ -159,13 +159,15 @@ export const arcadeDb: Project = {
   problem:
     "Applications increasingly need relational queries, graph traversal and vector search over the same data, and the usual answer is to run three systems and write glue between them. That glue has no transaction boundary, so a failure part-way through a multi-store write leaves the stores disagreeing, and there is no single place to ask a question that spans them. For Python work there is a second problem: the engines worth using are rarely installable as a package and runnable in process.",
   solution:
-    "ArcadeDB puts every model on one page manager and one write-ahead log, so a write spanning documents, edges and vectors is a single ACID transaction and replication is automatically correct for every model. The embedded distribution ships that same engine as a Python package with a bundled runtime, so it installs with pip and runs inside the application process, with an optional in-process server when wire protocols or replication are needed.",
+    "ArcadeDB puts every model on the same pages and the same write-ahead log, so a write spanning documents, edges and vectors is one ACID transaction, and replication is correct for every model without per-model code. The embedded distribution ships that same engine as a Python package with a bundled runtime, so it installs with pip and runs inside the application process, with an optional in-process server when wire protocols or replication are needed.",
   impact:
     "The engine and the Python distribution are developed together and measured against the specialist systems in each category, on real corpora rather than synthetic ones, with recall reported next to latency and every comparator pinned by image digest. Findings from that benchmarking are filed and contributed upstream, so the measurements feed the engine rather than only describing it.",
+  // The hero renders the first two as buttons, so those two have to represent
+  // both halves of the work rather than sending everyone to the Python side.
   links: [
-    { label: "Read docs", href: arcadeDbDocsUrl },
     { label: "Python distribution", href: arcadeDbRepoUrl },
-    { label: "Upstream engine", href: arcadeDbUpstreamRepoUrl },
-    { label: "Visit ArcadeDB", href: arcadeDbWebsiteUrl },
+    { label: "ArcadeDB engine", href: arcadeDbUpstreamRepoUrl },
+    { label: "Python docs", href: arcadeDbDocsUrl },
+    { label: "arcadedb.com", href: arcadeDbWebsiteUrl },
   ],
 };

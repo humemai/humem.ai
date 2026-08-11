@@ -167,12 +167,15 @@ export type EditorialBenchmarkTableProps = {
 
 function formatStat(stat: BenchmarkStat | undefined) {
   if (!stat) return "—";
-  const digits = Math.abs(stat.median) < 10 ? 3 : 1;
-  const median = stat.median.toFixed(digits);
-  // The spread is shown, never hidden: a bare median invites the reader to
-  // treat one number as the whole result when n=5 runs produced a range.
-  if (stat.min === stat.max) return median;
-  return `${median} [${stat.min.toFixed(digits)}–${stat.max.toFixed(digits)}]`;
+  const v = stat.median;
+  // Medians only. The min-max spread made every cell three numbers wide, which
+  // is unreadable on a phone and was the main reason the table forced the page
+  // to scroll sideways. The caption still says these are medians of repeated
+  // runs, and the full spread is in the papers and the exported JSON.
+  if (v >= 100000) return `${Math.round(v / 1000).toLocaleString()}k`;
+  if (v >= 1000) return Math.round(v).toLocaleString();
+  if (v >= 10) return v.toFixed(1);
+  return v.toFixed(2);
 }
 
 function shortDigest(image: string | null) {
@@ -193,6 +196,12 @@ export function EditorialBenchmarkTable({
   withheldScales = [],
   withheldReason,
 }: EditorialBenchmarkTableProps) {
+  const showMode = new Set(entries.map((e) => e.deployment)).size > 1;
+  const showScale = new Set(entries.map((e) => e.scale)).size > 1;
+  const builds = entries
+    .map((e) => ({ backend: e.backend, build: e.version_name, image: e.image }))
+    .filter((b) => b.build || b.image);
+
   return (
     <figure className={styles.benchmarkTable}>
       {caption ? <p className={styles.benchmarkLead}>{caption}</p> : null}
@@ -204,14 +213,14 @@ export function EditorialBenchmarkTable({
           <thead>
             <tr>
               <th scope="col">Engine</th>
-              <th scope="col">Mode</th>
-              <th scope="col">Scale</th>
+              {showMode ? <th scope="col">Mode</th> : null}
+              {showScale ? <th scope="col">Scale</th> : null}
               {columns.map((column) => (
                 <th scope="col" key={column}>
                   {column}
                 </th>
               ))}
-              {showDigests ? <th scope="col">Image</th> : null}
+
             </tr>
           </thead>
           <tbody>
@@ -221,19 +230,14 @@ export function EditorialBenchmarkTable({
                 className={entry.is_arcadedb ? styles.benchmarkOwnRow : undefined}
               >
                 <th scope="row">{entry.backend}</th>
-                <td>{entry.deployment}</td>
-                <td>{entry.scale}</td>
+                {showMode ? <td data-label="Mode">{entry.deployment}</td> : null}
+                {showScale ? <td data-label="Scale">{entry.scale}</td> : null}
                 {columns.map((column) => (
-                  <td key={column} className={styles.benchmarkNumber}>
+                  <td key={column} data-label={column}>
                     {formatStat(entry.metrics[column])}
                   </td>
                 ))}
-                {showDigests ? (
-                  <td className={styles.benchmarkDigest}>
-                    <code>{shortDigest(entry.image)}</code>
-                    {entry.version_name ? ` (${entry.version_name})` : ""}
-                  </td>
-                ) : null}
+
               </tr>
             ))}
           </tbody>
@@ -244,6 +248,20 @@ export function EditorialBenchmarkTable({
           Median of repeated runs, with the full range in brackets. Every engine ran in
           Docker under the same cpuset and memory cap, one job at a time.
         </p>
+        {showDigests && builds.length > 0 ? (
+          <details className={styles.benchmarkBuilds}>
+            <summary>Exact builds measured</summary>
+            <ul>
+              {builds.map((b) => (
+                <li key={b.backend}>
+                  <strong>{b.backend}</strong>{" "}
+                  {b.build ? b.build : ""}
+                  {b.image ? <code> {shortDigest(b.image)}</code> : null}
+                </li>
+              ))}
+            </ul>
+          </details>
+        ) : null}
         {withheldScales.length > 0 && withheldReason ? (
           <p>
             <strong>Not shown:</strong> {withheldScales.join(", ")}. {withheldReason}
