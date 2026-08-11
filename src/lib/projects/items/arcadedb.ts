@@ -91,6 +91,12 @@ export const arcadeDb: Project = {
           },
           {
             type: "benchmarkTable",
+            tableId: "l4",
+            caption:
+              "Both ArcadeDB arms are shown: the native time-series type and the general-purpose document path. The distance between them is what the specialized layout buys.",
+          },
+          {
+            type: "benchmarkTable",
             tableId: "e2",
             caption:
               "One transaction across vector, graph and document, against a composed stack that cannot make it one transaction.",
@@ -138,7 +144,7 @@ export const arcadeDb: Project = {
           "The tables on this page are rendered from a JSON file exported by the benchmark suite, so they change when the measurements change and a stale number cannot survive in the prose. The suite, the runner and the frozen result rows are all in the repository.",
           "The protocol is deliberately boring. Every engine runs in Docker under an identical cpuset and memory cap, one job at a time on one machine, and each printed cell is a median of repeated runs with the full range shown beside it. Comparators are pinned by image digest rather than by a floating tag, which is why each row carries its digest: it is the only unambiguous answer to which build was measured.",
           "Defaults are used first. Where a default would make a comparison meaningless rather than merely different, it is equalized and the change is disclosed in the conditions under the relevant table, including the cases where the correction works against us.",
-          "What is not here is as deliberate as what is. The time-series lane against QuestDB and DuckDB has been run and is reported in the papers, with each engine's own build recorded and no engine given a settle step, that last decision measured rather than assumed. It is not on this page yet because ArcadeDB has two arms in it, a native time-series type and a general-purpose document path, and they live in separate files. Publishing the document path alone next to the other engines' best would show our slowest arm losing by a factor the papers use to price the native layout, which would be a real number arranged into a false impression. It joins the tables when both arms are in one place.",
+          "What is not here is as deliberate as what is. The recovery and replication work is reported as prose rather than as a table, since a kill-9 either recovers or it does not, and the dense 10M tier waits on a released build as noted under its table.",
           "Two papers covering this work are in preparation, one on the engine and one on the Python distribution. Citation details will be added here once they are available.",
         ],
       },
