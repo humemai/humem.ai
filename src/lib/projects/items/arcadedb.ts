@@ -103,7 +103,15 @@ export const arcadeDb: Project = {
         eyebrow: "Choosing",
         title: "Embedded or server: the deployment choice, and what it actually costs.",
         body: [
-          "Both deployments appear in the tables above running the same engine version, which makes the comparison a deployment measurement rather than an engine one. The gap is almost entirely the wire format. Co-locating the client and server on one machine does not recover it, and a cheaper binary protocol would, which is a more useful thing to know than a single number labelled overhead.",
+          "Both deployments appear in the tables above running the same engine version, which makes the comparison a deployment measurement rather than an engine one. The table below then splits that gap in two, by measuring a third arm: an HTTP server running inside the same process. Going from embedded to that arm isolates the wire format with the process boundary held constant, and going from it to a separate container adds the boundary with the wire format held constant.",
+          "The split is lopsided, and usefully so. The wire format costs something at every size and grows with the result. The process boundary is so small that at the smaller sizes it disappears into the noise and measures slightly negative. So the cost of running client and server as separate processes on one machine is essentially the serialization, not the separation, and the lever that would actually move it is a cheaper wire format rather than co-location.",
+          {
+            type: "benchmarkTable",
+            tableId: "e4",
+            caption:
+              "One engine, one workload, three deployments. The last two columns are the differences between the first three.",
+            showDigests: false,
+          },
           "Use the embedded distribution when the database serves one process: notebooks, tests, single-node services, agent tooling, and anything where a network hop per query is pure cost. It installs with pip, starts in milliseconds, and has no service to operate.",
           "Use the server when more than one process or machine needs the same data, when you want the Postgres, Redis, Bolt or HTTP wire protocols, or when you need Raft replication and failover. The embedded package can also start a server in-process, so this is not a one-way door.",
           "The honest summary is that this is a deployment decision and not a performance one. The engine is the same in both, and the difference you will feel is the boundary you put around it.",
@@ -130,6 +138,7 @@ export const arcadeDb: Project = {
           "The tables on this page are rendered from a JSON file exported by the benchmark suite, so they change when the measurements change and a stale number cannot survive in the prose. The suite, the runner and the frozen result rows are all in the repository.",
           "The protocol is deliberately boring. Every engine runs in Docker under an identical cpuset and memory cap, one job at a time on one machine, and each printed cell is a median of repeated runs with the full range shown beside it. Comparators are pinned by image digest rather than by a floating tag, which is why each row carries its digest: it is the only unambiguous answer to which build was measured.",
           "Defaults are used first. Where a default would make a comparison meaningless rather than merely different, it is equalized and the change is disclosed in the conditions under the relevant table, including the cases where the correction works against us.",
+          "What is not here is as deliberate as what is. A time-series lane against DuckDB and QuestDB has been run, but its rows do not record the scale, the workload or the comparator builds they came from, and its settle step is applied to ArcadeDB and not to the comparators, which tilts it in our favour. A comparison we know is tilted our way is not one worth publishing, so that lane stays out until it is re-run with matched settling and rows that carry their own conditions. The recovery and replication work is reported in the papers as prose rather than as a table, since a kill-9 either recovers or it does not.",
           "Two papers covering this work are in preparation, one on the engine and one on the Python distribution. Citation details will be added here once they are available.",
         ],
       },

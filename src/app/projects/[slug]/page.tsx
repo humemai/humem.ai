@@ -208,6 +208,8 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
           conditions={table.conditions}
           caption={block.caption}
           showDigests={block.showDigests}
+          withheldScales={table.withheld_scales}
+          withheldReason={table.withheld_reason}
         />
       );
     }

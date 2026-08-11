@@ -118,6 +118,9 @@ export type BenchmarkTable = {
   dataset: string;
   conditions: string[];
   columns: string[];
+  /** Scales the comparators reach but we have no publishable row for. */
+  withheld_scales: string[];
+  withheld_reason: string | null;
   entries: BenchmarkEntry[];
 };
 
@@ -158,6 +161,8 @@ export type EditorialBenchmarkTableProps = {
   conditions: string[];
   caption?: string;
   showDigests?: boolean;
+  withheldScales?: string[];
+  withheldReason?: string | null;
 };
 
 function formatStat(stat: BenchmarkStat | undefined) {
@@ -185,6 +190,8 @@ export function EditorialBenchmarkTable({
   conditions,
   caption,
   showDigests = true,
+  withheldScales = [],
+  withheldReason,
 }: EditorialBenchmarkTableProps) {
   return (
     <figure className={styles.benchmarkTable}>
@@ -237,6 +244,11 @@ export function EditorialBenchmarkTable({
           Median of repeated runs, with the full range in brackets. Every engine ran in
           Docker under the same cpuset and memory cap, one job at a time.
         </p>
+        {withheldScales.length > 0 && withheldReason ? (
+          <p>
+            <strong>Not shown:</strong> {withheldScales.join(", ")}. {withheldReason}
+          </p>
+        ) : null}
         {conditions.length > 0 ? (
           <ul className={styles.figurePoints}>
             {conditions.map((condition) => (
