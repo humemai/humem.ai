@@ -477,7 +477,15 @@
    own labelled block. The header row is hidden and each cell carries its
    column name from a data attribute. */
 @media (max-width: 40rem) {
+  /* caption MUST be in this list. Dropping display:table on .benchmarkGrid
+     leaves the caption as a stray display:table-caption box, which the spec
+     then wraps in an anonymous table. That anonymous table is shrink-to-fit,
+     and inside .benchmarkScroll's overflow-x:auto there is no definite width
+     to fit to, so it collapses to min-content and the title renders one word
+     per line down the page. The cells escaped this only because they are
+     listed here too. */
   .benchmarkGrid,
+  .benchmarkGrid caption,
   .benchmarkGrid tbody,
   .benchmarkGrid tr,
   .benchmarkGrid td,
