@@ -75,17 +75,16 @@ export const arcadeDb: Project = {
             // their print size on a screen, which is too small to read.
             columns: 1,
             caption:
-              "ArcadeDB against the best specialist at each corpus size on a log scale, and below it, sparse search across all three tiers of the real Big-ANN corpus, out to 8.84M documents. The second plot is the unflattering one: ArcadeDB is the slowest of the four at every tier, and the gap to Qdrant widens from 3.9x at one million documents to 5.2x at 8.84M.",
+              "ArcadeDB against the best specialist on each workload, log scale. Left of the line it loses, right of it it wins; sparse and dense vector search are both on the losing side.",
             items: [
               { image: { src: "/images/projects/arcadedb/f4_one_vs_n.svg", alt: "ArcadeDB latency against the best specialist engine at each corpus size" } },
-              { image: { src: "/images/projects/arcadedb/f5_sparse_scaling.svg", alt: "Sparse vector search latency for ArcadeDB, Qdrant, Milvus and Elasticsearch at 100k, 1M and 8.84M documents on the real Big-ANN SPLADE corpus" } },
             ],
           },
           {
             type: "benchmarkTable",
             tableId: "l3s",
             caption:
-              "Sparse retrieval on real SPLADE vectors. ArcadeDB appears several times because quantization and the settle step are ablated separately.",
+              "Sparse retrieval on real SPLADE vectors. ArcadeDB appears four times and every comparator once, because ArcadeDB is the engine under test: two deployments, plus two ablations of our own defaults. Each comparator runs once, in its default configuration. int8 posting weights are ArcadeDB's default and fp32 is the ablation, which is why recall sits next to every latency.",
           },
           {
             type: "benchmarkTable",
@@ -122,12 +121,10 @@ export const arcadeDb: Project = {
               { image: { src: "/images/projects/arcadedb/f7_e2_hybrid.svg", alt: "Latency of a vector to graph to document operation, single engine against a composed stack" } },
             ],
           },
-          {
-            type: "benchmarkTable",
-            tableId: "e2",
-            caption:
-              "One transaction across vector, graph and document, against a composed stack that cannot make it one transaction.",
-          },
+          // No E2 table here on purpose. The paper reports this experiment as
+          // the figure above plus prose; it has no E2 table, and inventing one
+          // for the page would mean publishing a result in a form nobody
+          // reviewed.
         ],
       },
       {
@@ -146,13 +143,10 @@ export const arcadeDb: Project = {
               { image: { src: "/images/projects/arcadedb/f8_deployment.svg", alt: "Server deployment cost relative to embedded, by result size" } },
             ],
           },
-          {
-            type: "benchmarkTable",
-            tableId: "e4",
-            caption:
-              "One engine, one workload, three deployments. The last two columns are the differences between the first three.",
-            showDigests: false,
-          },
+          // Same as E2: the deployment split is the figure above plus prose in
+          // the paper, with no table behind it. The three-arm decomposition is
+          // still being folded into the paper text; when it lands there as a
+          // table, it can appear here.
           "Use the embedded distribution when the database serves one process: notebooks, tests, single-node services, agent tooling, and anything where a network hop per query is pure cost. It installs with pip, starts in milliseconds, and has no service to operate.",
           "Use the server when more than one process or machine needs the same data, when you want the Postgres, Redis, Bolt or HTTP wire protocols, or when you need Raft replication and failover. The embedded package can also start a server in-process, so this is not a one-way door.",
           "The honest summary is that this is a deployment decision and not a performance one. The engine is the same in both, and the difference you will feel is the boundary you put around it.",
