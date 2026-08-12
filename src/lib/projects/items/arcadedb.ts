@@ -69,9 +69,13 @@ export const arcadeDb: Project = {
           "Recall is reported next to every latency. A vector benchmark without a quality number is not a comparison, since any engine can be made faster by searching less thoroughly, and the engines here sit at genuinely different points on that trade.",
           {
             type: "figureGrid",
-            columns: 2,
+            // One per row at every width, like every other figure here. These
+            // are 3.45in paper figures with 8pt type: at two-up on a tablet
+            // each lands near its native 246pt and the axis labels are at
+            // their print size on a screen, which is too small to read.
+            columns: 1,
             caption:
-              "Left: ArcadeDB against the best specialist at each corpus size, log scale. Right: how sparse search scales as the corpus grows.",
+              "ArcadeDB against the best specialist at each corpus size on a log scale, and below it, how sparse search scales as the corpus grows.",
             items: [
               { image: { src: "/images/projects/arcadedb/f4_one_vs_n.svg", alt: "ArcadeDB latency against the best specialist engine at each corpus size" } },
               { image: { src: "/images/projects/arcadedb/f5_sparse_scaling.svg", alt: "Sparse vector search latency as the corpus grows" } },

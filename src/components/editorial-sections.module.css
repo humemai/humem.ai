@@ -553,11 +553,15 @@
    invisible. Give them their own light surface in both themes rather than
    recolouring: the series colours carry meaning and inverting would lie
    about them. */
+/* The figure PDFs are already margin-cropped to a uniform 4pt by gs_crop() in
+   make_paper_figures.py, so the visible breathing room around a plot is this
+   padding, not the artwork. The white surface is not decoration: the SVGs are
+   transparent with black ink and would be unreadable on a dark background. */
 .figureGridItem {
   background: #fff;
   border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
   border-radius: 0.6rem;
-  padding: 0.85rem;
+  padding: 0.45rem;
 }
 
 .figureGridImage {
