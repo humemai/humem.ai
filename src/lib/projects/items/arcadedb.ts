@@ -75,10 +75,10 @@ export const arcadeDb: Project = {
             // their print size on a screen, which is too small to read.
             columns: 1,
             caption:
-              "ArcadeDB against the best specialist at each corpus size on a log scale, and below it, how sparse search scales as the corpus grows.",
+              "ArcadeDB against the best specialist at each corpus size on a log scale, and below it, sparse search across all three tiers of the real Big-ANN corpus, out to 8.84M documents. The second plot is the unflattering one: ArcadeDB is the slowest of the four at every tier, and the gap to Qdrant widens from 3.9x at one million documents to 5.2x at 8.84M.",
             items: [
               { image: { src: "/images/projects/arcadedb/f4_one_vs_n.svg", alt: "ArcadeDB latency against the best specialist engine at each corpus size" } },
-              { image: { src: "/images/projects/arcadedb/f5_sparse_scaling.svg", alt: "Sparse vector search latency as the corpus grows" } },
+              { image: { src: "/images/projects/arcadedb/f5_sparse_scaling.svg", alt: "Sparse vector search latency for ArcadeDB, Qdrant, Milvus and Elasticsearch at 100k, 1M and 8.84M documents on the real Big-ANN SPLADE corpus" } },
             ],
           },
           {
