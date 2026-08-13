@@ -37,27 +37,6 @@ export const arcadeDb: Project = {
             caption: "The same query answered from Java and from Python, and the three ways Python can ask for the results.",
             showDigests: false,
           },
-          "The next three tables put one corpus through all three models in a single Python process. The columns are OLTP, online transaction processing, meaning many small reads and writes measured in operations per second; OLAP, online analytical processing, meaning a few large scanning queries measured in milliseconds; and recall@10, the share of the true ten nearest vectors an approximate search actually returned.",
-          "Each specialist wins where it is specialized, on purpose.",
-          {
-            type: "benchmarkTable",
-            tableId: "pyb_tabular",
-            caption: "Tabular work against SQLite and DuckDB.",
-            showDigests: false,
-          },
-          {
-            type: "benchmarkTable",
-            tableId: "pyb_graph",
-            caption: "Graph traversal and analytics against LadybugDB.",
-            showDigests: false,
-          },
-          {
-            type: "benchmarkTable",
-            tableId: "pyb_vector",
-            caption: "Vector search against Chroma, at matched graph degree.",
-            showDigests: false,
-          },
-          "Read down the ArcadeDB row rather than across it. DuckDB answers the analytical suite faster, SQLite is quicker on point operations, Chroma serves lower-latency vector queries, and none of that is surprising. What no other row does is appear in all three tables at once, over one corpus, in one process, one file and one transaction. The alternative to that row is not a faster database, it is three databases and the code that keeps them agreeing. The benchmark sections below take each model further, against more engines and on harder data, on their own corpora and twelve cores rather than eight; those numbers are not continuous with these.",
         ],
       },
       {
