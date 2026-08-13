@@ -15,7 +15,7 @@ export const arcadeDb: Project = {
         eyebrow: "Engine",
         title: "Documents, graphs, key-value, time series and vectors share one storage engine.",
         body: [
-          "Most databases that call themselves multi-model are several engines behind one API. ArcadeDB is not. Everything it stores sits on the same pages, goes through the same write-ahead log, and commits in the same transaction, so a write that touches a document, an edge and a vector index is one ACID transaction instead of three that have to be coordinated.",
+          "Most databases that call themselves multi-model are several engines behind one API. ArcadeDB is not. Everything it stores sits on the same pages, goes through the same write-ahead log, and commits in the same transaction, so a write that touches a document, an edge and a vector index is one ACID transaction, atomic and durable as a unit, instead of three that have to be coordinated.",
           "The indexes work the same way. LSM trees, full-text, geo, hash, and both dense and sparse vector indexes are all commit in the same transaction as the records they index. Replication comes along for the ride: Raft ships page changes from that shared log, so every model replicates correctly without anyone writing replication code per model.",
           "Vectors are the exception worth naming. The vector records are transactional, logged and replicated like everything else, but the nearest-neighbour graph used to search them is not: it is built in the background and can be rebuilt. The data is the source of truth and the search structure catches up to it. That is more than a standalone vector store gives you, and less than a fully transactional index.",
         ],
@@ -37,7 +37,7 @@ export const arcadeDb: Project = {
             caption: "The same query answered from Java and from Python, and the three ways Python can ask for the results.",
             showDigests: false,
           },
-          "The next three tables put the same Stack Exchange corpus through all three models, in one process, against the engines you would otherwise embed alongside. That shared corpus is the whole point of them. The benchmark sections further down compare each model against more engines and on harder data, but they each use their own corpus, so they can measure one model well and never three at once. These three trade comparator count for that, which is why the lists are short and the numbers are smaller: different corpora, eight cores rather than twelve, and not continuous with the engine tables.",
+          "The next three tables put the same Stack Exchange corpus through all three models, in one process, against the engines you would otherwise embed alongside. That shared corpus is the whole point of them. The benchmark sections further down compare each model against more engines and on harder data, but they each use their own corpus, so they can measure one model well and never three at once. These three trade comparator count for that, which is why the lists are short and the numbers are smaller: different corpora, eight cores rather than twelve, and not continuous with the engine tables. The columns are OLTP, online transaction processing, meaning many small reads and writes measured in operations per second; OLAP, online analytical processing, meaning a few large scanning queries measured in milliseconds; and recall@10, the share of the true ten nearest vectors an approximate search actually returned.",
           "Each specialist wins where it is specialized, on purpose.",
           {
             type: "benchmarkTable",
@@ -67,7 +67,7 @@ export const arcadeDb: Project = {
         title: "Vector search, measured against the engines built only for vector search.",
         body: [
           "The sharpest test of a multi-model engine is whether its vector search survives contact with systems that do nothing else.",
-          "Both cases use real vectors, never generated ones. Sparse search uses SPLADE (Sparse Lexical And Expansion model) vectors over MS MARCO, a public search-relevance corpus. A SPLADE vector holds one weight per vocabulary term and is almost all zeros, so a query touches a few terms out of thirty thousand dimensions. Which terms it touches decides the cost: a common word carries a far longer posting list than a rare one. Real text is lopsided that way and generated data is not, which flatters an approximate index. Dense search uses real image descriptors, for the same reason.",
+          "Both cases use real vectors, never generated ones. Sparse search uses SPLADE (Sparse Lexical And Expansion model) vectors over MS MARCO, a public search-relevance corpus. A SPLADE vector holds one weight per vocabulary term and is almost all zeros, so a query touches a few terms out of thirty thousand dimensions. Which terms it touches decides the cost: a common word carries a far longer posting list than a rare one. Real text is lopsided that way and generated data is not, which flatters an approximate index. Dense search uses real image descriptors, for the same reason: DEEP-10M, ten million vectors from a public image-descriptor set, and SIFT, an older descriptor set kept for its smaller tiers. The sparse corpus comes from Big-ANN, a public benchmark challenge for approximate nearest neighbour search at scale. Latencies below are p50, the median query.",
           "Recall is reported next to every latency. A vector benchmark without a quality number is not a comparison, since any engine can be made faster by searching less thoroughly, and the engines here sit at genuinely different points on that trade.",
           {
             type: "figureGrid",
@@ -101,7 +101,7 @@ export const arcadeDb: Project = {
         eyebrow: "Benchmarks",
         title: "Graph, tabular, and the transaction that spans both plus vectors.",
         body: [
-          "The same harness runs graph traversal on LDBC-SNB, tabular work in both OLTP and OLAP shapes, and a cross-model transaction that starts from a vector hit, traverses the graph, and updates a document.",
+          "The same harness runs graph traversal on LDBC-SNB, the Linked Data Benchmark Council's Social Network Benchmark, a standard synthetic social graph. It also runs tabular work in both OLTP and OLAP shapes, time series on TSBS, the Time Series Benchmark Suite, and a cross-model transaction that starts from a vector hit, traverses the graph, and updates a document.",
           "That last one is the argument for a unified engine stated as an experiment rather than a claim. Against a composed stack of a vector store plus a graph database, the interesting output is not the latency, it is what a failure part-way through leaves behind. A composed stack has no transaction spanning both engines, so it can be interrupted into a state where the two disagree, and a single engine cannot.",
           {
             type: "benchmarkTable",
