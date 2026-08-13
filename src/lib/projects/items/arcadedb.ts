@@ -66,7 +66,8 @@ export const arcadeDb: Project = {
         eyebrow: "Benchmarks",
         title: "Vector search, measured against the engines built only for vector search.",
         body: [
-          "The sharpest test of a multi-model engine is whether its vector search survives contact with systems that do nothing else. These runs use real SPLADE vectors over MS MARCO for the sparse case and real image descriptors for the dense case, not synthetic vectors, because synthetic distributions are unrepresentatively kind to approximate indexes.",
+          "The sharpest test of a multi-model engine is whether its vector search survives contact with systems that do nothing else.",
+          "Both cases use real vectors, never generated ones. Sparse search uses SPLADE (Sparse Lexical And Expansion model) vectors over MS MARCO, a public search-relevance corpus. A SPLADE vector holds one weight per vocabulary term and is almost all zeros, so a query touches a few terms out of thirty thousand dimensions. Which terms it touches decides the cost: a common word carries a far longer posting list than a rare one. Real text is lopsided that way and generated data is not, which flatters an approximate index. Dense search uses real image descriptors, for the same reason.",
           "Recall is reported next to every latency. A vector benchmark without a quality number is not a comparison, since any engine can be made faster by searching less thoroughly, and the engines here sit at genuinely different points on that trade.",
           {
             type: "figureGrid",
