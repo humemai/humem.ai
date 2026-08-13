@@ -37,7 +37,8 @@ export const arcadeDb: Project = {
             caption: "The same query answered from Java and from Python, and the three ways Python can ask for the results.",
             showDigests: false,
           },
-          "Against the other engines you would embed in a Python process, on the same corpus and in the same process, the picture is mixed on purpose. Each specialist wins where it is specialized. These three tables are a different setup from the engine tables higher up: different corpora, different comparators, eight cores rather than twelve. The two sets are not continuous.",
+          "The next three tables put the same Stack Exchange corpus through all three models, in one process, against the engines you would otherwise embed alongside. That shared corpus is the whole point of them. The benchmark sections further down compare each model against more engines and on harder data, but they each use their own corpus, so they can measure one model well and never three at once. These three trade comparator count for that, which is why the lists are short and the numbers are smaller: different corpora, eight cores rather than twelve, and not continuous with the engine tables.",
+          "Each specialist wins where it is specialized, on purpose.",
           {
             type: "benchmarkTable",
             tableId: "pyb_tabular",
@@ -56,7 +57,7 @@ export const arcadeDb: Project = {
             caption: "Vector search against Chroma, at matched graph degree.",
             showDigests: false,
           },
-          "The point of those three tables is not that one engine wins every column, because it does not. It is that they are the same process, the same file and the same transaction. The alternative to the middle column is not a faster database, it is three databases and the code that keeps them agreeing.",
+          "Read down the ArcadeDB row rather than across it. DuckDB answers the analytical suite faster, SQLite is quicker on point operations, Chroma serves lower-latency vector queries, and none of that is surprising. What no other row does is appear in all three tables at once, over one corpus, in one process, one file and one transaction. The alternative to that row is not a faster database, it is three databases and the code that keeps them agreeing.",
         ],
       },
       {
