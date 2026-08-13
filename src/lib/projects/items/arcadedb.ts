@@ -77,7 +77,7 @@ export const arcadeDb: Project = {
             // their print size on a screen, which is too small to read.
             columns: 1,
             caption:
-              "ArcadeDB against the best specialist on each workload, log scale. Left of the line it loses, right of it it wins; sparse and dense vector search are both on the losing side.",
+              "The whole evaluation in one figure, not just the vector part: ArcadeDB embedded against the best specialist on each workload, log scale, anything right of the line a win. It wins the operational and cross-model rows, stays within a small factor on approximate vector search, and loses the scan- and bulk-bound rows by orders of magnitude, which is exactly where columnar and append-optimised specialists should win. Dense search at ten million vectors is the one vector row where it comes out ahead, at 1.4x. The rows use each engine's own idiom: tabular OLTP is SQL against PostgreSQL, the graph row is Cypher against LadybugDB, and TPC-H Q1 is SQL against DuckDB.",
             items: [
               { image: { src: "/images/projects/arcadedb/f4_one_vs_n.svg", alt: "ArcadeDB latency against the best specialist engine at each corpus size" } },
             ],
