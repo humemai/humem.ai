@@ -17,7 +17,7 @@ export const arcadeDb: Project = {
         body: [
           "Most databases that call themselves multi-model are several engines behind one API. ArcadeDB is not. Everything it stores sits on the same pages, goes through the same write-ahead log, and commits in the same transaction, so a write that touches a document, an edge and a vector index is one ACID transaction instead of three that have to be coordinated.",
           "The indexes work the same way. LSM trees, full-text, geo, hash, and both dense and sparse vector indexes are all commit in the same transaction as the records they index. Replication comes along for the ride: Raft ships page changes from that shared log, so every model replicates correctly without anyone writing replication code per model.",
-          "One caveat, because a careful reader will check it. The vector records themselves are transactional, logged and replicated, but the nearest-neighbour graph used to search them is built in the background and can be rebuilt. So the data is the source of truth and the search structure catches up. That is still more than a standalone vector store gives you, and it is not the same as a fully transactional index.",
+          "Vectors are the exception worth naming. The vector records are transactional, logged and replicated like everything else, but the nearest-neighbour graph used to search them is not: it is built in the background and can be rebuilt. The data is the source of truth and the search structure catches up to it. That is more than a standalone vector store gives you, and less than a fully transactional index.",
         ],
       },
       {
@@ -149,7 +149,7 @@ export const arcadeDb: Project = {
           // table, it can appear here.
           "Use the embedded distribution when the database serves one process: notebooks, tests, single-node services, agent tooling, and anything where a network hop per query is pure cost. It installs with pip, starts in milliseconds, and has no service to operate.",
           "Use the server when more than one process or machine needs the same data, when you want the Postgres, Redis, Bolt or HTTP wire protocols, or when you need Raft replication and failover. The embedded package can also start a server in-process, so this is not a one-way door.",
-          "The honest summary is that this is a deployment decision and not a performance one. The engine is the same in both, and the difference you will feel is the boundary you put around it.",
+          "This is a deployment decision, not a performance one. The engine is the same in both, and the difference you will feel is the boundary you put around it.",
         ],
       },
       {
