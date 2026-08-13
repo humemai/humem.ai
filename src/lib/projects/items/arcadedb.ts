@@ -37,7 +37,7 @@ export const arcadeDb: Project = {
             caption: "The same query answered from Java and from Python, and the three ways Python can ask for the results.",
             showDigests: false,
           },
-          "Against the other engines you would embed in a Python process, on the same corpus and in the same process, the picture is mixed on purpose. Each specialist wins where it is specialized.",
+          "Against the other engines you would embed in a Python process, on the same corpus and in the same process, the picture is mixed on purpose. Each specialist wins where it is specialized. These three tables are a different setup from the engine tables higher up: different corpora, different comparators, eight cores rather than twelve. The two sets are not continuous.",
           {
             type: "benchmarkTable",
             tableId: "pyb_tabular",
@@ -159,7 +159,7 @@ export const arcadeDb: Project = {
         title: "Every number here is generated, not typed.",
         body: [
           "The tables on this page are rendered from a JSON file exported by the benchmark suite, so they change when the measurements change and a stale number cannot survive in the prose. The suite, the runner and the frozen result rows are all in the repository.",
-          "The protocol is deliberately boring. Every engine runs in Docker under an identical cpuset and memory cap, one job at a time on one machine, and each printed cell is a median of repeated runs with the full range shown beside it. Comparators are pinned by image digest rather than by a floating tag, which is why each row carries its digest: it is the only unambiguous answer to which build was measured.",
+          "The protocol is deliberately boring, and this is the one place it is stated. Every engine runs in Docker under an identical cpuset and memory cap, one job at a time on one machine. Each printed cell is the median of five repetitions; the min-max spread behind it is in the linked result files and in the papers, which is where it stays rather than tripling the width of every column here. Comparators are pinned by image digest rather than by a floating tag, which is why each row carries its digest: it is the only unambiguous answer to which build was measured.",
           "Defaults are used first. Where a default would make a comparison meaningless rather than merely different, it is equalized and the change is disclosed in the conditions under the relevant table, including the cases where the correction works against us.",
           "What is not here is as deliberate as what is. The recovery and replication work is reported as prose rather than as a table, since a kill-9 either recovers or it does not, and the dense 10M tier waits on a released build as noted under its table.",
           "Two papers covering this work are in preparation, one on the engine and one on the Python distribution. Citation details will be added here once they are available.",
