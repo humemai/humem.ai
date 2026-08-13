@@ -388,7 +388,17 @@
   -webkit-overflow-scrolling: touch;
 }
 
-.benchmarkGrid {
+table.benchmarkGrid {
+  /* display:table, explicitly, to undo `.body :global(table) { display: block }`
+     above. That rule is the usual make-markdown-tables-scrollable hack, and it
+     was leaking in here. A block-level table does NOT stretch its rows: the
+     rows form an anonymous table box sized to their content and sit at the
+     left of the 736px block, so width:100% was being honoured by the table box
+     while the columns ignored it. That is what read as "the tables are not
+     centred" - the box was flush with the prose, the content was not.
+     These tables bring their own scroller (.benchmarkScroll), so they never
+     needed display:block for overflow. */
+  display: table;
   border-collapse: collapse;
   width: 100%;
   font-size: 0.92rem;
@@ -411,6 +421,15 @@
 
 .benchmarkGrid th,
 .benchmarkGrid td {
+  /* Undo the `.body :global(th/td) { min-width: 10rem }` above, which exists
+     for prose tables written in markdown and was leaking in here. At 10rem
+     every column is pinned to exactly 160px whatever it holds, so a
+     three-column table filled 480px of its 736px box and left a 256px gutter
+     on the right. The box was correctly flush with the text column; the
+     CONTENT sat left inside it, which is what read as "not centred".
+     min-width: 0 lets auto table layout spend the full width on the columns
+     that exist. Genuinely wide tables still scroll, via .benchmarkScroll. */
+  min-width: 0;
   border-bottom: 1px solid color-mix(in srgb, currentColor 12%, transparent);
   padding: 0.55rem 0.6rem;
   text-align: left;
@@ -484,7 +503,10 @@
      to fit to, so it collapses to min-content and the title renders one word
      per line down the page. The cells escaped this only because they are
      listed here too. */
-  .benchmarkGrid,
+  /* table.benchmarkGrid, not .benchmarkGrid: the desktop rule had to be
+     raised to (0,1,1) to outrank `.body :global(table) { display: block }`,
+     so this one has to match that specificity or the cards never form. */
+  table.benchmarkGrid,
   .benchmarkGrid caption,
   .benchmarkGrid tbody,
   .benchmarkGrid tr,
