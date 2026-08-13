@@ -48,6 +48,7 @@ export const arcadeDb: Project = {
           "The sharpest test of a multi-model engine is whether its vector search survives contact with systems that do nothing else.",
           "Both cases use real vectors, never generated ones. Sparse search uses SPLADE (Sparse Lexical And Expansion model) vectors over MS MARCO, a public search-relevance corpus. A SPLADE vector holds one weight per vocabulary term and is almost all zeros, so a query touches a few terms out of thirty thousand dimensions. Which terms it touches decides the cost: a common word carries a far longer posting list than a rare one. Real text is lopsided that way and generated data is not, which flatters an approximate index. Dense search uses real image descriptors, for the same reason: DEEP-10M, ten million vectors from a public image-descriptor set, and SIFT, an older descriptor set kept for its smaller tiers. The sparse corpus comes from Big-ANN, a public benchmark challenge for approximate nearest neighbour search at scale. Latencies below are p50, the median query.",
           "Recall is reported next to every latency. A vector benchmark without a quality number is not a comparison, since any engine can be made faster by searching less thoroughly, and the engines here sit at genuinely different points on that trade.",
+          "The figure below summarises every workload on this page, so its row labels are compressed. Txn is transaction. OLTP, online transaction processing, is many small reads and writes, counted in operations per second, and OLAP, online analytical processing, is its counterpart in the tables further down: a few large scanning queries, timed in milliseconds. TS is time series, where agg is an aggregation over a window and pts/s is points ingested per second. TPC-H Q1 is the first query of a long-standing analytical benchmark. Sparse and dense name the two kinds of vector above, and the number beside them is the corpus size.",
           {
             type: "figureGrid",
             // One per row at every width, like every other figure here. These
@@ -70,7 +71,7 @@ export const arcadeDb: Project = {
           {
             type: "benchmarkTable",
             tableId: "l3d",
-            caption: "Dense retrieval, including the embedded and server deployments of the same engine.",
+            caption: "Dense retrieval at two scales, including the embedded and server deployments of the same engine. Cold is the first timed pass after the build; warm repeats the same query set. Only ArcadeDB moves between the two, so the ten-million row is where the page's summary figure gets its dense bar. The smaller tier ran one pass per build and so has no warm column.",
           },
         ],
       },
