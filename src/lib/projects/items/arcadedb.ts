@@ -40,12 +40,33 @@ export const arcadeDb: Project = {
         ],
       },
       {
+        id: "graph",
+        navLabel: "Graph",
+        eyebrow: "Benchmarks",
+        title: "Graph traversal, against the database people actually compare it to.",
+        body: [
+          "Graph is what most people reach for ArcadeDB to do, so it goes first. The benchmark is LDBC-SNB, the Linked Data Benchmark Council's Social Network Benchmark, a standard synthetic social network, and the queries are Cypher, which is the language most graph work is written in. Neo4j is the engine anyone choosing a graph database weighs it against. LadybugDB is here because it is embedded and columnar, which makes it the closest comparison to running ArcadeDB inside your own process.",
+          "ArcadeDB embedded answers all four queries faster than Neo4j, at both sizes, by margins the table makes plain. That is the strongest head-to-head result on this page, and it is the one a graph user is looking for.",
+          {
+            type: "benchmarkTable",
+            tableId: "l2",
+            caption: "Graph traversal against Neo4j and LadybugDB on LDBC-SNB. Point is a single vertex lookup, 1-hop and 2-hop walk that many edges out from a starting person, and write inserts an edge.",
+          },
+          "Analytical queries over the whole graph are a different job from those single traversals, and ArcadeDB has a separate mechanism for them. A Graph Analytical View is an in-core projection of the graph, built once, that the planner uses for queries touching most of the vertices instead of a handful. Because it is optional, it can be switched off, so the table below carries the same engine twice and the cost of the mechanism is visible rather than assumed.",
+          {
+            type: "benchmarkTable",
+            tableId: "l2olap",
+            caption: "The view is worth 6.5x on top degree and about 2.4x on the other two, which is enough to move ArcadeDB from behind Neo4j to ahead of it on all three. LadybugDB wins all three regardless: it stores the graph in columns, which is the same reason DuckDB wins the analytical tabular queries further down. This is the honest shape of the multi-model tradeoff, one engine covering every model competently rather than beating a specialist at its own workload.",
+          },
+        ],
+      },
+      {
         id: "vectors",
         navLabel: "Vectors",
         eyebrow: "Benchmarks",
         title: "Vector search, measured against the engines built only for vector search.",
         body: [
-          "The sharpest test of a multi-model engine is whether its vector search survives contact with systems that do nothing else. Every corpus below is real and published, never generated, which matters most for the sparse case.",
+          "Vector search is the newest of these models and the one with the most specialised competition, so it gets the most detailed treatment here: two corpora, two kinds of vector, and recall reported beside every latency. It is also the workload ArcadeDB does not win, which the tables show rather than bury. Every corpus below is real and published, never generated, which matters most for the sparse case.",
           "A SPLADE (Sparse Lexical And Expansion model) vector stores one weight per word in the vocabulary, and nearly every weight is zero, so a search only has to look at the few words a query actually uses. Those words cost wildly different amounts. A common word has to be checked against a huge number of documents; a rare one against almost none.",
           "Real writing has a few words that appear everywhere and a very long tail that appear almost nowhere, so some queries are far more expensive than others. Generated data spreads words out evenly, which quietly removes the expensive case and makes any approximate index look better than it is. Dense search uses published image descriptors for the same reason.",
           "| Corpus | Vectors | Dimensions | Used for |\n| --- | --- | --- | --- |\n| SPLADE over MS MARCO | 100k, 1M, 8.84M | 30,109 | every sparse row |\n| SIFT | 1M | 128 | the smaller dense tier |\n| DEEP | 9.99M | 96 | the ten-million dense tier |",
@@ -69,23 +90,12 @@ export const arcadeDb: Project = {
       },
       {
         id: "models",
-        navLabel: "Beyond vectors",
+        navLabel: "Tables & more",
         eyebrow: "Benchmarks",
-        title: "Graph, tabular, and the transaction that spans both plus vectors.",
+        title: "Tables, time series, and the transaction that spans every model at once.",
         body: [
-          "The same harness runs graph traversal on LDBC-SNB, the Linked Data Benchmark Council's Social Network Benchmark, a standard synthetic social graph. It also runs tabular work in both OLTP and OLAP shapes, time series on TSBS, the Time Series Benchmark Suite, and a cross-model transaction that starts from a vector hit, traverses the graph, and updates a document. The tables below and the summary figure at the end all use compressed labels, which are worth having to hand:",
+          "The same harness runs tabular work in both OLTP and OLAP shapes, time series on TSBS, the Time Series Benchmark Suite, and a cross-model transaction that starts from a vector hit, traverses the graph, and updates a document. The tables below and the summary figure at the end all use compressed labels, which are worth having to hand:",
           "| Label | What it means |\n| --- | --- |\n| Txn | Transaction. |\n| OLTP | Online transaction processing: many small reads and writes, counted in operations per second. |\n| OLAP | Online analytical processing: a few large scanning queries, timed in milliseconds. Its rows are in the tables further down. |\n| TS | Time series. Agg is an aggregation over a window; pts/s is points ingested per second. |\n| TPC-H Q1 | The first query of a long-standing analytical benchmark. |\n| Sparse, Dense | The two kinds of vector above. The number beside each is the corpus size. |",
-          {
-            type: "benchmarkTable",
-            tableId: "l2",
-            caption: "Graph traversal against Neo4j and LadybugDB on LDBC-SNB. Point is a single vertex lookup, 1-hop and 2-hop walk that many edges out from a starting person, and write inserts an edge.",
-          },
-          "Analytical queries over the whole graph are a different job from those single traversals, and ArcadeDB has a separate mechanism for them. A Graph Analytical View is an in-core projection of the graph, built once, that the planner uses for queries touching most of the vertices instead of a handful. Because it is optional, it can be switched off, so the table below carries the same engine twice and the cost of the mechanism is visible rather than assumed.",
-          {
-            type: "benchmarkTable",
-            tableId: "l2olap",
-            caption: "The view is worth 6.5x on top degree and about 2.4x on the other two, which is enough to move ArcadeDB from behind Neo4j to ahead of it on all three. LadybugDB wins all three regardless: it stores the graph in columns, which is the same reason DuckDB wins the analytical tabular queries further down. This is the honest shape of the multi-model tradeoff, one engine covering every model competently rather than beating a specialist at its own workload.",
-          },
           {
             type: "benchmarkTable",
             tableId: "l1",
