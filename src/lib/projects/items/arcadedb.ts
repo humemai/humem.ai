@@ -66,7 +66,7 @@ export const arcadeDb: Project = {
             type: "benchmarkTable",
             tableId: "l3s",
             caption:
-              "Sparse retrieval on real SPLADE vectors. ArcadeDB appears four times and every comparator once, because ArcadeDB is the engine under test: two deployments, plus two ablations of our own defaults. Each comparator runs once, in its default configuration. int8 posting weights are ArcadeDB's default and fp32 is the ablation, which is why recall sits next to every latency.",
+              "Sparse retrieval on real SPLADE vectors. ArcadeDB appears four times and every comparator once, because ArcadeDB is the engine under test: two deployments, plus two ablations of our own defaults. A settle step is the one-off operation an engine is given after loading and before any query is timed, so that it is answering from a finished index rather than a half-built one. Every engine gets its own: Elasticsearch a refresh and force-merge to one segment, Milvus a flush and load, Qdrant a wait until the collection reports green, ArcadeDB a compaction of its LSM segments. The no-settle-step row is ArcadeDB denied that, and it is there because a settle step is a favour the benchmark grants, so the cost of skipping it should be visible rather than assumed. int8 posting weights are ArcadeDB's default and fp32 is the ablation, which is why recall sits beside every latency. The comparators carry no precision label here, unlike the dense table: there each engine's index type states what it stores, and here the weight encoding is internal to engines whose sparse formats we have not audited, so a label would be a guess.",
           },
           {
             type: "benchmarkTable",
