@@ -56,7 +56,14 @@ export function EditorialSection({ id, eyebrow, title, children, figure, bodyVar
         <h2 className={styles.title}>{title}</h2>
       </div>
       {figure}
-      <div className={joinClassNames(bodyVariant === "acknowledgements" ? styles.acknowledgementsBody : styles.body)}>
+      {/* data-prose-column opts this container into the contract in
+          globals.css: the gap is the only vertical spacing, children carry no
+          margins. New block types added here inherit the rhythm instead of
+          each picking a number. */}
+      <div
+        data-prose-column
+        className={joinClassNames(bodyVariant === "acknowledgements" ? styles.acknowledgementsBody : styles.body)}
+      >
         {children}
       </div>
     </section>
@@ -148,6 +155,13 @@ export type BenchmarkEntry = {
   backend: string;
   is_arcadedb: boolean;
   scale: string;
+  /**
+   * Corpus size for the Scale column. `scale` is the harness's tier name
+   * ("small", "deep10m"), which is a grouping key and means different sizes in
+   * different lanes; this is what a reader should see. Tables whose tier names
+   * are already sizes omit it.
+   */
+  scale_label?: string | null;
   workload: string;
   n_docs: string | null;
   deployment: string;
@@ -183,7 +197,14 @@ function formatStat(stat: BenchmarkStat | undefined) {
   // EditorialBenchmarkTable with it: when the spread was dropped here the
   // caption was left claiming "the full range in brackets", so the page spent
   // two days describing a column it no longer had.
-  if (v >= 100000) return `${Math.round(v / 1000).toLocaleString()}k`;
+  // Read as a quantity, not as an accounting figure. "1,861,236" and "40,071"
+  // are precise to a digit nobody uses and take a second each to parse; a
+  // throughput column of them takes a while to compare. The k/M threshold sits
+  // at ten thousand because that is where the comma grouping starts costing
+  // more than it gives. Full precision stays in the JSON, which is what the
+  // gates read.
+  if (v >= 1e6) return `${(v / 1e6).toFixed(2)}M`;
+  if (v >= 1e4) return `${Math.round(v / 1000).toLocaleString()}k`;
   if (v >= 1000) return Math.round(v).toLocaleString();
   if (v >= 10) return v.toFixed(1);
   return v.toFixed(2);
@@ -242,23 +263,28 @@ export function EditorialBenchmarkTable({
   // dash because their weight encoding has not been audited, which is a true
   // thing to show rather than a blank that reads as "same as above".
   const showPrecision = entries.some((e) => e.precision);
-  // One line per DISTINCT build, not per row. A backend appears once per scale,
-  // so l3s listed Elasticsearch three times over (and collided on the React
-  // key, which is how this surfaced). Deduping on the whole triple rather than
-  // on the backend is deliberate: if a table ever does mix two builds of one
-  // engine, both lines must still show. That would be a fairness problem worth
-  // seeing, and keying on the backend alone would silently hide it.
+  // One line per DISTINCT build. The key is the build itself, NOT the row that
+  // used it: keying on the row label made the time-series table list one
+  // ArcadeDB build twice, because two arms of the same engine spell their
+  // version differently, and made the deployment table list one build six
+  // times, once per result size. If a table genuinely does mix two builds of
+  // one engine they differ in the key and both lines still show, which is the
+  // fairness problem this block exists to expose.
+  //
   const buildsByIdentity = new Map<
     string,
-    { key: string; backend: string; build: string | null; image: string | null }
+    { key: string; backends: string[]; build: string | null; image: string | null }
   >();
   for (const entry of entries) {
     if (!entry.version_name && !entry.image) continue;
-    const key = [entry.backend, entry.version_name ?? "", entry.image ?? ""].join(" ");
-    if (!buildsByIdentity.has(key)) {
+    const key = [entry.version_name ?? "", entry.image ?? ""].join("|");
+    const seen = buildsByIdentity.get(key);
+    if (seen) {
+      if (!seen.backends.includes(entry.backend)) seen.backends.push(entry.backend);
+    } else {
       buildsByIdentity.set(key, {
         key,
-        backend: entry.backend,
+        backends: [entry.backend],
         build: entry.version_name,
         image: entry.image,
       });
@@ -309,7 +335,9 @@ export function EditorialBenchmarkTable({
                 {showPrecision ? (
                   <td data-label="Precision">{entry.precision ?? "—"}</td>
                 ) : null}
-                {showScale ? <td data-label="Scale">{entry.scale}</td> : null}
+                {showScale ? (
+                  <td data-label="Scale">{entry.scale_label ?? entry.scale}</td>
+                ) : null}
                 {columns.map((column) => (
                   <td key={column} data-label={column}>
                     {formatStat(entry.metrics[column])}
@@ -359,9 +387,23 @@ export function EditorialBenchmarkTable({
             <ul>
               {builds.map((b) => (
                 <li key={b.key}>
-                  <strong>{b.backend}</strong>{" "}
-                  {b.build ? b.build : ""}
-                  {b.image ? <code> {shortDigest(b.image)}</code> : null}
+                  {/* The build string already starts with the engine name
+                      ("arcadedb 26.8.1"), so naming the rows that used it just
+                      repeats the table's first column: "arcadedb (native
+                      TIMESERIES), arcadedb (document path) arcadedb 26.8.1".
+                      The row labels appear only when there is no version to
+                      print, where they are the sole identification. */}
+                  {b.build ? b.build : <strong>{b.backends.join(", ")}</strong>}
+                  {b.image ? (
+                    <code> {shortDigest(b.image)}</code>
+                  ) : builds.some((o) => o !== b && o.build === b.build) ? (
+                    /* Same version, two artifacts: the in-process wheel and the
+                       pinned server image. The image line identifies itself by
+                       its digest; without this the wheel line is a bare repeat
+                       of it. Only added where the collision exists, so tables
+                       of purely in-process engines stay clean. */
+                    <> (in-process)</>
+                  ) : null}
                 </li>
               ))}
             </ul>

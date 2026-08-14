@@ -17,7 +17,7 @@ export const arcadeDb: Project = {
         body: [
           "Most databases that call themselves multi-model are several engines behind one API. ArcadeDB is not. Everything it stores sits on the same pages, goes through the same write-ahead log, and commits in the same transaction, so a write that touches a document, an edge and a vector index is one ACID transaction, atomic and durable as a unit, instead of three that have to be coordinated.",
           "The indexes work the same way. LSM trees, full-text, geo, hash, and both dense and sparse vector indexes are all commit in the same transaction as the records they index. Replication comes along for the ride: Raft ships page changes from that shared log, so every model replicates correctly without anyone writing replication code per model.",
-          "Vectors are the exception worth naming. The vector records are transactional, logged and replicated like everything else, but the nearest-neighbour graph used to search them is not: it is built in the background and can be rebuilt. The data is the source of truth and the search structure catches up to it. That is more than a standalone vector store gives you, and less than a fully transactional index.",
+          "Vectors are the exception worth naming. The vector records are transactional, logged and replicated like everything else, but the nearest-neighbour graph used to search them is not: it is built in the background and can be rebuilt. The data is the source of truth and the search structure catches up to it. A transactional record with an eventually consistent index over it is more than a standalone vector store offers, and less than a fully transactional index would be.",
         ],
       },
       {
@@ -30,7 +30,7 @@ export const arcadeDb: Project = {
           "This is a real package surface rather than a launcher. Transactions and lifecycle, schema and graph helpers, bulk ingest, import and export paths, and the vector features are all exposed and tested, with the example suite run in CI on every change.",
           "Both halves of this work are maintained here. Fixes and features found through the benchmarking below are filed and, where possible, contributed upstream, so the engine and the Python distribution improve together rather than diverging.",
           "The obvious question is what the Python boundary costs. The engine runs at the same speed either way; what gets charged for is handing results back. Against an in-process Java baseline doing the same work, a vector search costs 1.28x and a 100k-row scan 1.63x.",
-          "The more useful number is the one inside Python. Asking for row objects is 13.8x slower than asking for columns over the identical query, so which call you reach for matters far more than the language boundary does. That is worth knowing before blaming the engine for a slow loop.",
+          "The more useful number is the one inside Python. Asking for row objects is 13.8x slower than asking for columns over the identical query, so which call you reach for matters far more than the language boundary does. Which call you reach for is worth checking before blaming the engine for a slow loop.",
           {
             type: "benchmarkTable",
             tableId: "pycost",
@@ -49,14 +49,16 @@ export const arcadeDb: Project = {
           "A SPLADE (Sparse Lexical And Expansion model) vector stores one weight per word in the vocabulary, and nearly every weight is zero, so a search only has to look at the few words a query actually uses. Those words cost wildly different amounts. A common word has to be checked against a huge number of documents; a rare one against almost none.",
           "Real writing has a few words that appear everywhere and a very long tail that appear almost nowhere, so some queries are far more expensive than others. Generated data spreads words out evenly, which quietly removes the expensive case and makes any approximate index look better than it is. Dense search uses published image descriptors for the same reason.",
           "| Corpus | Vectors | Dimensions | Used for |\n| --- | --- | --- | --- |\n| SPLADE over MS MARCO | 100k, 1M, 8.84M | 30,109 | every sparse row |\n| SIFT | 1M | 128 | the smaller dense tier |\n| DEEP | 9.99M | 96 | the ten-million dense tier |",
-          "MS MARCO is a public search-relevance corpus and the sparse vectors come from Big-ANN, a benchmark challenge for approximate nearest-neighbour search at scale; SIFT and DEEP are standard image-descriptor sets. The two dense corpora differ in width as well as size, which is part of why the ten-million tier is not simply a bigger version of the smaller one. Latencies below are p50, the median query.",
+          "MS MARCO is a public search-relevance corpus, and the sparse vectors come from Big-ANN, a benchmark challenge for approximate nearest-neighbour search at scale. SIFT and DEEP are standard image-descriptor sets. Latencies below are p50, the median query.",
+          "Two of those sizes are ceilings rather than choices. 8.84 million is the entire Big-ANN sparse base set, so no larger sparse tier exists to run, and DEEP's 9.99 million is the ten-million slice that ships with exact ground truth. The dense corpora are also narrow beside a modern text embedding, which runs 768 to 3072 numbers wide against SIFT's 128 and DEEP's 96. That width is fixed by how the descriptors were produced, and these sets earn their place anyway by publishing exact nearest neighbours at ten-million scale, which is what makes recall comparable across engines at all. It does mean the dense rows describe index behaviour at 96 and 128 dimensions, and a 1536-dimension embedding is a different question.",
+          "The index settings are matched rather than left to each vendor's defaults. Dense search builds HNSW at ef_construction 100 and queries at ef_search 100 everywhere, with a graph degree of 16 neighbours per node. ArcadeDB spells that maxConnections 32, because its bound is per layer while hnswlib-style engines double theirs at the base layer, so matching the numeral instead of the degree would have handed ArcadeDB twice the graph. Sparse search has no equivalent knob, so every engine runs its own defaults there and each table states what precision the index stores. Every query asks for the top 10.",
           "Recall is reported next to every latency. A vector benchmark without a quality number is not a comparison, since any engine can be made faster by searching less thoroughly, and the engines here sit at genuinely different points on that trade.",
           "Every engine in every table below runs in the same container envelope, one at a time on one machine, and each cell is the median of five repetitions rather than a single sample. The exact build measured sits under each table.",
           {
             type: "benchmarkTable",
             tableId: "l3s",
             caption:
-              "Sparse retrieval on real SPLADE vectors. ArcadeDB appears four times and every comparator once, because ArcadeDB is the engine under test: two deployments, plus two ablations of our own defaults. Every engine is given a settle step before any query is timed, the one-off operation that leaves it answering from a finished index rather than a half-built one: Elasticsearch a refresh and force-merge to one segment, Milvus a flush and load, Qdrant a wait until the collection reports green, ArcadeDB a compaction of its LSM segments. int8 posting weights are ArcadeDB's default and fp32 is the ablation, which is why recall sits beside every latency. The comparators carry no precision label here, unlike the dense table: there each engine's index type states what it stores, and here the weight encoding is internal to engines whose sparse formats we have not audited, so a label would be a guess.",
+              "Sparse retrieval on real SPLADE vectors. ArcadeDB appears three times and every comparator once, because ArcadeDB is the engine under test: it runs in both deployments, and the fp32 row ablates our own default. Every engine gets a settle step before any query is timed, the one-off operation that leaves it answering from a finished index rather than a half-built one. Elasticsearch refreshes and force-merges to a single segment, Milvus flushes and loads, Qdrant waits until the collection reports green, and ArcadeDB compacts its LSM segments. int8 posting weights are ArcadeDB's default and fp32 is the ablation, which is why recall sits beside every latency. The comparators carry no precision label here, unlike the dense table: there each engine's index type states what it stores, and here the weight encoding is internal to engines whose sparse formats we have not audited, so a label would be a guess.",
           },
           {
             type: "benchmarkTable",
@@ -76,7 +78,13 @@ export const arcadeDb: Project = {
           {
             type: "benchmarkTable",
             tableId: "l2",
-            caption: "Graph traversal against Neo4j and LadybugDB on LDBC-SNB.",
+            caption: "Graph traversal against Neo4j and LadybugDB on LDBC-SNB. Point is a single vertex lookup, 1-hop and 2-hop walk that many edges out from a starting person, and write inserts an edge.",
+          },
+          "Analytical queries over the whole graph are a different job from those single traversals, and ArcadeDB has a separate mechanism for them. A Graph Analytical View is an in-core projection of the graph, built once, that the planner uses for queries touching most of the vertices instead of a handful. Because it is optional, it can be switched off, so the table below carries the same engine twice and the cost of the mechanism is visible rather than assumed.",
+          {
+            type: "benchmarkTable",
+            tableId: "l2olap",
+            caption: "The view is worth 6.5x on top degree and about 2.4x on the other two, which is enough to move ArcadeDB from behind Neo4j to ahead of it on all three. LadybugDB wins all three regardless: it stores the graph in columns, which is the same reason DuckDB wins the analytical tabular queries further down. This is the honest shape of the multi-model tradeoff, one engine covering every model competently rather than beating a specialist at its own workload.",
           },
           {
             type: "benchmarkTable",
@@ -91,9 +99,9 @@ export const arcadeDb: Project = {
           {
             type: "benchmarkTable",
             tableId: "l4",
-            caption: "Time series against QuestDB and DuckDB on TSBS.",
+            caption: "Time series against QuestDB and DuckDB on TSBS. ArcadeDB appears twice because it offers two ways to store this data. The native TIMESERIES type is a dedicated layout that keeps points for one series together in time order, and the document path stores each reading as an ordinary document, which is what you get if you model the data without knowing the specialised type exists. Both are supported and both are real choices, so the gap between them is what the specialised layout is worth: 46 times the ingest rate and a twelve-hour aggregate 68 times quicker, against a slightly slower lookup of the newest reading.",
           },
-          "That last one is the argument for a unified engine stated as an experiment rather than a claim. Against a composed stack of a vector store plus a graph database, the interesting output is not the latency, it is what a failure part-way through leaves behind. A composed stack has no transaction spanning both engines, so it can be interrupted into a state where the two disagree, and a single engine cannot.",
+          "The cross-model transaction is the argument for a unified engine stated as an experiment rather than a claim. Against a composed stack of a vector store plus a graph database, the interesting output is not the latency, it is what a failure part-way through leaves behind. A composed stack has no transaction spanning both engines, so it can be interrupted into a state where the two disagree, and a single engine cannot.",
           {
             type: "benchmarkTable",
             tableId: "e2",
