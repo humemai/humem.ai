@@ -143,7 +143,7 @@ export const auditReadyMemory: Project = {
     },
     {
       label: "Documentation",
-      href: "https://docs.humem.ai/audit-ready-memory/",
+      href: "https://docs.humem.ai/audit-ready-memory/latest/",
     },
     { label: "Contact", href: "/contact" },
     { label: "HumemAI GitHub", href: "https://github.com/humemai" },
