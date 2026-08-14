@@ -39,6 +39,13 @@
   gap: var(--site-space-base);
 }
 
+/* Grid does not collapse child margins, so the browser's default 1em on each
+ * <p> was adding to the gap and this stack rendered paragraphs 48px apart
+ * where the stylesheet asks for 16px. Measured, not guessed. */
+.bodyStack > :global(p) {
+  margin: 0;
+}
+
 .body :global(p) {
   color: var(--muted);
   line-height: 1.8;

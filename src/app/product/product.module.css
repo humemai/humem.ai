@@ -34,8 +34,11 @@
   padding-top: 0.2rem;
 }
 
+/* Was var(--site-space-compact), which made the gap before the LAST paragraph
+ * of a capability item 12.8px while every earlier gap in the same block was the
+ * browser's 16px. One rhythm. */
 .capabilityItem p:last-child {
-  margin: var(--site-space-compact) 0 0;
+  margin: var(--site-space-base) 0 0;
 }
 
 @media (min-width: 720px) {

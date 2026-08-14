@@ -142,7 +142,7 @@
 }
 
 .content :global(ul) {
-  margin-top: 0.8rem;
+  margin-top: 0;
 }
 
 .content :global(.inlineFounderImageWrap) {
@@ -169,7 +169,9 @@
 }
 
 @media (max-width: 560px) {
-  .content :global(.inlineFounderImageWrap) {
+  /* spacing-ok: floated out of the column flow; this margin is text
+   wrap distance, not block rhythm. */
+.content :global(.inlineFounderImageWrap) {
     float: none;
     width: min(7rem, 100%);
     margin: 0 0 1rem;

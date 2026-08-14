@@ -85,6 +85,49 @@
   --shadow: 0 18px 50px rgba(0, 0, 0, 0.06);
 }
 
+/*
+ * THE PROSE-COLUMN CONTRACT
+ * =========================
+ *
+ * A container marked `data-prose-column` separates its blocks with ONE gap and
+ * nothing else. Children carry no vertical margins, so adding a new kind of
+ * block (a table, a figure, a chart, a callout) cannot change the rhythm and
+ * nobody has to remember a magic number for it.
+ *
+ * This needs stating because these containers are CSS GRIDS, and grid does not
+ * collapse child margins. A margin a component sets on itself is therefore
+ * ADDED to the gap, silently, and only on the pages where that component is
+ * used. That is how one page came to have five different separations between
+ * blocks -- 16, 32, 52, 68 and 88px -- produced by four components that each
+ * looked reasonable read on its own:
+ *
+ *     .body            grid, gap 1rem
+ *     <p>              browser default margin 1em, NOT collapsed  -> 48px
+ *     .benchmarkTable  margin 2.25rem                             -> 88px
+ *     .figureGrid      margin 1rem                                -> 48px
+ *
+ * Headings are the single deliberate exception: extra space above, so a new
+ * section is visible without needing a rule. Below a heading, the gap is the
+ * gap.
+ */
+[data-prose-column] {
+  display: grid;
+  gap: var(--site-space-base);
+}
+
+[data-prose-column] > * {
+  margin-block: 0;
+}
+
+[data-prose-column] > :is(h2, h3, h4) {
+  margin-block-start: var(--site-space-compact);
+}
+
+[data-prose-column] > :first-child {
+  margin-block-start: 0;
+}
+
+
 /* Tablets and unfolded foldables: between the two-column breakpoint and desktop,
    the aside's 30rem max starves the lead column. At a 776px viewport the tracks
    resolved to 169px against 480px, wrapping section headings to seven lines.

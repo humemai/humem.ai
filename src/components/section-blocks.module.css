@@ -42,7 +42,21 @@
 
 .ctaBody {
   display: grid;
-  gap: 1.1rem;
+  gap: var(--site-space-base);
+}
+
+/*
+ * These are grid containers holding <p> children, and grid does not collapse
+ * margins, so the browser's default `p { margin: 1em 0 }` was ADDING to the
+ * gap: about 3rem between paragraphs where the stylesheet asks for 1rem. The
+ * gap is the only spacing now, matching the news article body and the project
+ * editorial body. Direct children only, so paragraphs nested inside a card or
+ * a section keep their normal collapsing behaviour.
+ */
+.body > p,
+.ctaBody > p,
+.promoBody > p {
+  margin: 0;
 }
 
 .aside {

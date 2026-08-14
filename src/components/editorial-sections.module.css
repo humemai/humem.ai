@@ -52,6 +52,27 @@
   line-height: 1.8;
 }
 
+/*
+ * The gap between paragraphs used to depend on where the paragraph came from.
+ *
+ * ReactMarkdown returns a fragment, so its <p> elements become DIRECT children
+ * of this grid, and a grid container does not collapse its children's margins.
+ * The browser default of `p { margin: 1em 0 }` therefore stacked on top of the
+ * grid gap: two consecutive paragraphs sat about 3rem apart, while a table or
+ * a figure block, which carries no margin of its own, sat at the 1rem gap. On
+ * a long page that reads as random spacing, which is what it was.
+ *
+ * The gap is now the only thing that separates blocks. This matches the news
+ * article body, where the same markdown renders inside a plain block element
+ * and the 1em margins collapse to a single uniform 1em.
+ */
+.body > :global(p),
+.acknowledgementsBody > :global(p),
+.body > :global(ul),
+.body > :global(ol) {
+  margin: 0;
+}
+
 .body :global(a),
 .acknowledgementsBody :global(a) {
   color: var(--foreground);
@@ -59,9 +80,14 @@
   text-underline-offset: 0.2rem;
 }
 
+/* Headings keep extra air ABOVE them only. The 1.5rem/0.8rem pair was written
+ * for a block context where it collapsed with the neighbouring paragraph; in
+ * the grid it adds to the gap on both sides, so a heading floated. 0.5rem plus
+ * the 1rem gap reproduces the 1.5rem the news article body gives a heading,
+ * and the space below is the gap alone. */
 .body :global(h3),
 .body :global(h4) {
-  margin: 1.5rem 0 0.8rem;
+  margin: 0.5rem 0 0;
   line-height: 1.15;
 }
 
@@ -85,7 +111,7 @@
 }
 
 .body :global(blockquote) {
-  margin: 1rem 0;
+  margin: 0;
   padding: 0.1rem 0 0.1rem 1rem;
   border-left: 3px solid var(--border-strong);
 }
@@ -171,7 +197,7 @@
 }
 
 .body :global(.katex-display) {
-  margin: 1.25rem 0;
+  margin: 0;
   overflow-x: auto;
   overflow-y: hidden;
   padding: 0.2rem 0;
@@ -186,7 +212,7 @@
   width: 100%;
   max-width: 100%;
   height: auto;
-  margin: 1rem auto;
+  margin: 0 auto;
   border-radius: 1rem;
 }
 
@@ -200,6 +226,11 @@
   width: 100%;
   overflow-x: auto;
   border-collapse: collapse;
+}
+
+/* Markdown tables are already at the grid gap; stated so nobody adds one. */
+.body > :global(table) {
+  margin: 0;
 }
 
 .body :global(th),
@@ -223,7 +254,7 @@
 
 .figureGrid {
   width: 100%;
-  margin: 1rem 0;
+  margin: 0;
 }
 
 .figureGridItems {
@@ -371,8 +402,21 @@
    pushes the whole column wider and the body text gets clipped. min-width:0
    on the figure and the scroller is what actually contains it; overflow-x
    alone does not. */
+/* NO margin. The .body grid's gap is the only separator in this column.
+ *
+ * These figures used to carry 2.25rem and 1rem respectively, and because they
+ * are direct children of a grid, which does not collapse margins, that ADDED
+ * to the gap: the page had five different separations (16, 32, 52, 68, 88px)
+ * depending on which kind of block sat where. Equalising them to one value
+ * still left prose at 16px and blocks at 32px, and that reads as a mistake
+ * rather than a hierarchy, because a benchmark table LEADS WITH A CAPTION.
+ * The caption is a paragraph to the eye, so the reader sees two paragraphs
+ * 32px apart directly under two others 16px apart.
+ *
+ * One gap everywhere. Separation from the surrounding prose comes from the
+ * table's own rule and the caption's italics, not from extra air. */
 .benchmarkTable {
-  margin: 2.25rem 0;
+  margin: 0;
   min-width: 0;
   max-width: 100%;
 }
@@ -519,7 +563,9 @@ table.benchmarkGrid {
     display: none;
   }
 
-  .benchmarkGrid tr {
+  /* spacing-ok: the stacked card layout tables collapse into on a phone;
+   these rows are cards, not blocks in the prose column. */
+.benchmarkGrid tr {
     border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
     border-radius: 0.5rem;
     padding: 0.6rem 0.75rem;
