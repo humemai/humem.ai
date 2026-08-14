@@ -45,8 +45,7 @@ export const arcadeDb: Project = {
         eyebrow: "Benchmarks",
         title: "Vector search, measured against the engines built only for vector search.",
         body: [
-          "The sharpest test of a multi-model engine is whether its vector search survives contact with systems that do nothing else.",
-          "Every corpus here is real and published, never generated. That matters most for sparse search.",
+          "The sharpest test of a multi-model engine is whether its vector search survives contact with systems that do nothing else. Every corpus below is real and published, never generated, which matters most for the sparse case.",
           "A SPLADE (Sparse Lexical And Expansion model) vector stores one weight per word in the vocabulary, and nearly every weight is zero, so a search only has to look at the few words a query actually uses. Those words cost wildly different amounts. A common word has to be checked against a huge number of documents; a rare one against almost none.",
           "Real writing has a few words that appear everywhere and a very long tail that appear almost nowhere, so some queries are far more expensive than others. Generated data spreads words out evenly, which quietly removes the expensive case and makes any approximate index look better than it is. Dense search uses published image descriptors for the same reason.",
           "| Corpus | Vectors | Dimensions | Used for |\n| --- | --- | --- | --- |\n| SPLADE over MS MARCO | 100k, 1M, 8.84M | 30,109 | every sparse row |\n| SIFT | 1M | 128 | the smaller dense tier |\n| DEEP | 9.99M | 96 | the ten-million dense tier |",
@@ -72,8 +71,7 @@ export const arcadeDb: Project = {
         eyebrow: "Benchmarks",
         title: "Graph, tabular, and the transaction that spans both plus vectors.",
         body: [
-          "The same harness runs graph traversal on LDBC-SNB, the Linked Data Benchmark Council's Social Network Benchmark, a standard synthetic social graph. It also runs tabular work in both OLTP and OLAP shapes, time series on TSBS, the Time Series Benchmark Suite, and a cross-model transaction that starts from a vector hit, traverses the graph, and updates a document.",
-          "The tables below and the summary figure at the end use compressed labels.",
+          "The same harness runs graph traversal on LDBC-SNB, the Linked Data Benchmark Council's Social Network Benchmark, a standard synthetic social graph. It also runs tabular work in both OLTP and OLAP shapes, time series on TSBS, the Time Series Benchmark Suite, and a cross-model transaction that starts from a vector hit, traverses the graph, and updates a document. The tables below and the summary figure at the end all use compressed labels, which are worth having to hand:",
           "| Label | What it means |\n| --- | --- |\n| Txn | Transaction. |\n| OLTP | Online transaction processing: many small reads and writes, counted in operations per second. |\n| OLAP | Online analytical processing: a few large scanning queries, timed in milliseconds. Its rows are in the tables further down. |\n| TS | Time series. Agg is an aggregation over a window; pts/s is points ingested per second. |\n| TPC-H Q1 | The first query of a long-standing analytical benchmark. |\n| Sparse, Dense | The two kinds of vector above. The number beside each is the corpus size. |",
           {
             type: "benchmarkTable",
