@@ -50,6 +50,7 @@ export const arcadeDb: Project = {
           "| Corpus | Vectors | Dimensions | Used for |\n| --- | --- | --- | --- |\n| SPLADE over MS MARCO | 100k, 1M, 8.84M | 30,109 | every sparse row |\n| SIFT | 1M | 128 | the smaller dense tier |\n| DEEP | 9.99M | 96 | the ten-million dense tier |",
           "MS MARCO is a public search-relevance corpus and the sparse vectors come from Big-ANN, a benchmark challenge for approximate nearest-neighbour search at scale; SIFT and DEEP are standard image-descriptor sets. The two dense corpora differ in width as well as size, which is part of why the ten-million tier is not simply a bigger version of the smaller one. Latencies below are p50, the median query.",
           "Recall is reported next to every latency. A vector benchmark without a quality number is not a comparison, since any engine can be made faster by searching less thoroughly, and the engines here sit at genuinely different points on that trade.",
+          "Every engine in every table below runs in the same container envelope, one at a time on one machine, and each cell is the median of five repetitions rather than a single sample. The exact build measured sits under each table.",
           "The figure below summarises every workload on this page, so its row labels are compressed.",
           "| Label | What it means |\n| --- | --- |\n| Txn | Transaction. |\n| OLTP | Online transaction processing: many small reads and writes, counted in operations per second. |\n| OLAP | Online analytical processing: a few large scanning queries, timed in milliseconds. Its rows are in the tables further down. |\n| TS | Time series. Agg is an aggregation over a window; pts/s is points ingested per second. |\n| TPC-H Q1 | The first query of a long-standing analytical benchmark. |\n| Sparse, Dense | The two kinds of vector above. The number beside each is the corpus size. |",
           {
@@ -135,18 +136,6 @@ export const arcadeDb: Project = {
           "Use the embedded distribution when the database serves one process: notebooks, tests, single-node services, agent tooling, and anything where a network hop per query is pure cost. It installs with pip, starts in milliseconds, and has no service to operate.",
           "Use the server when more than one process or machine needs the same data, when you want the Postgres, Redis, Bolt or HTTP wire protocols, or when you need Raft replication and failover. The embedded package can also start a server in-process, so this is not a one-way door.",
           "This is a deployment decision, not a performance one. The engine is the same in both, and the difference you will feel is the boundary you put around it.",
-        ],
-      },
-      {
-        id: "method",
-        navLabel: "Method",
-        eyebrow: "Method",
-        title: "How these were measured.",
-        body: [
-          "Every engine runs in Docker under an identical cpuset and memory cap, one job at a time on one machine. Each printed cell is the median of five repetitions; the min-max spread behind it is in the linked result files and in the papers, which is where it stays rather than tripling the width of every column here. Comparators are pinned by image digest rather than by a floating tag, which is why each row carries its digest: it is the only unambiguous answer to which build was measured.",
-          "Defaults are used first. Where a default would make a comparison meaningless rather than merely different, it is equalized and the change is disclosed in the conditions under the relevant table, including the cases where the correction works against us.",
-          "Recovery and replication are reported as prose rather than as a table, since a kill-9 either recovers or it does not.",
-          "Two papers covering this work are in preparation, one on the engine and one on the Python distribution. Citation details will be added here once they are available.",
         ],
       },
     ],
