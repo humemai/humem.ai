@@ -61,6 +61,7 @@ export function EditorialSection({ id, eyebrow, title, children, figure, bodyVar
           margins. New block types added here inherit the rhythm instead of
           each picking a number. */}
       <div
+        data-prose
         data-prose-column
         className={joinClassNames(bodyVariant === "acknowledgements" ? styles.acknowledgementsBody : styles.body)}
       >

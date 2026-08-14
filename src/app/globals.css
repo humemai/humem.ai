@@ -116,6 +116,28 @@
  * The news article body is the example: it was the only prose on the site that
  * was already correct, and it was correct by being a block.
  */
+/*
+ * BODY COPY. One definition of what a paragraph looks like.
+ *
+ * This was written out in eight stylesheets, as `color: var(--muted);
+ * line-height: 1.8` on a p (and sometimes li), each file having arrived at the
+ * same answer separately. Two of them had drifted to 1.75 instead, which is
+ * how you can tell nobody was comparing.
+ *
+ * Deliberately SEPARATE from the layout contract below. Type applies equally
+ * to a block and to a grid, while the column rules only make sense in a grid,
+ * and merging them would force cards and blocks to become grids to inherit a
+ * colour. A container may carry either or both.
+ *
+ * Headings are untouched on purpose: their leading (0.98-1.15) and tracking
+ * are design, not a repeated default, and the audit found 127 such rules that
+ * should stay exactly where they are.
+ */
+[data-prose] :is(p, li) {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
 [data-prose-column] {
   display: grid;
   gap: var(--site-space-base);

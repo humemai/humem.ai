@@ -31,12 +31,6 @@
   margin-top: var(--site-space-base);
 }
 
-.body :global(p) {
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.8;
-}
-
 .figure {
   margin: 0;
 }

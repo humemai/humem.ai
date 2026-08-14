@@ -18,11 +18,6 @@
   color: var(--accent);
 }
 
-.policyItem > p {
-  color: var(--muted);
-  line-height: 1.8;
-}
-
 .policySection {
   display: grid;
   gap: var(--site-space-base);

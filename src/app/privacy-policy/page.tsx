@@ -30,7 +30,7 @@ export default function PrivacyPolicyPage() {
       </SectionIntro>
 
       <section className={styles.policySection}>
-        <article className={styles.policyItem}>
+        <article data-prose className={styles.policyItem}>
           <p className={styles.policyLabel}>Analytics</p>
           <h3>Website analytics</h3>
           <p>
@@ -38,7 +38,7 @@ export default function PrivacyPolicyPage() {
           </p>
         </article>
 
-        <article className={styles.policyItem}>
+        <article data-prose className={styles.policyItem}>
           <p className={styles.policyLabel}>Cookies</p>
           <h3>Cookie choices</h3>
           <p>
@@ -46,7 +46,7 @@ export default function PrivacyPolicyPage() {
           </p>
         </article>
 
-        <article className={styles.policyItem}>
+        <article data-prose className={styles.policyItem}>
           <p className={styles.policyLabel}>Contact</p>
           <h3>Contact information</h3>
           <p>
@@ -54,7 +54,7 @@ export default function PrivacyPolicyPage() {
           </p>
         </article>
 
-        <article className={styles.policyItem}>
+        <article data-prose className={styles.policyItem}>
           <p className={styles.policyLabel}>Changes</p>
           <h3>Updates</h3>
           <p>

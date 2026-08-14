@@ -35,15 +35,15 @@ export default function ProductPage() {
       </SectionIntro>
 
       <section className={styles.capabilitySection}>
-        <div className={styles.capabilityItem}>
+        <div data-prose className={styles.capabilityItem}>
           <p className={styles.capabilityLabel}>Episodic memory</p>
           <p>Capture conversations, actions, and interaction history with enough structure to replay what happened over time.</p>
         </div>
-        <div className={styles.capabilityItem}>
+        <div data-prose className={styles.capabilityItem}>
           <p className={styles.capabilityLabel}>Semantic memory</p>
           <p>Keep documents, tables, entities, and relationships in the format that best preserves meaning and retrieval quality.</p>
         </div>
-        <div className={styles.capabilityItem}>
+        <div data-prose className={styles.capabilityItem}>
           <p className={styles.capabilityLabel}>Hybrid retrieval</p>
           <p>Let agents query vectors, relationships, and structured knowledge together instead of choosing one memory style for everything.</p>
         </div>

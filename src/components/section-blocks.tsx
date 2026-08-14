@@ -55,7 +55,7 @@ export function SectionIntro({ eyebrow, title, children, aside }: SectionIntroPr
         <p className={styles.eyebrow}>{eyebrow}</p>
         <h2 className={styles.title}>{title}</h2>
       </div>
-      {children ? <div data-prose-column className={styles.body}>{children}</div> : aside ? <div className={styles.aside}>{aside}</div> : null}
+      {children ? <div data-prose data-prose-column className={styles.body}>{children}</div> : aside ? <div className={styles.aside}>{aside}</div> : null}
     </section>
   );
 }
@@ -67,7 +67,7 @@ export function SectionCta({ eyebrow, title, children, actions }: SectionCtaProp
         <p className={styles.eyebrow}>{eyebrow}</p>
         <h2 className={styles.title}>{title}</h2>
       </div>
-      <div className={styles.ctaBody}>
+      <div data-prose data-prose-column className={styles.ctaBody}>
         {children ? <div data-prose-column className={styles.body}>{children}</div> : null}
         <div className={styles.actions}>
           {actions.map((action) => (
@@ -86,7 +86,7 @@ export function SectionPromo({ eyebrow, title, children, href, actionLabel }: Se
         <p className={styles.eyebrow}>{eyebrow}</p>
         <h2 className={styles.promoTitle}>{title}</h2>
       </div>
-      <div className={styles.promoBody}>
+      <div data-prose data-prose-column className={styles.promoBody}>
         <div data-prose-column className={styles.body}>{children}</div>
         <Link className={styles.promoLink} href={href}>
           {actionLabel}

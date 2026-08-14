@@ -18,12 +18,6 @@
   color: var(--accent);
 }
 
-.pathItem > p,
-.pathItem li {
-  color: var(--muted);
-  line-height: 1.8;
-}
-
 .pathAction:hover,
 .pathAction:focus-visible {
   text-decoration: underline;

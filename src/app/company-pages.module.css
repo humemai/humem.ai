@@ -28,12 +28,6 @@
   letter-spacing: -0.045em;
 }
 
-.detailContent p,
-.card p {
-  color: var(--muted);
-  line-height: 1.8;
-}
-
 .founderFigure {
   margin: 0;
 }
@@ -80,14 +74,6 @@
   display: grid;
   gap: var(--site-space-base);
   align-content: start;
-}
-
-/* Same un-collapsed grid margins as section-blocks; see the note there. The
- * gap moved 0.7rem -> 1rem at the same time so prose reads at one rhythm
- * across the site rather than three. */
-.detailContent > p,
-.card > p {
-  margin: 0;
 }
 
 .inlineImageLink {

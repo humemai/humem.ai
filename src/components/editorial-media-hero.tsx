@@ -70,7 +70,7 @@ export function EditorialMediaHero({
         <h1 className={joinClassNames(styles.title, titleVariant === "feature" ? styles.titleFeature : styles.titleEditorial)}>{title}</h1>
         <p className={styles.intro}>{intro}</p>
         {children || actions?.length || meta ? (
-          <div className={styles.supporting}>
+          <div data-prose className={styles.supporting}>
             {children}
             {meta ? <div className={styles.meta}>{meta}</div> : null}
             {actions?.length ? (

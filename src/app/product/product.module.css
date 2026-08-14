@@ -17,11 +17,6 @@
   color: var(--accent);
 }
 
-.capabilityItem p {
-  color: var(--muted);
-  line-height: 1.8;
-}
-
 .capabilitySection {
   display: grid;
   gap: var(--site-space-base);

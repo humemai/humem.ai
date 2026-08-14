@@ -59,7 +59,7 @@ export function PricingPaths() {
         paginationPageClassName={styles.pathPaginationPage}
         paginationPageActiveClassName={styles.pathPaginationPageActive}
         renderItem={(path) => (
-          <article className={styles.pathItem} key={path.title}>
+          <article data-prose className={styles.pathItem} key={path.title}>
             <p className={styles.pathLabel}>{path.label}</p>
             <h3>{path.title}</h3>
             <p>{path.body}</p>

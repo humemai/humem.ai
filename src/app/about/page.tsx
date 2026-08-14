@@ -31,7 +31,7 @@ export default function AboutPage() {
       </SectionIntro>
 
       <DetailSection eyebrow="Origin" title="From research into usable systems." divider bodyClassName={styles.detailLayout}>
-          <div className={styles.detailContent}>
+          <div data-prose data-prose-column className={styles.detailContent}>
             <a className={styles.inlineImageLink} href="https://taewoon.kim/" target="_blank" rel="noopener noreferrer">
               <div className={styles.inlineImageWrap}>
                 <Image
