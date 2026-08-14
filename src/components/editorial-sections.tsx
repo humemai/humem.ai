@@ -151,6 +151,7 @@ export type BenchmarkEntry = {
   workload: string;
   n_docs: string | null;
   deployment: string;
+  precision?: string | null;
   image: string | null;
   version_name: string | null;
   host: string | null;
@@ -202,10 +203,13 @@ function formatStat(stat: BenchmarkStat | undefined) {
  *   "ArcadeDB (embedded, fp32)"  -> "ArcadeDB (fp32)"
  *   "ArcadeDB (server, int8)"    -> "ArcadeDB (int8)"
  */
-function stripDeployment(label: string, deployment: string) {
-  if (!deployment) return label;
-  const out = label.replace(
-    new RegExp(`\\(${deployment}(,\\s*)?`, "i"), "(");
+function stripQualifiers(label: string, ...tokens: Array<string | null | undefined>) {
+  let out = label;
+  for (const t of tokens) {
+    if (!t) continue;
+    out = out.replace(new RegExp(`\\(${t}(,\\s*)?`, "i"), "(");
+    out = out.replace(new RegExp(`,\\s*${t}(?=\\))`, "i"), "");
+  }
   return out.replace(/\s*\(\s*\)\s*$/, "").trim();
 }
 
@@ -233,6 +237,11 @@ export function EditorialBenchmarkTable({
 }: EditorialBenchmarkTableProps) {
   const showMode = new Set(entries.map((e) => e.deployment)).size > 1;
   const showScale = new Set(entries.map((e) => e.scale)).size > 1;
+  // Precision earns a column wherever any row states one. Dense states it for
+  // every engine; sparse states it for ours only, and the comparators render a
+  // dash because their weight encoding has not been audited, which is a true
+  // thing to show rather than a blank that reads as "same as above".
+  const showPrecision = entries.some((e) => e.precision);
   // One line per DISTINCT build, not per row. A backend appears once per scale,
   // so l3s listed Elasticsearch three times over (and collided on the React
   // key, which is how this surfaced). Deduping on the whole triple rather than
@@ -269,6 +278,7 @@ export function EditorialBenchmarkTable({
             <tr>
               <th scope="col">Engine</th>
               {showMode ? <th scope="col">Mode</th> : null}
+              {showPrecision ? <th scope="col">Precision</th> : null}
               {showScale ? <th scope="col">Scale</th> : null}
               {columns.map((column) => (
                 <th scope="col" key={column}>
@@ -286,15 +296,19 @@ export function EditorialBenchmarkTable({
                 // "(server)"; stripping those makes l1's two ArcadeDB rows
                 // share a backend, scale and workload, which is the same
                 // duplicate-key collision Elasticsearch hit on l3s.
-                key={`${entry.backend}-${entry.deployment}-${entry.scale}-${entry.workload}`}
+                key={`${entry.backend}-${entry.deployment}-${entry.precision ?? ""}-${entry.scale}-${entry.workload}`}
                 className={entry.is_arcadedb ? styles.benchmarkOwnRow : undefined}
               >
                 <th scope="row">
-                  {showMode
-                    ? stripDeployment(entry.backend, entry.deployment)
-                    : entry.backend}
+                  {stripQualifiers(
+                    entry.backend,
+                    showMode ? entry.deployment : null,
+                    showPrecision ? entry.precision : null)}
                 </th>
                 {showMode ? <td data-label="Mode">{entry.deployment}</td> : null}
+                {showPrecision ? (
+                  <td data-label="Precision">{entry.precision ?? "—"}</td>
+                ) : null}
                 {showScale ? <td data-label="Scale">{entry.scale}</td> : null}
                 {columns.map((column) => (
                   <td key={column} data-label={column}>
