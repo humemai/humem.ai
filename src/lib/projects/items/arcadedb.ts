@@ -81,6 +81,12 @@ export const arcadeDb: Project = {
             caption:
               "Sparse retrieval on real SPLADE vectors. ArcadeDB appears three times and every comparator once, because ArcadeDB is the engine under test: it runs in both deployments, and the fp32 row ablates our own default. Every engine gets a settle step before any query is timed, the one-off operation that leaves it answering from a finished index rather than a half-built one. Elasticsearch refreshes and force-merges to a single segment, Milvus flushes and loads, Qdrant waits until the collection reports green, and ArcadeDB compacts its LSM segments. int8 posting weights are ArcadeDB's default and fp32 is the ablation, which is why recall sits beside every latency. The comparators carry no precision label here, unlike the dense table: there each engine's index type states what it stores, and here the weight encoding is internal to engines whose sparse formats we have not audited, so a label would be a guess.",
           },
+          "A fair question about the table above: those are first-pass numbers, taken right after each index is built. Does the picture change once an engine has warmed up? For sparse search, barely.",
+          {
+            type: "benchmarkTable",
+            tableId: "l3smp",
+            caption: "Nobody gains much and the order does not move. The largest gain by any engine is 1.18x at a million and 1.13x at 8.84 million, and at the larger size ArcadeDB's is the smallest of the six while Elasticsearch's is the largest. Read this against the dense table below, where ArcadeDB alone gains about nine times on a second pass: that is a property of how the two index structures reach their data, not of how we ran them.",
+          },
           {
             type: "benchmarkTable",
             tableId: "l3d",
