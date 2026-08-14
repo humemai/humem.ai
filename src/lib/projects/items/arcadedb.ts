@@ -53,8 +53,64 @@ export const arcadeDb: Project = {
           "MS MARCO is a public search-relevance corpus and the sparse vectors come from Big-ANN, a benchmark challenge for approximate nearest-neighbour search at scale; SIFT and DEEP are standard image-descriptor sets. The two dense corpora differ in width as well as size, which is part of why the ten-million tier is not simply a bigger version of the smaller one. Latencies below are p50, the median query.",
           "Recall is reported next to every latency. A vector benchmark without a quality number is not a comparison, since any engine can be made faster by searching less thoroughly, and the engines here sit at genuinely different points on that trade.",
           "Every engine in every table below runs in the same container envelope, one at a time on one machine, and each cell is the median of five repetitions rather than a single sample. The exact build measured sits under each table.",
-          "The figure below summarises every workload on this page, so its row labels are compressed.",
+          {
+            type: "benchmarkTable",
+            tableId: "l3s",
+            caption:
+              "Sparse retrieval on real SPLADE vectors. ArcadeDB appears four times and every comparator once, because ArcadeDB is the engine under test: two deployments, plus two ablations of our own defaults. Every engine is given a settle step before any query is timed, the one-off operation that leaves it answering from a finished index rather than a half-built one: Elasticsearch a refresh and force-merge to one segment, Milvus a flush and load, Qdrant a wait until the collection reports green, ArcadeDB a compaction of its LSM segments. int8 posting weights are ArcadeDB's default and fp32 is the ablation, which is why recall sits beside every latency. The comparators carry no precision label here, unlike the dense table: there each engine's index type states what it stores, and here the weight encoding is internal to engines whose sparse formats we have not audited, so a label would be a guess.",
+          },
+          {
+            type: "benchmarkTable",
+            tableId: "l3d",
+            caption: "Dense retrieval at two scales, including the embedded and server deployments of the same engine. Cold is the first timed pass after the build; warm repeats the same query set. Every engine at ten million was measured both ways and every engine at the smaller scale was measured once, so the dashes are a property of the tier and not of the engine. Read latency against recall rather than on its own: Chroma is the quickest engine at both scales and also the one returning the fewest true neighbours, which is why the summary figure at the end of the next section compares ArcadeDB against Qdrant, the fastest engine whose recall is at least ArcadeDB's.",
+          },
+        ],
+      },
+      {
+        id: "models",
+        navLabel: "Other models",
+        eyebrow: "Benchmarks",
+        title: "Graph, tabular, and the transaction that spans both plus vectors.",
+        body: [
+          "The same harness runs graph traversal on LDBC-SNB, the Linked Data Benchmark Council's Social Network Benchmark, a standard synthetic social graph. It also runs tabular work in both OLTP and OLAP shapes, time series on TSBS, the Time Series Benchmark Suite, and a cross-model transaction that starts from a vector hit, traverses the graph, and updates a document.",
+          "The tables below and the summary figure at the end use compressed labels.",
           "| Label | What it means |\n| --- | --- |\n| Txn | Transaction. |\n| OLTP | Online transaction processing: many small reads and writes, counted in operations per second. |\n| OLAP | Online analytical processing: a few large scanning queries, timed in milliseconds. Its rows are in the tables further down. |\n| TS | Time series. Agg is an aggregation over a window; pts/s is points ingested per second. |\n| TPC-H Q1 | The first query of a long-standing analytical benchmark. |\n| Sparse, Dense | The two kinds of vector above. The number beside each is the corpus size. |",
+          {
+            type: "benchmarkTable",
+            tableId: "l2",
+            caption: "Graph traversal against Neo4j and LadybugDB on LDBC-SNB.",
+          },
+          {
+            type: "benchmarkTable",
+            tableId: "l1",
+            caption: "Tabular transactional and analytical work against PostgreSQL and DuckDB.",
+          },
+          {
+            type: "benchmarkTable",
+            tableId: "l1tpc",
+            caption: "The same two shapes on TPC-H and TPC-C, the long-standing analytical and transactional benchmarks.",
+          },
+          {
+            type: "benchmarkTable",
+            tableId: "l4",
+            caption: "Time series against QuestDB and DuckDB on TSBS.",
+          },
+          "That last one is the argument for a unified engine stated as an experiment rather than a claim. Against a composed stack of a vector store plus a graph database, the interesting output is not the latency, it is what a failure part-way through leaves behind. A composed stack has no transaction spanning both engines, so it can be interrupted into a state where the two disagree, and a single engine cannot.",
+          {
+            type: "benchmarkTable",
+            tableId: "e2",
+            caption: "The cross-model operation: a vector hit expands over graph edges and updates a document. ArcadeDB and SurrealDB do it in one transaction; the composed stack has no transaction spanning its two engines.",
+          },
+          {
+            type: "figureGrid",
+            columns: 1,
+            caption:
+              "The cross-model operation: one engine doing it in a single transaction against a composed stack that cannot.",
+            items: [
+              { image: { src: "/images/projects/arcadedb/f7_e2_hybrid.svg", alt: "Latency of a vector to graph to document operation, single engine against a composed stack" } },
+            ],
+          },
+          "One figure for all of it. Every row above appears here as a ratio against the strongest comparator for that workload.",
           {
             type: "figureGrid",
             // One per row at every width, like every other figure here. These
@@ -68,51 +124,6 @@ export const arcadeDb: Project = {
               { image: { src: "/images/projects/arcadedb/f4_one_vs_n.svg", alt: "ArcadeDB latency against the best specialist engine at each corpus size" } },
             ],
           },
-          {
-            type: "benchmarkTable",
-            tableId: "l3s",
-            caption:
-              "Sparse retrieval on real SPLADE vectors. ArcadeDB appears four times and every comparator once, because ArcadeDB is the engine under test: two deployments, plus two ablations of our own defaults. Every engine is given a settle step before any query is timed, the one-off operation that leaves it answering from a finished index rather than a half-built one: Elasticsearch a refresh and force-merge to one segment, Milvus a flush and load, Qdrant a wait until the collection reports green, ArcadeDB a compaction of its LSM segments. int8 posting weights are ArcadeDB's default and fp32 is the ablation, which is why recall sits beside every latency. The comparators carry no precision label here, unlike the dense table: there each engine's index type states what it stores, and here the weight encoding is internal to engines whose sparse formats we have not audited, so a label would be a guess.",
-          },
-          {
-            type: "benchmarkTable",
-            tableId: "l3d",
-            caption: "Dense retrieval at two scales, including the embedded and server deployments of the same engine. Cold is the first timed pass after the build; warm repeats the same query set. Every engine at ten million was measured both ways and every engine at the smaller scale was measured once, so the dashes are a property of the tier and not of the engine. Read latency against recall rather than on its own: Chroma is the quickest engine at both scales and also the one returning the fewest true neighbours, which is why the summary figure above compares ArcadeDB against Qdrant, the fastest engine whose recall is at least ArcadeDB's.",
-          },
-        ],
-      },
-      {
-        id: "models",
-        navLabel: "Other models",
-        eyebrow: "Benchmarks",
-        title: "Graph, tabular, and the transaction that spans both plus vectors.",
-        body: [
-          "The same harness runs graph traversal on LDBC-SNB, the Linked Data Benchmark Council's Social Network Benchmark, a standard synthetic social graph. It also runs tabular work in both OLTP and OLAP shapes, time series on TSBS, the Time Series Benchmark Suite, and a cross-model transaction that starts from a vector hit, traverses the graph, and updates a document.",
-          "That last one is the argument for a unified engine stated as an experiment rather than a claim. Against a composed stack of a vector store plus a graph database, the interesting output is not the latency, it is what a failure part-way through leaves behind. A composed stack has no transaction spanning both engines, so it can be interrupted into a state where the two disagree, and a single engine cannot.",
-          {
-            type: "benchmarkTable",
-            tableId: "l2",
-            caption: "Graph traversal on LDBC-SNB.",
-          },
-          {
-            type: "benchmarkTable",
-            tableId: "l4",
-            caption:
-              "Both ArcadeDB arms are shown: the native time-series type and the general-purpose document path. The distance between them is what the specialized layout buys.",
-          },
-          {
-            type: "figureGrid",
-            columns: 1,
-            caption:
-              "The cross-model operation: one engine doing it in a single transaction against a composed stack that cannot.",
-            items: [
-              { image: { src: "/images/projects/arcadedb/f7_e2_hybrid.svg", alt: "Latency of a vector to graph to document operation, single engine against a composed stack" } },
-            ],
-          },
-          // No E2 table here on purpose. The paper reports this experiment as
-          // the figure above plus prose; it has no E2 table, and inventing one
-          // for the page would mean publishing a result in a form nobody
-          // reviewed.
         ],
       },
       {
@@ -122,6 +133,11 @@ export const arcadeDb: Project = {
         title: "Embedded or server: the deployment choice, and what it actually costs.",
         body: [
           "Both deployments appear in the tables above running the same engine version, which makes the comparison a deployment measurement rather than an engine one. The table below then splits that gap in two, by measuring a third arm: an HTTP server running inside the same process. Going from embedded to that arm isolates the wire format with the process boundary held constant, and going from it to a separate container adds the boundary with the wire format held constant.",
+          {
+            type: "benchmarkTable",
+            tableId: "e4",
+            caption: "The same projection answered three ways at six result sizes, which is what separates the wire format from the process boundary.",
+          },
           "The two are nowhere near equal, which is the useful part. The wire format costs something at every size and grows with the result. The process boundary is so small that at the smaller sizes it disappears into the noise and measures slightly negative. So the cost of running client and server as separate processes on one machine is essentially the serialization, not the separation, and the lever that would actually move it is a cheaper wire format rather than co-location.",
           {
             type: "figureGrid",
