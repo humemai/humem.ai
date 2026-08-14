@@ -212,6 +212,8 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
           withheldReason={table.withheld_reason}
           sourcePath={table.source_path}
           sourceUrl={table.source_url}
+          sourcePaths={table.source_paths}
+          sourceUrls={table.source_urls}
         />
       );
     }

@@ -71,7 +71,7 @@ export const arcadeDb: Project = {
           {
             type: "benchmarkTable",
             tableId: "l3d",
-            caption: "Dense retrieval at two scales, including the embedded and server deployments of the same engine. Cold is the first timed pass after the build; warm repeats the same query set. Only ArcadeDB moves between the two, so the ten-million row is where the page's summary figure gets its dense bar. The smaller tier ran one pass per build and so has no warm column.",
+            caption: "Dense retrieval at two scales, including the embedded and server deployments of the same engine. Cold is the first timed pass after the build; warm repeats the same query set. Every engine at ten million was measured both ways and every engine at the smaller scale was measured once, so the dashes are a property of the tier and not of the engine. Read latency against recall rather than on its own: Chroma is the quickest engine at both scales and also the one returning the fewest true neighbours, which is why the summary figure above compares ArcadeDB against Qdrant, the fastest engine whose recall is at least ArcadeDB's.",
           },
         ],
       },
