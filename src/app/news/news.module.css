@@ -67,7 +67,7 @@
   grid-column: 1 / -1;
   width: fit-content;
   margin-left: auto;
-  margin-bottom: 1rem;
+  margin-bottom: var(--site-space-base);
 }
 
 .mobileRailControl {
@@ -178,7 +178,7 @@
 
 .postImageWrap {
   aspect-ratio: 16 / 9;
-  margin-bottom: 1rem;
+  margin-bottom: var(--site-space-base);
 }
 
 .articleImage,
@@ -224,7 +224,7 @@
 .content h2,
 .content h3,
 .content h4 {
-  margin: 1.5rem 0 0.8rem;
+  margin: var(--site-space-roomy) 0 var(--site-space-compact);
   line-height: 1.15;
 }
 
@@ -265,7 +265,7 @@
 }
 
 .content blockquote {
-  margin: 1rem 0;
+  margin: var(--site-space-base) 0;
   padding: 0.1rem 0 0.1rem 1rem;
   border-left: 3px solid var(--border-strong);
 }
@@ -366,7 +366,7 @@
   width: 100%;
   max-width: 100%;
   height: auto;
-  margin: 1rem auto;
+  margin: var(--site-space-base) auto;
   border-radius: 1rem;
 }
 
@@ -403,7 +403,7 @@
 .videoEmbed {
   position: relative;
   width: 100%;
-  margin: 1rem 0;
+  margin: var(--site-space-base) 0;
   padding-bottom: 56.25%;
   overflow: hidden;
   border: 1px solid var(--border);

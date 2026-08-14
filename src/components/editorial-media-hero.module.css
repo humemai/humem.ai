@@ -14,7 +14,7 @@
 }
 
 .context {
-  margin: 0 0 1rem;
+  margin: 0 0 var(--site-space-base);
   color: var(--muted);
 }
 
@@ -118,7 +118,7 @@
 }
 
 .caption {
-  margin: 0.8rem 0 0;
+  margin: var(--site-space-compact) 0 0;
   color: var(--muted);
   font-size: 0.98rem;
   line-height: 1.7;

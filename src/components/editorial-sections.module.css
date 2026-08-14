@@ -259,7 +259,7 @@
 
 .figureGridItems {
   display: grid;
-  gap: 1rem;
+  gap: var(--site-space-base);
 }
 
 .figureGridItem {
@@ -274,7 +274,7 @@
 }
 
 .figureGridCaption {
-  margin: 0.8rem 0 0;
+  margin: var(--site-space-compact) 0 0;
   color: var(--muted);
   font-size: 0.98rem;
   font-style: italic;
@@ -301,7 +301,7 @@
   position: relative;
   overflow: hidden;
   aspect-ratio: var(--site-section-figure-ratio);
-  margin-bottom: 1rem;
+  margin-bottom: var(--site-space-base);
   border-radius: 1.3rem;
   background: var(--site-hero-surface);
 }
@@ -335,7 +335,7 @@
 }
 
 .figureCaption {
-  margin: 0.8rem 0 0;
+  margin: var(--site-space-compact) 0 0;
   color: var(--muted);
   font-size: 0.98rem;
   font-style: italic;
@@ -584,7 +584,7 @@ table.benchmarkGrid {
     padding: 0.15rem 0;
     display: flex;
     justify-content: space-between;
-    gap: 1rem;
+    gap: var(--site-space-base);
     white-space: normal;
   }
 

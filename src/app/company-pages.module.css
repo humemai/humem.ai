@@ -101,7 +101,7 @@
   overflow: hidden;
   aspect-ratio: 1 / 1;
   width: min(12rem, 100%);
-  margin: 0 0 1rem;
+  margin: 0 0 var(--site-space-base);
   border-radius: 1.25rem;
   background: var(--card-media-gradient);
 }

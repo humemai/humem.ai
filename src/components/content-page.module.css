@@ -6,7 +6,7 @@
 
 .hero {
   display: grid;
-  gap: 1rem;
+  gap: var(--site-space-base);
   padding: 1.5rem;
   border: 1px solid var(--border);
   border-radius: 2rem;
@@ -15,7 +15,7 @@
 }
 
 .context {
-  margin-bottom: 0.8rem;
+  margin-bottom: var(--site-space-compact);
   font-size: 0.95rem;
   color: var(--muted);
 }
@@ -42,7 +42,7 @@
 
 .intro {
   max-width: var(--site-hero-intro-max);
-  margin: 1rem 0 0;
+  margin: var(--site-space-base) 0 0;
   color: var(--muted);
   font-size: clamp(1.04rem, 2vw, 1.22rem);
   line-height: 1.75;
@@ -57,7 +57,7 @@
 }
 
 .aside > * + * {
-  margin-top: 1rem;
+  margin-top: var(--site-space-base);
 }
 
 .aside :global(.heroFigure) {
@@ -82,7 +82,7 @@
 }
 
 .aside :global(.heroFigureCaption) {
-  margin: 0.8rem 0 0;
+  margin: var(--site-space-compact) 0 0;
   line-height: 1.65;
 }
 
@@ -114,8 +114,8 @@
 
 .content {
   display: grid;
-  gap: 1rem;
-  margin-top: 1.5rem;
+  gap: var(--site-space-base);
+  margin-top: var(--site-space-roomy);
 }
 
 .content :global(section) {
@@ -127,7 +127,7 @@
 }
 
 .content :global(h2) {
-  margin: 0 0 0.8rem;
+  margin: 0 0 var(--site-space-compact);
   font-size: 1.32rem;
 }
 
@@ -174,7 +174,7 @@
 .content :global(.inlineFounderImageWrap) {
     float: none;
     width: min(7rem, 100%);
-    margin: 0 0 1rem;
+    margin: 0 0 var(--site-space-base);
   }
 }
 

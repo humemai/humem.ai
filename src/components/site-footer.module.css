@@ -28,7 +28,7 @@
 }
 
 .copy {
-  margin: 0.8rem 0 0;
+  margin: var(--site-space-compact) 0 0;
   color: var(--muted);
   line-height: 1.75;
 }
@@ -43,7 +43,7 @@
 
 .columns {
   display: grid;
-  gap: 1.5rem;
+  gap: var(--site-space-roomy);
   margin-top: 2rem;
 }
 

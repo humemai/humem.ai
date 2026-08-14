@@ -9,7 +9,7 @@
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 1rem;
+  gap: var(--site-space-base);
   width: var(--site-shell-width-mobile);
   margin: 0 auto;
   padding: 0.85rem 1rem;
@@ -203,12 +203,12 @@
 
 .mobilePanelWrap {
   width: min(1180px, calc(100% - 2rem));
-  margin: 0.8rem auto 0;
+  margin: var(--site-space-compact) auto 0;
 }
 
 .mobilePanel {
   display: grid;
-  gap: 1rem;
+  gap: var(--site-space-base);
   width: 100%;
   padding: 1rem;
   border: 1px solid var(--border);
