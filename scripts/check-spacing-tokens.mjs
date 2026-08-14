@@ -31,7 +31,7 @@
  * design decision, not a lint. This check covers the article bodies, where the
  * defect was actually visible to readers.
  */
-import { readdirSync, readFileSync, statSync } from "node:fs";
+import { readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 const ROOT = "src";
@@ -129,9 +129,82 @@ for (const file of files) {
   }
 }
 
-if (findings.length === 0) {
-  console.log("spacing: ok, no prose-column child sets a vertical margin");
+/* ---------------------------------------------------------------------------
+ * SECOND PASS: the rest of the site, baselined rather than enforced.
+ *
+ * The prose columns above are a hard rule. Everywhere else this site has no
+ * spacing scale at all: a sweep on 2026-08-14 found 137 literal vertical values
+ * across 25 stylesheets, with 2.25rem, 1.3rem, 0.9rem, 0.8rem, 2rem and 1rem
+ * all doing the same job. Normalising them changes the layout of every page,
+ * which is a design decision and not something a lint should force.
+ *
+ * So the existing values are RECORDED, and only NEW ones fail. The debt stops
+ * growing without anyone having to redesign anything first, and the count in
+ * the baseline file is a number that can be driven down deliberately.
+ *
+ *     node scripts/check-spacing-tokens.mjs --update-baseline
+ *
+ * Keyed by file + selector + property + value, never by line number, so moving
+ * a rule does not read as a new violation.
+ * ------------------------------------------------------------------------- */
+const BASELINE = "scripts/spacing-baseline.json";
+const TOKEN = /var\(--[\w-]+\)/;
+
+const literals = new Set();
+for (const file of files) {
+  const code = readFileSync(file, "utf8").replace(/\/\*[\s\S]*?\*\//g, "");
+  const blockRe = /([^{}]+)\{([^{}]*)\}/g;
+  let m;
+  while ((m = blockRe.exec(code)) !== null) {
+    const selector = m[1].trim().replace(/\s+/g, " ");
+    if (selector.startsWith("@")) continue;
+    for (const decl of m[2].split(";")) {
+      const d = decl.match(/^\s*([a-z-]+)\s*:\s*(.+)$/);
+      if (!d) continue;
+      const [, prop, value] = d;
+      if (!/^(margin|margin-top|margin-bottom|margin-block|gap|row-gap)$/.test(prop)) continue;
+      if (ZERO.has(value.trim())) continue;
+      for (const part of verticalParts(prop, value)) {
+        if (ZERO.has(part) || part === "0" || TOKEN.test(part)) continue;
+        literals.add(`${file} :: ${selector} :: ${prop}: ${value.trim()}`);
+      }
+    }
+  }
+}
+
+const wantUpdate = process.argv.includes("--update-baseline");
+let baseline = [];
+try { baseline = JSON.parse(readFileSync(BASELINE, "utf8")).accepted; } catch { /* first run */ }
+
+if (wantUpdate) {
+  writeFileSync(BASELINE, JSON.stringify({
+    note: "Literal vertical spacing values that predate the token scale. New " +
+          "ones fail the build; these are recorded so the debt is visible and " +
+          "countable rather than growing. Drive the count down deliberately.",
+    recorded: "2026-08-14",
+    count: literals.size,
+    accepted: [...literals].sort(),
+  }, null, 2) + "\n");
+  console.log(`spacing: baseline written, ${literals.size} accepted literal(s)`);
   process.exit(0);
+}
+
+const known = new Set(baseline);
+const fresh = [...literals].filter((k) => !known.has(k)).sort();
+
+if (findings.length === 0 && fresh.length === 0) {
+  console.log(`spacing: ok (prose columns clean; ${known.size} literals baselined)`);
+  process.exit(0);
+}
+
+if (fresh.length) {
+  console.error(`spacing: ${fresh.length} NEW literal vertical spacing value(s).`);
+  console.error("Use a token from globals.css, or add one there. If the value is");
+  console.error("genuinely intended, run with --update-baseline and say why in");
+  console.error("the commit message.\n");
+  for (const k of fresh) console.error(`  ${k}`);
+  if (findings.length === 0) process.exit(1);
+  console.error("");
 }
 
 console.error(`spacing: ${findings.length} vertical margin(s) inside a prose column.`);

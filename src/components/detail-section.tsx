@@ -35,6 +35,7 @@ export function DetailSection({
         <h2 className={styles.title}>{title}</h2>
       </div>
       <div
+        data-prose-column
         className={joinClassNames(styles.body, bodyVariant === "stack" && styles.bodyStack, bodyClassName)}
       >
         {children}

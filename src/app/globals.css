@@ -109,6 +109,12 @@
  * Headings are the single deliberate exception: extra space above, so a new
  * section is visible without needing a rule. Below a heading, the gap is the
  * gap.
+ *
+ * A BLOCK container does not need this and must not opt in: block-level
+ * margins collapse, so a plain article body already produces one uniform gap,
+ * and marking it would switch it to grid and change its layout for nothing.
+ * The news article body is the example: it was the only prose on the site that
+ * was already correct, and it was correct by being a block.
  */
 [data-prose-column] {
   display: grid;

@@ -26,7 +26,7 @@ export function SplitMediaSection({
       <div className={styles.copy}>
         <p className={styles.eyebrow}>{eyebrow}</p>
         <h2 className={styles.title}>{title}</h2>
-        <div className={styles.body}>{children}</div>
+        <div data-prose-column className={styles.body}>{children}</div>
       </div>
 
       <figure className={styles.figure}>
