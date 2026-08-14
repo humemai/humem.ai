@@ -38,7 +38,7 @@ export const auditReadyMemory: Project = {
         title: "Deterministic replay should make past behavior reconstructable.",
         body: [
           "One of the practical problems in accountable AI systems is that teams often cannot reconstruct why the system behaved a certain way after the fact. Logs may be partial, state may be implicit, and the memory path may be impossible to replay cleanly.",
-          "This project treats deterministic replay as a first-class requirement. Memory events, system decisions, and later inspection need to line up in a way that lets teams revisit past behavior as a concrete systems problem instead of an interpretability story told after the fact.",
+          "This project treats deterministic replay as a first-class requirement. In the implementation, replay is a pure fold over an append-only log, so the same history always produces the same state and any earlier point can be reconstructed exactly. Every read is recorded as its own event alongside the writes, which means the log can answer what a model was shown rather than only what was stored.",
         ],
         figure: {
           label: "Figure 2",
@@ -60,7 +60,7 @@ export const auditReadyMemory: Project = {
         title: "Deletion must be explicit, meaningful, and operationally real.",
         body: [
           "Public-interest deployments cannot treat deletion as a weak promise while memory is spread across hidden stores, opaque agent state, or hard-to-audit infrastructure. If a system claims to remember, it also has to support explicit deletion and verifiable removal workflows.",
-          "Audit-Ready Memory therefore pairs traceability with deletion. The goal is not just to store memory more carefully, but to make retention and removal governable in ways that teams can actually implement and review.",
+          "Audit-Ready Memory therefore pairs traceability with deletion. Deleting appends a tombstone that names its targets and requires a reason, and deleted content is excluded from every read path, so it cannot re-enter a model's context. The removal is itself part of the record, which is what makes it possible to show that something was taken out and why. The documentation states plainly where this stops: content is hidden from reads but retained in the log, so hard erasure needs a deployment-level strategy.",
         ],
         figure: {
           label: "Figure 3",
@@ -120,7 +120,7 @@ export const auditReadyMemory: Project = {
   problem:
     "Many AI systems still handle memory in opaque model state or hosted tooling that was not designed for public-interest accountability. That makes it difficult to inspect what the system retained, understand why it behaved a certain way, replay past decisions, or carry out meaningful deletion when the deployment context requires governance rather than vague trust.",
   solution:
-    "Audit-Ready Memory treats memory as infrastructure. The project combines a structured log-based memory model, deterministic replay, explicit deletion workflows, reference implementations, and public benchmarks so teams can evaluate accountable long-term memory as a concrete systems problem instead of a marketing claim.",
+    "Audit-Ready Memory treats memory as infrastructure. It stores memory as an append-only log of time-stamped events in an embedded local database, rebuilds any past state by replaying that log, records reads as well as writes so you can see what a model was actually shown, and handles deletion as an explicit tombstone carrying a reason. An open-source Python library and a working demo are available now, with benchmarks and a versioned release in progress.",
   impact:
     "The project is aimed at civic-tech teams, NGOs, researchers, and public-interest pilots that need more sovereign and explainable AI behavior. By keeping the memory layer local-first and openly documented, it creates a reusable building block for trustworthy AI infrastructure and makes auditability something teams can implement directly rather than outsource.",
   acknowledgements: {
@@ -140,6 +140,10 @@ export const auditReadyMemory: Project = {
     {
       label: "View GitHub",
       href: "https://github.com/humemai/audit-ready-memory",
+    },
+    {
+      label: "Documentation",
+      href: "https://docs.humem.ai/audit-ready-memory/",
     },
     { label: "Contact", href: "/contact" },
     { label: "HumemAI GitHub", href: "https://github.com/humemai" },
