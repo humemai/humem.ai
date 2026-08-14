@@ -69,7 +69,7 @@ export const arcadeDb: Project = {
       },
       {
         id: "models",
-        navLabel: "Other models",
+        navLabel: "Beyond vectors",
         eyebrow: "Benchmarks",
         title: "Graph, tabular, and the transaction that spans both plus vectors.",
         body: [
