@@ -19,3 +19,4 @@ npm run start
 ## Design Assets
 
 Website illustration prompts live in `docs/design/image-prompts.md`.
+Chrome DevTools test devices for responsive checks live in `docs/design/test-devices.md`.
