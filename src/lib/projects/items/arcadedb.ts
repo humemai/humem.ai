@@ -85,7 +85,7 @@ export const arcadeDb: Project = {
           {
             type: "benchmarkTable",
             tableId: "l3smp",
-            caption: "Nobody gains much and the order does not move. The largest gain by any engine is 1.14x at a million and 1.04x at 8.84 million, and at the larger size no engine gains more than 4%. Read this against the dense table below, where ArcadeDB alone gains about 8x on a second pass: that is a property of how the two index structures reach their data, not of how we ran them.",
+            caption: "Nobody gains much and the order does not move. The largest gain by any engine is 1.15x at a million and 1.06x at 8.84 million, and at the larger size no engine gains more than 6%. Read this against the dense table below, where ArcadeDB alone gains about 8x on a second pass: that is a property of how the two index structures reach their data, not of how we ran them.",
           },
           {
             type: "benchmarkTable",
