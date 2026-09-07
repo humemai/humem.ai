@@ -29,8 +29,8 @@ export const arcadeDb: Project = {
           "ArcadeDB is a Java engine, and that is friction for Python work: a separate runtime to install, a service to start, and a network hop between your code and your data. The embedded distribution removes all three. It ships the upstream engine unmodified, with a bundled runtime and platform wheels, so `uv add arcadedb-embedded` or `pip install arcadedb-embedded` is the entire setup and the database runs in your process.",
           "This is a real package surface rather than a launcher. Transactions and lifecycle, schema and graph helpers, bulk ingest, import and export paths, and the vector features are all exposed and tested, with the example suite run in CI on every change.",
           "Both halves of this work are maintained here. Fixes and features found through the benchmarking below are filed and, where possible, contributed upstream, so the engine and the Python distribution improve together rather than diverging.",
-          "The obvious question is what the Python boundary costs. The engine runs at the same speed either way; what gets charged for is handing results back. Against an in-process Java baseline doing the same work, a vector search costs 1.28x and a 100k-row scan 1.63x.",
-          "The more useful number is the one inside Python. Asking for row objects is 13.8x slower than asking for columns over the identical query, so which call you reach for matters far more than the language boundary does. Which call you reach for is worth checking before blaming the engine for a slow loop.",
+          "The obvious question is what the Python boundary costs. The engine runs at the same speed either way; what gets charged for is handing results back. Against an in-process Java baseline doing the same work, a vector search costs 1.17x and a 100k-row scan 1.74x.",
+          "The more useful number is the one inside Python. Asking for row objects is 14.9x slower than asking for columns over the identical query, so which call you reach for matters far more than the language boundary does. Which call you reach for is worth checking before blaming the engine for a slow loop.",
           {
             type: "benchmarkTable",
             tableId: "pycost",
@@ -56,7 +56,7 @@ export const arcadeDb: Project = {
           {
             type: "benchmarkTable",
             tableId: "l2olap",
-            caption: "The view is worth 6.5x on top degree and about 2.4x on the other two, which is enough to move ArcadeDB from behind Neo4j to ahead of it on all three. LadybugDB wins all three regardless: it stores the graph in columns, which is the same reason DuckDB wins the analytical tabular queries further down. This is the honest shape of the multi-model tradeoff, one engine covering every model competently rather than beating a specialist at its own workload.",
+            caption: "The view is worth 6.2x on top degree and about 2.5x on the other two, which is enough to move ArcadeDB from behind Neo4j to ahead of it on all three. LadybugDB wins all three regardless: it stores the graph in columns, which is the same reason DuckDB wins the analytical tabular queries further down. This is the honest shape of the multi-model tradeoff, one engine covering every model competently rather than beating a specialist at its own workload.",
           },
         ],
       },
@@ -85,7 +85,7 @@ export const arcadeDb: Project = {
           {
             type: "benchmarkTable",
             tableId: "l3smp",
-            caption: "Nobody gains much and the order does not move. The largest gain by any engine is 1.18x at a million and 1.13x at 8.84 million, and at the larger size ArcadeDB's is the smallest of the six while Elasticsearch's is the largest. Read this against the dense table below, where ArcadeDB alone gains about nine times on a second pass: that is a property of how the two index structures reach their data, not of how we ran them.",
+            caption: "Nobody gains much and the order does not move. The largest gain by any engine is 1.14x at a million and 1.04x at 8.84 million, and at the larger size no engine gains more than 4%. Read this against the dense table below, where ArcadeDB alone gains about 8x on a second pass: that is a property of how the two index structures reach their data, not of how we ran them.",
           },
           {
             type: "benchmarkTable",
