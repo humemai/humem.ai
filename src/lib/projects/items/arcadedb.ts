@@ -56,7 +56,7 @@ export const arcadeDb: Project = {
           {
             type: "benchmarkTable",
             tableId: "l2olap",
-            caption: "The view is worth 6.2x on top degree and about 2.5x on the other two, which is enough to move ArcadeDB from behind Neo4j to ahead of it on all three. LadybugDB wins all three regardless: it stores the graph in columns, which is the same reason DuckDB wins the analytical tabular queries further down. This is the honest shape of the multi-model tradeoff, one engine covering every model competently rather than beating a specialist at its own workload.",
+            caption: "At SF10 the view is worth 6.2x on top degree and about 2.5x on the other two, which is enough to move ArcadeDB from behind Neo4j to ahead of it on all three. LadybugDB wins all three regardless: it stores the graph in columns, which is the same reason DuckDB wins the analytical tabular queries further down. This is the honest shape of the multi-model tradeoff, one engine covering every model competently rather than beating a specialist at its own workload.",
           },
         ],
       },
@@ -109,6 +109,11 @@ export const arcadeDb: Project = {
           },
           {
             type: "benchmarkTable",
+            tableId: "l1olap",
+            caption: "The five analytical queries behind the OLAP total above, one column each, so the shapes an engine is slow on are visible rather than summed away.",
+          },
+          {
+            type: "benchmarkTable",
             tableId: "l1tpc",
             caption: "The same two shapes on TPC-H and TPC-C, the long-standing analytical and transactional benchmarks.",
           },
@@ -126,6 +131,11 @@ export const arcadeDb: Project = {
             type: "benchmarkTable",
             tableId: "e2",
             caption: "The cross-model operation: a vector hit expands over graph edges and updates a document. ArcadeDB and SurrealDB do it in one transaction; the composed stack has no transaction spanning its two engines.",
+          },
+          {
+            type: "benchmarkTable",
+            tableId: "e2atom",
+            caption: "The same operation interrupted mid-way, 40 trials per run over five runs. The composed stack is left torn in 40 of 40 trials; ArcadeDB and SurrealDB in 0 of 40, because the whole operation is one transaction that either commits or does not.",
           },
           {
             type: "figureGrid",
