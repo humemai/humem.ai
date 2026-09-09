@@ -1,5 +1,5 @@
 import type { Project } from "../types";
-import { arcadeDbDocsUrl, arcadeDbRepoUrl, arcadeDbUpstreamRepoUrl, arcadeDbWebsiteUrl } from "../shared";
+import { arcadeDbDocsUrl, arcadeDbRepoUrl, arcadeDbUpstreamRepoUrl } from "../shared";
 
 export const arcadeDb: Project = {
   slug: "arcadedb",
@@ -212,6 +212,5 @@ export const arcadeDb: Project = {
     { label: "Python distribution", href: arcadeDbRepoUrl },
     { label: "ArcadeDB engine", href: arcadeDbUpstreamRepoUrl },
     { label: "Python docs", href: arcadeDbDocsUrl },
-    { label: "arcadedb.com", href: arcadeDbWebsiteUrl },
   ],
 };
