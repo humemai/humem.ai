@@ -306,7 +306,7 @@ export function EditorialBenchmarkTable({
               <th scope="col">Engine</th>
               {showMode ? <th scope="col">Mode</th> : null}
               {showPrecision ? <th scope="col">Precision</th> : null}
-              {showScale ? <th scope="col">Scale</th> : null}
+              {showScale ? <th scope="col">Size</th> : null}
               {columns.map((column) => (
                 <th scope="col" key={column}>
                   {column}
@@ -337,7 +337,7 @@ export function EditorialBenchmarkTable({
                   <td data-label="Precision">{entry.precision ?? "—"}</td>
                 ) : null}
                 {showScale ? (
-                  <td data-label="Scale">{entry.scale_label ?? entry.scale}</td>
+                  <td data-label="Size">{entry.scale_label ?? entry.scale}</td>
                 ) : null}
                 {columns.map((column) => (
                   <td key={column} data-label={column}>
