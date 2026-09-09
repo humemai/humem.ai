@@ -30,7 +30,7 @@ export const arcadeDb: Project = {
           "This is a real package surface rather than a launcher. Transactions and lifecycle, schema and graph helpers, bulk ingest, import and export paths, and the vector features are all exposed and tested, with the example suite run in CI on every change.",
           "Both halves of this work are maintained here. Fixes and features found through the benchmarking below are filed and, where possible, contributed upstream, so the engine and the Python distribution improve together rather than diverging.",
           "The obvious question is what the Python boundary costs. The engine runs at the same speed either way; what gets charged for is handing results back. Against an in-process Java baseline doing the same work, a vector search costs 1.17x and a 100k-document scan 1.74x.",
-          "The more useful number is the one inside Python. Asking for row objects is 14.9x slower than asking for columns over the identical query, so which call you reach for matters far more than the language boundary does. Which call you reach for is worth checking before blaming the engine for a slow loop.",
+          "The more useful number is the one inside Python. Asking for record objects is 14.9x slower than asking for columns over the identical query, so which call you reach for matters far more than the language boundary does. Which call you reach for is worth checking before blaming the engine for a slow loop.",
           {
             type: "benchmarkTable",
             tableId: "pycost",
@@ -96,7 +96,7 @@ export const arcadeDb: Project = {
       },
       {
         id: "models",
-        navLabel: "Tables & more",
+        navLabel: "Documents & more",
         eyebrow: "Benchmarks",
         title: "Documents, time series, and the transaction that spans every model at once.",
         body: [
