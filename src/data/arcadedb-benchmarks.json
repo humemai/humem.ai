@@ -4223,7 +4223,7 @@
     },
     {
       "id": "l1",
-      "title": "Tabular OLTP and OLAP",
+      "title": "Documents: OLTP and OLAP",
       "dataset": "Synthetic orders workload",
       "conditions": [
         "PostgreSQL's memory cell is not comparable to the other two. It keeps its data in shared memory and in the file cache the kernel holds for it, and this column counts neither, so it reads 0.12 GiB where the run's actual peak was 3.85. Most of even that 0.12 is our own benchmark client rather than the database: 0.105 of it. We checked that this is the measure and not the setting, by giving a PostgreSQL container a 2 GB buffer pool and watching this column stay at 5 MiB.",
@@ -4234,7 +4234,7 @@
         "insert p50 ms",
         "update p50 ms",
         "OLTP ops/s",
-        "ingest rows/s",
+        "ingest records/s",
         "OLAP total ms",
         "peak memory GiB",
         "disk GiB"
@@ -4247,7 +4247,7 @@
           "is_arcadedb": true,
           "precision": null,
           "scale": "medium",
-          "scale_label": "20M rows",
+          "scale_label": "20M records",
           "workload": "",
           "n_docs": null,
           "deployment": "embedded",
@@ -4279,7 +4279,7 @@
               "max": 7642.0,
               "n": 5
             },
-            "ingest rows/s": {
+            "ingest records/s": {
               "median": 28983.75,
               "min": 28228.8,
               "max": 29275.3,
@@ -4310,7 +4310,7 @@
           "is_arcadedb": true,
           "precision": null,
           "scale": "medium",
-          "scale_label": "20M rows",
+          "scale_label": "20M records",
           "workload": "",
           "n_docs": null,
           "deployment": "server",
@@ -4342,7 +4342,7 @@
               "max": 1422.2,
               "n": 5
             },
-            "ingest rows/s": {
+            "ingest records/s": {
               "median": 26901.0,
               "min": 26358.2,
               "max": 27168.6,
@@ -4373,7 +4373,7 @@
           "is_arcadedb": false,
           "precision": null,
           "scale": "medium",
-          "scale_label": "20M rows",
+          "scale_label": "20M records",
           "workload": "",
           "n_docs": null,
           "deployment": "embedded",
@@ -4405,7 +4405,7 @@
               "max": 273.9,
               "n": 5
             },
-            "ingest rows/s": {
+            "ingest records/s": {
               "median": 305997.55,
               "min": 299439.6,
               "max": 334007.0,
@@ -4436,7 +4436,7 @@
           "is_arcadedb": false,
           "precision": null,
           "scale": "medium",
-          "scale_label": "20M rows",
+          "scale_label": "20M records",
           "workload": "",
           "n_docs": null,
           "deployment": "server",
@@ -4468,7 +4468,7 @@
               "max": 552.8,
               "n": 5
             },
-            "ingest rows/s": {
+            "ingest records/s": {
               "median": 315179.8,
               "min": 311095.3,
               "max": 321870.2,
@@ -4499,7 +4499,7 @@
           "is_arcadedb": false,
           "precision": null,
           "scale": "medium",
-          "scale_label": "20M rows",
+          "scale_label": "20M records",
           "workload": "",
           "n_docs": null,
           "deployment": "server",
@@ -4531,7 +4531,7 @@
               "max": 502.5,
               "n": 5
             },
-            "ingest rows/s": {
+            "ingest records/s": {
               "median": 333727.95,
               "min": 332046.2,
               "max": 344960.8,
@@ -4569,7 +4569,7 @@
     },
     {
       "id": "l1tpc",
-      "title": "Tabular (TPC-H and TPC-C shapes)",
+      "title": "Documents (TPC-H and TPC-C shapes)",
       "dataset": "TPC-H queries, TPC-C new-order",
       "conditions": [
         "Q1 and Q6 are TPC-H's own query numbers. Q1 groups and aggregates the whole line-item table, so it measures a full scan; Q6 sums one column under a narrow filter, so it measures how well an engine skips what it does not need.",
@@ -8572,7 +8572,7 @@
     {
       "id": "e4",
       "title": "What the client/server split costs",
-      "dataset": "200,000-row projection, one engine, three deployments",
+      "dataset": "200,000-document projection, one engine, three deployments",
       "conditions": [
         "Every number is milliseconds. One released engine (26.9.1.dev0) in all three setups, 15 repetitions after 3 warmup, identical cpuset 0-11, memory cap 8g and heap 6g.",
         "All three setups turn the answer into Python objects the same way, so the difference is how the database was deployed and not how we read the result.",
@@ -8590,7 +8590,7 @@
       "withheld_reason": null,
       "entries": [
         {
-          "backend": "1 rows",
+          "backend": "1 documents",
           "is_arcadedb": true,
           "scale": "1",
           "workload": "projection",
@@ -8633,7 +8633,7 @@
           }
         },
         {
-          "backend": "10 rows",
+          "backend": "10 documents",
           "is_arcadedb": true,
           "scale": "10",
           "workload": "projection",
@@ -8676,7 +8676,7 @@
           }
         },
         {
-          "backend": "100 rows",
+          "backend": "100 documents",
           "is_arcadedb": true,
           "scale": "100",
           "workload": "projection",
@@ -8719,7 +8719,7 @@
           }
         },
         {
-          "backend": "1,000 rows",
+          "backend": "1,000 documents",
           "is_arcadedb": true,
           "scale": "1,000",
           "workload": "projection",
@@ -8762,7 +8762,7 @@
           }
         },
         {
-          "backend": "10,000 rows",
+          "backend": "10,000 documents",
           "is_arcadedb": true,
           "scale": "10,000",
           "workload": "projection",
@@ -8805,7 +8805,7 @@
           }
         },
         {
-          "backend": "100,000 rows",
+          "backend": "100,000 documents",
           "is_arcadedb": true,
           "scale": "100,000",
           "workload": "projection",
@@ -8925,7 +8925,7 @@
         {
           "backend": "Java, in process",
           "is_arcadedb": true,
-          "scale": "100k-row scan",
+          "scale": "100k-document scan",
           "workload": "baseline",
           "n_docs": null,
           "deployment": "embedded",
@@ -8950,7 +8950,7 @@
         {
           "backend": "Python, to_columns",
           "is_arcadedb": true,
-          "scale": "100k-row scan",
+          "scale": "100k-document scan",
           "workload": "columnar",
           "n_docs": null,
           "deployment": "embedded",
@@ -8975,7 +8975,7 @@
         {
           "backend": "Python, to_json_list",
           "is_arcadedb": true,
-          "scale": "100k-row scan",
+          "scale": "100k-document scan",
           "workload": "batched JSON",
           "n_docs": null,
           "deployment": "embedded",
@@ -9000,7 +9000,7 @@
         {
           "backend": "Python, to_list",
           "is_arcadedb": true,
-          "scale": "100k-row scan",
+          "scale": "100k-document scan",
           "workload": "row objects",
           "n_docs": null,
           "deployment": "embedded",
