@@ -90,7 +90,7 @@ export const arcadeDb: Project = {
           {
             type: "benchmarkTable",
             tableId: "l3d",
-            caption: "Dense search at two sizes, with both deployments of ArcadeDB. Every engine at ten million was measured cold and warm, and every engine at the smaller size cold only, so the dashes belong to the size and not to the engine. Read latency against recall: Chroma is the fastest engine at both sizes and also the one returning the fewest true neighbours, which is why the summary figure at the end of the next section compares ArcadeDB against Qdrant, the fastest engine whose recall is at least ArcadeDB's.",
+            caption: "Dense search at two sizes, with both deployments of ArcadeDB. Every engine at both sizes was measured the same way: one build, then five passes, cold being the first and warm the rest. Read latency against recall: Chroma is the fastest engine at both sizes and also the one returning the fewest true neighbours, which is why the summary figure at the end of the next section compares ArcadeDB against Qdrant, the fastest engine whose recall is at least ArcadeDB's.",
           },
         ],
       },
