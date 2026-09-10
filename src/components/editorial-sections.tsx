@@ -204,6 +204,9 @@ function formatStat(stat: BenchmarkStat | undefined) {
   // at ten thousand because that is where the comma grouping starts costing
   // more than it gives. Full precision stays in the JSON, which is what the
   // gates read.
+  // Counts print as counts: "0 of 40 torn" is 0, not 0.00, and 40 trials
+  // is 40, not 40.0.
+  if (Number.isInteger(v) && v < 1e4) return v.toLocaleString();
   if (v >= 1e6) return `${(v / 1e6).toFixed(2)}M`;
   if (v >= 1e4) return `${Math.round(v / 1000).toLocaleString()}k`;
   if (v >= 1000) return Math.round(v).toLocaleString();
