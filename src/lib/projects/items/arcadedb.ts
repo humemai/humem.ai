@@ -56,7 +56,7 @@ export const arcadeDb: Project = {
           {
             type: "benchmarkTable",
             tableId: "l2olap",
-            caption: "At SF10 the view is worth 6.2x on top degree and about 2.5x on the other two, which is enough to move ArcadeDB from behind Neo4j to ahead of it on all three. LadybugDB wins all three regardless: it stores the graph in columns, the same reason DuckDB wins the analytical queries further down. That is the multi-model tradeoff: one engine covering every model, not beating a comparator at its own workload.",
+            caption: "At SF10 the view is worth 6.9x on top degree and about 2.6x on the other two, which is enough to move ArcadeDB from behind Neo4j to ahead of it on all three. LadybugDB wins all three regardless: it stores the graph in columns, the same reason DuckDB wins the analytical queries further down. That is the multi-model tradeoff: one engine covering every model, not beating a comparator at its own workload.",
           },
         ],
       },
