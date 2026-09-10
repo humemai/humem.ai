@@ -208,6 +208,9 @@ function formatStat(stat: BenchmarkStat | undefined) {
   if (v >= 1e4) return `${Math.round(v / 1000).toLocaleString()}k`;
   if (v >= 1000) return Math.round(v).toLocaleString();
   if (v >= 10) return v.toFixed(1);
+  // Below a tenth, two decimals printed "0.00" for LadybugDB's 4.5 MB at SF1
+  // and made a small footprint look like none. Two significant digits.
+  if (v > 0 && v < 0.1) return v.toPrecision(2);
   return v.toFixed(2);
 }
 
