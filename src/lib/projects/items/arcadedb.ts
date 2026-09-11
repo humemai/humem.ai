@@ -54,16 +54,16 @@ export const arcadeDb: Project = {
         id: "graph",
         navLabel: "Graph",
         eyebrow: "Benchmarks",
-        title: "Graph traversal, against the database people compare it to.",
+        title: "Graph OLTP and OLAP, against the database people compare it to.",
         body: [
           "Graph is what most people use ArcadeDB for. The benchmark is LDBC-SNB, the Linked Data Benchmark Council's Social Network Benchmark, a standard synthetic social network, and the queries are Cypher, the language most graph work is written in. Neo4j is the engine anyone choosing a graph database weighs it against. LadybugDB is here because it is embedded and columnar, the closest comparator to running ArcadeDB inside your own process.",
           "ArcadeDB embedded answers all four queries faster than Neo4j at both sizes. That is the strongest head-to-head result on this page.",
           {
             type: "benchmarkTable",
             tableId: "l2",
-            caption: "Graph traversal against Neo4j and LadybugDB on LDBC-SNB. Point is a single vertex lookup, 1-hop and 2-hop walk that many edges out from a starting person, and write inserts one edge.",
+            caption: "Graph OLTP against Neo4j and LadybugDB on LDBC-SNB. Point is a single vertex lookup, 1-hop and 2-hop walk that many edges out from a starting person, and write inserts one edge.",
           },
-          "Analytical queries over the whole graph are a different job from single traversals, and ArcadeDB has a separate mechanism for them. A Graph Analytical View is an in-memory projection of the graph, built once, that the planner uses for queries touching most of the vertices. It is optional, so the table below carries the same engine twice, with the view and without it, and the cost of the view is measured rather than assumed.",
+          "Graph OLAP, queries over the whole graph, is a different job from single traversals, and ArcadeDB has a separate mechanism for them. A Graph Analytical View is an in-memory projection of the graph, built once, that the planner uses for queries touching most of the vertices. It is optional, so the table below carries the same engine twice, with the view and without it, and the cost of the view is measured rather than assumed.",
           {
             type: "benchmarkTable",
             tableId: "l2olap",
