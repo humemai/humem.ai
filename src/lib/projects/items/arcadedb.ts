@@ -170,6 +170,13 @@ export const arcadeDb: Project = {
             caption: "The same query answered from Java and from Python, and the three ways Python can ask for the results.",
             showDigests: false,
           },
+          "Starting the engine is the other cost, and it is paid once per process, not per query. A cold process reaches its first database call in about 0.45 s, most of it the Java runtime starting; after that, opening and closing an empty database costs about 4.4 ms. The table below is one session each, open, do one thing, close, for every kind of data at four sizes, embedded and against the server.",
+          {
+            type: "benchmarkTable",
+            tableId: "lifecycle",
+            caption: "Session cost by kind of data and size. The dense-vector rows at 1M and 10M show an engine defect: the first query after a write waited on a full index rebuild. It is filed as #7183, fixed upstream for 26.10.1, and is re-measured at the October re-pin.",
+            showDigests: false,
+          },
         ],
       },
       {
@@ -197,7 +204,7 @@ export const arcadeDb: Project = {
           // the paper, with no table behind it. The three-arm decomposition is
           // still being folded into the paper text; when it lands there as a
           // table, it can appear here.
-          "Use embedded when the database serves one process: notebooks, tests, single-node services, agent tooling, and anything where a network hop per query is pure cost. It installs with pip, starts in milliseconds, and has no service to operate.",
+          "Use embedded when the database serves one process: notebooks, tests, single-node services, agent tooling, and anything where a network hop per query is pure cost. It installs with pip, starts in under half a second, and has no service to operate.",
           "Use the server when more than one process or machine needs the same data, when you want the Postgres, Redis, Bolt, or HTTP wire protocols, or when you need Raft replication and failover. The Python package can also start a server inside your process, so this is not a one-way door.",
           "This is a deployment decision, not a performance one. The engine is the same in both, and the difference you will feel is the boundary you put around it.",
         ],
