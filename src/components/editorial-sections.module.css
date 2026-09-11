@@ -658,7 +658,7 @@ table.benchmarkGrid {
 }
 
 .benchmarkDirections {
-  margin: 0.35rem 0 0;
+  margin: var(--site-space-compact) 0 0;
   font-size: 0.78rem;
   color: var(--text-muted, #6b7280);
 }
