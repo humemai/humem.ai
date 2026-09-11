@@ -31,6 +31,12 @@ export type ProjectEditorialBodyBlock =
   // into a project page guarantees the page and the data drift apart. The
   // block names a table; the numbers, the image digests and the fairness
   // conditions all travel with the data.
+  // The dataset-level conditions (cpuset, memory accounting, medians,
+  // defaults, pins, durability) that hold for every table. They travel with
+  // the data and were exported for weeks before anything rendered them.
+  | {
+      type: "benchmarkConditions";
+    }
   | {
       type: "benchmarkTable";
       /** Table `id` in the dataset (for ArcadeDB: l3s, l3d, l2, l1, l1tpc, e2). */

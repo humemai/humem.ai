@@ -28,6 +28,8 @@ export const arcadeDb: Project = {
         title: "One machine, one envelope, one job at a time.",
         body: [
           "Every number on this page was measured on one machine: an Intel Core i9-12900HK (14 cores, 6 performance and 8 efficient, 20 threads, 24 MiB L3), 64 GiB of memory, a Samsung 980 PRO 2 TB NVMe drive, Ubuntu 26.04 with Docker. Each run is pinned to the twelve hardware threads of the six performance cores (cpuset 0-11) and to a memory cap that depends on the size: 8 GiB up to 100k documents, 16 GiB at 1M, 32 GiB at 20M rows, 36 GiB at ten million vectors, with a JVM heap of half the cap for the Java engines. One job runs at a time; a served engine and its client share the same cap. Every comparator is pinned by image digest, and the build measured is listed under each table.",
+          "The conditions below hold for every table on this page. A table adds its own beneath its caption where they differ.",
+          { type: "benchmarkConditions" },
         ],
       },
       {
@@ -41,7 +43,7 @@ export const arcadeDb: Project = {
           {
             type: "benchmarkTable",
             tableId: "docs_oltp",
-            caption: "TPC-C's new-order transaction (read a part, insert an order line, update stock) on the TPC-H tables, against DuckDB and PostgreSQL. ArcadeDB stores documents, not tables, and answers the same SQL.",
+            caption: "TPC-C's new-order transaction (read a part, insert an order line, update stock) on the TPC-H tables, against DuckDB and PostgreSQL. PostgreSQL appears twice: at its image defaults, and tuned, with its buffer and work memory fitted to the container. ArcadeDB stores documents, not tables, and answers the same SQL.",
           },
           {
             type: "benchmarkTable",
@@ -160,8 +162,8 @@ export const arcadeDb: Project = {
           "ArcadeDB is a Java engine, and that is friction for Python work: a separate runtime to install, a service to start, and a network hop between your code and your data. The Python package removes all three. It ships the upstream engine unmodified, with a bundled Java runtime and platform wheels, so `uv add arcadedb-embedded` or `pip install arcadedb-embedded` is the whole setup and the database runs inside your process.",
           "It is a full API, not a launcher. Transactions and lifecycle, schema and graph helpers, bulk ingest, import and export, and the vector features are all exposed and tested, with the example suite run in CI on every change.",
           "The engine and the Python package are maintained together. Fixes and features found through the benchmarks below are filed and, where possible, contributed upstream.",
-          "What does the Python boundary cost? The engine runs at the same speed either way; what you pay for is handing results back. Against Java in the same process doing the same work, a vector search costs 1.17x and a 100k-document scan 1.74x.",
-          "The bigger number is inside Python. Asking for record objects is 14.9x slower than asking for columns over the same query, so which call you use matters more than the language boundary does. Check that before blaming the engine for a slow loop.",
+          "What does the Python boundary cost? The engine runs at the same speed either way; what you pay for is handing results back. Against Java in the same process doing the same work, a vector search costs 1.04x and a 100k-document scan 1.75x.",
+          "The bigger number is inside Python. Asking for record objects is 15.1x slower than asking for columns over the same query, so which call you use matters more than the language boundary does. Check that before blaming the engine for a slow loop.",
           {
             type: "benchmarkTable",
             tableId: "pycost",

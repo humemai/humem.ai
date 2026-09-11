@@ -477,3 +477,21 @@ export function EditorialLinkSection({ eyebrow, title, links }: EditorialLinkSec
     </section>
   );
 }
+
+/**
+ * The conditions that hold for every table on the page, rendered once in the
+ * setup section. Same list style as a table's own conditions so a reader
+ * meets one shape.
+ */
+export function EditorialConditions({ conditions }: { conditions: string[] }) {
+  if (conditions.length === 0) {
+    return null;
+  }
+  return (
+    <ul className={styles.figurePoints}>
+      {conditions.map((condition) => (
+        <li key={condition}>{condition}</li>
+      ))}
+    </ul>
+  );
+}
