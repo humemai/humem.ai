@@ -192,9 +192,13 @@ export type EditorialBenchmarkTableProps = {
   directions?: Record<string, string> | null;
 };
 
-function formatStat(stat: BenchmarkStat | undefined) {
+function formatStat(stat: BenchmarkStat | undefined, column?: string) {
   if (!stat) return "—";
   const v = stat.median;
+  // A latency recorded as exactly zero is below the lane's resolution, not
+  // free: SQLite's index-backed newest reading takes about 4 us and the lane
+  // rounded it to 0.00 ms (2026-09-12). Say what is known.
+  if (v === 0 && column && column.endsWith(" ms")) return "<0.01";
   // Medians only. The min-max spread made every cell three numbers wide, which
   // is unreadable on a phone and was the main reason the table forced the page
   // to scroll sideways. If you change this, change the caption in
@@ -357,7 +361,7 @@ export function EditorialBenchmarkTable({
                 ) : null}
                 {columns.map((column) => (
                   <td key={column} data-label={column}>
-                    {formatStat(entry.metrics[column])}
+                    {formatStat(entry.metrics[column], column)}
                   </td>
                 ))}
 
