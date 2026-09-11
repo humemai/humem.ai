@@ -13,7 +13,7 @@ export const arcadeDb: Project = {
         id: "engine",
         navLabel: "Engine",
         eyebrow: "Engine",
-        title: "Documents, graphs, time series and vectors share one storage engine.",
+        title: "Documents, graphs, vectors and time series share one storage engine.",
         body: [
           "ArcadeDB is a Java engine. It runs embedded inside a Java process or as a server behind HTTP, Bolt, Postgres and Redis protocols, and almost everyone runs the server. HumemAI wraps the same engine for Python through JPype, so it also runs inside a Python process; that package is the Python section further down. Every benchmark table on this page measures both deployments of the same build, which is what the Mode column means. Upstream also lists key-value and full-text search among its models; this page does not measure them.",
           "Most databases that call themselves multi-model are several engines behind one API. ArcadeDB is not. Everything it stores sits on the same pages, goes through the same write-ahead log, and commits in the same transaction, so a write that touches a document, an edge and a vector index is one ACID transaction instead of three that have to be coordinated.",
@@ -203,7 +203,7 @@ export const arcadeDb: Project = {
     ],
   },
   summary:
-    "A multi-model database engine that keeps documents, graphs, time series and vectors in one transactional engine, plus the Python package that runs that engine inside your process, benchmarked against the comparators in each category.",
+    "A multi-model database engine that keeps documents, graphs, vectors and time series in one transactional engine, plus the Python package that runs that engine inside your process, benchmarked against the comparators in each category.",
   image: {
     src: "/images/projects/project-arcadedb-embedded-python.png",
     alt: "Illustration for ArcadeDB",
