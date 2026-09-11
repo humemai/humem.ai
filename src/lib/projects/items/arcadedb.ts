@@ -13,12 +13,12 @@ export const arcadeDb: Project = {
         id: "engine",
         navLabel: "Engine",
         eyebrow: "Engine",
-        title: "Documents, graphs, vectors and time series share one storage engine.",
+        title: "Documents, graphs, vectors, and time series share one storage engine.",
         body: [
-          "ArcadeDB is a Java engine. It runs embedded inside a Java process or as a server behind HTTP, Bolt, Postgres and Redis protocols, and almost everyone runs the server. HumemAI wraps the same engine for Python through JPype, so it also runs inside a Python process; that package is the Python section further down. Every benchmark table on this page measures both deployments of the same build, which is what the Mode column means. Upstream also lists key-value and full-text search among its models; this page does not measure them.",
-          "Most databases that call themselves multi-model are several engines behind one API. ArcadeDB is not. Everything it stores sits on the same pages, goes through the same write-ahead log, and commits in the same transaction, so a write that touches a document, an edge and a vector index is one ACID transaction instead of three that have to be coordinated.",
+          "ArcadeDB is a Java engine. It runs embedded inside a Java process or as a server behind HTTP, Bolt, Postgres, and Redis protocols, and almost everyone runs the server. HumemAI wraps the same engine for Python through JPype, so it also runs inside a Python process; that package is the Python section further down. Every benchmark table on this page measures both deployments of the same build, which is what the Mode column means. Upstream also lists key-value and full-text search among its models; this page does not measure them.",
+          "Most databases that call themselves multi-model are several engines behind one API. ArcadeDB is not. Everything it stores sits on the same pages, goes through the same write-ahead log, and commits in the same transaction, so a write that touches a document, an edge, and a vector index is one ACID transaction instead of three that have to be coordinated.",
           "The indexes work the same way. LSM trees, full-text, geo, hash, and both dense and sparse vector indexes all commit in the same transaction as the records they index. Replication follows from that: Raft ships page changes from the shared log, so every model replicates without replication code per model.",
-          "Vectors are the one exception. The vector records are transactional, logged and replicated like everything else, but the nearest-neighbour graph used to search them is not: it is built in the background and can be rebuilt. The data is the source of truth and the search structure catches up to it. That is more than a standalone vector store offers, and less than a fully transactional index would be.",
+          "Vectors are the one exception. The vector records are transactional, logged, and replicated like everything else, but the nearest-neighbour graph used to search them is not: it is built in the background and can be rebuilt. The data is the source of truth and the search structure catches up to it. That is more than a standalone vector store offers, and less than a fully transactional index would be.",
         ],
       },
       {
@@ -46,7 +46,7 @@ export const arcadeDb: Project = {
           {
             type: "benchmarkTable",
             tableId: "docs_olap",
-            caption: "TPC-H Q1 (scan every line item, group and sum) and Q6 (filter a date range, sum one column) on the same documents. This is the workload ArcadeDB loses by the widest margin on the page.",
+            caption: "TPC-H Q1 (scan every line item, group, and sum) and Q6 (filter a date range, sum one column) on the same documents. This is the workload ArcadeDB loses by the widest margin on the page.",
           },
         ],
       },
@@ -105,7 +105,7 @@ export const arcadeDb: Project = {
         eyebrow: "Benchmarks",
         title: "Time series, and the transaction that spans every model at once.",
         body: [
-          "Time series on TSBS, the Time Series Benchmark Suite, then the cross-model transaction that starts from a vector hit, traverses the graph and updates a document, and finally every metric on this page in one figure.",
+          "Time series on TSBS, the Time Series Benchmark Suite, then the cross-model transaction that starts from a vector hit, traverses the graph, and updates a document, and finally every metric on this page in one figure.",
           {
             type: "benchmarkTable",
             tableId: "l4",
@@ -144,7 +144,7 @@ export const arcadeDb: Project = {
             // their print size on a screen, which is too small to read.
             columns: 1,
             caption:
-              "The whole evaluation in two panels: ArcadeDB embedded against the best comparator on every published metric, log scale, anything right of the line a win. Rows follow the paper's order: documents, graph, dense and sparse vectors, time series, the cross-model transaction. The left panel is the first timed pass after the index is built, on both sides; the right panel is the same pair measured again, and a row with a single pass says so on the right. Each row picks its comparator on the first pass, the fastest engine or the highest throughput, and on the vector rows the fastest engine whose recall is at least ArcadeDB's; the same engine is then read on the repeat pass. At ten million vectors that is 8.75 ms for ArcadeDB against Qdrant's 1.26 and Chroma's 0.70. The dense bar divides by Qdrant rather than Chroma, which the table shows is faster, because Chroma returns 93.4% of the true neighbours where ArcadeDB returns 95.3%. The repeat pass matters most for ArcadeDB: run the same queries again and ArcadeDB answers in 1.04 ms, because it pages its index off disk and the second pass finds it resident, while Qdrant moves to 1.25 and Chroma to 0.72. So the dense rows flip between the panels, a 1.2x win, with the comparators where they were. The graph rows move too, in both directions, because Neo4j and LadybugDB gain on a repeat pass as well. On the first pass ArcadeDB wins the OLTP, write and cross-model rows, matches DuckDB on time-series ingest, and loses every scan-, bulk- and search-bound row, vector search included. The cross-model row is measured against SurrealDB, the fastest engine here that also does the whole operation in one transaction, rather than the composed stack, which is slower and has no transaction spanning its two engines. Each row uses the comparator's own language: document OLTP is SQL against PostgreSQL, the graph rows are Cypher against LadybugDB or Neo4j, and TPC-H is SQL against DuckDB.",
+              "The whole evaluation in two panels: ArcadeDB embedded against the best comparator on every published metric, log scale, anything right of the line a win. Rows follow the paper's order: documents, graph, dense and sparse vectors, time series, the cross-model transaction. The left panel is the first timed pass after the index is built, on both sides; the right panel is the same pair measured again, and a row with a single pass says so on the right. Each row picks its comparator on the first pass, the fastest engine or the highest throughput, and on the vector rows the fastest engine whose recall is at least ArcadeDB's; the same engine is then read on the repeat pass. At ten million vectors that is 8.75 ms for ArcadeDB against Qdrant's 1.26 and Chroma's 0.70. The dense bar divides by Qdrant rather than Chroma, which the table shows is faster, because Chroma returns 93.4% of the true neighbours where ArcadeDB returns 95.3%. The repeat pass matters most for ArcadeDB: run the same queries again and ArcadeDB answers in 1.04 ms, because it pages its index off disk and the second pass finds it resident, while Qdrant moves to 1.25 and Chroma to 0.72. So the dense rows flip between the panels, a 1.2x win, with the comparators where they were. The graph rows move too, in both directions, because Neo4j and LadybugDB gain on a repeat pass as well. On the first pass ArcadeDB wins the OLTP, write, and cross-model rows, matches DuckDB on time-series ingest, and loses every scan-, bulk-, and search-bound row, vector search included. The cross-model row is measured against SurrealDB, the fastest engine here that also does the whole operation in one transaction, rather than the composed stack, which is slower and has no transaction spanning its two engines. Each row uses the comparator's own language: document OLTP is SQL against PostgreSQL, the graph rows are Cypher against LadybugDB or Neo4j, and TPC-H is SQL against DuckDB.",
             items: [
               { image: { src: "/images/projects/arcadedb/f4_one_vs_n.svg", alt: "ArcadeDB latency against the best specialist engine at each corpus size" } },
             ],
@@ -196,22 +196,22 @@ export const arcadeDb: Project = {
           // still being folded into the paper text; when it lands there as a
           // table, it can appear here.
           "Use embedded when the database serves one process: notebooks, tests, single-node services, agent tooling, and anything where a network hop per query is pure cost. It installs with pip, starts in milliseconds, and has no service to operate.",
-          "Use the server when more than one process or machine needs the same data, when you want the Postgres, Redis, Bolt or HTTP wire protocols, or when you need Raft replication and failover. The Python package can also start a server inside your process, so this is not a one-way door.",
+          "Use the server when more than one process or machine needs the same data, when you want the Postgres, Redis, Bolt, or HTTP wire protocols, or when you need Raft replication and failover. The Python package can also start a server inside your process, so this is not a one-way door.",
           "This is a deployment decision, not a performance one. The engine is the same in both, and the difference you will feel is the boundary you put around it.",
         ],
       },
     ],
   },
   summary:
-    "A multi-model database engine that keeps documents, graphs, vectors and time series in one transactional engine, plus the Python package that runs that engine inside your process, benchmarked against the comparators in each category.",
+    "A multi-model database engine that keeps documents, graphs, vectors, and time series in one transactional engine, plus the Python package that runs that engine inside your process, benchmarked against the comparators in each category.",
   image: {
     src: "/images/projects/project-arcadedb-embedded-python.png",
     alt: "Illustration for ArcadeDB",
   },
   problem:
-    "Applications increasingly need structured queries, graph traversal and vector search over the same data, and the usual answer is to run three systems and write glue between them. That glue has no transaction boundary, so a failure part-way through a multi-store write leaves the stores disagreeing, and there is no single place to ask a question that spans them. For Python work there is a second problem: the engines worth using are rarely installable as a package and runnable inside your process.",
+    "Applications increasingly need structured queries, graph traversal, and vector search over the same data, and the usual answer is to run three systems and write glue between them. That glue has no transaction boundary, so a failure part-way through a multi-store write leaves the stores disagreeing, and there is no single place to ask a question that spans them. For Python work there is a second problem: the engines worth using are rarely installable as a package and runnable inside your process.",
   solution:
-    "ArcadeDB puts every model on the same pages and the same write-ahead log, so a write spanning documents, edges and vectors is one ACID transaction, and replication is correct for every model without per-model code. The Python package ships that same engine with a bundled Java runtime, so it installs with pip and runs inside your process, and can start a server from there when wire protocols or replication are needed.",
+    "ArcadeDB puts every model on the same pages and the same write-ahead log, so a write spanning documents, edges, and vectors is one ACID transaction, and replication is correct for every model without per-model code. The Python package ships that same engine with a bundled Java runtime, so it installs with pip and runs inside your process, and can start a server from there when wire protocols or replication are needed.",
   impact:
     "The engine and the Python package are developed together and measured against the comparators in each category, on real corpora rather than synthetic ones, with recall reported next to latency and every comparator pinned by image digest. Findings from the benchmarks are filed and contributed upstream, so the measurements feed the engine rather than only describing it.",
   // The hero renders the first two as buttons, so those two have to represent
