@@ -133,6 +133,8 @@ export type BenchmarkTable = {
   source_url: string | null;
   source_paths?: string[];
   source_urls?: string[];
+  /** Per column: "up" (higher is better) or "down" (lower is better). */
+  directions?: Record<string, string>;
   entries: BenchmarkEntry[];
 };
 
@@ -187,6 +189,7 @@ export type EditorialBenchmarkTableProps = {
   sourceUrl?: string | null;
   sourcePaths?: string[] | null;
   sourceUrls?: string[] | null;
+  directions?: Record<string, string> | null;
 };
 
 function formatStat(stat: BenchmarkStat | undefined) {
@@ -262,9 +265,15 @@ export function EditorialBenchmarkTable({
   sourceUrl,
   sourcePaths,
   sourceUrls,
+  directions,
 }: EditorialBenchmarkTableProps) {
   const showMode = new Set(entries.map((e) => e.deployment)).size > 1;
-  const showScale = new Set(entries.map((e) => e.scale)).size > 1;
+  // Always: the reader asked what size every row ran at, not only where a
+  // table mixes sizes (2026-09-11).
+  const showScale = true;
+  const arrow = (column: string) =>
+    directions?.[column] === "up" ? " ↑" : directions?.[column] === "down" ? " ↓" : "";
+  const hasDirections = Boolean(directions && Object.keys(directions).length > 0);
   // Precision earns a column wherever any row states one. Dense states it for
   // every engine; sparse states it for ours only, and the comparators render a
   // dash because their weight encoding has not been audited, which is a true
@@ -316,6 +325,7 @@ export function EditorialBenchmarkTable({
               {columns.map((column) => (
                 <th scope="col" key={column}>
                   {column}
+                  {arrow(column)}
                 </th>
               ))}
 
@@ -355,6 +365,9 @@ export function EditorialBenchmarkTable({
             ))}
           </tbody>
         </table>
+        {hasDirections ? (
+          <p className={styles.benchmarkDirections}>↑ higher is better, ↓ lower is better</p>
+        ) : null}
       </div>
       {/* NO shared protocol sentence here. It is stated ONCE in the
           Reproducing section. Rendered per table it appeared 8 times on one

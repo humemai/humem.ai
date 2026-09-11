@@ -22,27 +22,31 @@ export const arcadeDb: Project = {
         ],
       },
       {
+        id: "setup",
+        navLabel: "Setup",
+        eyebrow: "Benchmarks",
+        title: "One machine, one envelope, one job at a time.",
+        body: [
+          "Every number on this page was measured on one machine: an Intel Core i9-12900HK (14 cores, 6 performance and 8 efficient, 20 threads, 24 MiB L3), 64 GiB of memory, a Samsung 980 PRO 2 TB NVMe drive, Ubuntu 26.04 with Docker. Each run is pinned to the twelve hardware threads of the six performance cores (cpuset 0-11) and to a memory cap that depends on the size: 8 GiB up to 100k documents, 16 GiB at 1M, 32 GiB at 20M rows, 36 GiB at ten million vectors, with a JVM heap of half the cap for the Java engines. One job runs at a time; a served engine and its client share the same cap. Every comparator is pinned by image digest, and the build measured is listed under each table.",
+        ],
+      },
+      {
         id: "documents",
         navLabel: "Documents",
         eyebrow: "Benchmarks",
         title: "Documents: the tables you have, stored as documents, answered in SQL.",
         body: [
-          "Most people arrive with tables. ArcadeDB stores them as documents and answers the same SQL, so documents come first. The tables on this page and the summary figure at the end use short labels:",
+          "Most people arrive with tables. ArcadeDB stores them as documents and answers the same SQL, so documents come first, on the standard benchmarks: TPC-C for transactions, TPC-H for analytics. The paper also runs a synthetic 20M-document workload; it is not shown here. The tables on this page and the summary figure at the end use short labels:",
           "| Label | What it means |\n| --- | --- |\n| Txn | Transaction. |\n| OLTP | Online transaction processing: many small reads and writes, counted in operations per second. |\n| OLAP | Online analytical processing: a few large scanning queries, timed in milliseconds. |\n| TS | Time series. Agg is an aggregation over a window. |\n| TPC-H Q1 | The first query of a long-standing analytical benchmark. |\n| Sparse, Dense | The two kinds of vector above. The number beside each is the corpus size. |",
           {
             type: "benchmarkTable",
-            tableId: "l1",
-            caption: "OLTP and OLAP over documents, against PostgreSQL and DuckDB. ArcadeDB stores documents, not tables, and answers the same SQL.",
+            tableId: "docs_oltp",
+            caption: "TPC-C's new-order transaction (read a part, insert an order line, update stock) on the TPC-H tables, against DuckDB and PostgreSQL. ArcadeDB stores documents, not tables, and answers the same SQL.",
           },
           {
             type: "benchmarkTable",
-            tableId: "l1olap",
-            caption: "The five queries behind the OLAP total above, one column each, so you can see which shapes an engine is slow on.",
-          },
-          {
-            type: "benchmarkTable",
-            tableId: "l1tpc",
-            caption: "The same two shapes on TPC-H and TPC-C, the standard analytical and transactional benchmarks.",
+            tableId: "docs_olap",
+            caption: "TPC-H Q1 (scan every line item, group and sum) and Q6 (filter a date range, sum one column) on the same documents. This is the workload ArcadeDB loses by the widest margin on the page.",
           },
         ],
       },
@@ -86,13 +90,7 @@ export const arcadeDb: Project = {
             type: "benchmarkTable",
             tableId: "l3s",
             caption:
-              "Sparse search on real SPLADE vectors. ArcadeDB appears four times and every comparator once, because ArcadeDB is the engine under test: it runs in both deployments, and at both precisions. int8 posting weights are its default and fp32 is the ablation. Every engine gets a settle step before any query is timed, the one-off operation that leaves it answering from a finished index rather than a half-built one: Elasticsearch refreshes and force-merges to a single segment, Milvus flushes and loads, Qdrant waits until the collection reports green, and ArcadeDB compacts its LSM segments. Each comparator's precision is read from its own documentation and source at the version measured. Qdrant and Milvus keep sparse weights at full 32-bit precision. Elasticsearch keeps about 9 significant bits, which its documentation puts at roughly 0.4% relative error, the lossiest of the engines here. Quantization is a choice each engine makes, and the engine that gives up the most precision is not ours.",
-          },
-          "The table above is cold. Does the order change warm? For sparse search, barely.",
-          {
-            type: "benchmarkTable",
-            tableId: "l3smp",
-            caption: "Nobody gains much and the order does not move. The largest gain by any engine is 1.15x at a million and 1.06x at 8.84 million, and at the larger size no engine gains more than 6%. Compare the dense table below, where ArcadeDB alone gains about 8x on a second pass: that comes from how the two index structures reach their data, not from how we ran them.",
+              "Sparse search on real SPLADE vectors. ArcadeDB appears four times and every comparator once, because ArcadeDB is the engine under test: it runs in both deployments, and at both precisions. int8 posting weights are its default and fp32 is the ablation. Every engine gets a settle step before any query is timed, the one-off operation that leaves it answering from a finished index rather than a half-built one: Elasticsearch refreshes and force-merges to a single segment, Milvus flushes and loads, Qdrant waits until the collection reports green, and ArcadeDB compacts its LSM segments. Each comparator's precision is read from its own documentation and source at the version measured. Qdrant and Milvus keep sparse weights at full 32-bit precision. Elasticsearch keeps about 9 significant bits, which its documentation puts at roughly 0.4% relative error, the lossiest of the engines here. Quantization is a choice each engine makes, and the engine that gives up the most precision is not ours. Warm is the same pair measured again on a separate one-build run: nobody gains much and the order does not move. The largest gain by any engine is 1.15x at a million and 1.06x at 8.84 million, and at the larger size no engine gains more than 6%. Compare the dense table below, where ArcadeDB alone gains about 8x on a second pass: that comes from how the two index structures reach their data, not from how we ran them.",
           },
           {
             type: "benchmarkTable",

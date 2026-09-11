@@ -213,6 +213,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<Pa
           sourcePath={table.source_path}
           sourceUrl={table.source_url}
           sourcePaths={table.source_paths}
+          directions={table.directions}
           sourceUrls={table.source_urls}
         />
       );
