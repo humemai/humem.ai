@@ -122,6 +122,12 @@ export const arcadeDb: Project = {
             tableId: "l4",
             caption: "Time series against QuestDB and DuckDB on TSBS. ArcadeDB appears twice per deployment because it has two ways to store this data. The native TIMESERIES type keeps the points of one series together in time order, and the document path stores each reading as an ordinary document, which is what you get if you do not know the native type exists. The gap between them is what the native type is worth: 46 times the ingest rate and a twelve-hour aggregate 68 times faster, against a slightly slower lookup of the newest reading.",
           },
+          "Every load the harness times, in one place. The rate is each engine's own bulk path, so it compares what a user of that engine would actually do, not one wire format imposed on all of them.",
+          {
+            type: "benchmarkTable",
+            tableId: "ingest",
+            caption: "Ingest and index build, side by side. ArcadeDB's document ingest is about 11x behind PostgreSQL's COPY and DuckDB's Arrow path, while its native time-series type ingests at DuckDB's rate; the same points stored as documents go in 46x slower. Served ArcadeDB pays 2 to 3x on every ingest for values sent as text.",
+          },
           "The cross-model transaction is the argument for one engine, run as an experiment. Against a composed stack of a vector store plus a graph database, the number that matters is not the latency but what a failure part-way through leaves behind.",
           "One operation writes both stores in turn: the graph database takes the update first, the vector store gets its copy second. We raise an error in the gap between the two, a gap that exists in any design where two systems acknowledge separately. The composed stack is left half-updated. The graph database has kept a write the vector store never received, the two disagree about the same records from then on, and neither knows anything is wrong.",
           "That damage stays. Nothing goes back to look for it, so the only records that recover are the ones a later write happens to touch. The corruption is partial and silent: you cannot find it by spot-checking a few records. One engine wrapping the same work in one transaction undoes all of it, leaving the counters where the completed operations left them.",
