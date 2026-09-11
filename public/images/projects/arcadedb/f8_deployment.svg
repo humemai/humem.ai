@@ -149,7 +149,7 @@
 <path clip-rule="nonzero" d="M 72 46 L 93 46 L 93 101.074219 L 72 101.074219 Z M 72 46 "/>
 </clipPath>
 <clipPath id="clip-2">
-<path clip-rule="nonzero" d="M 105 65 L 126 65 L 126 101.074219 L 105 101.074219 Z M 105 65 "/>
+<path clip-rule="nonzero" d="M 105 64 L 126 64 L 126 101.074219 L 105 101.074219 Z M 105 64 "/>
 </clipPath>
 <clipPath id="clip-3">
 <path clip-rule="nonzero" d="M 139 82 L 160 82 L 160 101.074219 L 139 101.074219 Z M 139 82 "/>
@@ -200,7 +200,7 @@
 <path fill-rule="nonzero" fill="rgb(12.156677%, 46.655273%, 70.506287%)" fill-opacity="0.85" d="M 72.027344 101.074219 L 92.160156 101.074219 L 92.160156 46.722656 L 72.027344 46.722656 Z M 72.027344 101.074219 "/>
 </g>
 <g clip-path="url(#clip-2)">
-<path fill-rule="nonzero" fill="rgb(12.156677%, 46.655273%, 70.506287%)" fill-opacity="0.85" d="M 105.578125 101.074219 L 125.710938 101.074219 L 125.710938 65.03125 L 105.578125 65.03125 Z M 105.578125 101.074219 "/>
+<path fill-rule="nonzero" fill="rgb(12.156677%, 46.655273%, 70.506287%)" fill-opacity="0.85" d="M 105.578125 101.074219 L 125.710938 101.074219 L 125.710938 64.382812 L 105.578125 64.382812 Z M 105.578125 101.074219 "/>
 </g>
 <g clip-path="url(#clip-3)">
 <path fill-rule="nonzero" fill="rgb(12.156677%, 46.655273%, 70.506287%)" fill-opacity="0.85" d="M 139.132812 101.074219 L 159.261719 101.074219 L 159.261719 82.269531 L 139.132812 82.269531 Z M 139.132812 101.074219 "/>
@@ -209,7 +209,7 @@
 <path fill-rule="nonzero" fill="rgb(12.156677%, 46.655273%, 70.506287%)" fill-opacity="0.85" d="M 172.683594 101.074219 L 192.8125 101.074219 L 192.8125 66.742188 L 172.683594 66.742188 Z M 172.683594 101.074219 "/>
 </g>
 <g clip-path="url(#clip-5)">
-<path fill-rule="nonzero" fill="rgb(12.156677%, 46.655273%, 70.506287%)" fill-opacity="0.85" d="M 206.234375 101.074219 L 226.367188 101.074219 L 226.367188 84.253906 L 206.234375 84.253906 Z M 206.234375 101.074219 "/>
+<path fill-rule="nonzero" fill="rgb(12.156677%, 46.655273%, 70.506287%)" fill-opacity="0.85" d="M 206.234375 101.074219 L 226.367188 101.074219 L 226.367188 84.246094 L 206.234375 84.246094 Z M 206.234375 101.074219 "/>
 </g>
 <g clip-path="url(#clip-6)">
 <path fill="none" stroke-width="8" stroke-linecap="square" stroke-linejoin="round" stroke="rgb(68.943787%, 68.943787%, 68.943787%)" stroke-opacity="0.3" stroke-miterlimit="10" d="M 485.429688 259.257812 L 485.429688 1192.382812 " transform="matrix(0.1, 0, 0, -0.1, 0, 127)"/>
@@ -516,16 +516,16 @@
 <use xlink:href="#glyph-0-30" x="85.341003" y="43.7228"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph-0-31" x="108.5516" y="62.0322"/>
+<use xlink:href="#glyph-0-31" x="108.5516" y="61.383"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph-0-28" x="112.690666" y="62.0322"/>
+<use xlink:href="#glyph-0-28" x="112.690666" y="61.383"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph-0-31" x="114.753943" y="62.0322"/>
+<use xlink:href="#glyph-0-31" x="114.753943" y="61.383"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph-0-30" x="118.893009" y="62.0322"/>
+<use xlink:href="#glyph-0-30" x="118.893009" y="61.383"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
 <use xlink:href="#glyph-0-18" x="142.1032" y="79.2705"/>
@@ -552,15 +552,15 @@
 <use xlink:href="#glyph-0-30" x="185.996209" y="63.7408"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph-0-18" x="209.2064" y="81.256"/>
+<use xlink:href="#glyph-0-18" x="209.2064" y="81.2471"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph-0-28" x="213.345454" y="81.256"/>
+<use xlink:href="#glyph-0-28" x="213.345454" y="81.2471"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph-0-22" x="215.408743" y="81.256"/>
+<use xlink:href="#glyph-0-22" x="215.408743" y="81.2471"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph-0-30" x="219.547796" y="81.256"/>
+<use xlink:href="#glyph-0-30" x="219.547796" y="81.2471"/>
 </g>
 </svg>
