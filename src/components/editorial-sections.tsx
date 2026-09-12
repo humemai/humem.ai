@@ -278,6 +278,33 @@ export function EditorialBenchmarkTable({
   const arrow = (column: string) =>
     directions?.[column] === "up" ? " ↑" : directions?.[column] === "down" ? " ↓" : "";
   const hasDirections = Boolean(directions && Object.keys(directions).length > 0);
+  // The best value in each column, within one size, is bold: lowest where
+  // the arrow points down, highest where it points up. Columns without a
+  // direction (counts, trials) have no best. A single row in a size is not
+  // "best" at anything.
+  const bestByScaleColumn = new Map<string, number>();
+  const rowsByScale = new Map<string, number>();
+  for (const entry of entries) {
+    const scaleKey = String(entry.scale);
+    rowsByScale.set(scaleKey, (rowsByScale.get(scaleKey) ?? 0) + 1);
+  }
+  for (const column of columns) {
+    const dir = directions?.[column];
+    if (dir !== "up" && dir !== "down") continue;
+    for (const entry of entries) {
+      const v = entry.metrics[column]?.median;
+      if (v === undefined || v === null) continue;
+      const k = `${entry.scale}|${column}`;
+      const cur = bestByScaleColumn.get(k);
+      if (cur === undefined || (dir === "up" ? v > cur : v < cur)) bestByScaleColumn.set(k, v);
+    }
+  }
+  const isBest = (entry: BenchmarkEntry, column: string) => {
+    const v = entry.metrics[column]?.median;
+    if (v === undefined || v === null) return false;
+    if ((rowsByScale.get(String(entry.scale)) ?? 0) < 2) return false;
+    return bestByScaleColumn.get(`${entry.scale}|${column}`) === v;
+  };
   // Precision earns a column wherever any row states one. Dense states it for
   // every engine; sparse states it for ours only, and the comparators render a
   // dash because their weight encoding has not been audited, which is a true
@@ -361,7 +388,11 @@ export function EditorialBenchmarkTable({
                 ) : null}
                 {columns.map((column) => (
                   <td key={column} data-label={column}>
-                    {formatStat(entry.metrics[column], column)}
+                    {isBest(entry, column) ? (
+                      <strong>{formatStat(entry.metrics[column], column)}</strong>
+                    ) : (
+                      formatStat(entry.metrics[column], column)
+                    )}
                   </td>
                 ))}
 
@@ -370,7 +401,7 @@ export function EditorialBenchmarkTable({
           </tbody>
         </table>
         {hasDirections ? (
-          <p className={styles.benchmarkDirections}>↑ higher is better, ↓ lower is better</p>
+          <p className={styles.benchmarkDirections}>↑ higher is better, ↓ lower is better; the best value in each column, within one size, is bold</p>
         ) : null}
       </div>
       {/* NO shared protocol sentence here. It is stated ONCE in the
