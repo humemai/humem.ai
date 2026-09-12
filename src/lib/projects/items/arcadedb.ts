@@ -205,9 +205,9 @@ export const arcadeDb: Project = {
           {
             type: "benchmarkTable",
             tableId: "e4",
-            caption: "The same projection answered by three deployments at six result sizes, which separates the wire format from the process boundary.",
+            caption: "The same projection answered by three deployments at six result sizes. The first column to the second is the wire format; the second to the third is the process boundary.",
           },
-          "The two are nowhere near equal. Packing the answer costs something at every size and grows with the result. The process boundary is so small that at the smaller sizes it disappears into the noise and measures slightly negative. So the cost of running client and server as separate processes on one machine is the packing, not the separation, and the lever that would move it is a cheaper wire format, not co-location.",
+          "The two are nowhere near equal. Packing the answer costs something at every size and grows with the result. The process boundary, the second column against the third, is so small that at the smaller sizes it disappears into the noise. So the cost of running client and server as separate processes on one machine is the packing, not the separation, and the lever that would move it is a cheaper wire format, not co-location.",
           {
             type: "figureGrid",
             columns: 1,
