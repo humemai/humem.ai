@@ -105,14 +105,22 @@ export const arcadeDb: Project = {
         id: "timeseries",
         navLabel: "Time series",
         eyebrow: "Benchmarks",
-        title: "Time series, and the transaction that spans every model at once.",
+        title: "Time series.",
         body: [
-          "Time series on TSBS, the Time Series Benchmark Suite, then the cross-model transaction that starts from a vector hit, traverses the graph, and updates a document, and finally every metric on this page in one figure.",
+          "Time series on TSBS, the Time Series Benchmark Suite: ingest, the newest reading of one host, and a twelve-hour aggregate across all hosts.",
           {
             type: "benchmarkTable",
             tableId: "l4",
             caption: "Time series against QuestDB and DuckDB on TSBS. ArcadeDB appears twice per deployment because it has two ways to store this data. The native TIMESERIES type keeps the points of one series together in time order, and the document path stores each reading as an ordinary document, which is what you get if you do not know the native type exists. The gap between them is what the native type is worth: 46 times the ingest rate and a twelve-hour aggregate 68 times faster, against a slightly slower lookup of the newest reading.",
           },
+        ],
+      },
+      {
+        id: "crossmodel",
+        navLabel: "Cross-model",
+        eyebrow: "Benchmarks",
+        title: "The transaction that spans every model at once.",
+        body: [
           "The cross-model transaction is the argument for one engine, run as an experiment. Against a composed stack of a vector store plus a graph database, the number that matters is not the latency but what a failure part-way through leaves behind.",
           "One operation writes both stores in turn: the graph database takes the update first, the vector store gets its copy second. We raise an error in the gap between the two, a gap that exists in any design where two systems acknowledge separately. The composed stack is left half-updated. The graph database has kept a write the vector store never received, the two disagree about the same records from then on, and neither knows anything is wrong.",
           "That damage stays. Nothing goes back to look for it, so the only records that recover are the ones a later write happens to touch. The corruption is partial and silent: you cannot find it by spot-checking a few records. One engine wrapping the same work in one transaction undoes all of it, leaving the counters where the completed operations left them.",
@@ -137,6 +145,14 @@ export const arcadeDb: Project = {
               { image: { src: "/images/projects/arcadedb/f7_e2_hybrid.svg", alt: "Latency of a vector to graph to document operation, single engine against a composed stack" } },
             ],
           },
+        ],
+      },
+      {
+        id: "summary",
+        navLabel: "Summary",
+        eyebrow: "Benchmarks",
+        title: "Every metric on this page in one figure.",
+        body: [
           "One figure for all of it. Every metric above appears here as a ratio against the strongest comparator on that row, first pass and repeat pass side by side.",
           {
             type: "figureGrid",
@@ -146,7 +162,7 @@ export const arcadeDb: Project = {
             // their print size on a screen, which is too small to read.
             columns: 1,
             caption:
-              "The whole evaluation in two panels: ArcadeDB embedded against the best comparator on every published metric, log scale, anything right of the line a win. Rows follow the paper's order: documents, graph, dense and sparse vectors, time series, the cross-model transaction. The left panel is the first timed pass after the index is built, on both sides; the right panel is the same pair measured again, and a row with a single pass says so on the right. Each row picks its comparator on the first pass, the fastest engine or the highest throughput, and on the vector rows the fastest engine whose recall is at least ArcadeDB's; the same engine is then read on the repeat pass. At ten million vectors that is 8.75 ms for ArcadeDB against Qdrant's 1.26 and Chroma's 0.70. The dense bar divides by Qdrant rather than Chroma, which the table shows is faster, because Chroma returns 93.4% of the true neighbours where ArcadeDB returns 95.3%. The repeat pass matters most for ArcadeDB: run the same queries again and ArcadeDB answers in 1.04 ms, because it pages its index off disk and the second pass finds it resident, while Qdrant moves to 1.25 and Chroma to 0.72. So the dense rows flip between the panels, a 1.2x win, with the comparators where they were. The graph rows move too, in both directions, because Neo4j and LadybugDB gain on a repeat pass as well. On the first pass ArcadeDB wins the OLTP, write, and cross-model rows, matches DuckDB on time-series ingest, and loses every scan-, bulk-, and search-bound row, vector search included. The cross-model row is measured against SurrealDB, the fastest engine here that also does the whole operation in one transaction, rather than the composed stack, which is slower and has no transaction spanning its two engines. Each row uses the comparator's own language: document OLTP is SQL against PostgreSQL, the graph rows are Cypher against LadybugDB or Neo4j, and TPC-H is SQL against DuckDB.",
+              "The whole evaluation in two panels: ArcadeDB embedded against the best comparator on every published metric, log scale, anything right of the line a win. Rows follow the paper's order: documents, graph, dense and sparse vectors, time series, the cross-model transaction. The left panel is the first timed pass after the index is built, on both sides; the right panel is the same pair measured again. A row marked first pass only has no bar on the right because it is measured once: ingest, writes, transactions, and the 100k sparse tier have no repeat over a warm index, which is defined only for reads. Each row picks its comparator on the first pass, the fastest engine or the highest throughput, and on the vector rows the fastest engine whose recall is at least ArcadeDB's; the same engine is then read on the repeat pass. At ten million vectors that is 8.75 ms for ArcadeDB against Qdrant's 1.26 and Chroma's 0.70. The dense bar divides by Qdrant rather than Chroma, which the table shows is faster, because Chroma returns 93.4% of the true neighbours where ArcadeDB returns 95.3%. The repeat pass matters most for ArcadeDB: run the same queries again and ArcadeDB answers in 1.04 ms, because it pages its index off disk and the second pass finds it resident, while Qdrant moves to 1.25 and Chroma to 0.72. So the dense rows flip between the panels, a 1.2x win, with the comparators where they were. The graph rows move too, in both directions, because Neo4j and LadybugDB gain on a repeat pass as well. On the first pass ArcadeDB wins the OLTP, write, and cross-model rows, matches DuckDB on time-series ingest, and loses every scan-, bulk-, and search-bound row, vector search included. The cross-model row is measured against SurrealDB, the fastest engine here that also does the whole operation in one transaction, rather than the composed stack, which is slower and has no transaction spanning its two engines. Each row uses the comparator's own language: document OLTP is SQL against PostgreSQL, the graph rows are Cypher against LadybugDB or Neo4j, and TPC-H is SQL against DuckDB.",
             items: [
               { image: { src: "/images/projects/arcadedb/f4_one_vs_n.svg", alt: "ArcadeDB latency against the best specialist engine at each corpus size" } },
             ],
