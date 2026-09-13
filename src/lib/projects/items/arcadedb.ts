@@ -199,7 +199,7 @@ export const arcadeDb: Project = {
             caption: "Session cost by kind of data and size, embedded and against the server. The dense-vector rows at 1M and 10M show an engine defect, the first query after a write waited on a full index rebuild; it is filed as #7183, fixed upstream for 26.10.1, and a later campaign re-measures it.",
             showDigests: false,
           },
-          "Embedded or server is the deployment choice, and the tables above run the same engine build in both, so the difference between them is the deployment and not the engine.",
+          "Embedded or server is the deployment choice, and the tables above run the same engine build in both, so the difference between them is the deployment and not the engine. SurrealDB also has both modes, and its two rows above sit far apart: its Python package embeds a core a major version behind its server, on a different storage engine, so the embedded row wins only the point lookups the wire would have cost and loses or times out on every bulk cell. ArcadeDB's engine and Python package are released together from the same build, so that gap does not exist here.",
           "Running the database in a separate process costs two things added together: turning the answer into a wire format that can travel over a connection, and the connection itself. The table below separates them by measuring a third deployment in between, an HTTP server running inside the same process. Embedded to that middle deployment adds the wire format without a second process. The middle deployment to a separate container adds the second process without changing the wire format.",
           {
             type: "benchmarkTable",
