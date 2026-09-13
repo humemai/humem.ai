@@ -36,9 +36,9 @@ export const arcadeDb: Project = {
         id: "documents",
         navLabel: "Documents",
         eyebrow: "Benchmarks",
-        title: "Document OLTP and OLAP in SQL.",
+        title: "Document OLTP and OLAP on TPC.",
         body: [
-          "Most people arrive with tables. ArcadeDB stores them as documents and answers the same SQL, so documents come first. The benchmarks are TPC-C and TPC-H, the long-standing transaction and analytics benchmarks. TPC-C is OLTP, online transaction processing: many small reads and writes. TPC-H is OLAP, online analytical processing: a few large scanning queries. Both run at SF1, where SF is the scale factor, the size of the generated data set.",
+          "Most people arrive with tables. ArcadeDB stores them as documents and answers the same SQL, so documents come first. Every engine below answers the same questions in its own language: SQL where it has one, MongoDB's aggregation pipeline, SurrealQL for SurrealDB. The benchmarks are TPC-C and TPC-H, the long-standing transaction and analytics benchmarks. TPC-C is OLTP, online transaction processing: many small reads and writes. TPC-H is OLAP, online analytical processing: a few large scanning queries. Both run at SF1, where SF is the scale factor, the size of the generated data set.",
           {
             type: "benchmarkTable",
             tableId: "docs_oltp",
@@ -55,9 +55,9 @@ export const arcadeDb: Project = {
         id: "graph",
         navLabel: "Graph",
         eyebrow: "Benchmarks",
-        title: "Graph OLTP and OLAP in Cypher.",
+        title: "Graph OLTP and OLAP on LDBC.",
         body: [
-          "Graph is what most people use ArcadeDB for. The benchmark is LDBC-SNB, the Linked Data Benchmark Council's Social Network Benchmark, a synthetic social network at two scale factors, SF1 and SF10. The queries are Cypher, the most common graph query language. Neo4j is the most widely used graph database, so it is the comparator. LadybugDB is here because it is embedded and columnar, the closest comparator to running ArcadeDB inside your own process.",
+          "Graph is what most people use ArcadeDB for. The benchmark is LDBC-SNB, the Linked Data Benchmark Council's Social Network Benchmark, a synthetic social network at two scale factors, SF1 and SF10. ArcadeDB, Neo4j, and LadybugDB answer the queries in Cypher, the most common graph query language; SurrealDB answers the same queries in SurrealQL. Neo4j is the most widely used graph database, so it is the comparator. LadybugDB is here because it is embedded and columnar, the closest comparator to running ArcadeDB inside your own process.",
           "ArcadeDB embedded answers all four queries faster than Neo4j at both sizes. That is the strongest head-to-head result on this page.",
           {
             type: "benchmarkTable",
@@ -76,9 +76,9 @@ export const arcadeDb: Project = {
         id: "vectors",
         navLabel: "Vectors",
         eyebrow: "Benchmarks",
-        title: "HNSW vector search, dense and sparse.",
+        title: "Vector search, dense and sparse.",
         body: [
-          "Vector search is the newest of these models and the one with the most comparators, so it gets the most detail: three corpora, two kinds of vector, and recall reported beside every latency. It is also a workload ArcadeDB does not win, and the tables show that. The dense index is HNSW (Hierarchical Navigable Small World), a graph of near neighbours that a query walks. Every corpus below is real and published, not generated, which matters most for sparse search.",
+          "Vector search is the newest of these models and the one with the most comparators, so it gets the most detail: three corpora, two kinds of vector, and recall reported beside every latency. It is also a workload ArcadeDB does not win, and the tables show that. Every engine on the dense table today indexes with HNSW (Hierarchical Navigable Small World), a graph of near neighbours that a query walks; an engine with a different index says so in the table's notes. Every corpus below is real and published, not generated, which matters most for sparse search.",
           "A SPLADE (Sparse Lexical And Expansion model) vector stores one weight per word in the vocabulary, and nearly every weight is zero, so a search only has to look at the few words a query uses. Those words cost very different amounts. A common word has to be checked against a huge number of documents; a rare one against almost none.",
           "Real writing has a few words that appear everywhere and a long tail that appear almost nowhere, so some queries are far more expensive than others. Generated data spreads words out evenly, which removes the expensive case and makes any approximate index look better than it is. Dense search uses published image descriptors for the same reason.",
           "| Corpus | Vectors | Dimensions | Used for |\n| --- | --- | --- | --- |\n| SPLADE over MS MARCO | 100k, 1M, 8.84M | 30,109 | every sparse row |\n| SIFT | 1M | 128 | the smaller dense size |\n| DEEP | 9.99M | 96 | the ten-million dense size |",
