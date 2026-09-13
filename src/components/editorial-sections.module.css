@@ -662,3 +662,14 @@ table.benchmarkGrid {
   font-size: 0.78rem;
   color: var(--text-muted, #6b7280);
 }
+
+/* Plain bullets for the page-wide conditions: a list of rules, not a figure. */
+.conditionList {
+  list-style: disc;
+  padding-left: 1.25em;
+  margin: var(--site-space-compact) 0;
+}
+
+.conditionList li {
+  margin: var(--site-space-compact) 0;
+}

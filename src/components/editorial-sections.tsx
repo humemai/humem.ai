@@ -199,6 +199,12 @@ function formatStat(stat: BenchmarkStat | undefined, column?: string) {
   // free: SQLite's index-backed newest reading takes about 4 us and the lane
   // rounded it to 0.00 ms (2026-09-12). Say what is known.
   if (v === 0 && column && column.endsWith(" ms")) return "<0.01";
+  // A rate is a count per second; its decimals mean nothing to a reader.
+  if (column && column.endsWith("/s")) {
+    if (v >= 1e6) return `${(v / 1e6).toFixed(2)}M`;
+    if (v >= 1e4) return `${Math.round(v / 1000).toLocaleString()}k`;
+    return Math.round(v).toLocaleString();
+  }
   // Medians only. The min-max spread made every cell three numbers wide, which
   // is unreadable on a phone and was the main reason the table forced the page
   // to scroll sideways. If you change this, change the caption in
@@ -523,7 +529,7 @@ export function EditorialConditions({ conditions }: { conditions: string[] }) {
     return null;
   }
   return (
-    <ul className={styles.figurePoints}>
+    <ul className={styles.conditionList}>
       {conditions.map((condition) => (
         <li key={condition}>{condition}</li>
       ))}
