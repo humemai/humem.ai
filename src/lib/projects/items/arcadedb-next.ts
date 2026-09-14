@@ -19,16 +19,27 @@ export const arcadeDbNext: Project = {
     sections: [
       {
         id: "engine",
+        navLabel: "October",
+        eyebrow: "Campaign in progress",
         title: "The October campaign, as it is measured.",
         body: [
           "Nothing has been measured for this page yet. Tables, columns, and prose arrive as the campaign runs: first a skeleton from laptop runs at micro scale, to show the shape, and then the real stages from the bench host.",
         ],
       },
     ],
-    links: [
-      { label: "Docs", href: arcadeDbDocsUrl },
-      { label: "Python bindings", href: arcadeDbRepoUrl },
-      { label: "Engine", href: arcadeDbUpstreamRepoUrl },
-    ],
   },
+  summary:
+    "The October campaign's page, built from nothing as the campaign runs.",
+  image: {
+    src: "/images/projects/project-arcadedb-embedded-python.png",
+    alt: "Illustration for ArcadeDB",
+  },
+  problem: "",
+  solution: "",
+  impact: "",
+  links: [
+    { label: "Python package", href: arcadeDbRepoUrl },
+    { label: "ArcadeDB engine", href: arcadeDbUpstreamRepoUrl },
+    { label: "Python docs", href: arcadeDbDocsUrl },
+  ],
 };
