@@ -794,3 +794,15 @@
     grid-template-columns: var(--site-split-columns);
   }
 }
+
+.previewBanner {
+  width: var(--site-shell-width-mobile);
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
+  border: 1px solid currentColor;
+  font-size: 0.95rem;
+}
+
+.previewBanner p {
+  margin: 0;
+}
