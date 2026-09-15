@@ -18,12 +18,10 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false, nocache: true },
 };
 
+// The skeleton fields are on BenchmarkDataset itself, because the setup
+// section renders two of them; only the pin list is preview-only.
 type PreviewDataset = BenchmarkDataset & {
   arcadedb_commits?: string[];
-  skeleton?: boolean;
-  skeleton_banner?: string | null;
-  gates_waived?: string[];
-  skeleton_absent_tables?: Record<string, string>;
 };
 
 function loadPreview(): PreviewDataset {
@@ -40,7 +38,13 @@ export default function ArcadeDbPreviewPage() {
   // A SKELETON SAYS SO FIRST, and in the strongest words on the page
   // (DECISIONS #86). Every table repeats it in its own conditions, because a
   // reader who lands on one table, or screenshots one, never sees this block.
-  const absent = Object.entries(dataset.skeleton_absent_tables ?? {});
+  //
+  // THE WARNING ONLY. Two lists used to hang off this block, the waived
+  // invariants and the tables a laptop cannot draw, and four paragraphs of
+  // small print is what a reader met before the first sentence of the page.
+  // Both lists moved into the setup section, beside the protocol they are
+  // exceptions to (EditorialSkeletonNotes); what stays here is the warning
+  // itself, which is the part a reader must not be able to skip.
   const banner = dataset.skeleton ? (
     <>
       <p>
@@ -48,21 +52,10 @@ export default function ArcadeDbPreviewPage() {
         {dataset.skeleton_banner}
       </p>
       <p>
-        This is the October page being built, so the columns, conditions, and prose can be read and
-        edited before the campaign runs. Every table below repeats this warning under its own
-        caption, because a reader who lands on one table never sees this block. The live page, with
-        real numbers measured on the bench machine, is{" "}
-        <Link href="/projects/arcadedb">/projects/arcadedb</Link>.
+        The checks waived for this page, and the tables a laptop cannot produce, are named in{" "}
+        <Link href="#setup">the setup section</Link>. The live page, with real numbers measured on
+        the bench machine, is <Link href="/projects/arcadedb">/projects/arcadedb</Link>.
       </p>
-      {dataset.gates_waived && dataset.gates_waived.length > 0 ? (
-        <p>Waived for this run, because they describe the bench host: {dataset.gates_waived.join(" ")}</p>
-      ) : null}
-      {absent.length > 0 ? (
-        <p>
-          Tables the October page will carry that a laptop skeleton cannot draw:{" "}
-          {absent.map(([id, why]) => `${id} (${why})`).join(" ")}
-        </p>
-      ) : null}
     </>
   ) : (
     <p>

@@ -37,6 +37,12 @@ export type ProjectEditorialBodyBlock =
   | {
       type: "benchmarkConditions";
     }
+  // The skeleton publish's two exception lists: the invariants it waives and
+  // the tables it cannot draw (DECISIONS #86). They travel with the data, so
+  // the block renders nothing once the payload is a real campaign one.
+  | {
+      type: "skeletonNotes";
+    }
   | {
       type: "benchmarkTable";
       /** Table `id` in the dataset (for ArcadeDB: l3s, l3d, l2, l1, l1tpc, e2). */

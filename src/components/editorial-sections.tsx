@@ -152,6 +152,16 @@ export type BenchmarkDataset = {
   provenance_note: string;
   hosts_recorded: string[];
   tables: BenchmarkTable[];
+  /**
+   * Skeleton fields (DECISIONS #86), present and false/empty on a real
+   * payload. Declared here rather than only where the preview route reads
+   * them, because the setup section renders two of them as a body block and
+   * the block is typed against this dataset.
+   */
+  skeleton?: boolean;
+  skeleton_banner?: string | null;
+  gates_waived?: string[];
+  skeleton_absent_tables?: Record<string, string>;
 };
 
 export type BenchmarkEntry = {
@@ -534,5 +544,44 @@ export function EditorialConditions({ conditions }: { conditions: string[] }) {
         <li key={condition}>{condition}</li>
       ))}
     </ul>
+  );
+}
+
+/**
+ * What a skeleton publish waives and what it cannot draw (DECISIONS #86).
+ *
+ * Both lists used to sit in the banner at the top of the preview page, which
+ * made the first thing a reader met a wall of text. They belong in the setup
+ * section, beside the protocol they are exceptions to, where a reader who
+ * wants them will look. The banner keeps the warning; this keeps the detail.
+ *
+ * It renders nothing at all when the payload is not a skeleton, so the first
+ * real October stage removes it by overwriting the payload rather than by
+ * anyone remembering to delete a paragraph.
+ */
+export function EditorialSkeletonNotes({ dataset }: { dataset: BenchmarkDataset }) {
+  if (!dataset.skeleton) {
+    return null;
+  }
+  const waived = dataset.gates_waived ?? [];
+  const absent = Object.entries(dataset.skeleton_absent_tables ?? {});
+  if (waived.length === 0 && absent.length === 0) {
+    return null;
+  }
+  return (
+    <>
+      {waived.length > 0 ? (
+        <>
+          <p>Waived for this page, because they describe the bench machine rather than the comparison:</p>
+          <EditorialConditions conditions={waived} />
+        </>
+      ) : null}
+      {absent.length > 0 ? (
+        <>
+          <p>On the October page, and not here, because a laptop cannot produce them:</p>
+          <EditorialConditions conditions={absent.map(([id, why]) => `${id}: ${why}`)} />
+        </>
+      ) : null}
+    </>
   );
 }
