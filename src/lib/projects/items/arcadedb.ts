@@ -95,7 +95,7 @@ export const arcadeDb: Project = {
             caption:
               "Sparse search on real SPLADE vectors against Elasticsearch, Milvus, and Qdrant. ArcadeDB appears four times, in both deployments and at both precisions: int8 posting weights are its default and fp32 is the ablation.",
           },
-          "Warm is the same pair measured again on a separate one-build run, and on sparse search nobody gains much and the order does not move. The largest gain by any engine is 1.15x at a million and 1.06x at 8.84 million, and at the larger size no engine gains more than 6%. Compare the dense table below, where ArcadeDB alone gains about 8x on a second pass: that comes from how the two index structures reach their data, not from how the runs were made.",
+          "Warm is the same pair measured again on a separate one-build run. The largest gain by any engine is 1.15x at a million and 1.83x at 8.84 million, and at the larger size no engine gains more than 83%, and that gain is pgvector's. Compare the dense table below, where ArcadeDB alone gains about 8x on a second pass: that comes from how the two index structures reach their data, not from how the runs were made.",
           {
             type: "benchmarkTable",
             tableId: "l3d",
