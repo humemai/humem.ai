@@ -118,7 +118,12 @@ export function EditorialFigureGrid({ items, caption, columns = 2 }: EditorialFi
   );
 }
 
-export type BenchmarkStat = { median: number; min: number; max: number; n: number };
+/**
+ * A cell is a measured statistic, or, on a table derived from the other
+ * tables rather than from rows (the multi-model coverage table), a short
+ * text with no number behind it.
+ */
+export type BenchmarkStat = { median: number; min: number; max: number; n: number; text?: string };
 
 export type BenchmarkTable = {
   id: string;
@@ -204,6 +209,8 @@ export type EditorialBenchmarkTableProps = {
 
 function formatStat(stat: BenchmarkStat | undefined, column?: string) {
   if (!stat) return "—";
+  // A derived text cell prints as written; it has no median to format.
+  if (stat.text !== undefined) return stat.text;
   const v = stat.median;
   // A latency recorded as exactly zero is below the lane's resolution, not
   // free: SQLite's index-backed newest reading takes about 4 us and the lane
