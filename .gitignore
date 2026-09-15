@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# gate builds by the benchmark publish scripts (next.config.ts distDir)
+.next-gate/

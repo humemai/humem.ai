@@ -1,6 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // A gate build run by the benchmark publish scripts writes to its own
+  // directory, so it never replaces the .next a running `next dev` or
+  // `next start` in this checkout is serving from (2026-09-16: repeated
+  // gate builds left the local dev server answering 500 on every route).
+  // Vercel and a plain `npm run build` keep the default.
+  distDir: process.env.NEXT_DIST_DIR ?? ".next",
   async redirects() {
     return [
       {
