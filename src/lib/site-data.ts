@@ -1,8 +1,7 @@
 export const navigationItems = [
+  { label: "About", href: "/about" },
   { label: "Projects", href: "/projects" },
   { label: "News", href: "/news" },
-  { label: "About", href: "/about" },
-  { label: "Contribute", href: "/contribute" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -27,7 +26,6 @@ export const footerColumns = [
     title: "Organization",
     links: [
       { label: "About", href: "/about" },
-      { label: "Contribute", href: "/contribute" },
       { label: "Contact", href: "/contact" },
     ],
   },

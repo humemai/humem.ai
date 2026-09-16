@@ -5,7 +5,7 @@ Public website for HumemAI, an open source organization building memory systems 
 ## Pages
 
 - `/` home, `/projects`, `/news`: the open source projects and the writing around them.
-- `/about`, `/contribute`, `/contact`: the organization itself. HumemAI sells nothing; there is no product, pricing, or hosted tier, and the site must not suggest one.
+- `/about`, `/contact`: the organization itself. Contributing is described on `/projects`, since every project is open source. HumemAI sells nothing; there is no product, pricing, or hosted tier, and the site must not suggest one.
 - `/product`, `/pricing`, and `/careers` were removed on 2026-09-16 and redirect permanently (see `next.config.ts`).
 
 ## Development

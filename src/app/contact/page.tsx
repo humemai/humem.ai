@@ -32,8 +32,8 @@ export default function ContactPage() {
         eyebrow="Next"
         title="Want more context before reaching out?"
         actions={[
-          { href: "/projects", label: "View projects" },
-          { href: "/about", label: "About HumemAI", variant: "secondary" },
+          { href: "/about", label: "About HumemAI" },
+          { href: "/projects", label: "View projects", variant: "secondary" },
         ]}
       />
     </main>

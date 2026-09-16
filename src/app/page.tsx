@@ -72,9 +72,9 @@ export default function Home() {
       </div>
 
       <div className={styles.sectionShell}>
-        <SectionPromo eyebrow="Contribute" title="Built in the open, with anyone who wants to help." href="/contribute" actionLabel="How to contribute">
+        <SectionPromo eyebrow="Contribute" title="Built in the open, with anyone who wants to help." href="/projects" actionLabel="Explore the projects">
           <p>
-            Issues, pull requests, benchmark reports, and research collaborations are all welcome. Start from any repository on GitHub.
+            Issues, pull requests, benchmark reports, and research collaborations are all welcome. Pick a project and start from its repository on GitHub.
           </p>
         </SectionPromo>
       </div>

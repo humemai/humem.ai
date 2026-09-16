@@ -67,7 +67,7 @@ export default function AboutPage() {
         title="Explore the projects behind the work."
         actions={[
           { href: "/projects", label: "View projects" },
-          { href: "/contribute", label: "Contribute", variant: "secondary" },
+          { href: githubOrgUrl, label: "View GitHub", variant: "secondary" },
         ]}
       />
     </main>
