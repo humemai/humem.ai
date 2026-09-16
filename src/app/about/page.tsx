@@ -31,12 +31,9 @@ export default function AboutPage() {
           </p>
       </SectionIntro>
 
-      <SectionIntro eyebrow="How it works" title="Open licenses, public repositories, no product.">
+      <SectionIntro eyebrow="How it works" title="Open licenses and public repositories.">
           <p>
             Every HumemAI project is published under an open license on <a className={styles.textLink} href={githubOrgUrl} target="_blank" rel="noopener noreferrer">GitHub</a>, and the Python packages are released through the HumemAI organization on <a className={styles.textLink} href={pypiOrgUrl} target="_blank" rel="noopener noreferrer">PyPI</a>. Anyone can run, modify, and redistribute the code.
-          </p>
-          <p>
-            HumemAI does not sell software or services. There is no hosted offering, no pricing, and no paid tier. The work is done by the people who contribute to it.
           </p>
       </SectionIntro>
 

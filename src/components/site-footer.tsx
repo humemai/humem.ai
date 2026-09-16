@@ -45,7 +45,7 @@ export function SiteFooter() {
         </div>
 
         <div className={styles.bottomRow}>
-          <p>Research, code, and benchmarks, all published under open licenses. Nothing here is for sale.</p>
+          <p>Research, code, and benchmarks, all published under open licenses.</p>
           <div className={styles.bottomMeta}>
             <CookieSettingsButton className={styles.cookieSettings} />
             <p>© {new Date().getFullYear()} HumemAI</p>

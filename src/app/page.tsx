@@ -66,7 +66,7 @@ export default function Home() {
       <div className={styles.sectionShell}>
         <SectionPromo eyebrow="Open source" title="Everything we make is free to use, modify, and redistribute." href="/about" actionLabel="About the organization">
           <p>
-            The code, Python packages, benchmarks, and papers are published under open licenses. There is no hosted product, no pricing, and no paid tier.
+            The code, Python packages, benchmarks, and papers are published under open licenses.
           </p>
         </SectionPromo>
       </div>
