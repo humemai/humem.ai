@@ -1,17 +1,14 @@
 export const navigationItems = [
-  { label: "Product", href: "/product" },
-  { label: "Pricing", href: "/pricing" },
   { label: "Projects", href: "/projects" },
   { label: "News", href: "/news" },
-  {
-    label: "Company",
-    items: [
-      { label: "About", href: "/about" },
-      { label: "Careers", href: "/careers" },
-      { label: "Contact", href: "/contact" },
-    ],
-  },
+  { label: "About", href: "/about" },
+  { label: "Contribute", href: "/contribute" },
+  { label: "Contact", href: "/contact" },
 ];
+
+export const githubOrgUrl = "https://github.com/humemai";
+
+export const pypiOrgUrl = "https://pypi.org/org/HumemAI/";
 
 export const googleAnalyticsId = "G-973VT90SE2";
 
@@ -19,18 +16,18 @@ export const HOME_PAGE_RAIL_ITEM_COUNT = 6;
 
 export const footerColumns = [
   {
-    title: "Product",
+    title: "Open source",
     links: [
-      { label: "Product", href: "/product" },
-      { label: "Pricing", href: "/pricing" },
       { label: "Projects", href: "/projects" },
+      { label: "GitHub", href: githubOrgUrl, external: true },
+      { label: "PyPI", href: pypiOrgUrl, external: true },
     ],
   },
   {
-    title: "Company",
+    title: "Organization",
     links: [
       { label: "About", href: "/about" },
-      { label: "Careers", href: "/careers" },
+      { label: "Contribute", href: "/contribute" },
       { label: "Contact", href: "/contact" },
     ],
   },
@@ -38,7 +35,6 @@ export const footerColumns = [
     title: "Resources",
     links: [
       { label: "News", href: "/news" },
-      { label: "GitHub", href: "https://github.com/humemai", external: true },
       { label: "Privacy Policy", href: "/privacy-policy" },
     ],
   },

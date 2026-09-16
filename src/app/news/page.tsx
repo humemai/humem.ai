@@ -6,7 +6,7 @@ import styles from "./news.module.css";
 
 export const metadata: Metadata = {
   title: "News",
-  description: "News from HumemAI across engineering, research, product, tutorials, and benchmarks.",
+  description: "News from HumemAI across engineering, research, releases, tutorials, and benchmarks.",
 };
 
 export default function NewsPage() {
@@ -17,7 +17,7 @@ export default function NewsPage() {
       <PageHero
         eyebrow="News"
         title="News and updates."
-        intro="Recent writing, releases, research, and product updates from HumemAI."
+        intro="Recent writing, releases, research, and benchmark updates from HumemAI."
         imageSrc="/images/site/news-writing-and-research.png"
         imageAlt="Illustration representing HumemAI news, research updates, and structured knowledge"
         titleVariant="feature"

@@ -20,6 +20,13 @@ const nextConfig: NextConfig = {
         destination: "/projects/arcadedb",
         permanent: true,
       },
+      // 2026-09-16: HumemAI is an open source organization, not a company,
+      // so the Product and Pricing pages are gone and Careers became
+      // Contribute. Old links (search results, the PyPI support thread)
+      // land on the closest live page.
+      { source: "/product", destination: "/projects", permanent: true },
+      { source: "/pricing", destination: "/about", permanent: true },
+      { source: "/careers", destination: "/contribute", permanent: true },
     ];
   },
 };

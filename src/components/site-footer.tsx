@@ -14,8 +14,9 @@ export function SiteFooter() {
             <p className={styles.eyebrow}>HumemAI</p>
           </div>
           <p className={styles.copy}>
-            Persistent, explainable memory for agentic AI systems across conversations,
-            documents, tables, graphs, and connected data.
+            An open source organization building persistent, explainable memory for
+            agentic AI systems across conversations, documents, tables, graphs, and
+            connected data.
           </p>
           <a className={styles.contactEmail} href="mailto:info@humem.ai">
             info@humem.ai
@@ -44,7 +45,7 @@ export function SiteFooter() {
         </div>
 
         <div className={styles.bottomRow}>
-          <p>Open-source roots, practical memory systems, and a hosted product direction for teams building agents.</p>
+          <p>Research, code, and benchmarks, all published under open licenses. Nothing here is for sale.</p>
           <div className={styles.bottomMeta}>
             <CookieSettingsButton className={styles.cookieSettings} />
             <p>© {new Date().getFullYear()} HumemAI</p>

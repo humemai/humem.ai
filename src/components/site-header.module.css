@@ -56,8 +56,7 @@
   margin: 0;
 }
 
-.desktopItem a,
-.dropdownLabel {
+.desktopItem a {
   color: var(--muted);
   font-weight: 500;
   text-decoration: none;
@@ -65,14 +64,11 @@
 }
 
 .desktopItem a:hover,
-.desktopItem a:focus-visible,
-.dropdownLabel:hover,
-.dropdownLabel:focus-visible {
+.desktopItem a:focus-visible {
   color: var(--foreground);
 }
 
-.activeNavLink,
-.activeDropdown .dropdownLabel {
+.activeNavLink {
   color: var(--foreground) !important;
 }
 
@@ -83,80 +79,13 @@
   text-underline-offset: 0.55rem;
 }
 
-.activeDropdown .dropdownLabel {
-  text-decoration: underline;
-  text-decoration-color: var(--accent);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 0.55rem;
-}
-
-.dropdown {
-  position: relative;
-  padding: 0.75rem 0;
-}
-
-.dropdownLabel {
-  display: inline-flex;
-  align-items: center;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  font: inherit;
-  cursor: pointer;
-}
-
-.dropdownMenu {
-  position: absolute;
-  top: calc(100% + 0.6rem);
-  left: 0;
-  display: grid;
-  gap: 0.35rem;
-  min-width: max-content;
-  padding: 0.75rem;
-  border: 1px solid var(--border);
-  border-radius: 1rem;
-  background: var(--surface-strong);
-  box-shadow: var(--shadow);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(8px);
-  transform-origin: top left;
-  transition: 150ms ease;
-}
-
-.dropdownMenuOpen {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.dropdownLink {
-  padding: 0.45rem 0.55rem;
-  border-radius: 0.7rem;
-  text-decoration: none;
-  transition: background-color 160ms ease, color 160ms ease;
-}
-
-.dropdownLink:hover,
-.dropdownLink:focus-visible {
-  background: var(--accent-soft);
-  color: var(--foreground);
-}
-
-.activeDropdownLink {
-  background: var(--accent-soft);
-  color: var(--foreground);
-}
-
 .ctaRow {
   align-items: center;
   gap: 0.75rem;
 }
 
 .primaryCta,
-.secondaryCta,
-.mobilePrimaryCta,
-.mobileSecondaryCta {
+.mobilePrimaryCta {
   min-height: 2.6rem;
   padding: 0.7rem 1rem;
 }
@@ -165,12 +94,6 @@
 .mobilePrimaryCta {
   composes: buttonBase from "./action-button.module.css";
   composes: buttonPrimary from "./action-button.module.css";
-}
-
-.secondaryCta,
-.mobileSecondaryCta {
-  composes: buttonBase from "./action-button.module.css";
-  composes: buttonSecondary from "./action-button.module.css";
 }
 
 .mobileToggle {
@@ -222,8 +145,7 @@
   gap: 0.5rem;
 }
 
-.mobileGroup > a,
-.mobileLinks a {
+.mobileGroup > a {
   padding: 0.2rem 0;
   color: var(--muted);
   text-decoration: none;
@@ -231,29 +153,8 @@
 }
 
 .mobileGroup > a:hover,
-.mobileGroup > a:focus-visible,
-.mobileLinks a:hover,
-.mobileLinks a:focus-visible {
+.mobileGroup > a:focus-visible {
   color: var(--foreground);
-}
-
-.mobileGroupLabel {
-  margin: 0;
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.activeMobileGroupLabel {
-  color: var(--foreground);
-}
-
-.mobileLinks {
-  display: grid;
-  gap: 0.45rem;
-  padding-left: 0.75rem;
 }
 
 .activeMobileLink {

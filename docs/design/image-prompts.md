@@ -554,7 +554,7 @@ Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the 
 Aspect ratio: 1:1 square.
 ```
 
-Filename: `careers-build-with-memory.png`
+Filename: `contribute-build-with-memory.png`
 Alt text: `Illustration representing collaborative work on AI memory systems.`
 
 ## 15. News Visual

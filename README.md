@@ -1,6 +1,12 @@
 # humem.ai
 
-Public website for HumemAI.
+Public website for HumemAI, an open source organization building memory systems for agentic AI.
+
+## Pages
+
+- `/` home, `/projects`, `/news`: the open source projects and the writing around them.
+- `/about`, `/contribute`, `/contact`: the organization itself. HumemAI sells nothing; there is no product, pricing, or hosted tier, and the site must not suggest one.
+- `/product`, `/pricing`, and `/careers` were removed on 2026-09-16 and redirect permanently (see `next.config.ts`).
 
 ## Development
 

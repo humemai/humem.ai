@@ -5,7 +5,7 @@ import styles from "../company-pages.module.css";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Talk to HumemAI about early access, partnerships, and custom deployments.",
+  description: "Get in touch with HumemAI about the projects, research collaborations, or contributing.",
 };
 
 export default function ContactPage() {
@@ -13,18 +13,18 @@ export default function ContactPage() {
     <main className={styles.page}>
       <PageHero
         eyebrow="Contact"
-        title="Early access, partnerships, and custom work."
-        intro="Get in touch about early access, hosted deployment, custom work, or collaboration."
+        title="Questions, research, and collaboration."
+        intro="Get in touch about the projects, a paper, a benchmark, or working together on open source memory systems."
         imageSrc="/images/site/contact-collaboration-onboarding.png"
-        imageAlt="Illustration representing collaboration, onboarding, and hosted deployment conversations"
+        imageAlt="Illustration representing collaboration and conversations about open source memory systems"
       />
 
       <SectionIntro eyebrow="Overview" title="Get in touch.">
           <p>
-            Questions about the product, hosted deployment, research, partnerships, or working together are all welcome.
+            Questions about the projects, research, collaborations, or contributing are all welcome. For bugs and feature requests, an issue on the relevant GitHub repository is the fastest route.
           </p>
           <p>
-            Email <a className={styles.textLink} href="mailto:info@humem.ai">info@humem.ai</a> with a short note about what you are looking for.
+            For everything else, email <a className={styles.textLink} href="mailto:info@humem.ai">info@humem.ai</a> with a short note about what you are looking for.
           </p>
       </SectionIntro>
 
@@ -32,8 +32,8 @@ export default function ContactPage() {
         eyebrow="Next"
         title="Want more context before reaching out?"
         actions={[
-          { href: "/product", label: "See the product" },
-          { href: "/pricing", label: "Explore pricing", variant: "secondary" },
+          { href: "/projects", label: "View projects" },
+          { href: "/about", label: "About HumemAI", variant: "secondary" },
         ]}
       />
     </main>

@@ -5,7 +5,7 @@ import { NewsRail } from "@/components/news-rail";
 import { ProjectRail } from "@/components/project-rail";
 import { getAllNewsPosts } from "@/lib/news-posts";
 import { getProjectsIndexProjects } from "@/lib/projects";
-import { HOME_PAGE_RAIL_ITEM_COUNT } from "@/lib/site-data";
+import { githubOrgUrl, HOME_PAGE_RAIL_ITEM_COUNT } from "@/lib/site-data";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -18,23 +18,24 @@ export default function Home() {
         <div className={styles.heroCopy}>
           <div className={styles.heroEyebrowRow}>
             <Image src="/favicon.png" alt="HumemAI icon" width={24} height={24} />
-            <p className={styles.eyebrow}>Persistent memory for agentic AI</p>
+            <p className={styles.eyebrow}>Open source memory for agentic AI</p>
           </div>
           <h1 className={styles.title}>
             Give AI systems memory that lasts.
           </h1>
           <p className={styles.lead}>
-            HumemAI gives AI systems a memory layer that stays persistent across sessions,
-            adapts to mixed data types, and remains inspectable instead of turning into a
+            HumemAI is an open source organization. We publish research, code, and
+            benchmarks for a memory layer that stays persistent across sessions, adapts
+            to mixed data types, and remains inspectable instead of turning into a
             black box.
           </p>
           <div className={styles.actions}>
-            <Link className={styles.primaryAction} href="/product">
-              See the product
+            <Link className={styles.primaryAction} href="/projects">
+              Explore the projects
             </Link>
-            <Link className={styles.secondaryAction} href="/pricing">
-              Explore pricing
-            </Link>
+            <a className={styles.secondaryAction} href={githubOrgUrl} target="_blank" rel="noopener noreferrer">
+              View GitHub
+            </a>
           </div>
         </div>
 
@@ -63,17 +64,17 @@ export default function Home() {
       </div>
 
       <div className={styles.sectionShell}>
-        <SectionPromo eyebrow="Product" title="Built for real agent workflows." href="/product" actionLabel="See the product">
+        <SectionPromo eyebrow="Open source" title="Everything we make is free to use, modify, and redistribute." href="/about" actionLabel="About the organization">
           <p>
-            See how HumemAI handles conversational history, structured knowledge, and hybrid retrieval in one system.
+            The code, Python packages, benchmarks, and papers are published under open licenses. There is no hosted product, no pricing, and no paid tier.
           </p>
         </SectionPromo>
       </div>
 
       <div className={styles.sectionShell}>
-        <SectionPromo eyebrow="Pricing" title="Open source or hosted." href="/pricing" actionLabel="Explore pricing">
+        <SectionPromo eyebrow="Contribute" title="Built in the open, with anyone who wants to help." href="/contribute" actionLabel="How to contribute">
           <p>
-            Self-host from GitHub when you want full control, or use a managed deployment when you want outcomes faster.
+            Issues, pull requests, benchmark reports, and research collaborations are all welcome. Start from any repository on GitHub.
           </p>
         </SectionPromo>
       </div>
@@ -92,8 +93,8 @@ export default function Home() {
       <div className={`${styles.sectionShell} ${styles.newsSection}`}>
         <SectionIntro
           eyebrow="News"
-          title="Latest news from the company."
-          aside="Recent writing, releases, research, and product updates from HumemAI."
+          title="Latest news from the projects."
+          aside="Recent writing, releases, research, and benchmark updates from HumemAI."
         />
         <div className={styles.railShell}>
           <NewsRail posts={latestNews} />
