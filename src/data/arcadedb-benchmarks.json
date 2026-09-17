@@ -474,6 +474,7 @@
     "container:bbdfdbb1c384 (host unknown)",
     "container:bbf5124a06c3 (host unknown)",
     "container:bc0754ea5071 (host unknown)",
+    "container:bd6c3d96f4e9 (host unknown)",
     "container:bd6d2850b2a5 (host unknown)",
     "container:bd7bed2042dd (host unknown)",
     "container:be792ad767f6 (host unknown)",
@@ -494,7 +495,6 @@
     "container:c4d814e24a9e (host unknown)",
     "container:c614c27f1711 (host unknown)",
     "container:c650ecda550a (host unknown)",
-    "container:c659e4f25cc3 (host unknown)",
     "container:c6dd3fd12b35 (host unknown)",
     "container:c6fc870eb7eb (host unknown)",
     "container:c81926749c63 (host unknown)",
@@ -3475,14 +3475,14 @@
               "n": 5
             },
             "peak memory GiB": {
-              "median": 13.2252,
-              "min": 13.0476,
+              "median": 13.092,
+              "min": 12.5294,
               "max": 14.1418,
               "n": 5
             },
             "disk GiB": {
-              "median": 0.7387,
-              "min": 0.0006,
+              "median": 0.7393,
+              "min": 0.6847,
               "max": 0.993,
               "n": 5
             }
