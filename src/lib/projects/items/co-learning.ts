@@ -41,7 +41,7 @@ export const coLearning: Project = {
 						],
 					},
 					`<div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;">
-<iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" src="https://www.youtube.com/embed/ZLSien-nNtY" title="Co-Learning: human-robot teamwork in MATRX USAR" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" src="https://www.youtube.com/embed/Ej0HDuH6D-s" title="Co-Learning: human-robot teamwork in MATRX USAR" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 
 *Video walkthrough of the MATRX USAR simulation and the human-robot collaboration task.*`,
