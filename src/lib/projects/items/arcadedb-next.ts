@@ -218,7 +218,15 @@ export const arcadeDbNext: Project = {
               "A session for each kind of data, embedded and served. The embedded rows also carry what starting the process costs before the first database call, because an open measured inside an already-running process is not what someone launching a script pays.",
             showDigests: false,
           },
-          "Two tables that belong in this section are missing from the skeleton and named in the setup section above: what the Python boundary costs against the same engine called from Java, and what running the database in a separate process costs when the wire format and the process boundary are measured separately. Both are built from artifacts of the campaign host rather than from a lane this skeleton runs, and dropping a laptop placeholder banner over a bench-host measurement would be the same lie in the other direction.",
+          "Running the database in another process costs two things at once, and one number cannot tell them apart: the answer has to be turned into a wire format, and it has to cross a process boundary. The table below separates them by measuring a third deployment in between, an HTTP server running inside the same process. Going from embedded to that middle deployment buys the wire format and nothing else. Going from the middle deployment to a separate container buys the second process and nothing else, because the wire format is already paid for.",
+          {
+            type: "benchmarkTable",
+            tableId: "e4",
+            caption:
+              "One projection answered at six result sizes by three deployments: in process, an HTTP server inside the same process, and a separate container. Read a row across to see which of the two costs grows with the answer.",
+            showDigests: false,
+          },
+          "The remaining table of this section, what the Python boundary costs against the same engine called from Java, is built from an artifact of the campaign host rather than from a lane of its own. The setup section above names it while it is absent, and stops naming it once it lands.",
           "Embedded or server stays a deployment decision rather than a performance one. The engine is the same build in both, which is what the Mode column on every table above is there to show, and the difference you will feel is the boundary you put around it. Use embedded when one process serves the data: notebooks, tests, single-node services, and agent tooling, where a network hop per query is pure cost. Use the server when more than one process or machine needs the same data, when you want the Postgres, Redis, Bolt, or HTTP wire protocols, or when you need replication and failover. The Python package can start a server inside your process, so the choice is reversible.",
         ],
       },
