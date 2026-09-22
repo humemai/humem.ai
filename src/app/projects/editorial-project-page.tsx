@@ -156,7 +156,23 @@ export function EditorialProjectPage({ project, dataset, banner }: EditorialProj
       // A renamed lane or a re-export that drops a table would otherwise render
       // an empty shell that reads like "we measured nothing". Skip instead, and
       // let the build-time check be the thing that complains.
+      //
+      // Unless the payload SAYS it is missing on purpose. A staged landing
+      // publishes one lane's tables while the rest of the campaign is still
+      // running, and silence there is the worst of the three options: the
+      // reader gets a heading and prose about numbers with no numbers under
+      // it, and cannot tell a pending measurement from a broken export. The
+      // payload names what is pending and why, and that renders in place of
+      // the table.
       if (!table) {
+        const pending = dataset.pending_tables?.[block.tableId];
+        if (pending) {
+          return (
+            <p key={`${sectionId}-${index}`} className={styles.pendingTable}>
+              {pending}
+            </p>
+          );
+        }
         return null;
       }
 

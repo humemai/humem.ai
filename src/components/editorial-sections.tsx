@@ -167,6 +167,19 @@ export type BenchmarkDataset = {
   skeleton_banner?: string | null;
   gates_waived?: string[];
   skeleton_absent_tables?: Record<string, string>;
+  /**
+   * Tables this payload does not carry BECAUSE THEY HAVE NOT BEEN MEASURED
+   * YET at this pin, mapped to the reason a reader should see.
+   *
+   * The October campaign lands one lane at a time, so a payload published
+   * between stages legitimately lacks most of the page's tables. Without
+   * this, the table block renders null and the reader meets a section
+   * heading, prose about numbers, and no numbers -- which reads as a broken
+   * page rather than as work in progress. Distinct from
+   * `skeleton_absent_tables`, which only renders while `skeleton` is true and
+   * describes what a laptop placeholder could never produce.
+   */
+  pending_tables?: Record<string, string>;
 };
 
 export type BenchmarkEntry = {

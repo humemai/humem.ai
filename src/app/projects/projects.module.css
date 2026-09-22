@@ -806,3 +806,23 @@
 .previewBanner p {
   margin: 0;
 }
+
+/*
+ * A table the page names and this payload does not carry yet, during a
+ * staged landing. Quiet by design: it is scaffolding a reader passes over,
+ * not a warning. The left rule keeps it from reading as body prose, since
+ * the sentence it replaces a table with sits directly under that table's own
+ * caption text.
+ */
+.pendingTable {
+  /* NO VERTICAL MARGIN. This sits inside a prose column, which is a grid, so
+   * a child's margin is ADDED to the container's gap rather than collapsing
+   * into it -- the defect check-spacing-tokens.mjs exists to catch. The gap
+   * provides the separation; the padding here is inside this element's own
+   * box and sets the left rule off from its text. */
+  padding: 0.65rem 0 0.65rem 0.95rem;
+  border-left: 2px solid var(--border);
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
