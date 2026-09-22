@@ -1,7 +1,8 @@
 // October campaign preview prose. Built from nothing as the campaign fills it
-// in, first from the laptop skeleton at micro scale and then from mini's real
-// stages, so that what appears here is October's own work rather than
-// September's carried over (user, 2026-09-14: "better to start from scratch").
+// in: first a micro-scale skeleton to prove the instrument, now the campaign's
+// real stages landing one at a time, so that what appears here is October's own
+// work rather than September's carried over (user, 2026-09-14: "better to
+// start from scratch").
 // Rendered at /projects/arcadedb/next, never registered in the project index,
 // and the live page at /projects/arcadedb is never touched by a preview
 // publish (DECISIONS #83, #86).
@@ -12,16 +13,20 @@
 // reason; the first sentence that types a number adds its pin there in the
 // same commit.
 //
-// The rule matters more on this page than on the live one. Every cell under it
-// today is a one-repetition laptop placeholder, so a sentence that quoted one
-// would be quoting noise, and a sentence that compared two would be inventing
-// a result. The prose therefore says what each table MEASURES and why those
-// queries, and leaves every quantity to the cells.
+// The rule matters more on this page than on the live one, because this page
+// is published REPEATEDLY while the campaign runs. A sentence true of the two
+// tables that have landed becomes false the day a third does, and nothing
+// would catch it: the tables regenerate, the prose does not. So the prose says
+// what each table MEASURES and why those queries, and leaves every quantity to
+// the cells.
+//
+// For the same reason it does not say which tables are here yet. The payload
+// names the ones still being measured and the page renders that in their
+// place, so the list updates itself each landing instead of being retyped.
 //
 // The two strings page_check DOES require are in the setup section: the host
 // CPU it reads out of the payload, and the cpuset the rows recorded. Both come
-// from the rows, and both change when the campaign moves from the laptop to
-// the bench host, which is the point of checking them.
+// from the rows, which is the point of checking them.
 import type { Project } from "../types";
 import { arcadeDbDocsUrl, arcadeDbRepoUrl, arcadeDbUpstreamRepoUrl } from "../shared";
 
@@ -49,14 +54,15 @@ export const arcadeDbNext: Project = {
         id: "setup",
         navLabel: "Setup",
         eyebrow: "Benchmarks",
-        // The live page's heading is "One machine, fixed limits, one job at a
-        // time", which is the campaign's protocol and is not what produced the
-        // cells under it today. A heading that claims the protocol over
+        // The heading claims the protocol, and as of the first real landing
+        // the cells under it were measured that way, so it may. While this
+        // page was a micro-scale skeleton it said "and why this page does not
+        // follow it yet" instead: a heading that claims the protocol over
         // placeholder numbers is the first thing a reader believes.
-        title: "The protocol, and why this page does not follow it yet.",
+        title: "One machine, fixed limits, one job at a time.",
         body: [
-          "Read this section as a description of the machine these numbers were NOT measured on. The campaign runs on one dedicated machine, one cell at a time, each cell given the same cores and the same memory ceiling as the cell beside it. Nothing on this page was measured that way. It was measured on a development laptop, an Intel Core Ultra X9 388H, which was running a browser, an editor, and everything else it normally runs while each cell was timed. The containers were handed `cpuset` 0-11, which on a machine that is doing other things is a share of the cores rather than sole use of them, and each cell ran once instead of five times, on the smallest data set each benchmark has.",
-          "So the timings here are not comparable: not between two engines in the same table, and not against the same table on the live page. What is worth reading is everything around them, which is the October instrument exactly as it will run: the tables, the columns, the conditions generated from the rows, and the prose. The two checks that describe the bench machine, the pinning of each cell to its own cores and the per-size memory envelope, are waived for this page and named just below; every other check, including the answer comparison and the durability class, runs here exactly as it will in October.",
+          "Every number on this page was measured on one machine that does nothing else while a cell is timed, one cell at a time: an Intel Core i9-12900HK with 64 GiB of memory and an NVMe disk, running each engine in a container handed `cpuset` 0-11. Each cell gets the same cores as the cell beside it and a memory ceiling chosen by the size of the corpus rather than by which engine is running, so no engine is handed more room than its neighbour. Each cell is repeated five times and the tables print the median with the smallest and largest run beside it.",
+          "The page is published while the campaign is still running, so it is not finished. A table whose measurements have not been taken yet says so in the place where its numbers will go, and appears when its run completes. Nothing here is a preview of a number: a table is either measured under the protocol above, at the engine version printed beneath it, or it is absent and says why.",
           { type: "skeletonNotes" },
           "The conditions below hold for every table. A table adds its own beneath its caption where they differ, and those per-table conditions are generated from the rows rather than written by hand, so a condition cannot describe a setting a cell did not run under. Each comparator is pinned by image digest, each engine's version is read out of the running engine rather than assumed, and both are printed under the table that used them.",
           "Two conditions are new in October and worth reading before the tables. The first is durability: every engine that has the setting is put in the same class, where a commit returns without waiting for the disk and the log is flushed by the engine's own background policy, and the engines with no such setting are named on the tables they appear on instead of being quietly compared against it. The second is answer checking: every timed query whose answer is deterministic records a hash of that answer, and a gate refuses to publish a table whose engines disagree. A benchmark that never checks the answer measures how fast an engine can be wrong.",
@@ -199,7 +205,7 @@ export const arcadeDbNext: Project = {
         title: "Every metric on this page in one figure.",
         body: [
           "The summary is one figure over every row above, each metric as a ratio against the strongest comparator on that row, with the first pass and the repeat pass side by side. It is the only place on the page where the tables are read against each other, and it is deliberately the only one: an average across queries whose times span orders of magnitude is the slowest query wearing a disguise, so each table keeps one column per query and the cross-table view lives here as ratios.",
-          "It is drawn from the campaign's own rows and therefore is not on this page yet. A skeleton has one repetition of each cell at a size chosen to run on a laptop, and a ratio built from that would look exactly like a result while being noise. The figure lands with the stage that measures the rows under it.",
+          "It is a ratio of every table against its best comparator, so it can only be drawn once the tables under it exist. It lands with the last of the runs that feed it.",
         ],
       },
       {
