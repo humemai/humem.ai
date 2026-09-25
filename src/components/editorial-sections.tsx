@@ -220,11 +220,20 @@ export type EditorialBenchmarkTableProps = {
   directions?: Record<string, string> | null;
 };
 
+// A RATIO READS AS A MULTIPLE. "17.66" in a column called "cost of waiting"
+// left the reader to work out that it meant 17.66 times the other cell; "17.7x"
+// says it (2026-09-25). Named here because a ratio column carries no unit in
+// its name for a suffix rule to key on, unlike " ms" and "/s".
+const RATIO_COLUMNS = new Set(["cost of waiting", "gain", "vs Java"]);
+
 function formatStat(stat: BenchmarkStat | undefined, column?: string) {
   if (!stat) return "—";
   // A derived text cell prints as written; it has no median to format.
   if (stat.text !== undefined) return stat.text;
   const v = stat.median;
+  // Two decimals below ten and one above, whatever the value: a ratio of
+  // exactly 1 is "1.00x", not the count-style "1" the integer rule below gives.
+  if (column && RATIO_COLUMNS.has(column)) return `${v >= 10 ? v.toFixed(1) : v.toFixed(2)}x`;
   // A latency recorded as exactly zero is below the lane's resolution, not
   // free: SQLite's index-backed newest reading takes about 4 us and the lane
   // rounded it to 0.00 ms (2026-09-12). Say what is known.
