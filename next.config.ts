@@ -27,6 +27,22 @@ const nextConfig: NextConfig = {
       { source: "/product", destination: "/projects", permanent: true },
       { source: "/pricing", destination: "/about", permanent: true },
       { source: "/careers", destination: "/projects", permanent: true },
+      // 2026-09-27: URLs from the site's earlier versions that search engines
+      // and the Wayback Machine still hold, found by testing every humem.ai URL
+      // the Wayback CDX API lists. Each went to a 404; each now lands on the
+      // page that replaced it.
+      { source: "/blog/posts/2022-04-04-first-paper", destination: "/news/human-like-memory-systems", permanent: true },
+      { source: "/blog/posts/2024-10-24-youtube", destination: "/news/youtube", permanent: true },
+      { source: "/blog/posts/2026-01-28-arcadedb-embedded-python-bindings", destination: "/news/arcadedb-embedded-python-bindings", permanent: true },
+      { source: "/blog/:path*", destination: "/news", permanent: true },
+      { source: "/blog.html", destination: "/news", permanent: true },
+      { source: "/2024-03-01-design-humemai", destination: "/news", permanent: true },
+      { source: "/humemaiandyou.html", destination: "/about", permanent: true },
+      { source: "/whoweare.html", destination: "/about", permanent: true },
+      { source: "/team", destination: "/about", permanent: true },
+      { source: "/ourtechnologies.html", destination: "/projects", permanent: true },
+      { source: "/research", destination: "/projects", permanent: true },
+      { source: "/terms-of-service", destination: "/privacy-policy", permanent: true },
     ];
   },
   async rewrites() {
