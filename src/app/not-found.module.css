@@ -1,0 +1,61 @@
+/* The 404 page. Next's built-in one set its own system-font, black-on-white
+   styles, so a mistyped URL was the one page without the HumemAI brand. */
+.page {
+  width: 100%;
+  padding: var(--site-page-padding);
+}
+
+.inner {
+  display: grid;
+  gap: var(--site-space-roomy);
+  width: var(--site-shell-width-mobile);
+  max-width: var(--site-hero-intro-max);
+  margin: 0 auto;
+  padding-block: var(--site-section-margin-top);
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: var(--site-eyebrow-size);
+  font-weight: 700;
+  letter-spacing: var(--site-eyebrow-letter-spacing);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--site-section-title-size);
+  line-height: 1.05;
+  letter-spacing: var(--site-heading-tracking);
+  text-wrap: balance;
+}
+
+.lead {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--site-editorial-intro-size);
+  line-height: 1.7;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--site-space-compact);
+}
+
+.primaryAction {
+  composes: buttonBase from "../components/action-button.module.css";
+  composes: buttonPrimary from "../components/action-button.module.css";
+}
+
+.secondaryAction {
+  composes: buttonBase from "../components/action-button.module.css";
+  composes: buttonSecondary from "../components/action-button.module.css";
+}
+
+@media (min-width: 720px) {
+  .inner {
+    width: var(--site-shell-width-desktop);
+  }
+}
