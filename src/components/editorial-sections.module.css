@@ -122,7 +122,9 @@
   padding: 1.1rem 1.2rem;
   border: 1px solid var(--border-strong);
   border-radius: 1rem;
-  background: color-mix(in srgb, var(--surface) 82%, var(--foreground) 18%);
+  /* Always the dark brand neutral: the code text and the syntax colours below
+     are light, and on the light theme's grey they had almost no contrast. */
+  background: var(--hm-neutral-900);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
@@ -154,7 +156,7 @@
 .body :global(pre code .hljs-literal),
 .body :global(pre code .hljs-section),
 .body :global(pre code .hljs-link) {
-  color: #ff8f70;
+  color: var(--hm-oxblood-400);
 }
 
 .body :global(pre code .hljs-string),

@@ -107,10 +107,7 @@
 }
 
 .mediaFallback {
-  background:
-    radial-gradient(circle at 18% 18%, rgba(191, 87, 0, 0.28), transparent 28%),
-    radial-gradient(circle at 82% 22%, rgba(17, 96, 73, 0.24), transparent 30%),
-    linear-gradient(160deg, rgba(14, 18, 24, 0.96), rgba(31, 38, 48, 0.88));
+  background: var(--card-media-gradient);
 }
 
 .mediaImage {
