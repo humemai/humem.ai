@@ -23,7 +23,7 @@
   margin: 0.5rem 0 0;
   font-size: var(--site-hero-title-size);
   line-height: 0.98;
-  letter-spacing: -0.045em;
+  letter-spacing: var(--site-heading-tracking);
 }
 
 .titleFeature {

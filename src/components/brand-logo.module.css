@@ -1,0 +1,32 @@
+/*
+ * The logo is drawn from the vendored SVG masters as a CSS mask filled with
+ * --hm-brand, so it follows the theme (oxblood on light, rose on dark) from
+ * one file each instead of a light and a dark copy.
+ */
+.lockup,
+.mark {
+  display: inline-block;
+  flex: none;
+  background-color: var(--hm-brand);
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+}
+
+/* lockup.svg is 654 x 138. */
+.lockup {
+  height: 1.75rem;
+  aspect-ratio: 654 / 138;
+  mask-image: url("/brand/logo/lockup.svg");
+  -webkit-mask-image: url("/brand/logo/lockup.svg");
+}
+
+.mark {
+  width: 1.5rem;
+  height: 1.5rem;
+  mask-image: url("/brand/logo/mark.svg");
+  -webkit-mask-image: url("/brand/logo/mark.svg");
+}

@@ -23,22 +23,8 @@
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
-  font-weight: 700;
-  color: var(--foreground);
+  min-height: 2.25rem;
   text-decoration: none;
-}
-
-.logoMark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
-}
-
-.logoText {
-  letter-spacing: -0.03em;
 }
 
 .desktopNav,

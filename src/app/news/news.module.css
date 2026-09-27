@@ -22,7 +22,7 @@
 .sectionLead h2 {
   margin: 0.5rem 0 0;
   line-height: 0.98;
-  letter-spacing: -0.045em;
+  letter-spacing: var(--site-heading-tracking);
 }
 
 .sectionBody p,
@@ -281,7 +281,7 @@
 }
 
 .content code {
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--hm-font-mono);
   font-size: 0.92rem;
 }
 

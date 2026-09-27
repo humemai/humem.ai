@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { BrandLockup } from "@/components/brand-logo";
 import { CookieSettingsButton } from "@/components/cookie-consent";
 import { footerColumns } from "@/lib/site-data";
 import styles from "./site-footer.module.css";
@@ -10,8 +10,7 @@ export function SiteFooter() {
       <div className={styles.inner}>
         <div className={styles.brandBlock}>
           <div className={styles.brandHeading}>
-            <Image src="/favicon.png" alt="HumemAI icon" width={28} height={28} />
-            <p className={styles.eyebrow}>HumemAI</p>
+            <BrandLockup className={styles.brandLockup} />
           </div>
           <p className={styles.copy}>
             An open source organization building persistent, explainable memory for

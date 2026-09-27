@@ -37,7 +37,7 @@
 .projectFocusBlock h3 {
   margin: 0.5rem 0 0;
   line-height: 0.98;
-  letter-spacing: -0.045em;
+  letter-spacing: var(--site-heading-tracking);
 }
 
 .indexHeroCopy h1 {
@@ -176,7 +176,7 @@
   margin: 0;
   font-size: clamp(1.9rem, 4vw, 2.8rem);
   line-height: 0.98;
-  letter-spacing: -0.04em;
+  letter-spacing: var(--site-heading-tracking);
 }
 
 .overviewSummary {
@@ -337,7 +337,7 @@
   max-width: 14ch;
   font-size: clamp(1.9rem, 4vw, 2.8rem);
   line-height: 0.98;
-  letter-spacing: -0.04em;
+  letter-spacing: var(--site-heading-tracking);
 }
 
 .subprojectSummary {
@@ -424,13 +424,13 @@
 .detailHeroCopy h1 {
   margin: 0.5rem 0 0;
   line-height: 0.98;
-  letter-spacing: -0.045em;
+  letter-spacing: var(--site-heading-tracking);
 }
 
 .subprojectHeroCopy h1 {
   margin: 0.5rem 0 0;
   line-height: 0.98;
-  letter-spacing: -0.045em;
+  letter-spacing: var(--site-heading-tracking);
 }
 
 .detailHeroCopy h1 {
