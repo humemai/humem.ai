@@ -3,7 +3,7 @@ import Image from "next/image";
 import { DetailSection } from "@/components/detail-section";
 import { PageHero } from "@/components/page-hero";
 import { SectionCta, SectionIntro } from "@/components/section-blocks";
-import { githubOrgUrl, pypiOrgUrl } from "@/lib/site-data";
+import { githubOrgUrl, pypiUrl } from "@/lib/site-data";
 import styles from "../company-pages.module.css";
 
 export const metadata: Metadata = {
@@ -33,7 +33,7 @@ export default function AboutPage() {
 
       <SectionIntro eyebrow="How it works" title="Open licenses and public repositories.">
           <p>
-            Every HumemAI project is published under an open license on <a className={styles.textLink} href={githubOrgUrl} target="_blank" rel="noopener noreferrer">GitHub</a>, and the Python packages are released through the HumemAI organization on <a className={styles.textLink} href={pypiOrgUrl} target="_blank" rel="noopener noreferrer">PyPI</a>. Anyone can run, modify, and redistribute the code.
+            Every HumemAI project is published under an open license on <a className={styles.textLink} href={githubOrgUrl} target="_blank" rel="noopener noreferrer">GitHub</a>, and the Python packages are released under the HumemAI account on <a className={styles.textLink} href={pypiUrl} target="_blank" rel="noopener noreferrer">PyPI</a>. Anyone can run, modify, and redistribute the code.
           </p>
       </SectionIntro>
 
