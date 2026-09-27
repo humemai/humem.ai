@@ -18,13 +18,8 @@
   gap: 0.75rem;
 }
 
-.eyebrow {
-  margin: 0;
-  font-size: var(--site-eyebrow-size);
-  font-weight: 700;
-  letter-spacing: var(--site-eyebrow-letter-spacing);
-  text-transform: uppercase;
-  color: var(--accent);
+.brandLockup {
+  height: 1.5rem;
 }
 
 .copy {

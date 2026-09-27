@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { BrandLockup } from "@/components/brand-logo";
 import { githubOrgUrl, navigationItems } from "@/lib/site-data";
 import styles from "./site-header.module.css";
 
@@ -30,11 +30,8 @@ export function SiteHeader() {
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
-        <Link className={styles.logo} href="/">
-          <span className={styles.logoMark}>
-            <Image src="/favicon.png" alt="HumemAI icon" width={28} height={28} />
-          </span>
-          <span className={styles.logoText}>HumemAI</span>
+        <Link aria-label="HumemAI home" className={styles.logo} href="/">
+          <BrandLockup />
         </Link>
 
         <nav className={styles.desktopNav} aria-label="Primary navigation">

@@ -25,14 +25,14 @@
   margin: 0.5rem 0 0;
   font-size: var(--site-section-title-size);
   line-height: 0.98;
-  letter-spacing: -0.045em;
+  letter-spacing: var(--site-heading-tracking);
 }
 
 .promoTitle {
   margin: 0.5rem 0 0;
   font-size: clamp(2rem, 4vw, 3rem);
   line-height: 1.04;
-  letter-spacing: -0.04em;
+  letter-spacing: var(--site-heading-tracking);
 }
 
 .aside {

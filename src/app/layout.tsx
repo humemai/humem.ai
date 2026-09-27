@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { DM_Mono, Newsreader, Schibsted_Grotesk } from "next/font/google";
 import "katex/dist/katex.min.css";
 import { CookieConsentBanner } from "@/components/cookie-consent";
 import { GoogleAnalytics } from "@/components/google-analytics";
@@ -8,14 +8,23 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// The HumemAI faces (github.com/humemai/design-system). globals.css feeds
+// these variables into --hm-font-display, --hm-font-text and --hm-font-mono.
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
+  subsets: ["latin"],
+  axes: ["opsz"],
+});
+
+const schibstedGrotesk = Schibsted_Grotesk({
+  variable: "--font-schibsted-grotesk",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const dmMono = DM_Mono({
+  variable: "--font-dm-mono",
   subsets: ["latin"],
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
@@ -32,8 +41,10 @@ export const metadata: Metadata = {
     siteName: "HumemAI",
     images: [
       {
-        url: "/images/social/og-memory-for-agentic-ai.png",
-        alt: "HumemAI social preview image",
+        url: "/brand/export/og-1200x630.png",
+        width: 1200,
+        height: 630,
+        alt: "HumemAI: memory systems for agentic AI",
       },
     ],
     locale: "en_US",
@@ -43,11 +54,14 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "HumemAI",
     description: "Persistent, explainable memory for agentic AI systems.",
-    images: ["/images/social/og-memory-for-agentic-ai.png"],
+    images: ["/brand/export/og-1200x630.png"],
   },
   icons: {
-    icon: "/favicon.png",
-    apple: "/favicon.png",
+    icon: [
+      { url: "/brand/export/favicon.svg", type: "image/svg+xml" },
+      { url: "/brand/export/favicon.ico", sizes: "48x48" },
+    ],
+    apple: "/brand/export/apple-touch-icon.png",
   },
 };
 
@@ -57,11 +71,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    // The font variables go on <html>, not <body>: globals.css builds the
+    // --hm-font-* tokens from them on :root, and a var() that is undefined
+    // where it is resolved makes the whole font-family fall back to Times.
+    <html
+      className={`${newsreader.variable} ${schibstedGrotesk.variable} ${dmMono.variable}`}
+      lang="en"
+      suppressHydrationWarning
+    >
       <GoogleAnalytics measurementId={googleAnalyticsId} />
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className="antialiased">
         <SiteHeader />
         {children}
         <SiteFooter />

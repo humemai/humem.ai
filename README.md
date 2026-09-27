@@ -22,7 +22,9 @@ npm run build
 npm run start
 ```
 
-## Design Assets
+## Design
 
-Website illustration prompts live in `docs/design/image-prompts.md`.
+The brand comes from [humemai/design-system](https://github.com/humemai/design-system): oxblood `#892122` (rose `#E88E8B` in dark mode), Newsreader headlines, Schibsted Grotesk for everything else, DM Mono for code, and the tile icon. A copy is vendored into `public/brand/`; don't edit it there. `src/app/globals.css` imports its `tokens.css` and maps the site's own variable names (`--accent`, `--foreground`, ...) onto the `--hm-*` tokens, `src/app/layout.tsx` loads the three faces with `next/font`, and the header, footer and favicon use its logo files. To update, change the design system, then from its checkout run `scripts/vendor-into.sh ../humem.ai/public/brand`; `public/brand/verify.sh` checks the copy.
+
+Website illustration prompts live in `docs/design/image-prompts.md`. The illustrations use the same palette; `scripts/recolor.py` in the design system converts an image drawn in the old teal and coral.
 Chrome DevTools test devices for responsive checks live in `docs/design/test-devices.md`.

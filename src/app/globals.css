@@ -1,5 +1,15 @@
+/* The HumemAI design system, vendored from github.com/humemai/design-system
+   into public/brand (see public/brand/VERSION.md). The --hm-* tokens are the
+   source of every colour and typeface below; the site's own names map onto
+   them so the components did not have to change. */
+@import "../../public/brand/css/tokens.css";
+
 :root {
   color-scheme: light;
+  /* next/font self-hosts the brand faces under generated family names. */
+  --hm-font-display: var(--font-newsreader), "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --hm-font-text: var(--font-schibsted-grotesk), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --hm-font-mono: var(--font-dm-mono), ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
   --site-shell-max: 1180px;
   --site-shell-gutter-mobile: 2rem;
   --site-shell-gutter-desktop: 3rem;
@@ -14,6 +24,10 @@
   --site-editorial-subsection-title-size: clamp(1.3rem, 2.2vw, 1.55rem);
   --site-editorial-minor-title-size: clamp(1.08rem, 1.7vw, 1.2rem);
   --site-lead-media-max: 54rem;
+  /* Headline tracking for Newsreader. The -0.04em to -0.055em these rules
+     carried were tuned for Geist; on a serif they made letters collide. */
+  --site-heading-tracking: var(--hm-tracking-display);
+  --site-hero-heading-tracking: -0.02em;
   --site-eyebrow-size: 0.78rem;
   --site-eyebrow-letter-spacing: 0.24em;
   --site-layout-gap: 1.5rem;
@@ -28,8 +42,8 @@
   --site-figure-max: 48rem;
   --site-copy-block-padding: 1.2rem 0;
   --site-action-padding: 0.9rem 1.4rem;
-  --site-button-primary-bg: var(--foreground);
-  --site-button-primary-fg: var(--background);
+  --site-button-primary-bg: var(--hm-brand);
+  --site-button-primary-fg: var(--hm-on-brand);
   --site-button-secondary-bg: transparent;
   --site-button-secondary-fg: var(--foreground);
   --site-button-secondary-border: var(--border-strong);
@@ -65,24 +79,27 @@
   --card-hover-lift: -1px;
   --card-hover-lift-strong: -2px;
   --card-transition: 160ms ease;
-  --background: #ffffff;
-  --foreground: #111111;
-  --surface: rgba(255, 255, 255, 0.92);
-  --surface-strong: #ffffff;
-  --surface-muted: #f5f5f5;
-  --border: rgba(17, 17, 17, 0.12);
-  --border-strong: rgba(17, 17, 17, 0.2);
-  --card-surface: #fafafa;
-  --card-surface-hover: #f3f3f3;
+  /* Colour. Greys keep the lightness they had and lean toward oxblood's hue
+     (OKLCH 25), like the design system's neutrals. Text, links, eyebrows and
+     primary buttons take the brand. */
+  --background: var(--hm-bg);
+  --foreground: var(--hm-text);
+  --surface: color-mix(in srgb, var(--hm-surface) 92%, transparent);
+  --surface-strong: var(--hm-surface);
+  --surface-muted: #F8F4F4;
+  --border: rgba(28, 23, 22, 0.12);
+  --border-strong: rgba(28, 23, 22, 0.2);
+  --card-surface: #FDF9F9;
+  --card-surface-hover: #F6F2F2;
   --card-media-gradient:
-    radial-gradient(circle at 18% 18%, rgba(191, 87, 0, 0.28), transparent 28%),
-    radial-gradient(circle at 82% 22%, rgba(17, 96, 73, 0.24), transparent 30%),
-    linear-gradient(160deg, rgba(14, 18, 24, 0.96), rgba(31, 38, 48, 0.88));
-  --accent: #111111;
-  --accent-strong: #000000;
-  --accent-soft: rgba(17, 17, 17, 0.06);
-  --muted: #666666;
-  --shadow: 0 18px 50px rgba(0, 0, 0, 0.06);
+    radial-gradient(circle at 18% 18%, rgba(232, 142, 139, 0.3), transparent 28%),
+    radial-gradient(circle at 82% 22%, rgba(182, 59, 57, 0.34), transparent 30%),
+    linear-gradient(160deg, var(--hm-oxblood-950), var(--hm-oxblood-900));
+  --accent: var(--hm-brand);
+  --accent-strong: var(--hm-brand-hover);
+  --accent-soft: color-mix(in srgb, var(--hm-brand) 7%, transparent);
+  --muted: var(--hm-text-muted);
+  --shadow: 0 18px 50px rgba(28, 23, 22, 0.06);
 }
 
 /*
@@ -170,8 +187,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--hm-font-text);
+  --font-mono: var(--hm-font-mono);
 }
 
 * {
@@ -179,34 +196,27 @@
 }
 
 html {
-  background: #ffffff;
+  background: var(--hm-bg);
 }
 
+/* Dark: --background, --foreground, --accent and --muted follow the --hm-*
+   tokens, which switch themselves. What stays here is the site's own layering
+   of near-black surfaces, tinted like the design system's neutrals. */
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
-    --background: #0b0b0b;
-    --foreground: #f5f5f5;
-    --surface: rgba(18, 18, 18, 0.92);
-    --surface-strong: #121212;
-    --surface-muted: #171717;
+    --surface: rgba(21, 17, 17, 0.92);
+    --surface-strong: #151111;
+    --surface-muted: #1A1616;
     --border: rgba(255, 255, 255, 0.1);
     --border-strong: rgba(255, 255, 255, 0.18);
-    --card-surface: #141414;
-    --card-surface-hover: #1a1a1a;
+    --card-surface: #171313;
+    --card-surface-hover: #1D1919;
     --card-media-gradient:
-      radial-gradient(circle at 18% 18%, rgba(191, 87, 0, 0.34), transparent 28%),
-      radial-gradient(circle at 82% 22%, rgba(17, 96, 73, 0.28), transparent 30%),
-      linear-gradient(160deg, rgba(10, 12, 18, 0.98), rgba(24, 30, 40, 0.92));
-    --accent: #f5f5f5;
-    --accent-strong: #ffffff;
-    --accent-soft: rgba(255, 255, 255, 0.08);
-    --muted: #b3b3b3;
+      radial-gradient(circle at 18% 18%, rgba(232, 142, 139, 0.34), transparent 28%),
+      radial-gradient(circle at 82% 22%, rgba(182, 59, 57, 0.3), transparent 30%),
+      linear-gradient(160deg, var(--hm-oxblood-950), #120A09);
     --shadow: 0 24px 70px rgba(0, 0, 0, 0.4);
-  }
-
-  html {
-    background: #0b0b0b;
   }
 }
 
@@ -216,7 +226,22 @@ body {
   padding-bottom: var(--cookie-consent-offset, 0px);
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--hm-font-text);
+}
+
+/* Headlines are Newsreader at 500. Components keep their own sizes, leading
+   and tracking; a heading that works as a label sets --hm-font-text itself. */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--hm-font-display);
+  font-weight: var(--hm-weight-display);
+}
+
+:focus-visible {
+  outline: 2px solid var(--hm-focus);
+  outline-offset: 2px;
 }
 
 main {

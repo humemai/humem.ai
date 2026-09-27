@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { BrandMark } from "@/components/brand-logo";
 import { SectionIntro, SectionPromo } from "@/components/section-blocks";
 import { NewsRail } from "@/components/news-rail";
 import { ProjectRail } from "@/components/project-rail";
@@ -17,7 +18,7 @@ export default function Home() {
       <section className={styles.heroShell}>
         <div className={styles.heroCopy}>
           <div className={styles.heroEyebrowRow}>
-            <Image src="/favicon.png" alt="HumemAI icon" width={24} height={24} />
+            <BrandMark />
             <p className={styles.eyebrow}>Open source memory for agentic AI</p>
           </div>
           <h1 className={styles.title}>

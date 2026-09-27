@@ -29,6 +29,14 @@ const nextConfig: NextConfig = {
       { source: "/careers", destination: "/projects", permanent: true },
     ];
   },
+  async rewrites() {
+    return [
+      // The favicon lives in the vendored design system (public/brand).
+      // Browsers and crawlers that ignore the <link> tags still ask for
+      // /favicon.ico, so it answers from the same file.
+      { source: "/favicon.ico", destination: "/brand/export/favicon.ico" },
+    ];
+  },
 };
 
 export default nextConfig;

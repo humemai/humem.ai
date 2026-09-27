@@ -36,10 +36,13 @@
 
 .title {
   margin: var(--site-space-base) 0 0;
-  max-width: 12ch;
-  font-size: clamp(3.1rem, 7vw, 5.6rem);
-  line-height: 0.92;
-  letter-spacing: -0.055em;
+  /* Newsreader is wider and taller than Geist was. At 12ch, 5.6rem and 0.92
+     the headline broke into four lines at 1920 and its descenders met the line
+     below; 14ch, 5rem and 0.98 keep it to three. */
+  max-width: 14ch;
+  font-size: clamp(3.1rem, 6vw, 5rem);
+  line-height: 0.98;
+  letter-spacing: var(--site-hero-heading-tracking);
 }
 
 .lead {
