@@ -44,7 +44,7 @@ export const metadata: Metadata = {
         url: "/brand/export/og-1200x630.png",
         width: 1200,
         height: 630,
-        alt: "HumemAI: memory systems for agentic AI",
+        alt: "HumemAI: machines with human-like memory. Open source memory systems for agentic AI.",
       },
     ],
     locale: "en_US",
