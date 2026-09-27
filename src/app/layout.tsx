@@ -33,10 +33,10 @@ export const metadata: Metadata = {
     default: "HumemAI",
     template: "%s | HumemAI",
   },
-  description: "Persistent, explainable memory for agentic AI systems.",
+  description: "Open source memory systems for agentic AI.",
   openGraph: {
     title: "HumemAI",
-    description: "Persistent, explainable memory for agentic AI systems.",
+    description: "Open source memory systems for agentic AI.",
     url: "https://humem.ai",
     siteName: "HumemAI",
     images: [
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "HumemAI",
-    description: "Persistent, explainable memory for agentic AI systems.",
+    description: "Open source memory systems for agentic AI.",
     images: ["/brand/export/og-1200x630.png"],
   },
   icons: {

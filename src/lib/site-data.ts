@@ -7,7 +7,9 @@ export const navigationItems = [
 
 export const githubOrgUrl = "https://github.com/humemai";
 
-export const pypiOrgUrl = "https://pypi.org/org/HumemAI/";
+// The PyPI user that owns every HumemAI package. The PyPI organization
+// (pypi.org/org/HumemAI) holds no projects, so linking it showed an empty page.
+export const pypiUrl = "https://pypi.org/user/humemai/";
 
 export const googleAnalyticsId = "G-973VT90SE2";
 
@@ -19,7 +21,7 @@ export const footerColumns = [
     links: [
       { label: "Projects", href: "/projects" },
       { label: "GitHub", href: githubOrgUrl, external: true },
-      { label: "PyPI", href: pypiOrgUrl, external: true },
+      { label: "PyPI", href: pypiUrl, external: true },
     ],
   },
   {
