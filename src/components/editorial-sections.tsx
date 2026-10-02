@@ -320,8 +320,20 @@ export function EditorialBenchmarkTable({
   // Always: the reader asked what size every row ran at, not only where a
   // table mixes sizes (2026-09-11).
   const showScale = true;
+  // A no-break space, so a wrapped header never leaves its arrow on a line alone.
   const arrow = (column: string) =>
-    directions?.[column] === "up" ? " ↑" : directions?.[column] === "down" ? " ↓" : "";
+    directions?.[column] === "up" ? " ↑" : directions?.[column] === "down" ? " ↓" : "";
+  // A wrapped header breaks between words, never inside "new-order" or
+  // "1-hop": at 768px "NEW-" alone on a line read as a typo.
+  const headerLabel = (column: string) =>
+    column.split(" ").flatMap((word, i) => {
+      const node = word.includes("-") ? (
+        <span key={i} className={styles.benchmarkWord}>{word}</span>
+      ) : (
+        word
+      );
+      return i === 0 ? [node] : [" ", node];
+    });
   const hasDirections = Boolean(directions && Object.keys(directions).length > 0);
   // The best value in each column, within one size, is bold: lowest where
   // the arrow points down, highest where it points up. Columns without a
@@ -400,7 +412,7 @@ export function EditorialBenchmarkTable({
               {showScale ? <th scope="col">Size</th> : null}
               {columns.map((column) => (
                 <th scope="col" key={column}>
-                  {column}
+                  {headerLabel(column)}
                   {arrow(column)}
                 </th>
               ))}
