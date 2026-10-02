@@ -28,3 +28,4 @@ The brand comes from [humemai/design-system](https://github.com/humemai/design-s
 
 Website illustration prompts live in `docs/design/image-prompts.md`. The illustrations use the same palette; `scripts/recolor.py` in the design system converts an image drawn in the old teal and coral.
 Chrome DevTools test devices for responsive checks live in `docs/design/test-devices.md`.
+The page widths (the 1180px frame, the 736px text column, and when tables and figures leave it) are in `docs/design/layout-widths.md`.
