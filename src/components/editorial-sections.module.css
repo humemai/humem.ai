@@ -52,6 +52,16 @@
   line-height: 1.8;
 }
 
+/* Body text takes the design system's size (16px, 17px from 1000px up). Only
+   prose directly in the column: notes and captions set their own, smaller size
+   and a descendant selector would override it. */
+.body > :global(p),
+.body > :global(ul) > :global(li),
+.body > :global(ol) > :global(li),
+.acknowledgementsBody > :global(p) {
+  font-size: var(--hm-text-base);
+}
+
 /*
  * The gap between paragraphs used to depend on where the paragraph came from.
  *
