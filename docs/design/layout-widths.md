@@ -34,7 +34,7 @@ At 768 the text column is already the screen less its gutters, so only header wr
 
 ## Prose stays in the text column
 
-Line length. The design system sets a prose measure of 60 to 75 characters (`--hm-measure`, 68ch). The site does not hold to it: the text column is 736px and prose runs about 83 to 87 characters per line, a median above 80. This is on purpose (#9). Long-form pages of other research-lab sites, measured on 2026-10-03 at a 1916px viewport, run 70 to 85 (Anthropic 71, DeepMind 70, OpenAI 81, Meta 83, World Labs 85); World Labs is the benchmark, a 720px column at 17px. Narrowing to the measure (62ch gave a median of 71) was tried and not kept. Body text takes `--hm-text-base` (16px, 17px from 1000px up), which is what World Labs sets; notes and captions keep their smaller sizes. The column must still not widen to make room for tables, which is why they leave it instead.
+Line length. The design system's rule is about 70 to 85 characters with a median above 80 on desktop (its `docs/decisions.md`, "Line length", 2026-10-03; `--hm-measure` stays 68ch, which holds about 80). The text column is 736px and prose runs about 83 to 87 characters per line, inside that rule (#9). Long-form pages of other research-lab sites, measured on 2026-10-03 at a 1916px viewport, run 70 to 85 (Anthropic 71, DeepMind 70, OpenAI 81, Meta 83, World Labs 85); World Labs is the benchmark, a 720px column at 17px. Narrowing to 62ch (median 71) was tried and not kept. Body text takes `--hm-text-base` (16px, 17px from 1000px up), which is what World Labs sets; notes and captions keep their smaller sizes. The column must still not widen to make room for tables, which is why they leave it instead.
 
 ## Figures stay in the text column
 
