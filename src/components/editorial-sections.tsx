@@ -157,6 +157,11 @@ export type BenchmarkDataset = {
   provenance_note: string;
   hosts_recorded: string[];
   tables: BenchmarkTable[];
+  /** The machine the rows ran on, as the export writes it. Read by the DBBench page. */
+  setup?: {
+    hosts?: Record<string, { cpu?: string; memory?: string; storage?: string; os?: string }>;
+    cpuset?: string;
+  };
   /**
    * Skeleton fields (DECISIONS #86), present and false/empty on a real
    * payload. Declared here rather than only where the preview route reads

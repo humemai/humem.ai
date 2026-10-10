@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { existsSync, readFileSync } from "node:fs";
-import { join } from "node:path";
 import Link from "next/link";
-import type { BenchmarkDataset } from "@/components/editorial-sections";
+import { loadDbbenchDataset as loadPreview } from "@/lib/dbbench/payload";
 import { arcadeDbNext } from "@/lib/projects/items/arcadedb-next";
 import { EditorialProjectPage } from "../../editorial-project-page";
 
@@ -11,25 +9,10 @@ import { EditorialProjectPage } from "../../editorial-project-page";
 // in the arcadedb-embedded-python repo; the live page at /projects/arcadedb is
 // never touched by a preview publish. Hidden: noindex, not in the project index.
 
-const PREVIEW_PAYLOAD = join(process.cwd(), "src", "data", "arcadedb-benchmarks-next.json");
-
 export const metadata: Metadata = {
   title: "ArcadeDB, October campaign preview",
   robots: { index: false, follow: false, nocache: true },
 };
-
-// The skeleton fields are on BenchmarkDataset itself, because the setup
-// section renders two of them; only the pin list is preview-only.
-type PreviewDataset = BenchmarkDataset & {
-  arcadedb_commits?: string[];
-};
-
-function loadPreview(): PreviewDataset {
-  if (!existsSync(PREVIEW_PAYLOAD)) {
-    return { conditions: [], tables: [] } as unknown as BenchmarkDataset;
-  }
-  return JSON.parse(readFileSync(PREVIEW_PAYLOAD, "utf8")) as PreviewDataset;
-}
 
 export default function ArcadeDbPreviewPage() {
   const dataset = loadPreview();

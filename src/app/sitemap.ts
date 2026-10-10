@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllNewsPosts } from "@/lib/news-posts";
+import { DBBENCH_INDEXABLE } from "@/lib/dbbench/config";
+import { dbbenchLanes } from "@/lib/dbbench/lanes";
 import { projects } from "@/lib/projects";
 
 const SITE = "https://humem.ai";
@@ -12,6 +14,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...pages.map((path) => ({ url: `${SITE}${path}` })),
     ...projects.map((project) => ({ url: `${SITE}/projects/${project.slug}` })),
+    // The lane pages go with the project page (DBBENCH_INDEXABLE).
+    ...(DBBENCH_INDEXABLE ? dbbenchLanes.map((lane) => ({ url: `${SITE}/projects/dbbench/${lane.slug}` })) : []),
     ...getAllNewsPosts().map((post) => ({ url: `${SITE}/news/${post.slug}` })),
   ];
 }

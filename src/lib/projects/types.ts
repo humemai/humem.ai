@@ -37,6 +37,11 @@ export type ProjectEditorialBodyBlock =
   | {
       type: "benchmarkConditions";
     }
+  // The machine the payload says every row ran on (processor, memory, storage,
+  // operating system, pinned cores), read from the data rather than typed.
+  | {
+      type: "benchmarkMachine";
+    }
   // The skeleton publish's two exception lists: the invariants it waives and
   // the tables it cannot draw (DECISIONS #86). They travel with the data, so
   // the block renders nothing once the payload is a real campaign one.
