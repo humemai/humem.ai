@@ -15,6 +15,8 @@ npm install
 npm run dev
 ```
 
+Before pushing, run `npm run lint` and `npm run build` (the build also runs `scripts/check-spacing-tokens.mjs`, which fails when a child of a prose column carries its own vertical margin). There is no CI besides the Vercel preview, so run them again after any later edit. Check a layout change rendered, not only built: in light and dark mode, on the six devices in `docs/design/test-devices.md` (360 to 1920 px).
+
 ## Production
 
 ```bash
