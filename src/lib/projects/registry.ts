@@ -1,9 +1,11 @@
+import { DBBENCH_INDEXABLE } from "../dbbench/config";
 import type { Project } from "./types";
 import {
   arcadeDb,
   auditReadyMemory,
   coLearning,
   cypherglot,
+  dbbench,
   explicitMemory,
   humanLikeMemorySystems,
   humemdb,
@@ -29,6 +31,10 @@ export const projects: Project[] = [
   coLearning,
   auditReadyMemory,
   multiModelDatabases,
+  // DBBench is standalone: a project line of its own, never a subproject of
+  // Multi-Model Databases. It joins the registry (so the projects index, the
+  // home-page rail and the sitemap) only when DBBENCH_INDEXABLE is on.
+  ...(DBBENCH_INDEXABLE ? [dbbench] : []),
   cypherglot,
   arcadeDb,
   humemdb,

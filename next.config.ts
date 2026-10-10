@@ -1,5 +1,19 @@
 import type { NextConfig } from "next";
 
+// THE DBBENCH REDIRECT. The October results are served at
+// /projects/arcadedb/next until the page switch, so this is OFF and the
+// preview keeps working. It is turned on at the page switch, in the same
+// change that sets DBBENCH_INDEXABLE (src/lib/dbbench/config.ts) and removes
+// the preview route. The redirect stays for good: the preview URL was sent to
+// vendors and maintainers. Next.js answers a permanent redirect with 308, and
+// it matches the path with or without a trailing slash, so one source covers
+// /projects/arcadedb/next and /projects/arcadedb/next/.
+const DBBENCH_REDIRECTS_ON = false;
+
+const dbbenchRedirects = DBBENCH_REDIRECTS_ON
+  ? [{ source: "/projects/arcadedb/next", destination: "/projects/dbbench", permanent: true }]
+  : [];
+
 const nextConfig: NextConfig = {
   // A gate build run by the benchmark publish scripts writes to its own
   // directory, so it never replaces the .next a running `next dev` or
@@ -9,6 +23,7 @@ const nextConfig: NextConfig = {
   distDir: process.env.NEXT_DIST_DIR ?? ".next",
   async redirects() {
     return [
+      ...dbbenchRedirects,
       {
         // The ArcadeDB project page widened from the Python bindings alone to
         // ArcadeDB as a whole (engine plus embedded distribution), so the slug
