@@ -14,6 +14,7 @@ import { EditorialSectionNav } from "@/components/editorial-section-nav";
 import { projects } from "@/lib/projects";
 import type { Project, ProjectEditorialBodyBlock } from "@/lib/projects/types";
 import styles from "./projects.module.css";
+import { domProps } from "@/lib/markdown";
 
 // One renderer for every editorial project page. The live ArcadeDB page and
 // its October preview (/projects/arcadedb/next) differ only in the prose file
@@ -124,7 +125,7 @@ export function EditorialProjectPage({ project, dataset, banner, parent, eyebrow
               }
 
               return (
-                <a href={normalizedHref} target="_blank" rel="noopener noreferrer" {...props}>
+                <a href={normalizedHref} target="_blank" rel="noopener noreferrer" {...domProps(props)}>
                   {children}
                 </a>
               );
