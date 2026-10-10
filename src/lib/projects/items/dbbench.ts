@@ -3,7 +3,7 @@
 // payload the October preview uses. Lane pages live under it
 // (/projects/dbbench/<lane>, see src/lib/dbbench/lanes.ts).
 //
-// The methodology points below summarise docs.humem.ai/dbbench/methodology/.
+// The methodology points below summarise docs.humem.ai/dbbench/latest/methodology/.
 // When that page changes, change this list in the same pull request.
 //
 // NO NUMBER IS TYPED INTO A SENTENCE HERE. Every figure comes from a table cell
