@@ -11,6 +11,7 @@ import { EditorialMediaHero } from "@/components/editorial-media-hero";
 import { EditorialLinkSection } from "@/components/editorial-sections";
 import { getAllNewsPosts, getNewsPost } from "@/lib/news-posts";
 import styles from "../news.module.css";
+import { domProps } from "@/lib/markdown";
 
 type Params = {
   slug: string;
@@ -79,7 +80,7 @@ export default async function NewsPostPage({ params }: { params: Promise<Params>
                 }
 
                 return (
-                  <a href={normalizedHref} target="_blank" rel="noopener noreferrer" {...props}>
+                  <a href={normalizedHref} target="_blank" rel="noopener noreferrer" {...domProps(props)}>
                     {children}
                   </a>
                 );
