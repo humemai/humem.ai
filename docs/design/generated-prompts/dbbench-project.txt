@@ -1,0 +1,32 @@
+Generate a 1:1 square illustration for the HumemAI website.
+
+Purpose:
+This image will be used on the DBBench project page and its card on the projects page. DBBench is an independent, open benchmark that measures many database engines on the same tasks with published settings. It should communicate fair measurement: the same yardstick for every engine, with results anyone can check.
+
+What to show:
+One large rounded-square container drawn as a thick oxblood outline. Inside it, standing on one thick horizontal oxblood baseline, four solid filled oxblood vertical bars of clearly different heights, evenly spaced. Above the second tallest bar floats one small solid filled rose circle, the marker for the result that matters.
+
+Style:
+Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
+
+Fills:
+Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
+
+Palette, exactly these three colors and nothing else:
+- background: warm off-white #faf8f5
+- every shape and every stroke: deep oxblood #892122
+- the single most important element only: soft rose #e88e8b
+Do not use black, grey, white, or any other color anywhere. No gradients, no lighting effects, no shadows, no texture.
+
+Content discipline:
+Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
+
+Composition:
+Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
+
+Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
+
+Aspect ratio: 1:1 square.
+
+[model google/gemini-3-pro-image, 2 candidates, best audit: off-palette 84.91%, stray charcoal 0.00%]
+Alt text: Illustration of four bars of different heights on a shared baseline inside a frame, one marked with a rose dot, standing for a fair benchmark.

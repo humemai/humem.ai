@@ -1,0 +1,10 @@
+[
+  {
+    "id": "dbbench-project",
+    "out": "public/images/projects/project-dbbench.png",
+    "aspect": "1:1",
+    "purpose": "This image will be used on the DBBench project page and its card on the projects page. DBBench is an independent, open benchmark that measures many database engines on the same tasks with published settings. It should communicate fair measurement: the same yardstick for every engine, with results anyone can check.",
+    "show": "One large rounded-square container drawn as a thick oxblood outline. Inside it, standing on one thick horizontal oxblood baseline, four solid filled oxblood vertical bars of clearly different heights, evenly spaced. Above the second tallest bar floats one small solid filled rose circle, the marker for the result that matters.",
+    "alt": "Illustration of four bars of different heights on a shared baseline inside a frame, one marked with a rose dot, standing for a fair benchmark."
+  }
+]
