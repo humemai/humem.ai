@@ -22,7 +22,7 @@ The brand comes from `humemai/design-system`: change the brand there and vendor 
 
 - A shorthand property resets the longhands before it (`padding:` after `padding-inline`, `font:` after `font-size`). When you set one side of a box, grep the block and any more specific rule for the shorthand.
 - Inside a prose column the grid gap is the only vertical spacing; `npm run build` runs `scripts/check-spacing-tokens.mjs` and fails otherwise.
-- Check a layout change rendered, not only built: light and dark, at 1920 x 1200 CSS px (the maintainer's desktop) and on the devices in `docs/design/test-devices.md`.
+- Check a layout change rendered, not only built: in light and dark mode, on all six devices in `docs/design/test-devices.md` (360 to 1920 px).
 
 ## Checks, git and GitHub
 
