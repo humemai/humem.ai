@@ -19,5 +19,4 @@ The public website of HumemAI, an open source organization building memory syste
 - Never type a number into a page; generate it, or check it with a script. Math in the items is KaTeX and follows ISO 80000-2 (backslashes doubled inside template literals).
 - Update `README.md` and `docs/design/` in the same change as the code, and remove the old text in that change. A temporary file or switch says when it goes (`REMOVE WHEN:`).
 - Open an issue, work on a branch, open a PR that references it, merge when your checks are green, delete the branch on merge. Stage files by explicit path. Always pass `-R owner/repo` to `gh`. Issue, PR and comment bodies have no hard wraps and no em dashes.
-- Work on a PR branch in a separate worktree (`git worktree add --detach <dir> origin/main`, then `git switch -c <branch>`), not by switching the main checkout: other agents and long runs use it.
 - This repository is public: no secrets, token locations or private notes.
