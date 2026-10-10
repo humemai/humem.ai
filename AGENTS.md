@@ -18,5 +18,5 @@ The public website of HumemAI, an open source organization building memory syste
 - The OpenRouter key comes only from `OPENROUTER_API_KEY`, or from the file named by `OPENROUTER_KEY_FILE` outside every repository. Never print, commit, paste or send it, and never write where it is kept into a file, commit message, issue or comment.
 - Never type a number into a page; generate it, or check it with a script. Math in the items is KaTeX and follows ISO 80000-2 (backslashes doubled inside template literals).
 - Update `README.md` and `docs/design/` in the same change as the code, and remove the old text in that change. A temporary file or switch says when it goes (`REMOVE WHEN:`).
-- Open an issue, work on a branch, open a PR that references it, merge when your checks are green, delete the branch on merge. Stage files by explicit path. Always pass `-R owner/repo` to `gh`. Issue, PR and comment bodies have no hard wraps and no em dashes.
+- Open an issue, work on a branch, open a PR that references it, merge when your checks are green, delete the branch on merge. Stage files by explicit path. Issue, PR and comment bodies have no hard wraps and no em dashes.
 - This repository is public: no secrets, token locations or private notes.
