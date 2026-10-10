@@ -70,14 +70,23 @@ type EditorialProjectPageProps = {
   dataset: BenchmarkDataset;
   /** Rendered above the hero; the October preview uses it for its notice. */
   banner?: ReactNode;
+  /** Breadcrumb parent for a page that is not a registered subproject (a DBBench lane). */
+  parent?: { href: string; label: string };
+  /** Overrides the "Project" / "Subproject" label above the title. */
+  eyebrow?: string;
 };
 
-export function EditorialProjectPage({ project, dataset, banner }: EditorialProjectPageProps) {
+export function EditorialProjectPage({ project, dataset, banner, parent, eyebrow }: EditorialProjectPageProps) {
   const parentProject = projects.find((candidate) => candidate.subprojectSlugs?.includes(project.slug));
   const projectContext = (
     <>
       <Link href="/projects">Projects</Link>
-      {parentProject ? (
+      {parent ? (
+        <>
+          {" / "}
+          <Link href={parent.href}>{parent.label}</Link>
+        </>
+      ) : parentProject ? (
         <>
           {" / "}
           <Link href={`/projects/${parentProject.slug}`}>{parentProject.title}</Link>
@@ -97,7 +106,7 @@ export function EditorialProjectPage({ project, dataset, banner }: EditorialProj
     ? editorialSections.filter((section) => section.id !== "citation")
     : editorialSections;
   const heroActionLinks = projectLinks.slice(0, 2);
-  const editorialLabel = project.showOnProjectsIndex ? "Project" : "Subproject";
+  const editorialLabel = eyebrow ?? (project.showOnProjectsIndex ? "Project" : "Subproject");
 
   const renderEditorialBodyBlock = (sectionId: string, block: ProjectEditorialBodyBlock, index: number) => {
     if (typeof block === "string") {
@@ -145,6 +154,24 @@ export function EditorialProjectPage({ project, dataset, banner }: EditorialProj
 
     if (block.type === "benchmarkConditions") {
       return <EditorialConditions key={`${sectionId}-${index}`} conditions={dataset.conditions} />;
+    }
+
+    if (block.type === "benchmarkMachine") {
+      const lines = Object.entries(dataset.setup?.hosts ?? {}).flatMap(([name, host]) => [
+        host.cpu ? `Processor (${name}): ${host.cpu}` : null,
+        host.memory ? `Memory: ${host.memory}` : null,
+        host.storage ? `Storage: ${host.storage}` : null,
+        host.os ? `Software: ${host.os}` : null,
+      ]);
+      if (dataset.setup?.cpuset) {
+        lines.push(`Every engine is pinned to the same cores (cpuset ${dataset.setup.cpuset}).`);
+      }
+      return (
+        <EditorialConditions
+          key={`${sectionId}-${index}`}
+          conditions={lines.filter((line): line is string => Boolean(line))}
+        />
+      );
     }
 
     if (block.type === "skeletonNotes") {

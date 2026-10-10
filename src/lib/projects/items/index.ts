@@ -2,6 +2,7 @@ export { arcadeDb } from "./arcadedb";
 export { auditReadyMemory } from "./audit-ready-memory";
 export { coLearning } from "./co-learning";
 export { cypherglot } from "./cypherglot";
+export { dbbench } from "./dbbench";
 export { explicitMemory } from "./explicit-memory";
 export { humanLikeMemorySystems } from "./human-like-memory-systems";
 export { humemdb } from "./humemdb";

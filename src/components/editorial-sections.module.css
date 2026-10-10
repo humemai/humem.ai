@@ -341,6 +341,14 @@
   border-top: 1px solid var(--border);
 }
 
+/* A grid item will not shrink below its longest unbreakable word, so a note
+   that names an image path or a settings key pushed the whole page wider than
+   a phone (the October tables, measured at 360 and 390). Let it break. */
+.figurePoints li {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 .figurePoints li:first-child {
   padding-top: 0;
   border-top: 0;
