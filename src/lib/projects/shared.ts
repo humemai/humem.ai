@@ -13,5 +13,5 @@ export const humemDbDocsUrl = "https://docs.humem.ai/humemdb/";
 export const dbbenchRepoUrl = "https://github.com/humemai/dbbench";
 export const dbbenchIssuesUrl = "https://github.com/humemai/dbbench/issues";
 export const dbbenchDocsUrl = "https://docs.humem.ai/dbbench/";
-export const dbbenchMethodologyUrl = "https://docs.humem.ai/dbbench/methodology/";
-export const dbbenchEnginesUrl = "https://docs.humem.ai/dbbench/engines/";
+export const dbbenchMethodologyUrl = "https://docs.humem.ai/dbbench/latest/methodology/";
+export const dbbenchEnginesUrl = "https://docs.humem.ai/dbbench/latest/engines/";
