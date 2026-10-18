@@ -8,6 +8,11 @@ import type { Metadata } from "next";
 // removes the /projects/arcadedb/next preview.
 export const DBBENCH_INDEXABLE = false;
 
+// Listed before the switch (issue #28, 2026-10-19): the DBBench preview has a card on /projects while the page stays
+// noindex and out of the sitemap (both still follow DBBENCH_INDEXABLE). REMOVE WHEN: the page switch sets
+// DBBENCH_INDEXABLE, which lists it too.
+export const DBBENCH_LISTED = true;
+
 export const dbbenchRobots: NonNullable<Metadata["robots"]> = DBBENCH_INDEXABLE
   ? { index: true, follow: true }
   : { index: false, follow: false, nocache: true };

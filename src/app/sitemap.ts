@@ -13,7 +13,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const pages = ["", "/about", "/projects", "/news", "/contact", "/privacy-policy"];
   return [
     ...pages.map((path) => ({ url: `${SITE}${path}` })),
-    ...projects.map((project) => ({ url: `${SITE}/projects/${project.slug}` })),
+    // DBBench can be listed before it is indexable (DBBENCH_LISTED); a noindex page stays out of the sitemap.
+    ...projects
+      .filter((project) => project.slug !== "dbbench" || DBBENCH_INDEXABLE)
+      .map((project) => ({ url: `${SITE}/projects/${project.slug}` })),
     // The lane pages go with the project page (DBBENCH_INDEXABLE).
     ...(DBBENCH_INDEXABLE ? dbbenchLanes.map((lane) => ({ url: `${SITE}/projects/dbbench/${lane.slug}` })) : []),
     ...getAllNewsPosts().map((post) => ({ url: `${SITE}/news/${post.slug}` })),

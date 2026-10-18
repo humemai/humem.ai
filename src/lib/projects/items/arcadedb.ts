@@ -4,6 +4,7 @@ import { arcadeDbDocsUrl, arcadeDbRepoUrl, arcadeDbUpstreamRepoUrl } from "../sh
 export const arcadeDb: Project = {
   slug: "arcadedb",
   title: "ArcadeDB",
+  showOnProjectsIndex: true,
   timelineOrder: 1,
   subprojectPage: {
     layout: "editorial",

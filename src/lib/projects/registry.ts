@@ -1,4 +1,4 @@
-import { DBBENCH_INDEXABLE } from "../dbbench/config";
+import { DBBENCH_INDEXABLE, DBBENCH_LISTED } from "../dbbench/config";
 import { PAUSED_DB_PROJECTS_SHOWN } from "./shared";
 import type { Project } from "./types";
 import {
@@ -30,9 +30,9 @@ export const projects: Project[] = [
   roomkgMetaPolicies,
   coLearning,
   auditReadyMemory,
-  // DBBench is standalone: a project line of its own. It joins the registry (so the projects index, the
-  // home-page rail and the sitemap) only when DBBENCH_INDEXABLE is on.
-  ...(DBBENCH_INDEXABLE ? [dbbench] : []),
+  // DBBench is standalone: a project line of its own. It joins the registry (the projects index and the home-page
+  // rail) when it is listed or indexable; the sitemap takes it only when indexable (src/app/sitemap.ts).
+  ...(DBBENCH_INDEXABLE || DBBENCH_LISTED ? [dbbench] : []),
   // CypherGLOT and HumemDB are paused: listed only when PAUSED_DB_PROJECTS_SHOWN is on (shared.ts).
   ...(PAUSED_DB_PROJECTS_SHOWN ? [cypherglot] : []),
   arcadeDb,
