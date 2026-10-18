@@ -1,4 +1,5 @@
 import { DBBENCH_INDEXABLE } from "../dbbench/config";
+import { PAUSED_DB_PROJECTS_SHOWN } from "./shared";
 import type { Project } from "./types";
 import {
   arcadeDb,
@@ -35,9 +36,10 @@ export const projects: Project[] = [
   // Multi-Model Databases. It joins the registry (so the projects index, the
   // home-page rail and the sitemap) only when DBBENCH_INDEXABLE is on.
   ...(DBBENCH_INDEXABLE ? [dbbench] : []),
-  cypherglot,
+  // CypherGLOT and HumemDB are paused: listed only when PAUSED_DB_PROJECTS_SHOWN is on (shared.ts).
+  ...(PAUSED_DB_PROJECTS_SHOWN ? [cypherglot] : []),
   arcadeDb,
-  humemdb,
+  ...(PAUSED_DB_PROJECTS_SHOWN ? [humemdb] : []),
   machinesWithHumanLikeMemory,
 ];
 
