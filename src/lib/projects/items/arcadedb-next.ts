@@ -259,6 +259,24 @@ export const arcadeDbNext: Project = {
           },
         ],
       },
+      {
+        id: "citation",
+        navLabel: "Cite",
+        eyebrow: "Cite",
+        title: "Cite the paper.",
+        body: [
+          "The Python package is described in a paper to appear in the proceedings of SciPy 2026.",
+          `~~~bibtex
+@inproceedings{kim2026arcadedbpython,
+      title={ArcadeDB in Python: An In-Process Multi-Model Database},
+      author={Taewoon Kim},
+      booktitle={Proceedings of the Python in Science Conference (SciPy 2026)},
+      year={2026},
+      note={To appear},
+}
+~~~`,
+        ],
+      },
     ],
   },
   summary:
