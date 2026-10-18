@@ -232,6 +232,24 @@ export const arcadeDb: Project = {
           "Four engines on this page are single-stack multi-model databases, one process serving documents, graph, and vectors: ArcadeDB, ArangoDB, MongoDB, and SurrealDB. Among them ArcadeDB is the only one that passes both tests above, Apache-2.0 since its first commit in 2021, and the only one whose engine and Python bindings ship together in monthly releases; MongoDB moved from the AGPL to the SSPL in 2018, ArangoDB from Apache-2.0 to the Business Source License in 2024, and SurrealDB has used the Business Source License since its public release. On staying that way, ArcadeDB's founder wrote in February 2026 that the project [will never change its license](https://arcadedb.com/blog/open-source-forever-why-arcadedb-will-never-change-its-license/); this page reports that as his published statement, not as a guarantee. HumemAI, which maintains arcadedb-embedded, makes the same commitment for the Python package: the engine and its bindings both stay Apache-2.0. PostgreSQL with pgvector and AGE reaches the same one-transaction result by loading extensions into one process, and it is open source under both tests; it is not counted among the four because three projects maintain its three models.",
         ],
       },
+      {
+        id: "citation",
+        navLabel: "Cite",
+        eyebrow: "Cite",
+        title: "Cite the paper.",
+        body: [
+          "The Python package is described in a paper to appear in the proceedings of SciPy 2026.",
+          `~~~bibtex
+@inproceedings{kim2026arcadedbpython,
+      title={ArcadeDB in Python: An In-Process Multi-Model Database},
+      author={Taewoon Kim},
+      booktitle={Proceedings of the Python in Science Conference (SciPy 2026)},
+      year={2026},
+      note={To appear},
+}
+~~~`,
+        ],
+      },
     ],
   },
   summary:

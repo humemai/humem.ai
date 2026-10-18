@@ -25,6 +25,14 @@ const nextConfig: NextConfig = {
     return [
       ...dbbenchRedirects,
       {
+        // 2026-10-19 (issue #26): the Multi-Model Databases umbrella is retired. With
+        // CypherGLOT and HumemDB paused it held only ArcadeDB, so the ArcadeDB page is
+        // the project. The 2026-01-28 release post links to the old path.
+        source: "/projects/multi-model-databases",
+        destination: "/projects/arcadedb",
+        permanent: true,
+      },
+      {
         // The ArcadeDB project page widened from the Python bindings alone to
         // ArcadeDB as a whole (engine plus embedded distribution), so the slug
         // moved to /projects/arcadedb. The old path is linked from the

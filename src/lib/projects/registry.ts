@@ -12,14 +12,13 @@ import {
   humemdb,
   kgMemoryTransfer,
   machinesWithHumanLikeMemory,
-  multiModelDatabases,
   roomkgBaselines,
   roomkgMetaPolicies,
 } from "./items";
 
 const featuredProjectSlugs = [
   "audit-ready-memory",
-  "multi-model-databases",
+  "arcadedb",
   "machines-with-human-like-memory",
 ] as const;
 
@@ -31,9 +30,7 @@ export const projects: Project[] = [
   roomkgMetaPolicies,
   coLearning,
   auditReadyMemory,
-  multiModelDatabases,
-  // DBBench is standalone: a project line of its own, never a subproject of
-  // Multi-Model Databases. It joins the registry (so the projects index, the
+  // DBBench is standalone: a project line of its own. It joins the registry (so the projects index, the
   // home-page rail and the sitemap) only when DBBENCH_INDEXABLE is on.
   ...(DBBENCH_INDEXABLE ? [dbbench] : []),
   // CypherGLOT and HumemDB are paused: listed only when PAUSED_DB_PROJECTS_SHOWN is on (shared.ts).
