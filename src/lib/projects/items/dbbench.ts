@@ -16,6 +16,7 @@ import {
   dbbenchIssuesUrl,
   dbbenchMethodologyUrl,
   dbbenchRepoUrl,
+  PAUSED_DB_PROJECTS_SHOWN,
 } from "../shared";
 
 const laneList = dbbenchLanes
@@ -98,7 +99,7 @@ export const dbbench: Project = {
         eyebrow: "Independence",
         title: "Who runs DBBench.",
         body: [
-          "DBBench is run by HumemAI. HumemAI also builds [HumemDB](/projects/humemdb), [CypherGLOT](/projects/cypherglot) and the [ArcadeDB Python package](/projects/arcadedb). Those projects are measured by the same rules as every other engine: the same tasks, the same machine, published settings, and a result for every failure.",
+          `DBBench is run by HumemAI. HumemAI also builds ${PAUSED_DB_PROJECTS_SHOWN ? "[HumemDB](/projects/humemdb), [CypherGLOT](/projects/cypherglot) and " : ""}the [ArcadeDB Python package](/projects/arcadedb). ${PAUSED_DB_PROJECTS_SHOWN ? "Those projects are" : "It is"} measured by the same rules as every other engine: the same tasks, the same machine, published settings, and a result for every failure.`,
           "The code and the settings are public, so anyone can check a result or reproduce it. When a result is wrong, the fix is a new row, not an edit.",
         ],
       },

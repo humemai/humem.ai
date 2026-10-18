@@ -1,3 +1,4 @@
+import { PAUSED_DB_PROJECTS_SHOWN } from "../shared";
 import type { Project } from "../types";
 
 export const multiModelDatabases: Project = {
@@ -23,8 +24,12 @@ export const multiModelDatabases: Project = {
     "This project forms the infrastructure layer behind HumemAI's database direction. It connects the pieces that make a more honest multi-model stack possible, from embedded Python bindings and Cypher compilation to a runtime that coordinates the engines instead of pretending they are all the same system.",
   links: [
     { label: "ArcadeDB", href: "/projects/arcadedb" },
-    { label: "CypherGLOT", href: "/projects/cypherglot" },
-    { label: "HumemDB", href: "/projects/humemdb" },
+    ...(PAUSED_DB_PROJECTS_SHOWN
+      ? [
+          { label: "CypherGLOT", href: "/projects/cypherglot" },
+          { label: "HumemDB", href: "/projects/humemdb" },
+        ]
+      : []),
     { label: "Contact", href: "/contact" },
   ],
 };
