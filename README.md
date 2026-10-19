@@ -4,7 +4,7 @@ Public website for HumemAI, an open source organization building memory systems 
 
 ## Pages
 
-- `/` home, `/software`, `/research`, `/news`: the open source software, the research, and the writing around them. Software is what you install or run; Research is what you read and cite. Each project has one page, under `/software/<slug>` or `/research/<slug>`, and a project can also have a card in the other section (`crossListing`). The map from slug to section is `src/lib/projects/sections.ts`.
+- `/` home, `/software`, `/research`, `/news`: the open source software, the research, and the writing around them. Software is what you install or run; Research is what you read and cite. Each project has one page, under `/software/<slug>` or `/research/<slug>`, and a project can also have a card in the other section (`crossListing`). The map from slug to section is `src/lib/projects/sections.ts`. Cards are sorted newest first by each project's `date`.
 - `/about`, `/contact`: the organization itself. Contributing is described on `/software` and `/research`, since everything there is open. HumemAI is an open source organization; the site must not suggest a product, pricing, or hosted tier.
 - `/product`, `/pricing`, and `/careers` were removed on 2026-09-16 and redirect permanently (see `next.config.ts`).
 

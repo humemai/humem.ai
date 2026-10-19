@@ -3,6 +3,7 @@ import type { Project } from "../types";
 
 export const machinesWithHumanLikeMemory: Project = {
   slug: "machines-with-human-like-memory",
+  date: "2026-07-28",
   title: "Machines With Human-Like Memory",
   featuredPage: {
     problemHeading: "Memory should be a first-class AI architecture problem.",

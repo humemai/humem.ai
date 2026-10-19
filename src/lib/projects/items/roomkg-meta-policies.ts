@@ -2,6 +2,7 @@ import type { Project } from "../types";
 
 export const roomkgMetaPolicies: Project = {
 	slug: "roomkg-meta-policies",
+	date: "2026-07-28",
 	title: "RoomKG Meta-Policies",
 	editorialPage: {
 		layout: "editorial",

@@ -14,6 +14,7 @@ The public website of HumemAI, an open source organization building memory syste
 
 ## Rules for agents
 
+- A new project needs a `date` (the day it first went public); the Software and Research cards sort on it, newest first.
 - A moved URL always ships with a permanent redirect in `next.config.ts`, straight to the final page (no chains). The old `/projects/...` redirects are generated from `sections.ts`; a new project needs no redirect, but a project that changes section does.
 - Every illustration comes from `scripts/gen-image.mjs`. Do not draw, recolor or hand-edit one. Commit the PNG, the spec and the stored prompt together.
 - The OpenRouter key comes only from `OPENROUTER_API_KEY`, or from the file named by `OPENROUTER_KEY_FILE` outside every repository. Never print, commit, paste or send it, and never write where it is kept into a file, commit message, issue or comment.

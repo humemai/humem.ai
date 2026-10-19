@@ -2,6 +2,7 @@ import type { Project } from "../types";
 
 export const explicitMemory: Project = {
   slug: "explicit-memory",
+  date: "2022-12-05",
   title: "Explicit Memory",
   editorialPage: {
     layout: "editorial",
