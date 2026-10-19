@@ -3,6 +3,7 @@ import type { Project } from "../types";
 export const coLearning: Project = {
 	slug: "co-learning",
 	date: "2026-06-19",
+	venue: "RO-MAN 2026",
 	title: "Co-Learning",
 	editorialPage: {
 		layout: "editorial",

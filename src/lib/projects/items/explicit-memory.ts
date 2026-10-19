@@ -3,6 +3,7 @@ import type { Project } from "../types";
 export const explicitMemory: Project = {
   slug: "explicit-memory",
   date: "2022-12-05",
+  venue: "AAAI 2023",
   title: "Explicit Memory",
   editorialPage: {
     layout: "editorial",
@@ -97,17 +98,14 @@ The total long-term budget is therefore $|\\mathbf{M}_e| + |\\mathbf{M}_s|$, whi
         title: "Cite our paper.",
         body: [
           `~~~bibtex
-@article{Kim_Cochez_Francois-Lavet_Neerincx_Vossen_2023,
-  title={A Machine with Short-Term, Episodic, and Semantic Memory Systems},
-  volume={37},
-  url={https://ojs.aaai.org/index.php/AAAI/article/view/25075},
-  DOI={10.1609/aaai.v37i1.25075},
-  number={1},
-  journal={Proceedings of the AAAI Conference on Artificial Intelligence},
-  author={Kim, Taewoon and Cochez, Michael and Francois-Lavet, Vincent and Neerincx, Mark and Vossen, Piek},
-  year={2023},
-  month={Jun.},
-  pages={48-56}
+@misc{kim2022machineshorttermepisodicsemantic,
+      title={A Machine with Short-Term, Episodic, and Semantic Memory Systems},
+      author={Taewoon Kim and Michael Cochez and Vincent François-Lavet and Mark Neerincx and Piek Vossen},
+      year={2022},
+      eprint={2212.02098},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2212.02098},
 }
 ~~~`,
         ],

@@ -105,7 +105,7 @@ export function EditorialProjectPage({ project, dataset, banner, parent, section
     ? editorialSections.filter((section) => section.id !== "citation")
     : editorialSections;
   const heroActionLinks = projectLinks.slice(0, 2);
-  const editorialLabel = eyebrow ?? sectionLabel;
+  const editorialLabel = eyebrow ?? (project.venue ? `${sectionLabel} · ${project.venue}` : sectionLabel);
 
   const renderEditorialBodyBlock = (sectionId: string, block: ProjectEditorialBodyBlock, index: number) => {
     if (typeof block === "string") {
