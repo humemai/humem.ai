@@ -102,7 +102,7 @@ export const arcadeDbSoftware: Project = {
         eyebrow: "Benchmarks",
         title: "How fast it is.",
         body: [
-          "We benchmark ArcadeDB against the engines people use for each kind of data. The numbers, the settings and the paper are on the [ArcadeDB research page](/research/arcadedb), and the cross-engine results are in [DBBench](/software/dbbench).",
+          "We benchmark ArcadeDB against the engines people use for each kind of data. The numbers, the settings and the paper are on the [ArcadeDB research page](/research/arcadedb), and the cross-engine results are in [DBBench](/research/dbbench).",
         ],
       },
     ],

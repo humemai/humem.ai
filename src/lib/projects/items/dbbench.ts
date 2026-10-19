@@ -1,6 +1,6 @@
-// DBBench: the benchmark as its own project, standalone. Rendered at /software/dbbench from the same
+// DBBench: the benchmark as its own project, standalone. Rendered at /research/dbbench from the same
 // payload the October preview uses. Lane pages live under it
-// (/software/dbbench/<lane>, see src/lib/dbbench/lanes.ts).
+// (/research/dbbench/<lane>, see src/lib/dbbench/lanes.ts).
 //
 // The methodology points below summarise docs.humem.ai/dbbench/latest/methodology/.
 // When that page changes, change this list in the same pull request.
@@ -18,7 +18,7 @@ import {
 } from "../shared";
 
 const laneList = dbbenchLanes
-  .map((lane) => `- [${lane.title}](/software/dbbench/${lane.slug}): ${lane.blurb}`)
+  .map((lane) => `- [${lane.title}](/research/dbbench/${lane.slug}): ${lane.blurb}`)
   .join("\n");
 
 // One section per lane: what it measures, its headline table, and a link to
@@ -34,7 +34,7 @@ const laneSections = dbbenchLanes.map((lane) => {
       caption: headline.caption,
       showDigests: headline.showDigests,
     },
-    `[Every ${lane.title.toLowerCase()} table](/software/dbbench/${lane.slug}), with the rest of the tasks in this lane.`,
+    `[Every ${lane.title.toLowerCase()} table](/research/dbbench/${lane.slug}), with the rest of the tasks in this lane.`,
   ];
   return {
     id: lane.slug,
