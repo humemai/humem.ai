@@ -72,7 +72,7 @@ export default function PrivacyPolicyPage() {
         ]}
       >
         <p>
-          If anything here is unclear, contact HumemAI directly. For broader updates on the projects, you can also browse the latest news.
+          If anything here is unclear, contact HumemAI directly. For broader updates on the software and research, you can also browse the latest news.
         </p>
       </SectionCta>
 
