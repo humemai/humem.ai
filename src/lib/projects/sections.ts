@@ -14,6 +14,7 @@ export const projectSections = {
   cypherglot: "software",
   humemdb: "software",
   "arcadedb-software": "software",
+  "arcadedb-python": "research",
   arcadedb: "research",
   "roomkg-meta-policies": "research",
   "co-learning": "research",
