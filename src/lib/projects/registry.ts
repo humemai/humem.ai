@@ -12,7 +12,6 @@ import {
   humanLikeMemorySystems,
   humemdb,
   kgMemoryTransfer,
-  machinesWithHumanLikeMemory,
   roomkgBaselines,
   roomkgMetaPolicies,
 } from "./items";
@@ -28,7 +27,6 @@ const allProjects: Project[] = [
   humanLikeMemorySystems,
   humemdb,
   kgMemoryTransfer,
-  machinesWithHumanLikeMemory,
   roomkgBaselines,
   roomkgMetaPolicies,
 ];

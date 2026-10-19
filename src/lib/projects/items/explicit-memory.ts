@@ -139,9 +139,5 @@ The total long-term budget is therefore $|\\mathbf{M}_e| + |\\mathbf{M}_s|$, whi
       label: "View GitHub (RoomEnv)",
       href: "https://github.com/humemai/room-env",
     },
-    {
-      label: "Parent project",
-      href: "/research/machines-with-human-like-memory",
-    },
   ],
 };

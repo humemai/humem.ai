@@ -172,9 +172,5 @@ class="editorial-image-compact"
 			label: "View GitHub",
 			href: "https://github.com/humemai/co-learning",
 		},
-		{
-			label: "Parent project",
-			href: "/research/machines-with-human-like-memory",
-		},
 	],
 };

@@ -33,6 +33,9 @@ const projectsRedirects = [
   { source: "/projects/multi-model-databases", destination: projectPath("arcadedb"), permanent: true },
   // The Software page was published for a day as ArcadeDB for Python.
   { source: "/software/arcadedb-python", destination: projectPath("arcadedb-software"), permanent: true },
+  // The Machines With Human-Like Memory overview page was removed: the papers are listed on /research.
+  { source: "/projects/machines-with-human-like-memory", destination: "/research", permanent: true },
+  { source: "/research/machines-with-human-like-memory", destination: "/research", permanent: true },
   // The old paginated index. The sections hold fewer cards than one page.
   { source: "/projects/page/:page", destination: "/software", permanent: true },
   { source: "/projects", destination: "/software", permanent: true },

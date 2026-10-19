@@ -178,9 +178,5 @@ Each agent maintains bounded **episodic** and **semantic** memory stores. Episod
       label: "View GitHub (RoomEnv)",
       href: "https://github.com/humemai/room-env",
     },
-    {
-      label: "Parent project",
-      href: "/research/machines-with-human-like-memory",
-    },
   ],
 };

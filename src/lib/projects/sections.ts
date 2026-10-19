@@ -15,7 +15,6 @@ export const projectSections = {
   humemdb: "software",
   "arcadedb-software": "software",
   arcadedb: "research",
-  "machines-with-human-like-memory": "research",
   "roomkg-meta-policies": "research",
   "co-learning": "research",
   "kg-memory-transfer": "research",

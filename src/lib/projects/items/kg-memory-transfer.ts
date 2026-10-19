@@ -175,9 +175,5 @@ class="editorial-image-compact"
 			label: "View GitHub",
 			href: "https://github.com/humemai/kg-memory-transfer",
 		},
-		{
-			label: "Parent project",
-			href: "/research/machines-with-human-like-memory",
-		},
 	],
 };

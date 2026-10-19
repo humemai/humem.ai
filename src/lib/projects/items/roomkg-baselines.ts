@@ -136,9 +136,5 @@ class="editorial-image-compact"
       label: "View GitHub (RoomEnv)",
       href: "https://github.com/humemai/room-env",
     },
-    {
-      label: "Parent project",
-      href: "/research/machines-with-human-like-memory",
-    },
   ],
 };
