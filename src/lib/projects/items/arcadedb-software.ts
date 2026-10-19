@@ -4,7 +4,7 @@ import { arcadeDbDocsUrl, arcadeDbRepoUrl, arcadeDbUpstreamRepoUrl } from "../sh
 // The Software page of ArcadeDB: how to run it. The papers and benchmarks are on the Research page (arcadedb.ts).
 export const arcadeDbSoftware: Project = {
   slug: "arcadedb-software",
-  date: "2026-01-28",
+  date: "2025-10-17",
   title: "ArcadeDB",
   editorialPage: {
     layout: "editorial",
