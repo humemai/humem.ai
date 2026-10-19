@@ -154,9 +154,5 @@ class="editorial-image-compact"
 			label: "View GitHub",
 			href: "https://github.com/humemai/roomkg-meta-policies",
 		},
-		{
-			label: "Parent project",
-			href: "/research/machines-with-human-like-memory",
-		},
 	],
 };

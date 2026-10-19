@@ -33,7 +33,7 @@ export const sectionCopy = {
     heroImage: "/images/projects/research-overview.png",
     heroImageAlt: "An open book with a small three-node graph above it and a rose node at the top, standing for research written down.",
     indexEyebrow: "Research",
-    indexTitle: "Papers and the thesis.",
+    indexTitle: "Papers and benchmarks.",
     noun: "research",
     actionLabel: "Read more",
     ctaTitle: "Reproduce it, or work on it with us.",
