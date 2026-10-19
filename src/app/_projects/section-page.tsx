@@ -26,10 +26,10 @@ export const sectionCopy = {
   },
   research: {
     label: "Research",
-    metaDescription: "HumemAI research: the thesis on human-like memory for machines, and the papers and benchmarks behind it.",
-    heroTitle: "Research on AI memory.",
+    metaDescription: "HumemAI research: human-like memory for machines with AI and knowledge graphs, and multi-model databases.",
+    heroTitle: "Research on AI memory and databases.",
     heroIntro:
-      "The thesis on human-like memory for machines, the papers that came out of it, and the papers on benchmarking databases. The papers, code, and data are all public.",
+      "It started with machines that have human-like memory, built with AI and knowledge graphs. It now covers databases too, multi-model ones in particular. The papers, code, and data are all public.",
     heroImage: "/images/projects/research-overview.png",
     heroImageAlt: "An open book with a small three-node graph above it and a rose node at the top, standing for research written down.",
     indexEyebrow: "Research",

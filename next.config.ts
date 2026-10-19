@@ -22,15 +22,17 @@ const dbbenchRedirects = DBBENCH_REDIRECTS_ON
 // Every page of the old /projects section, generated from the section map so the redirects cannot drift from the
 // pages. The DBBench lane pages moved with their project.
 const projectsRedirects = [
-  ...Object.keys(projectSections).map((slug) => ({
+  ...Object.keys(projectSections).filter((slug) => slug !== "arcadedb-software").map((slug) => ({
     source: `/projects/${slug}`,
     destination: projectPath(slug),
     permanent: true,
   })),
   { source: "/projects/dbbench/:lane", destination: "/software/dbbench/:lane", permanent: true },
   // Slugs retired before the sections existed. Each points straight at the final page.
-  { source: "/projects/arcadedb-embedded-python", destination: projectPath("arcadedb-python"), permanent: true },
+  { source: "/projects/arcadedb-embedded-python", destination: projectPath("arcadedb-software"), permanent: true },
   { source: "/projects/multi-model-databases", destination: projectPath("arcadedb"), permanent: true },
+  // The Software page was published for a day as ArcadeDB for Python.
+  { source: "/software/arcadedb-python", destination: projectPath("arcadedb-software"), permanent: true },
   // The old paginated index. The sections hold fewer cards than one page.
   { source: "/projects/page/:page", destination: "/software", permanent: true },
   { source: "/projects", destination: "/software", permanent: true },

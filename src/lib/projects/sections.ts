@@ -13,7 +13,7 @@ export const projectSections = {
   "audit-ready-memory": "software",
   cypherglot: "software",
   humemdb: "software",
-  "arcadedb-python": "software",
+  "arcadedb-software": "software",
   arcadedb: "research",
   "machines-with-human-like-memory": "research",
   "roomkg-meta-policies": "research",
@@ -24,6 +24,21 @@ export const projectSections = {
   "human-like-memory-systems": "research",
 } as const satisfies Record<string, Section>;
 
+// A project is known by its id (the key above); the URL uses the id unless it is listed here. ArcadeDB has a page in
+// each section, so the Software page keeps its own id and takes the same URL slug in its own section.
+const pathSlugs: Record<string, string> = { "arcadedb-software": "arcadedb" };
+
+export function projectPathSlug(id: string): string {
+  return pathSlugs[id] ?? id;
+}
+
+/** The project whose canonical page is /<section>/<pathSlug>, or undefined. */
+export function projectIdForPath(section: Section, pathSlug: string): string | undefined {
+  return Object.keys(projectSections).find(
+    (id) => (projectSections as Record<string, Section>)[id] === section && projectPathSlug(id) === pathSlug,
+  );
+}
+
 export type ProjectSlug = keyof typeof projectSections;
 
 export function projectPath(slug: string): string {
@@ -31,5 +46,5 @@ export function projectPath(slug: string): string {
   if (!section) {
     throw new Error(`Project "${slug}" has no section in src/lib/projects/sections.ts`);
   }
-  return `/${section}/${slug}`;
+  return `/${section}/${projectPathSlug(slug)}`;
 }
