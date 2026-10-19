@@ -89,7 +89,6 @@ export default async function DbbenchLanePage({ params }: { params: Promise<Para
   const project: Project = {
     slug: `dbbench-${lane.slug}`,
     title: lane.title,
-    date: dbbench.date,
     summary: lane.blurb,
     image: dbbench.image,
     problem: "",

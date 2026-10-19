@@ -3,7 +3,6 @@ import { humemDbDocsUrl, humemDbRepoUrl } from "../shared";
 
 export const humemdb: Project = {
   slug: "humemdb",
-  date: "2026-03-10",
   title: "HumemDB",
   editorialPage: {
     layout: "editorial",

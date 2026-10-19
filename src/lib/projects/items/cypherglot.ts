@@ -3,7 +3,6 @@ import { cypherglotDocsUrl, cypherglotRepoUrl } from "../shared";
 
 export const cypherglot: Project = {
   slug: "cypherglot",
-  date: "2026-04-07",
   title: "CypherGLOT",
   editorialPage: {
     layout: "editorial",

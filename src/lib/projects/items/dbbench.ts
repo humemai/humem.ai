@@ -47,7 +47,6 @@ const laneSections = dbbenchLanes.map((lane) => {
 
 export const dbbench: Project = {
   slug: "dbbench",
-  date: "2026-10-10",
   title: "DBBench",
   editorialPage: {
     layout: "editorial",
