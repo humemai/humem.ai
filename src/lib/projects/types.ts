@@ -106,8 +106,6 @@ export type ProjectEditorialPage = {
 export type Project = {
   slug: string;
   title: string;
-  /** The day it first went public (first release, or first paper or announcement). The index pages sort on it, newest first. */
-  date: string;
   /** Where a peer-reviewed paper was accepted, as a short label such as "ISWC 2026". Shown on the card and above the title. */
   venue?: string;
   summary: string;

@@ -5,7 +5,6 @@ import { arcadeDbDocsUrl, arcadeDbRepoUrl } from "../shared";
 // it is arcadedb-software.ts.
 export const arcadeDbPython: Project = {
   slug: "arcadedb-python",
-  date: "2026-10-07",
   venue: "SciPy 2026",
   title: "ArcadeDB in Python",
   editorialPage: {

@@ -4,22 +4,22 @@
 // Software: things you install or run. Research: things you read and cite. A project has ONE canonical page, under
 // the section it is mainly about; it may also have a card in the other section (Project.crossListing).
 //
-// The cards are sorted newest first by Project.date, so the order of the keys here does not matter, except as the
-// tie-break for two projects with the same date.
+// The order of the keys is the order of the cards on the index pages and the home page, picked by hand: a new
+// project goes where you want its card.
 export type Section = "software" | "research";
 
 export const projectSections = {
-  dbbench: "research",
+  "arcadedb-software": "software",
   "audit-ready-memory": "software",
   cypherglot: "software",
   humemdb: "software",
-  "arcadedb-software": "software",
-  "arcadedb-python": "research",
   arcadedb: "research",
+  dbbench: "research",
+  "arcadedb-python": "research",
   "roomkg-meta-policies": "research",
-  "co-learning": "research",
   "kg-memory-transfer": "research",
   "roomkg-baselines": "research",
+  "co-learning": "research",
   "explicit-memory": "research",
   "human-like-memory-systems": "research",
 } as const satisfies Record<string, Section>;

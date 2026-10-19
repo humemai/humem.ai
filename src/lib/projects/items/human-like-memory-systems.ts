@@ -3,7 +3,6 @@ import type { Project } from "../types";
 
 export const humanLikeMemorySystems: Project = {
   slug: "human-like-memory-systems",
-  date: "2022-04-04",
   title: "Human-Like Memory Systems",
   editorialPage: {
     layout: "editorial",

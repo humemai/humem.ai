@@ -3,7 +3,6 @@ import { sidnProjectUrl } from "../shared";
 
 export const auditReadyMemory: Project = {
   slug: "audit-ready-memory",
-  date: "2026-04-15",
   title: "Audit-Ready Memory",
   editorialPage: {
     layout: "editorial",
