@@ -305,6 +305,46 @@ function shortDigest(image: string | null) {
   return `${image.slice(0, at)}@${image.slice(at + 8, at + 20)}…`;
 }
 
+/** A paper's table: **bold** marks the best value, as in the paper. */
+function paperCell(cell: string) {
+  return cell.split(/(\*\*[^*]+\*\*)/).map((part, index) =>
+    part.startsWith("**") && part.endsWith("**") ? <strong key={index}>{part.slice(2, -2)}</strong> : part,
+  );
+}
+
+export function EditorialPaperTable({ caption, columns, rows }: { caption: string; columns: string[]; rows: string[][] }) {
+  return (
+    <figure className={styles.benchmarkTable}>
+      <p className={styles.benchmarkLead}>{caption}</p>
+      <div className={styles.benchmarkScroll}>
+        <table className={styles.benchmarkGrid}>
+          <thead>
+            <tr>
+              {columns.map((column) => (
+                <th scope="col" key={column}>
+                  {column}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row) => (
+              <tr key={row[0]}>
+                <th scope="row">{row[0]}</th>
+                {row.slice(1).map((cell, index) => (
+                  <td key={columns[index + 1]} data-label={columns[index + 1]}>
+                    {paperCell(cell)}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </figure>
+  );
+}
+
 export function EditorialBenchmarkTable({
   title,
   dataset,

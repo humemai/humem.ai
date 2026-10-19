@@ -11,6 +11,8 @@ Both shrink with the screen. Below 720px they are the viewport less 1rem each si
 
 ## Benchmark tables leave the text column
 
+This holds for every table on a project page, and a table on a project page is always a block: `benchmarkTable` (rows from the data payload) or `paperTable` (a table copied from a paper, with its cells in the item; generate them from the paper source, do not retype them). Both use the same scroller and phone layout below. A markdown table in a text block stays in the 736px column, so `scripts/check-item-tables.mjs` fails the build on one.
+
 From 720px up a benchmark table is as wide as its columns need: never narrower than the text column, never wider than the screen less the 1.5rem gutters, and centred on the column. A table that fits in 736px looks the same as the paragraphs around it. A wider one extends past the text, and on a large screen past the header pill. Its caption, notes, and build list stay in the column.
 
 Headers wrap only when the table is out of room. They never break inside a hyphenated word ("NEW-ORDER", "1-HOP"), and the direction arrow stays with the word before it. Below 40rem (640px) each row becomes its own labelled card.

@@ -8,7 +8,7 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import type { ReactNode } from "react";
 import type { BenchmarkDataset } from "@/components/editorial-sections";
-import { EditorialBenchmarkTable, EditorialConditions, EditorialFigureGrid, EditorialLinkSection, EditorialSection, EditorialSectionFigure, EditorialSkeletonNotes } from "@/components/editorial-sections";
+import { EditorialBenchmarkTable, EditorialPaperTable, EditorialConditions, EditorialFigureGrid, EditorialLinkSection, EditorialSection, EditorialSectionFigure, EditorialSkeletonNotes } from "@/components/editorial-sections";
 import { EditorialMediaHero } from "@/components/editorial-media-hero";
 import { EditorialSectionNav } from "@/components/editorial-section-nav";
 import { projectSections, type Section } from "@/lib/projects";
@@ -171,6 +171,10 @@ export function EditorialProjectPage({ project, dataset, banner, parent, section
           conditions={lines.filter((line): line is string => Boolean(line))}
         />
       );
+    }
+
+    if (block.type === "paperTable") {
+      return <EditorialPaperTable key={`${sectionId}-${index}`} caption={block.caption} columns={block.columns} rows={block.rows} />;
     }
 
     if (block.type === "skeletonNotes") {

@@ -34,7 +34,12 @@ export const arcadeDbPython: Project = {
           "The hybrid workflow answers one question over a Q&A corpus: find questions similar to a seed question, keep the well-scored ones, and return their best answers with the reputation of the people who wrote them. That is a vector search, then a SQL filter, then a Cypher traversal, all against one database, with identifiers passing straight from one step to the next. The first two steps can also be one statement, because `vectorNeighbors()` returns whole documents.",
           "<img\nsrc=\"/images/papers/arcadedb-python/hybrid_workflow.png\"\nalt=\"The hybrid retrieval workflow: a vector search, a SQL filter, and a graph traversal over one database\"\nclass=\"editorial-image-compact\"\n/>\n\n*A seed question's embedding drives a vector search, the resulting ids flow into a SQL filter, and the surviving ids flow into a graph traversal that reaches answers and their authors.*",
           "A capability matrix in the paper shows that no single Python-embeddable alternative expresses this whole composition.",
-          "| Capability | SQLite | DuckDB | LadybugDB | Chroma | ArcadeDB |\n|---|:--:|:--:|:--:|:--:|:--:|\n| Documents | ✓ | ✓ | ~ | ~ | ✓ |\n| Transactional SQL (OLTP) | ✓ | ~ | ✗ | ✗ | ✓ |\n| Analytical SQL (OLAP) | ~ | ✓ | ✗ | ✗ | ~ |\n| Property graph + traversal | ✗ | ✗ | ✓ | ✗ | ✓ |\n| Cypher | ✗ | ✗ | ✓ | ✗ | ✓ |\n| Graph approximate-nearest-neighbor index (HNSW family) | ✗ | ~ | ✓ | ✓ | ✓ |\n| All three in one engine | ✗ | ✗ | ✗ | ✗ | ✓ |\n\n*Which of the five data stores covers what. ✓ native, ~ partial or through an official extension, ✗ absent.*",
+          {
+            type: "paperTable",
+            caption: "Which of the five data stores covers what. ✓ native, ~ partial or through an official extension, ✗ absent.",
+            columns: ["Capability", "SQLite", "DuckDB", "LadybugDB", "Chroma", "ArcadeDB"],
+            rows: [["Documents", "✓", "✓", "~", "~", "✓"], ["Transactional SQL (OLTP)", "✓", "~", "✗", "✗", "✓"], ["Analytical SQL (OLAP)", "~", "✓", "✗", "✗", "~"], ["Property graph + traversal", "✗", "✗", "✓", "✗", "✓"], ["Cypher", "✗", "✗", "✓", "✗", "✓"], ["Graph approximate-nearest-neighbor index (HNSW family)", "✗", "~", "✓", "✓", "✓"], ["All three in one engine", "✗", "✗", "✗", "✗", "✓"]],
+          },
         ],
       },
       {
@@ -45,9 +50,24 @@ export const arcadeDbPython: Project = {
         body: [
           "The benchmark compares `arcadedb-embedded` with SQLite and DuckDB for documents, LadybugDB for the graph, and Chroma for vectors. The data is the Cross Validated public data dump, a statistics and machine-learning Q&A corpus of about 426k posts, 346k users and 1.2M embeddings. Every measurement runs in its own Docker container with the same cores and memory for every engine, and is repeated 5 times in fresh containers. The tables report the median with the full range.",
           "Each specialist is faster on its own model: DuckDB by two orders of magnitude on analytical SQL, LadybugDB by an order of magnitude on graph analytics, SQLite on point reads and writes of documents, and Chroma on building and querying a vector index. `arcadedb-embedded` holds its own while covering all three. It beats LadybugDB on transactional graph work, beats DuckDB on point reads, and matches Chroma's recall with less memory. The price of being a generalist is mainly memory and loading time.",
-          "| Backend | OLTP ops/s | OLAP ms | Ingest s | Peak MiB | DB MiB |\n|---|--:|--:|--:|--:|--:|\n| SQLite | **87,150** [59,138–88,591] | 292.8 [284.4–293.9] | **0.33** [0.32–0.36] | **299** [277–304] | 20.1 |\n| DuckDB | 219 [199–226] | **9.3** [9.3–9.6] | 0.38 [0.37–0.39] | 301 [296–308] | **17.3** |\n| ArcadeDB | 6,416 [6,091–6,826] | 1,406.6 [1,382.1–1,432.4] | 17.52 [17.15–17.95] | 803 [763–846] | 38.5 |\n\n*Documents on the Cross Validated corpus. OLTP in operations per second, OLAP in milliseconds, ingest in seconds, peak memory and database size in MiB. Median with the [min–max] range over 5 repetitions; the best value is in bold.*",
-          "| Backend | OLTP ops/s | OLAP ms | GAV build s | Ingest s | Peak MiB | DB MiB |\n|---|--:|--:|--:|--:|--:|--:|\n| LadybugDB | 525 [467–532] | **65.7** [64.9–66.9] | n/a | **0.63** [0.61–0.64] | **684** [675–688] | **41.4** |\n| ArcadeDB | **3,212** [3,034–3,629] | 839.6 [794.7–875.1] | 1.49 [1.39–1.77] | 26.67 [26.21–26.92] | 11,037 [10,561–11,190] | 1,840.8 |\n\n*Graph on the same corpus. OLTP in operations per second, OLAP in milliseconds, ingest in seconds, peak memory and database size in MiB. Median with the [min–max] range over 5 repetitions; the best value is in bold.*",
-          "| Backend | Build s | Query ms | recall@10 | Peak MiB | DB MiB |\n|---|--:|--:|--:|--:|--:|\n| Chroma | **319.1** [315.7–320.6] | **1.17** [1.15–1.17] | 0.972 [0.970–0.972] | 25,212 [25,173–27,002] | **2,208** |\n| ArcadeDB | 546.1 [541.3–550.6] | 4.15 [3.86–4.17] | **0.980** [0.978–0.981] | **21,650** [19,680–21,791] | 2,856 |\n\n*Vectors, 1.2M of them, at a matched index degree. Build is insert plus index time in seconds, Query is the mean latency per query in milliseconds, and recall@10 is against an exact ground truth. Median with the [min–max] range over 5 repetitions; the best value is in bold.*",
+          {
+            type: "paperTable",
+            caption: "Documents on the Cross Validated corpus. OLTP in operations per second, OLAP in milliseconds, ingest in seconds, peak memory and database size in MiB. Median with the [min–max] range over 5 repetitions; the best value is in bold.",
+            columns: ["Backend", "OLTP ops/s", "OLAP ms", "Ingest s", "Peak MiB", "DB MiB"],
+            rows: [["SQLite", "**87,150** [59,138–88,591]", "292.8 [284.4–293.9]", "**0.33** [0.32–0.36]", "**299** [277–304]", "20.1"], ["DuckDB", "219 [199–226]", "**9.3** [9.3–9.6]", "0.38 [0.37–0.39]", "301 [296–308]", "**17.3**"], ["ArcadeDB", "6,416 [6,091–6,826]", "1,406.6 [1,382.1–1,432.4]", "17.52 [17.15–17.95]", "803 [763–846]", "38.5"]],
+          },
+          {
+            type: "paperTable",
+            caption: "Graph on the same corpus. OLTP in operations per second, OLAP in milliseconds, ingest in seconds, peak memory and database size in MiB. Median with the [min–max] range over 5 repetitions; the best value is in bold.",
+            columns: ["Backend", "OLTP ops/s", "OLAP ms", "GAV build s", "Ingest s", "Peak MiB", "DB MiB"],
+            rows: [["LadybugDB", "525 [467–532]", "**65.7** [64.9–66.9]", "n/a", "**0.63** [0.61–0.64]", "**684** [675–688]", "**41.4**"], ["ArcadeDB", "**3,212** [3,034–3,629]", "839.6 [794.7–875.1]", "1.49 [1.39–1.77]", "26.67 [26.21–26.92]", "11,037 [10,561–11,190]", "1,840.8"]],
+          },
+          {
+            type: "paperTable",
+            caption: "Vectors, 1.2M of them, at a matched index degree. Build is insert plus index time in seconds, Query is the mean latency per query in milliseconds, and recall@10 is against an exact ground truth. Median with the [min–max] range over 5 repetitions; the best value is in bold.",
+            columns: ["Backend", "Build s", "Query ms", "recall@10", "Peak MiB", "DB MiB"],
+            rows: [["Chroma", "**319.1** [315.7–320.6]", "**1.17** [1.15–1.17]", "0.972 [0.970–0.972]", "25,212 [25,173–27,002]", "**2,208**"], ["ArcadeDB", "546.1 [541.3–550.6]", "4.15 [3.86–4.17]", "**0.980** [0.978–0.981]", "**21,650** [19,680–21,791]", "2,856"]],
+          },
           "The paper also measures how results cross into Python: row by row, as one JSON string per batch, as a packed columnar buffer read with NumPy, and as an Arrow table. The numbers describe release 26.8.1.",
         ],
       },
