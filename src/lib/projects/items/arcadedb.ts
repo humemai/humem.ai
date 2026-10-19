@@ -181,7 +181,7 @@ export const arcadeDb: Project = {
         eyebrow: "Embedded",
         title: "The engine as a Python package.",
         body: [
-          "ArcadeDB is a Java engine, and that is friction for Python work: a separate runtime to install, a service to start, and a network hop between your code and your data. The Python package removes all three. It ships the upstream engine unmodified, with a bundled Java runtime and platform wheels, so `uv add arcadedb-embedded` or `pip install arcadedb-embedded` is the whole setup and the database runs inside your process.",
+          "ArcadeDB is a Java engine, and that is friction for Python work: a separate runtime to install, a service to start, and a network hop between your code and your data. The Python package removes all three. It ships the upstream engine unmodified, with a bundled Java runtime and platform wheels, so `uv add arcadedb-embedded` is the whole setup and the database runs inside your process.",
           "It is a full API, not a launcher. Transactions and lifecycle, schema and graph helpers, bulk ingest, import and export, and the vector features are all exposed and tested, with the example suite run in CI on every change.",
           "How to install it and use it is on the [ArcadeDB software page](/software/arcadedb) page. The engine and the Python package are maintained together. Fixes and features found through the benchmarks above are filed and, where possible, contributed upstream. Both are Apache-2.0, and both maintainers, Arcade Data for the engine and HumemAI for this package, have said they will keep it that way.",
           "What does the Python boundary cost? The engine runs at the same speed either way; what you pay for is handing results back. Against Java in the same process doing the same work, a vector search costs 1.04x and a 100k-document scan 1.75x.",
@@ -215,7 +215,7 @@ export const arcadeDb: Project = {
               { image: { src: "/images/projects/arcadedb/f8_deployment.svg", alt: "Server deployment cost relative to embedded, by result size" } },
             ],
           },
-          "Use embedded when the database serves one process: notebooks, tests, single-node services, agent tooling, and anything where a network hop per query is pure cost. It installs with `pip install`, starts in under half a second, and has no service to operate.",
+          "Use embedded when the database serves one process: notebooks, tests, single-node services, agent tooling, and anything where a network hop per query is pure cost. It installs with `uv add`, starts in under half a second, and has no service to operate.",
           "Use the server when more than one process or machine needs the same data, when you want the Postgres, Redis, Bolt, or HTTP wire protocols, or when you need Raft replication and failover. The Python package can also start a server inside your process, so you can move from one to the other later.",
           "This is a deployment decision, not a performance one. The engine is the same in both, and the difference you will feel is the boundary you put around it.",
         ],
