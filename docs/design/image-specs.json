@@ -6,5 +6,13 @@
     "purpose": "This image will be used on the DBBench project page and its card on the projects page. DBBench is an independent, open benchmark that measures many database engines on the same tasks with published settings. It should communicate fair measurement: the same yardstick for every engine, with results anyone can check.",
     "show": "One large rounded-square container drawn as a thick oxblood outline. Inside it, standing on one thick horizontal oxblood baseline, four solid filled oxblood vertical bars of clearly different heights, evenly spaced. Above the second tallest bar floats one small solid filled rose circle, the marker for the result that matters.",
     "alt": "Illustration of four bars of different heights on a shared baseline inside a frame, one marked with a rose dot, standing for a fair benchmark."
+  },
+  {
+    "id": "arcadedb-project",
+    "out": "public/images/projects/project-arcadedb.png",
+    "aspect": "1:1",
+    "purpose": "This image will be used on the ArcadeDB project page and its card on the projects page. ArcadeDB is one database engine that keeps documents, graphs, vectors and time series together and changes them in one transaction. It should communicate four kinds of data held together in one engine around one shared core.",
+    "show": "One large rounded-square container drawn as a thick oxblood outline, open and empty inside except for five shapes. At its exact center, one solid filled rose circle. Around the circle, evenly spaced, four small solid filled oxblood symbols: upper left, a plain solid rectangle with one folded corner (a document); upper right, three small solid round nodes at the corners of a triangle, joined by three straight edges (a graph); lower left, one small solid dot with two thick straight arrows growing out of it, spreading apart at a narrow angle toward the upper right (vectors); lower right, one thick line climbing in three even right-angle steps from lower left to upper right (a time series).",
+    "alt": "Illustration of a document, a triangle graph, vector arrows and a stepped time-series line in one frame around a rose circle at the center, standing for one engine that holds four kinds of data."
   }
 ]

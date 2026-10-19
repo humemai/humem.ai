@@ -1,0 +1,32 @@
+Generate a 1:1 square illustration for the HumemAI website.
+
+Purpose:
+This image will be used on the ArcadeDB project page and its card on the projects page. ArcadeDB is one database engine that keeps documents, graphs, vectors and time series together and changes them in one transaction. It should communicate four kinds of data held together in one engine around one shared core.
+
+What to show:
+One large rounded-square container drawn as a thick oxblood outline, open and empty inside except for five shapes. At its exact center, one solid filled rose circle. Around the circle, evenly spaced, four small solid filled oxblood symbols: upper left, a plain solid rectangle with one folded corner (a document); upper right, three small solid round nodes at the corners of a triangle, joined by three straight edges (a graph); lower left, one small solid dot with two thick straight arrows growing out of it, spreading apart at a narrow angle toward the upper right (vectors); lower right, one thick line climbing in three even right-angle steps from lower left to upper right (a time series).
+
+Style:
+Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
+
+Fills:
+Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
+
+Palette, exactly these three colors and nothing else:
+- background: warm off-white #faf8f5
+- every shape and every stroke: deep oxblood #892122
+- the single most important element only: soft rose #e88e8b
+Do not use black, grey, white, or any other color anywhere. No gradients, no lighting effects, no shadows, no texture.
+
+Content discipline:
+Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
+
+Composition:
+Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
+
+Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
+
+Aspect ratio: 1:1 square.
+
+[model google/gemini-3-pro-image, 2 candidates, best audit: off-palette 83.93%, stray charcoal 0.00%]
+Alt text: Illustration of a document, a triangle graph, vector arrows and a stepped time-series line in one frame around a rose circle at the center, standing for one engine that holds four kinds of data.

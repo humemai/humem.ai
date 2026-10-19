@@ -450,44 +450,7 @@ Aspect ratio: 1:1 square.
 Filename: `project-cypherglot-compiler.png`
 Alt text: `Illustration of Cypher query compilation into normalized graph-relational output.`
 
-## 12. ArcadeDB Embedded Python Project Visual
-
-```text
-Generate a 1:1 square illustration for the HumemAI website.
-
-Purpose:
-This image will be used on the ArcadeDB Embedded Python project page. It should communicate native Python bindings for a powerful embedded multi-model database with graph, vector, document, and local in-process usage.
-
-What to show:
-One large rounded-square container drawn as a thick oxblood outline. Inside it, four small solid filled oxblood shapes arranged in a two-by-two block: a circle, a diamond, a square and a short capsule, representing different data modes. Attached to the top-left of the container by a short thick rose line is a solid filled rose capsule. Seven elements total.
-
-Style:
-Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
-
-Fills:
-Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
-
-Palette, exactly these three colors and nothing else:
-- background: warm off-white #faf8f5
-- every shape and every stroke: deep oxblood #892122
-- the single most important element only: soft rose #e88e8b
-Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
-
-Content discipline:
-Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
-
-Composition:
-Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
-
-Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
-
-Aspect ratio: 1:1 square.
-```
-
-Filename: `project-arcadedb-embedded-python.png`
-Alt text: `Illustration of Python connected to an embedded multi-model database runtime.`
-
-## 13. HumemDB Project Visual
+## 12. HumemDB Project Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -524,7 +487,7 @@ Aspect ratio: 1:1 square.
 Filename: `project-humemdb-runtime.png`
 Alt text: `Illustration of an embedded runtime coordinating SQL, graph, and vector workloads.`
 
-## 14. Careers Visual
+## 13. Careers Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -561,7 +524,7 @@ Aspect ratio: 1:1 square.
 Filename: `careers-build-with-memory.png` (removed 2026-09-16 with the Careers page; no longer shipped)
 Alt text: `Illustration representing collaborative work on AI memory systems.`
 
-## 15. News Visual
+## 14. News Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -598,7 +561,7 @@ Aspect ratio: 1:1 square.
 Filename: `news-writing-and-research.png`
 Alt text: `Illustration representing technical writing, research updates, and structured knowledge.`
 
-## 16. Privacy Policy Visual
+## 15. Privacy Policy Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -635,7 +598,7 @@ Aspect ratio: 1:1 square.
 Filename: `privacy-policy-trust-and-choice.png`
 Alt text: `Illustration representing privacy, transparency, and user control.`
 
-## 17. Human-Like Memory Systems Project Visual
+## 16. Human-Like Memory Systems Project Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -672,7 +635,7 @@ Aspect ratio: 1:1 square.
 Filename: `project-human-like-memory-systems.png`
 Alt text: `Illustration of RoomEnv-v0 with explicit episodic and semantic memory.`
 
-## 18. Explicit Memory Project Visual
+## 17. Explicit Memory Project Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -709,7 +672,7 @@ Aspect ratio: 1:1 square.
 Filename: `project-explicit-memory.png`
 Alt text: `Illustration of a reinforcement-learning agent managing short-term, episodic, and semantic memory in RoomEnv-v1.`
 
-## 19. RoomKG Baselines Project Visual
+## 18. RoomKG Baselines Project Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -746,7 +709,7 @@ Aspect ratio: 1:1 square.
 Filename: `project-roomkg-baselines.png`
 Alt text: `Illustration of a partially observable room benchmark connected to temporal knowledge-graph memory and baseline comparisons.`
 
-## 20. Co-Learning Project Visual
+## 19. Co-Learning Project Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -783,7 +746,7 @@ Aspect ratio: 1:1 square.
 Filename: `project-co-learning.png`
 Alt text: `Illustration of reusing a prior human-robot collaboration pattern as knowledge-graph episodic memory in a search-and-rescue task.`
 
-## 21. KG Memory Transfer Project Visual
+## 20. KG Memory Transfer Project Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -820,7 +783,7 @@ Aspect ratio: 1:1 square.
 Filename: `project-kg-memory-transfer.png`
 Alt text: `Illustration of selective transfer from short-term observations into long-term temporal knowledge-graph memory under partial observability.`
 
-## 22. RoomKG Meta-Policies Project Visual
+## 21. RoomKG Meta-Policies Project Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
