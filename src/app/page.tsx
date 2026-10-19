@@ -87,7 +87,7 @@ export default function Home() {
       <div className={`${styles.sectionShell} ${styles.railSection}`}>
           <SectionIntro
             eyebrow="Software"
-            title="Open source software you can run."
+            title="Open source software."
             aside="Databases, a benchmark, and the tools around them."
           />
           <div className={styles.railShell}>
@@ -98,7 +98,7 @@ export default function Home() {
       <div className={`${styles.sectionShell} ${styles.railSection}`}>
           <SectionIntro
             eyebrow="Research"
-            title="Open research you can read and cite."
+            title="Research on AI memory."
             aside="The thesis, the papers behind it, and the benchmark papers."
           />
           <div className={styles.railShell}>

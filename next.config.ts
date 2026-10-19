@@ -29,7 +29,7 @@ const projectsRedirects = [
   })),
   { source: "/projects/dbbench/:lane", destination: "/software/dbbench/:lane", permanent: true },
   // Slugs retired before the sections existed. Each points straight at the final page.
-  { source: "/projects/arcadedb-embedded-python", destination: projectPath("arcadedb"), permanent: true },
+  { source: "/projects/arcadedb-embedded-python", destination: projectPath("arcadedb-python"), permanent: true },
   { source: "/projects/multi-model-databases", destination: projectPath("arcadedb"), permanent: true },
   // The old paginated index. The sections hold fewer cards than one page.
   { source: "/projects/page/:page", destination: "/software", permanent: true },

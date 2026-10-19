@@ -3,6 +3,7 @@ import { projectPath, projectSections, type Section } from "./sections";
 import type { Project } from "./types";
 import {
   arcadeDb,
+  arcadeDbPython,
   auditReadyMemory,
   coLearning,
   cypherglot,
@@ -18,6 +19,7 @@ import {
 
 const allProjects: Project[] = [
   arcadeDb,
+  arcadeDbPython,
   auditReadyMemory,
   coLearning,
   cypherglot,
