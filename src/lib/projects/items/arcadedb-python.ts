@@ -1,7 +1,7 @@
 import type { Project } from "../types";
 import { arcadeDbDocsUrl, arcadeDbRepoUrl } from "../shared";
 
-// The SciPy 2026 paper about the Python package. The page of the engine and its benchmarks is arcadedb.ts; how to run
+// The paper about the Python package. The page of the engine and its benchmarks is arcadedb.ts; how to run
 // it is arcadedb-software.ts.
 export const arcadeDbPython: Project = {
   slug: "arcadedb-python",
@@ -17,53 +17,51 @@ export const arcadeDbPython: Project = {
         eyebrow: "Paper",
         title: "One database inside the Python process.",
         body: [
-          "Some Python work needs transactional reads and writes over documents, traversals over a graph, and similarity search over vectors. The usual answer is three systems, with the data copied between them and kept consistent by application code.",
-          "ArcadeDB is one engine that holds all three. This paper describes `arcadedb-embedded`, the Python package that runs it inside your process, and shows a retrieval workflow that chains vector search, SQL filtering and graph traversal over one dataset. It benchmarks the package against SQLite, DuckDB, LadybugDB and Chroma, and reports what it costs. The paper is accepted at SciPy 2026.",
+          "Some Python work needs transactional reads and writes over documents, traversals over a graph, and similarity search over vectors. The usual answer is a stack of specialists, such as SQLite or DuckDB for documents, NetworkX or LadybugDB for the graph, and FAISS, hnswlib or Chroma for vectors. Each one holds its own copy of the data, with its own consistency model, so every write has to reach all of them.",
+          "The paper describes the alternative: ArcadeDB, one multi-model engine for documents, a property graph and vector indexes, running inside the Python process. Documents are queried in SQL, the graph in openCypher, and vectors through an HNSW-family graph index. Transactional and analytical queries run over the same data, and the engine is ACID.",
+          "It has three contributions. The first is the package itself, `arcadedb-embedded`. The second is a hybrid workflow that chains vector search, SQL filtering and graph traversal over one dataset. The third is a benchmark against embedded specialists, with what the unified engine costs.",
         ],
       },
       {
-        id: "embedded",
-        navLabel: "Python",
-        eyebrow: "Embedded",
-        title: "What running it inside Python costs.",
+        id: "architecture",
+        navLabel: "Architecture",
+        eyebrow: "Architecture",
+        title: "The engine runs inside the interpreter.",
         body: [
-          "ArcadeDB is a Java engine, and that is friction for Python work: a separate runtime to install, a service to start, and a network hop between your code and your data. The Python package removes all three. It ships the upstream engine unmodified, with a bundled Java runtime and platform wheels, so `uv add arcadedb-embedded` is the whole setup and the database runs inside your process.",
-          "It is a full API, not a launcher. Transactions and lifecycle, schema and graph helpers, bulk ingest, import and export, and the vector features are all exposed and tested, with the example suite run in CI on every change.",
-          "How to install it and use it is on the [ArcadeDB software page](/software/arcadedb) page. The engine and the Python package are maintained together. Fixes and features found through the benchmarks above are filed and, where possible, contributed upstream. Both are Apache-2.0, and both maintainers, Arcade Data for the engine and HumemAI for this package, have said they will keep it that way.",
-          "What does the Python boundary cost? The engine runs at the same speed either way; what you pay for is handing results back. Against Java in the same process doing the same work, a vector search costs 1.04x and a 100k-document scan 1.75x.",
-          "The bigger number is inside Python. Asking for record objects is 15.1x slower than asking for columns over the same query, so which call you use, `to_list` or `to_columns`, matters more than the language boundary does. Check that before blaming the engine for a slow loop.",
-          {
-            type: "benchmarkTable",
-            tableId: "pycost",
-            caption: "The same query answered from Java and from Python, and the three ways Python can ask for the results: `to_columns`, `to_json_list`, and `to_list`.",
-            showDigests: false,
-          },
-          "Starting the engine is the other cost, and it is paid once per process, not per query. A cold process reaches its first database call in about 0.45 s, most of it the Java runtime starting; after that, opening and closing an empty database costs about 4.4 ms. The table below is one session each, open, do one thing, close, for every kind of data at four sizes, embedded and against the server.",
-          {
-            type: "benchmarkTable",
-            tableId: "lifecycle",
-            caption: "Session cost by kind of data and size, embedded and against the server. The dense-vector rows at 1M and 10M show an engine defect, the first query after a write waited on a full index rebuild; it is filed as #7183, fixed upstream for 26.10.1, and a later campaign re-measures it.",
-            showDigests: false,
-          },
-          "Embedded or server is the deployment choice, and the tables above run the same engine build in both, so the difference between them is the deployment and not the engine. SurrealDB also has both modes, and its two rows above sit far apart: its Python package embeds a core a major version behind its server, on a different storage engine, so the embedded row wins only the point lookups the wire would have cost and loses or times out on every bulk cell. ArcadeDB's engine and Python package are released together from the same build, so that gap does not exist here.",
-          "Running the database in a separate process costs two things added together: turning the answer into a wire format that can travel over a connection, and the connection itself. The table below separates them by measuring a third deployment in between, an HTTP server running inside the same process. Embedded to that middle deployment adds the wire format without a second process. The middle deployment to a separate container adds the second process without changing the wire format.",
-          {
-            type: "benchmarkTable",
-            tableId: "e4",
-            caption: "The same projection answered by three deployments at six result sizes. The first column to the second is the wire format; the second to the third is the process boundary.",
-          },
-          "The two are nowhere near equal. The wire format costs something at every size and grows with the result. The process boundary, the second column against the third, is so small that at the smaller sizes it disappears into the noise. So the cost of running client and server as separate processes on one machine is the wire format, not the separation, and the lever that would move it is a cheaper wire format, not co-location.",
-          {
-            type: "figureGrid",
-            columns: 1,
-            caption: "What the server deployment costs relative to embedded, by result size.",
-            items: [
-              { image: { src: "/images/projects/arcadedb/f8_deployment.svg", alt: "Server deployment cost relative to embedded, by result size" } },
-            ],
-          },
-          "Use embedded when the database serves one process: notebooks, tests, single-node services, agent tooling, and anything where a network hop per query is pure cost. It installs with `uv add`, starts in under half a second, and has no service to operate.",
-          "Use the server when more than one process or machine needs the same data, when you want the Postgres, Redis, Bolt, or HTTP wire protocols, or when you need Raft replication and failover. The Python package can also start a server inside your process, so you can move from one to the other later.",
-          "This is a deployment decision, not a performance one. The engine is the same in both, and the difference you will feel is the boundary you put around it.",
+          "`arcadedb-embedded` starts an embedded JVM inside the Python process with JPype, using a Java runtime bundled in the wheel, so nobody installs Java. CPython and the JVM share one address space, so data moves without network calls or serialization between processes. Opening a database is a function call, and queries are method calls that return Python objects.",
+          "The binding covers the JVM lifecycle, transactions, and interop with NumPy, pandas and Arrow. Wheels exist for four platforms and five Python versions.",
+          "~~~bash\nuv add arcadedb-embedded\n~~~",
+        ],
+      },
+      {
+        id: "hybrid",
+        navLabel: "Hybrid workflow",
+        eyebrow: "Hybrid workflow",
+        title: "Vectors, then SQL, then the graph.",
+        body: [
+          "The paper answers one question over a Q&A corpus: find questions similar to a seed question, keep the well-scored ones, and return their best answers with the reputation of the people who wrote them. That is a vector search, then a SQL filter, then a Cypher traversal, all against one database, with identifiers passing straight from one step to the next.",
+          "A capability matrix in the paper shows that no single Python-embeddable alternative expresses this whole composition. The first two steps can also be one statement, because `vectorNeighbors()` returns whole documents, so only the graph traversal needs a second call.",
+        ],
+      },
+      {
+        id: "benchmarks",
+        navLabel: "Benchmarks",
+        eyebrow: "Benchmarks",
+        title: "Against the specialists, from Python.",
+        body: [
+          "The benchmark compares `arcadedb-embedded` with SQLite and DuckDB for documents, LadybugDB for the graph, and Chroma for vectors. The data is the Cross Validated public data dump, a statistics and machine-learning Q&A corpus of about 426k posts, 346k users and 1.2M embeddings. Every measurement runs in its own Docker container with the same cores and memory for every engine, and is repeated 5 times in fresh containers. The tables report the median with the full range.",
+          "Each specialist is faster on its own model: DuckDB by two orders of magnitude on analytical SQL, LadybugDB by an order of magnitude on graph analytics, SQLite on point reads and writes of documents, and Chroma on building and querying a vector index. `arcadedb-embedded` holds its own while covering all three. It beats LadybugDB on transactional graph work, beats DuckDB on point reads, and matches Chroma's recall with less memory. The price of being a generalist is mainly memory and loading time.",
+          "The paper also measures how results cross into Python: row by row, as one JSON string per batch, as a packed columnar buffer read with NumPy, and as an Arrow table. The numbers describe release 26.8.1.",
+        ],
+      },
+      {
+        id: "when",
+        navLabel: "When to use it",
+        eyebrow: "When to use it",
+        title: "One process, more than one kind of data.",
+        body: [
+          "It fits when an application needs two or more of documents, a graph and vector search over the same data, on one machine, with one set of identifiers and one transaction scope. Point reads and graph traversals answer in well under a millisecond, and vector queries in single-digit milliseconds at the same recall as a dedicated index.",
+          "For a workload that lives entirely in one model, the specialist is the natural choice.",
         ],
       },
       {
@@ -72,22 +70,14 @@ export const arcadeDbPython: Project = {
         eyebrow: "Cite",
         title: "Cite the paper.",
         body: [
-          "The paper is accepted at SciPy 2026 and will appear in its proceedings.",
-          `~~~bibtex
-@inproceedings{kim2026arcadedbpython,
-      title={ArcadeDB in Python: An In-Process Multi-Model Database},
-      author={Taewoon Kim},
-      booktitle={Proceedings of the Python in Science Conference (SciPy 2026)},
-      year={2026},
-      note={To appear},
-}
-~~~`,
+          "~~~bibtex\n@misc{kim2026arcadedbpython,\n      title={ArcadeDB in Python: An In-Process Multi-Model Database},\n      author={Taewoon Kim},\n      year={2026},\n}\n~~~",
+          "The package is Apache-2.0. The benchmark suite and the results behind every table are public in the repository.",
         ],
       },
     ],
   },
   summary:
-    "A SciPy 2026 paper on running ArcadeDB inside the Python process: documents, a graph and vectors in one embedded database, with what it costs.",
+    "One embedded database for documents, a graph and vectors, running inside the Python process. How it works, how it compares with the specialists, and what it costs.",
   image: {
     src: "/images/projects/project-arcadedb-python.png",
     alt: "Illustration of three stacked slabs with the middle one in rose, inside a larger outlined square, standing for a database running inside a process.",
