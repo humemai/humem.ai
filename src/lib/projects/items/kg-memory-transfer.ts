@@ -3,8 +3,7 @@ import type { Project } from "../types";
 export const kgMemoryTransfer: Project = {
 	slug: "kg-memory-transfer",
 	title: "KG Memory Transfer",
-	timelineOrder: 4,
-	subprojectPage: {
+	editorialPage: {
 		layout: "editorial",
 		linksHeading: "Paper, code, and project links.",
 		sections: [
@@ -177,7 +176,7 @@ class="editorial-image-compact"
 		},
 		{
 			label: "Parent project",
-			href: "/projects/machines-with-human-like-memory",
+			href: "/research/machines-with-human-like-memory",
 		},
 	],
 };

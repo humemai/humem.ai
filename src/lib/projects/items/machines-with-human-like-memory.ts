@@ -4,20 +4,11 @@ import type { Project } from "../types";
 export const machinesWithHumanLikeMemory: Project = {
   slug: "machines-with-human-like-memory",
   title: "Machines With Human-Like Memory",
-  showOnProjectsIndex: true,
   featuredPage: {
     problemHeading: "Memory should be a first-class AI architecture problem.",
     solutionHeading: "A research line from benchmark environments to explicit memory systems.",
     acknowledgementsHeading: "Research support from Hybrid Intelligence.",
   },
-  subprojectSlugs: [
-    "human-like-memory-systems",
-    "explicit-memory",
-    "roomkg-baselines",
-    "kg-memory-transfer",
-    "roomkg-meta-policies",
-    "co-learning",
-  ],
   summary:
     "A PhD research project on explicit memory architectures for AI, spanning benchmarks, handcrafted agents, learned policies, and temporal knowledge-graph memory.",
   image: {
@@ -39,12 +30,12 @@ export const machinesWithHumanLikeMemory: Project = {
     trailingText: ".",
   },
   links: [
-    { label: "Human-Like Memory Systems", href: "/projects/human-like-memory-systems" },
-    { label: "Explicit Memory", href: "/projects/explicit-memory" },
-    { label: "RoomKG Baselines", href: "/projects/roomkg-baselines" },
-    { label: "KG Memory Transfer", href: "/projects/kg-memory-transfer" },
-    { label: "RoomKG Meta-Policies", href: "/projects/roomkg-meta-policies" },
-    { label: "Co-Learning", href: "/projects/co-learning" },
+    { label: "Human-Like Memory Systems", href: "/research/human-like-memory-systems" },
+    { label: "Explicit Memory", href: "/research/explicit-memory" },
+    { label: "RoomKG Baselines", href: "/research/roomkg-baselines" },
+    { label: "KG Memory Transfer", href: "/research/kg-memory-transfer" },
+    { label: "RoomKG Meta-Policies", href: "/research/roomkg-meta-policies" },
+    { label: "Co-Learning", href: "/research/co-learning" },
     { label: "Contact", href: "/contact" },
   ],
 };

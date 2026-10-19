@@ -13,12 +13,12 @@ export default function NotFound() {
         <p className={styles.eyebrow}>404</p>
         <h1 className={styles.title}>This page isn&apos;t here.</h1>
         <p className={styles.lead}>
-          The link may be old or mistyped. The projects and the news cover everything HumemAI
-          publishes.
+          The link may be old or mistyped. The software, the research, and the news cover everything
+          HumemAI publishes.
         </p>
         <div className={styles.actions}>
-          <Link className={styles.primaryAction} href="/projects">
-            Browse the projects
+          <Link className={styles.primaryAction} href="/software">
+            Browse the software
           </Link>
           <Link className={styles.secondaryAction} href="/news">
             Read the news

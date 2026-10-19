@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { getAllNewsPosts } from "@/lib/news-posts";
 import { DBBENCH_INDEXABLE } from "@/lib/dbbench/config";
 import { dbbenchLanes } from "@/lib/dbbench/lanes";
-import { projects } from "@/lib/projects";
+import { projectPath, projects } from "@/lib/projects";
 
 const SITE = "https://humem.ai";
 
@@ -10,15 +10,15 @@ const SITE = "https://humem.ai";
 // without having to crawl for them. Paginated listings and the ArcadeDB
 // benchmark preview are left out on purpose.
 export default function sitemap(): MetadataRoute.Sitemap {
-  const pages = ["", "/about", "/projects", "/news", "/contact", "/privacy-policy"];
+  const pages = ["", "/about", "/software", "/research", "/news", "/contact", "/privacy-policy"];
   return [
     ...pages.map((path) => ({ url: `${SITE}${path}` })),
     // DBBench can be listed before it is indexable (DBBENCH_LISTED); a noindex page stays out of the sitemap.
     ...projects
       .filter((project) => project.slug !== "dbbench" || DBBENCH_INDEXABLE)
-      .map((project) => ({ url: `${SITE}/projects/${project.slug}` })),
+      .map((project) => ({ url: `${SITE}${projectPath(project.slug)}` })),
     // The lane pages go with the project page (DBBENCH_INDEXABLE).
-    ...(DBBENCH_INDEXABLE ? dbbenchLanes.map((lane) => ({ url: `${SITE}/projects/dbbench/${lane.slug}` })) : []),
+    ...(DBBENCH_INDEXABLE ? dbbenchLanes.map((lane) => ({ url: `${SITE}/software/dbbench/${lane.slug}` })) : []),
     ...getAllNewsPosts().map((post) => ({ url: `${SITE}/news/${post.slug}` })),
   ];
 }

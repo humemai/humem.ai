@@ -11,13 +11,13 @@ import type { BenchmarkDataset } from "@/components/editorial-sections";
 import { EditorialBenchmarkTable, EditorialConditions, EditorialFigureGrid, EditorialLinkSection, EditorialSection, EditorialSectionFigure, EditorialSkeletonNotes } from "@/components/editorial-sections";
 import { EditorialMediaHero } from "@/components/editorial-media-hero";
 import { EditorialSectionNav } from "@/components/editorial-section-nav";
-import { projects } from "@/lib/projects";
+import { projectSections, type Section } from "@/lib/projects";
 import type { Project, ProjectEditorialBodyBlock } from "@/lib/projects/types";
 import styles from "./projects.module.css";
 import { domProps } from "@/lib/markdown";
 
 // One renderer for every editorial project page. The live ArcadeDB page and
-// its October preview (/projects/arcadedb/next) differ only in the prose file
+// its October preview (/research/arcadedb/next) differ only in the prose file
 // and the payload they are fed, so the renderer is parameterized by both
 // rather than forked (DECISIONS #83).
 
@@ -71,26 +71,24 @@ type EditorialProjectPageProps = {
   dataset: BenchmarkDataset;
   /** Rendered above the hero; the October preview uses it for its notice. */
   banner?: ReactNode;
-  /** Breadcrumb parent for a page that is not a registered subproject (a DBBench lane). */
+  /** Breadcrumb parent for a page under a project page (a DBBench lane). */
   parent?: { href: string; label: string };
-  /** Overrides the "Project" / "Subproject" label above the title. */
+  /** The section the breadcrumb starts in. Defaults to the project's own; the unregistered preview passes it. */
+  section?: Section;
+  /** Overrides the label above the title, which is the section name. */
   eyebrow?: string;
 };
 
-export function EditorialProjectPage({ project, dataset, banner, parent, eyebrow }: EditorialProjectPageProps) {
-  const parentProject = projects.find((candidate) => candidate.subprojectSlugs?.includes(project.slug));
+export function EditorialProjectPage({ project, dataset, banner, parent, section, eyebrow }: EditorialProjectPageProps) {
+  const projectSection: Section = section ?? (projectSections as Record<string, Section>)[project.slug] ?? "research";
+  const sectionLabel = projectSection === "software" ? "Software" : "Research";
   const projectContext = (
     <>
-      <Link href="/projects">Projects</Link>
+      <Link href={`/${projectSection}`}>{sectionLabel}</Link>
       {parent ? (
         <>
           {" / "}
           <Link href={parent.href}>{parent.label}</Link>
-        </>
-      ) : parentProject ? (
-        <>
-          {" / "}
-          <Link href={`/projects/${parentProject.slug}`}>{parentProject.title}</Link>
         </>
       ) : null}
     </>
@@ -100,14 +98,14 @@ export function EditorialProjectPage({ project, dataset, banner, parent, eyebrow
     ...link,
     isInternal: link.href.startsWith("/"),
   }));
-  const editorialPage = project.editorialPage ?? project.subprojectPage;
+  const editorialPage = project.editorialPage;
   const editorialSections = editorialPage?.sections ?? [];
   const citationSection = editorialSections.find((section) => section.id === "citation");
   const mainEditorialSections = citationSection
     ? editorialSections.filter((section) => section.id !== "citation")
     : editorialSections;
   const heroActionLinks = projectLinks.slice(0, 2);
-  const editorialLabel = eyebrow ?? (project.showOnProjectsIndex ? "Project" : "Subproject");
+  const editorialLabel = eyebrow ?? sectionLabel;
 
   const renderEditorialBodyBlock = (sectionId: string, block: ProjectEditorialBodyBlock, index: number) => {
     if (typeof block === "string") {

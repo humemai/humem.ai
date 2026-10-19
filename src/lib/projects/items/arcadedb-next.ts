@@ -3,8 +3,8 @@
 // real stages landing one at a time, so that what appears here is October's own
 // work rather than September's carried over (user, 2026-09-14: "better to
 // start from scratch").
-// Rendered at /projects/arcadedb/next, never registered in the project index,
-// and the live page at /projects/arcadedb is never touched by a preview
+// Rendered at /research/arcadedb/next, never registered in the project index,
+// and the live page at /research/arcadedb is never touched by a preview
 // publish (DECISIONS #83, #86).
 //
 // NO NUMBER IS TYPED INTO A SENTENCE HERE. Every figure on this page lives in
@@ -33,8 +33,7 @@ import { arcadeDbDocsUrl, arcadeDbRepoUrl, arcadeDbUpstreamRepoUrl } from "../sh
 export const arcadeDbNext: Project = {
   slug: "arcadedb-next",
   title: "ArcadeDB",
-  timelineOrder: 1,
-  subprojectPage: {
+  editorialPage: {
     layout: "editorial",
     linksHeading: "Docs and code.",
     sections: [

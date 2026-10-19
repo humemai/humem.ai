@@ -1,0 +1,32 @@
+Generate a 1:1 square illustration for the HumemAI website.
+
+Purpose:
+This image will be used at the top of the Software page, which lists the open source software HumemAI builds: databases, a benchmark and tools you install and run. It should communicate software built up from solid parts.
+
+What to show:
+Three solid filled oxblood rectangular blocks stacked in a tidy tower on one thick horizontal oxblood baseline, each block slightly narrower than the one below it. On top of the tower sits one solid filled rose block of the same width as the top oxblood block. Nothing else.
+
+Style:
+Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
+
+Fills:
+Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
+
+Palette, exactly these three colors and nothing else:
+- background: warm off-white #faf8f5
+- every shape and every stroke: deep oxblood #892122
+- the single most important element only: soft rose #e88e8b
+Do not use black, grey, white, or any other color anywhere. No gradients, no lighting effects, no shadows, no texture.
+
+Content discipline:
+Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
+
+Composition:
+Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
+
+Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
+
+Aspect ratio: 1:1 square.
+
+[model google/gemini-3-pro-image, 2 candidates, best audit: off-palette 2.17%, stray charcoal 0.00%]
+Alt text: Illustration of three stacked oxblood blocks with a rose block on top, standing for software built up from parts.

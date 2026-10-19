@@ -5,12 +5,13 @@ import { SectionIntro, SectionPromo } from "@/components/section-blocks";
 import { NewsRail } from "@/components/news-rail";
 import { ProjectRail } from "@/components/project-rail";
 import { getAllNewsPosts } from "@/lib/news-posts";
-import { getProjectsIndexProjects } from "@/lib/projects";
+import { getSectionEntries } from "@/lib/projects";
 import { githubOrgUrl, HOME_PAGE_RAIL_ITEM_COUNT } from "@/lib/site-data";
 import styles from "./page.module.css";
 
 export default function Home() {
-  const featuredProjects = getProjectsIndexProjects().slice(0, HOME_PAGE_RAIL_ITEM_COUNT);
+  const softwareEntries = getSectionEntries("software").slice(0, HOME_PAGE_RAIL_ITEM_COUNT);
+  const researchEntries = getSectionEntries("research").slice(0, HOME_PAGE_RAIL_ITEM_COUNT);
   const latestNews = getAllNewsPosts().slice(0, HOME_PAGE_RAIL_ITEM_COUNT);
 
   return (
@@ -31,8 +32,11 @@ export default function Home() {
             black box.
           </p>
           <div className={styles.actions}>
-            <Link className={styles.primaryAction} href="/projects">
-              Explore the projects
+            <Link className={styles.primaryAction} href="/software">
+              Explore the software
+            </Link>
+            <Link className={styles.secondaryAction} href="/research">
+              Read the research
             </Link>
             <a className={styles.secondaryAction} href={githubOrgUrl} target="_blank" rel="noopener noreferrer">
               View GitHub
@@ -73,21 +77,32 @@ export default function Home() {
       </div>
 
       <div className={styles.sectionShell}>
-        <SectionPromo eyebrow="Contribute" title="Built in the open, with anyone who wants to help." href="/projects" actionLabel="Explore the projects">
+        <SectionPromo eyebrow="Contribute" title="Built in the open, with anyone who wants to help." href="/software" actionLabel="Explore the software">
           <p>
-            Issues, pull requests, benchmark reports, and research collaborations are all welcome. Pick a project and start from its repository on GitHub.
+            Issues, pull requests, benchmark reports, and research collaborations are all welcome. Pick a piece of software and start from its repository on GitHub.
           </p>
         </SectionPromo>
       </div>
 
       <div className={`${styles.sectionShell} ${styles.railSection}`}>
           <SectionIntro
-            eyebrow="Open source projects"
-            title="Open source projects shape the work."
-            aside="Explore the main open source threads behind HumemAI, then move into dedicated project pages for the systems, papers, and implementations inside each one."
+            eyebrow="Software"
+            title="Open source software you can run."
+            aside="Databases, a benchmark, and the tools around them."
           />
           <div className={styles.railShell}>
-          <ProjectRail projects={featuredProjects} />
+          <ProjectRail entries={softwareEntries} noun="software" action={{ href: "/software", label: "View all software" }} />
+        </div>
+      </div>
+
+      <div className={`${styles.sectionShell} ${styles.railSection}`}>
+          <SectionIntro
+            eyebrow="Research"
+            title="Open research you can read and cite."
+            aside="The thesis, the papers behind it, and the benchmark papers."
+          />
+          <div className={styles.railShell}>
+          <ProjectRail entries={researchEntries} noun="research" action={{ href: "/research", label: "View all research" }} />
         </div>
       </div>
 

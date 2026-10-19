@@ -3,18 +3,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import { HorizontalRail } from "@/components/horizontal-rail";
-import type { Project } from "@/lib/projects";
+import type { SectionEntry } from "@/lib/projects";
 import styles from "./project-rail.module.css";
 
 type ProjectRailProps = {
-  projects: Project[];
+  entries: SectionEntry[];
+  /** Plural noun for the labels, e.g. "software" or "research". */
+  noun: string;
+  action: { href: string; label: string };
 };
 
-export function ProjectRail({ projects }: ProjectRailProps) {
+export function ProjectRail({ entries, noun, action }: ProjectRailProps) {
   return (
-    <HorizontalRail action={{ href: "/projects", label: "View all projects" }} className={styles.root} leftLabel="Scroll projects left" rightLabel="Scroll projects right">
-        {projects.map((project) => (
-          <Link className={styles.card} href={`/projects/${project.slug}`} key={project.slug}>
+    <HorizontalRail action={action} className={styles.root} leftLabel={`Scroll ${noun} left`} rightLabel={`Scroll ${noun} right`}>
+        {entries.map(({ project, summary, href }) => (
+          <Link className={styles.card} href={href} key={`${project.slug}-${href}`}>
             {project.image ? (
               <div className={styles.imageWrap}>
                 <Image
@@ -30,7 +33,7 @@ export function ProjectRail({ projects }: ProjectRailProps) {
             )}
             <div className={styles.content}>
               <h3>{project.title}</h3>
-              <p className={styles.summary}>{project.summary}</p>
+              <p className={styles.summary}>{summary}</p>
               <span className={styles.action}>Learn more</span>
             </div>
           </Link>

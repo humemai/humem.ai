@@ -3,8 +3,7 @@ import type { Project } from "../types";
 export const roomkgMetaPolicies: Project = {
 	slug: "roomkg-meta-policies",
 	title: "RoomKG Meta-Policies",
-	timelineOrder: 6,
-	subprojectPage: {
+	editorialPage: {
 		layout: "editorial",
 		linksHeading: "Paper, code, and project links.",
 		sections: [
@@ -156,7 +155,7 @@ class="editorial-image-compact"
 		},
 		{
 			label: "Parent project",
-			href: "/projects/machines-with-human-like-memory",
+			href: "/research/machines-with-human-like-memory",
 		},
 	],
 };

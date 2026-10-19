@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { dbbenchRobots } from "@/lib/dbbench/config";
 import { loadDbbenchDataset } from "@/lib/dbbench/payload";
 import { dbbench } from "@/lib/projects/items/dbbench";
-import { EditorialProjectPage } from "../editorial-project-page";
+import { EditorialProjectPage } from "../../_projects/editorial-project-page";
 
 // The DBBench project page. For now it reads the same payload as the October
-// preview at /projects/arcadedb/next. Hidden (noindex) until DBBENCH_INDEXABLE
+// preview at /research/arcadedb/next. Hidden (noindex) until DBBENCH_INDEXABLE
 // is flipped at the page switch.
 
 export const metadata: Metadata = {

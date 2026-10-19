@@ -3,11 +3,6 @@ export const sidnProjectUrl =
 
 export const hybridIntelligenceUrl = "https://www.hybrid-intelligence-centre.nl/";
 
-// CypherGLOT and HumemDB are paused (issue #24): their items, images and prompts stay, but while this is false they are
-// out of the registry (no page, no card, no sitemap entry) and no other page links to them. REMOVE WHEN: they return
-// (set it to true, or drop the switch) or are deleted.
-export const PAUSED_DB_PROJECTS_SHOWN = false;
-
 export const cypherglotRepoUrl = "https://github.com/humemai/cypherglot";
 export const cypherglotDocsUrl = "https://docs.humem.ai/cypherglot/";
 export const arcadeDbUpstreamRepoUrl = "https://github.com/ArcadeData/arcadedb";

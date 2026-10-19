@@ -3,8 +3,7 @@ import type { Project } from "../types";
 export const explicitMemory: Project = {
   slug: "explicit-memory",
   title: "Explicit Memory",
-  timelineOrder: 2,
-  subprojectPage: {
+  editorialPage: {
     layout: "editorial",
     linksHeading: "Paper and GitHub links.",
     sections: [
@@ -141,7 +140,7 @@ The total long-term budget is therefore $|\\mathbf{M}_e| + |\\mathbf{M}_s|$, whi
     },
     {
       label: "Parent project",
-      href: "/projects/machines-with-human-like-memory",
+      href: "/research/machines-with-human-like-memory",
     },
   ],
 };
