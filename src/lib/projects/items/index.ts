@@ -1,5 +1,5 @@
 export { arcadeDb } from "./arcadedb";
-export { arcadeDbPython } from "./arcadedb-python";
+export { arcadeDbSoftware } from "./arcadedb-software";
 export { auditReadyMemory } from "./audit-ready-memory";
 export { coLearning } from "./co-learning";
 export { cypherglot } from "./cypherglot";

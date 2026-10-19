@@ -1,9 +1,9 @@
 import { DBBENCH_INDEXABLE, DBBENCH_LISTED } from "../dbbench/config";
-import { projectPath, projectSections, type Section } from "./sections";
+import { projectIdForPath, projectPath, projectSections, type Section } from "./sections";
 import type { Project } from "./types";
 import {
   arcadeDb,
-  arcadeDbPython,
+  arcadeDbSoftware,
   auditReadyMemory,
   coLearning,
   cypherglot,
@@ -19,7 +19,7 @@ import {
 
 const allProjects: Project[] = [
   arcadeDb,
-  arcadeDbPython,
+  arcadeDbSoftware,
   auditReadyMemory,
   coLearning,
   cypherglot,
@@ -50,6 +50,12 @@ export const projects: Project[] = Object.keys(projectSections)
 
 export function getProject(slug: string) {
   return projects.find((project) => project.slug === slug);
+}
+
+/** The project whose canonical page is /<section>/<pathSlug>. */
+export function getProjectByPath(section: Section, pathSlug: string) {
+  const id = projectIdForPath(section, pathSlug);
+  return id ? getProject(id) : undefined;
 }
 
 export type SectionEntry = {

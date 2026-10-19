@@ -98,8 +98,8 @@ export default function Home() {
       <div className={`${styles.sectionShell} ${styles.railSection}`}>
           <SectionIntro
             eyebrow="Research"
-            title="Research on AI memory."
-            aside="The thesis, the papers behind it, and the benchmark papers."
+            title="Research on AI memory and databases."
+            aside="Human-like memory for machines, and multi-model databases."
           />
           <div className={styles.railShell}>
           <ProjectRail entries={researchEntries} noun="research" action={{ href: "/research", label: "View all research" }} />

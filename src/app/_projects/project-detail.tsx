@@ -9,19 +9,19 @@ import type { BenchmarkDataset } from "@/components/editorial-sections";
 import rawArcadeDbBenchmarks from "@/data/arcadedb-benchmarks.json";
 
 const arcadeDbBenchmarks = rawArcadeDbBenchmarks as unknown as BenchmarkDataset;
-import { getProject, getProjectsInSection, type Section } from "@/lib/projects";
+import { getProjectByPath, getProjectsInSection, projectPathSlug, type Section } from "@/lib/projects";
 import { sectionCopy } from "./section-page";
 import { EditorialProjectPage, buildAcknowledgements } from "./editorial-project-page";
 import styles from "./projects.module.css";
 
 export function sectionStaticParams(section: Section) {
-  return getProjectsInSection(section).map((project) => ({ slug: project.slug }));
+  return getProjectsInSection(section).map((project) => ({ slug: projectPathSlug(project.slug) }));
 }
 
 export function projectMetadata(slug: string, section: Section): Metadata {
-  const project = getProject(slug);
+  const project = getProjectByPath(section, slug);
 
-  if (!project || getProjectsInSection(section).every((candidate) => candidate.slug !== slug)) {
+  if (!project) {
     return { title: sectionCopy[section].label };
   }
 
@@ -35,9 +35,9 @@ export function projectMetadata(slug: string, section: Section): Metadata {
 
 /** The canonical page of a project. A slug that belongs to the other section is a 404: one page, one URL. */
 export function ProjectDetail({ slug, section }: { slug: string; section: Section }) {
-  const project = getProject(slug);
+  const project = getProjectByPath(section, slug);
 
-  if (!project || getProjectsInSection(section).every((candidate) => candidate.slug !== slug)) {
+  if (!project) {
     notFound();
   }
 
