@@ -146,7 +146,7 @@ Each agent maintains bounded **episodic** and **semantic** memory stores. Episod
     ],
   },
   summary:
-    "A paper and codebase introducing RoomEnv-v0 and heuristic agents with explicit episodic and semantic memory.",
+    "RoomEnv-v0 and heuristic agents with explicit episodic and semantic memory: the first benchmark and codebase in our line of memory research.",
   image: {
     src: "/images/projects/project-human-like-memory-systems.png",
     alt: "Illustration for Human-Like Memory Systems",

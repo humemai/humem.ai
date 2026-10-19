@@ -190,7 +190,7 @@ export const arcadeDb: Project = {
     ],
   },
   summary:
-    "A multi-model database engine that keeps documents, graphs, vectors, and time series in one transactional engine, plus the Python package that runs that engine inside your process, benchmarked against the comparators in each category.",
+    "ArcadeDB keeps documents, graphs, vectors and time series in one engine. How it compares with the specialist engines for each kind of data, with every setting published.",
   image: {
     src: "/images/projects/project-arcadedb.png",
     alt: "Illustration of a document, a triangle graph, vector arrows and a stepped time-series line in one frame around a rose circle at the center, standing for one engine that holds four kinds of data.",

@@ -78,7 +78,7 @@ export const humemdb: Project = {
     ],
   },
   summary:
-    "A Python orchestration layer that combines SQLite, DuckDB, CypherGLOT, and LanceDB so table, graph, and vector workloads can be routed across embedded engines without forcing one database to do every job.",
+    "A Python layer over SQLite, DuckDB, CypherGLOT and LanceDB. It routes table, graph and vector work to the embedded engine that suits it.",
   image: {
     src: "/images/projects/project-humemdb-runtime.png",
     alt: "Illustration for HumemDB",

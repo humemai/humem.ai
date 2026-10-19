@@ -113,7 +113,7 @@ The total long-term budget is therefore $|\\mathbf{M}_e| + |\\mathbf{M}_s|$, whi
     ],
   },
   summary:
-    "A reinforcement-learning agent with explicit short-term, episodic, and semantic memory in RoomEnv-v1.",
+    "A reinforcement-learning agent that learns how to store its short-term, episodic and semantic memories, instead of following a hand-written policy.",
   image: {
     src: "/images/projects/project-explicit-memory.png",
     alt: "Illustration for Explicit Memory",

@@ -156,7 +156,7 @@ class="editorial-image-compact"
 		],
 	},
 	summary:
-		"A learned keep-drop transfer policy for long-term knowledge-graph memory under partial observability.",
+		"A learned policy that decides which short-term memories to keep in long-term knowledge-graph memory, for an agent that only sees part of its world.",
 	image: {
 		src: "/images/projects/project-kg-memory-transfer.png",
 		alt: "Illustration for KG Memory Transfer",

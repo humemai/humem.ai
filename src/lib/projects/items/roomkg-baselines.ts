@@ -112,7 +112,7 @@ class="editorial-image-compact"
     ],
   },
   summary:
-    "A neurosymbolic benchmark for temporal knowledge-graph memory under partial observability.",
+    "A benchmark for temporal knowledge-graph memory when the agent only sees part of its world, with symbolic and neural baselines to compare against.",
   problem:
     "Earlier room-memory work showed why explicit memory matters, but it still left a gap: there was no benchmark where hidden state, observations, and long-term memory were all expressed in graph terms and evaluated systematically under partial observability.",
   solution:
