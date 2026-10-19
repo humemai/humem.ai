@@ -109,7 +109,7 @@ export default function Home() {
       <div className={`${styles.sectionShell} ${styles.newsSection}`}>
         <SectionIntro
           eyebrow="News"
-          title="Latest news from the projects."
+          title="Latest news from HumemAI."
           aside="Recent writing, releases, research, and benchmark updates from HumemAI."
         />
         <div className={styles.railShell}>
