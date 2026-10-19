@@ -6,7 +6,7 @@ The public website of HumemAI, an open source organization building memory syste
 
 | You are | Read |
 |---|---|
-| running, building or checking the site | `README.md` (Development, and the checks before pushing) |
+| running, building or checking the site | `README.md` (Development, and the checks before pushing: `npm run precheck`) |
 | adding or changing an illustration | `docs/design/image-generation.md` (the pipeline), then `docs/design/image-prompts.md` (the look) |
 | changing layout or page widths | `docs/design/layout-widths.md`, `docs/design/test-devices.md` |
 | changing colours, type or any brand asset | `humemai/design-system` first, then vendor it here |
@@ -16,7 +16,8 @@ The public website of HumemAI, an open source organization building memory syste
 
 - A project's `summary` is its card text and the first line of its page. Write one or two plain sentences of 20 to 28 words (about 130 to 170 characters) that say what it is and the one thing that matters. No venue, no "accepted at" and no results; the venue is its own field. Cards in a row should read about the same length. `scripts/check-summary-length.mjs` runs in `npm run build` and enforces the word and character range.
 - A new project needs a `date` (the day it first went public); the Software and Research cards sort on it, newest first.
-- A moved URL always ships with a permanent redirect in `next.config.ts`, straight to the final page (no chains). The old `/projects/...` redirects are generated from `sections.ts`; a new project needs no redirect, but a project that changes section does.
+- Before a push that touches pages, links or layout, run `npm run precheck` (about 2 minutes: lint, build, every old and new URL, six devices in light and dark) and say in the PR which steps ran. The fast checks are already in `npm run build`, so Vercel enforces them.
+- A moved URL always ships with a permanent redirect in `next.config.ts`, straight to the final page (no chains), and with a line in `scripts/legacy-urls.json`, the ledger of published URLs that `npm run precheck` checks. The old `/projects/...` redirects are generated from `sections.ts`; a new project needs no redirect, but a project that changes section does.
 - Every illustration comes from `scripts/gen-image.mjs`. Do not draw, recolor or hand-edit one. Commit the PNG, the spec and the stored prompt together.
 - The OpenRouter key comes only from `OPENROUTER_API_KEY`, or from the file named by `OPENROUTER_KEY_FILE` outside every repository. Never print, commit, paste or send it, and never write where it is kept into a file, commit message, issue or comment.
 - Never type a number into a page; generate it, or check it with a script. Math in the items is KaTeX and follows ISO 80000-2 (backslashes doubled inside template literals).

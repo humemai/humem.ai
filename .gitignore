@@ -42,3 +42,4 @@ next-env.d.ts
 
 # gate builds by the benchmark publish scripts (next.config.ts distDir)
 .next-gate/
+.next-precheck/
