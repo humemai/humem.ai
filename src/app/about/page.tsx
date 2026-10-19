@@ -61,9 +61,10 @@ export default function AboutPage() {
 
       <SectionCta
         eyebrow="Next"
-        title="Explore the projects behind the work."
+        title="Explore the software and research behind the work."
         actions={[
-          { href: "/projects", label: "View projects" },
+          { href: "/software", label: "View software" },
+          { href: "/research", label: "Read research", variant: "secondary" },
           { href: githubOrgUrl, label: "View GitHub", variant: "secondary" },
         ]}
       />

@@ -1,3 +1,5 @@
+import type { Section } from "./sections";
+
 export type ProjectAcknowledgements =
   | string
   | {
@@ -64,7 +66,7 @@ export type ProjectEditorialBodyBlock =
       showDigests?: boolean;
     };
 
-export type ProjectSubprojectPage = {
+export type ProjectEditorialPage = {
   layout?: "default" | "editorial";
   problemHeading?: string;
   solutionHeading?: string;
@@ -94,22 +96,24 @@ export type ProjectSubprojectPage = {
   }[];
 };
 
-export type ProjectEditorialPage = ProjectSubprojectPage;
-
 export type Project = {
   slug: string;
   title: string;
   summary: string;
   timelineOrder?: number;
-  showOnProjectsIndex?: boolean;
-  subprojectSlugs?: string[];
+  /** A second card in the other section, written for that section; it links to this project's canonical page. */
+  crossListing?: {
+    section: Section;
+    summary: string;
+    /** Anchor on the canonical page the card opens, e.g. "papers". */
+    anchor?: string;
+  };
   featuredPage?: {
     problemHeading: string;
     solutionHeading: string;
     acknowledgementsHeading?: string;
   };
   editorialPage?: ProjectEditorialPage;
-  subprojectPage?: ProjectSubprojectPage;
   image?: {
     src: string;
     alt: string;

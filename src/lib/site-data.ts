@@ -1,6 +1,7 @@
 export const navigationItems = [
   { label: "About", href: "/about" },
-  { label: "Projects", href: "/projects" },
+  { label: "Software", href: "/software" },
+  { label: "Research", href: "/research" },
   { label: "News", href: "/news" },
   { label: "Contact", href: "/contact" },
 ];
@@ -19,7 +20,8 @@ export const footerColumns = [
   {
     title: "Open source",
     links: [
-      { label: "Projects", href: "/projects" },
+      { label: "Software", href: "/software" },
+      { label: "Research", href: "/research" },
       { label: "GitHub", href: githubOrgUrl, external: true },
       { label: "PyPI", href: pypiUrl, external: true },
     ],

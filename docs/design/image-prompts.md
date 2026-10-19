@@ -228,44 +228,7 @@ Aspect ratio: 1:1 square.
 Filename: `contact-collaboration-onboarding.png`
 Alt text: `Illustration representing collaboration and onboarding around an AI memory system.`
 
-## 6. Projects Overview Visual
-
-```text
-Generate a 16:9 landscape illustration for the HumemAI website.
-
-Purpose:
-This image will be used on the Projects overview page or section. It should represent public work, research, prototypes, and funded efforts.
-
-What to show:
-Five rounded-square tiles of varied sizes arranged in a loose balanced cluster with clear gaps between them. Four tiles are solid filled oxblood; one tile, slightly larger and near the centre, is rose. Thin oxblood lines connect a few of the tiles to each other. Six elements total.
-
-Style:
-Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
-
-Fills:
-Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
-
-Palette, exactly these three colors and nothing else:
-- background: warm off-white #faf8f5
-- every shape and every stroke: deep oxblood #892122
-- the single most important element only: soft rose #e88e8b
-Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
-
-Content discipline:
-Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
-
-Composition:
-Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
-
-Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
-
-Aspect ratio: 16:9 landscape.
-```
-
-Filename: `projects-overview-portfolio.png`
-Alt text: `Structured illustration representing research, systems work, and applied AI memory projects.`
-
-## 7. Social / Open Graph Image
+## 6. Social / Open Graph Image
 
 ```text
 Generate a 2:1 wide landscape illustration for the HumemAI website.
@@ -302,7 +265,7 @@ Aspect ratio: 2:1 wide landscape.
 Filename: `og-memory-for-agentic-ai.png`
 Alt text: `Branded social preview image for HumemAI.`
 
-## 8. Hosted Workspace Mockup
+## 7. Hosted Workspace Mockup
 
 ```text
 Generate a 16:9 landscape illustration for the HumemAI website.
@@ -339,7 +302,7 @@ Aspect ratio: 16:9 landscape.
 Filename: `hosted-workspace-mockup.png`
 Alt text: `Conceptual hosted workspace for an AI memory platform.`
 
-## 9. Audit-Ready Memory Project Visual
+## 8. Audit-Ready Memory Project Visual
 
 ```text
 Generate a 16:9 landscape illustration for the HumemAI website.
@@ -376,7 +339,7 @@ Aspect ratio: 16:9 landscape.
 Filename: `project-audit-ready-memory.png`
 Alt text: `Illustration of traceable and explainable AI memory records.`
 
-## 10. Machines With Human-Like Memory Project Visual
+## 9. Machines With Human-Like Memory Project Visual
 
 ```text
 Generate a 16:9 landscape illustration for the HumemAI website.
@@ -413,7 +376,7 @@ Aspect ratio: 16:9 landscape.
 Filename: `project-human-like-memory.png`
 Alt text: `Illustration of human-like memory architecture for AI.`
 
-## 11. CypherGLOT Project Visual
+## 10. CypherGLOT Project Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -450,7 +413,7 @@ Aspect ratio: 1:1 square.
 Filename: `project-cypherglot-compiler.png`
 Alt text: `Illustration of Cypher query compilation into normalized graph-relational output.`
 
-## 12. HumemDB Project Visual
+## 11. HumemDB Project Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -487,7 +450,7 @@ Aspect ratio: 1:1 square.
 Filename: `project-humemdb-runtime.png`
 Alt text: `Illustration of an embedded runtime coordinating SQL, graph, and vector workloads.`
 
-## 13. Careers Visual
+## 12. Careers Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -524,7 +487,7 @@ Aspect ratio: 1:1 square.
 Filename: `careers-build-with-memory.png` (removed 2026-09-16 with the Careers page; no longer shipped)
 Alt text: `Illustration representing collaborative work on AI memory systems.`
 
-## 14. News Visual
+## 13. News Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -561,7 +524,7 @@ Aspect ratio: 1:1 square.
 Filename: `news-writing-and-research.png`
 Alt text: `Illustration representing technical writing, research updates, and structured knowledge.`
 
-## 15. Privacy Policy Visual
+## 14. Privacy Policy Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -598,7 +561,7 @@ Aspect ratio: 1:1 square.
 Filename: `privacy-policy-trust-and-choice.png`
 Alt text: `Illustration representing privacy, transparency, and user control.`
 
-## 16. Human-Like Memory Systems Project Visual
+## 15. Human-Like Memory Systems Project Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -635,7 +598,7 @@ Aspect ratio: 1:1 square.
 Filename: `project-human-like-memory-systems.png`
 Alt text: `Illustration of RoomEnv-v0 with explicit episodic and semantic memory.`
 
-## 17. Explicit Memory Project Visual
+## 16. Explicit Memory Project Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -672,7 +635,7 @@ Aspect ratio: 1:1 square.
 Filename: `project-explicit-memory.png`
 Alt text: `Illustration of a reinforcement-learning agent managing short-term, episodic, and semantic memory in RoomEnv-v1.`
 
-## 18. RoomKG Baselines Project Visual
+## 17. RoomKG Baselines Project Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -709,7 +672,7 @@ Aspect ratio: 1:1 square.
 Filename: `project-roomkg-baselines.png`
 Alt text: `Illustration of a partially observable room benchmark connected to temporal knowledge-graph memory and baseline comparisons.`
 
-## 19. Co-Learning Project Visual
+## 18. Co-Learning Project Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -746,7 +709,7 @@ Aspect ratio: 1:1 square.
 Filename: `project-co-learning.png`
 Alt text: `Illustration of reusing a prior human-robot collaboration pattern as knowledge-graph episodic memory in a search-and-rescue task.`
 
-## 20. KG Memory Transfer Project Visual
+## 19. KG Memory Transfer Project Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -783,7 +746,7 @@ Aspect ratio: 1:1 square.
 Filename: `project-kg-memory-transfer.png`
 Alt text: `Illustration of selective transfer from short-term observations into long-term temporal knowledge-graph memory under partial observability.`
 
-## 21. RoomKG Meta-Policies Project Visual
+## 20. RoomKG Meta-Policies Project Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.

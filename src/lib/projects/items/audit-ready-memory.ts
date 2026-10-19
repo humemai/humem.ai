@@ -4,7 +4,6 @@ import { sidnProjectUrl } from "../shared";
 export const auditReadyMemory: Project = {
   slug: "audit-ready-memory",
   title: "Audit-Ready Memory",
-  showOnProjectsIndex: true,
   editorialPage: {
     layout: "editorial",
     linksHeading: "Links and code.",

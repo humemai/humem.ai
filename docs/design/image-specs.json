@@ -14,5 +14,21 @@
     "purpose": "This image will be used on the ArcadeDB project page and its card on the projects page. ArcadeDB is one database engine that keeps documents, graphs, vectors and time series together and changes them in one transaction. It should communicate four kinds of data held together in one engine around one shared core.",
     "show": "One large rounded-square container drawn as a thick oxblood outline, open and empty inside except for five shapes. At its exact center, one solid filled rose circle. Around the circle, evenly spaced, four small solid filled oxblood symbols: upper left, a plain solid rectangle with one folded corner (a document); upper right, three small solid round nodes at the corners of a triangle, joined by three straight edges (a graph); lower left, one small solid dot with two thick straight arrows growing out of it, spreading apart at a narrow angle toward the upper right (vectors); lower right, one thick line climbing in three even right-angle steps from lower left to upper right (a time series).",
     "alt": "Illustration of a document, a triangle graph, vector arrows and a stepped time-series line in one frame around a rose circle at the center, standing for one engine that holds four kinds of data."
+  },
+  {
+    "id": "software-overview",
+    "out": "public/images/projects/software-overview.png",
+    "aspect": "1:1",
+    "purpose": "This image will be used at the top of the Software page, which lists the open source software HumemAI builds: databases, a benchmark and tools you install and run. It should communicate software built up from solid parts.",
+    "show": "Three solid filled oxblood rectangular blocks stacked in a tidy tower on one thick horizontal oxblood baseline, each block slightly narrower than the one below it. On top of the tower sits one solid filled rose block of the same width as the top oxblood block. Nothing else.",
+    "alt": "Illustration of three stacked oxblood blocks with a rose block on top, standing for software built up from parts."
+  },
+  {
+    "id": "research-overview",
+    "out": "public/images/projects/research-overview.png",
+    "aspect": "1:1",
+    "purpose": "This image will be used at the top of the Research page, which lists HumemAI's papers, the thesis and the benchmark studies. It should communicate research written down, with a knowledge graph rising from it.",
+    "show": "One open book drawn as two solid filled oxblood pages meeting at a center spine, seen from the front, in the lower half. Above the book, a small tree of three nodes: one solid filled rose circle at the top, and below it two solid filled oxblood circles side by side, each joined to the rose circle by one thick straight oxblood line. Nothing else.",
+    "alt": "Illustration of an open book with a small three-node graph above it and a rose node at the top, standing for research written down."
   }
 ]

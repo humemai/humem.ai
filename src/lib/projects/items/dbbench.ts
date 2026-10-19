@@ -1,7 +1,6 @@
-// DBBench: the benchmark as its own project line, standalone (not a subproject
-// of Multi-Model Databases). Rendered at /projects/dbbench from the same
+// DBBench: the benchmark as its own project, standalone. Rendered at /software/dbbench from the same
 // payload the October preview uses. Lane pages live under it
-// (/projects/dbbench/<lane>, see src/lib/dbbench/lanes.ts).
+// (/software/dbbench/<lane>, see src/lib/dbbench/lanes.ts).
 //
 // The methodology points below summarise docs.humem.ai/dbbench/latest/methodology/.
 // When that page changes, change this list in the same pull request.
@@ -16,11 +15,10 @@ import {
   dbbenchIssuesUrl,
   dbbenchMethodologyUrl,
   dbbenchRepoUrl,
-  PAUSED_DB_PROJECTS_SHOWN,
 } from "../shared";
 
 const laneList = dbbenchLanes
-  .map((lane) => `- [${lane.title}](/projects/dbbench/${lane.slug}): ${lane.blurb}`)
+  .map((lane) => `- [${lane.title}](/software/dbbench/${lane.slug}): ${lane.blurb}`)
   .join("\n");
 
 // One section per lane: what it measures, its headline table, and a link to
@@ -36,7 +34,7 @@ const laneSections = dbbenchLanes.map((lane) => {
       caption: headline.caption,
       showDigests: headline.showDigests,
     },
-    `[Every ${lane.title.toLowerCase()} table](/projects/dbbench/${lane.slug}), with the rest of the tasks in this lane.`,
+    `[Every ${lane.title.toLowerCase()} table](/software/dbbench/${lane.slug}), with the rest of the tasks in this lane.`,
   ];
   return {
     id: lane.slug,
@@ -50,8 +48,7 @@ const laneSections = dbbenchLanes.map((lane) => {
 export const dbbench: Project = {
   slug: "dbbench",
   title: "DBBench",
-  showOnProjectsIndex: true,
-  subprojectPage: {
+  editorialPage: {
     layout: "editorial",
     linksHeading: "Rules and code.",
     sections: [
@@ -99,7 +96,7 @@ export const dbbench: Project = {
         eyebrow: "Independence",
         title: "Who runs DBBench.",
         body: [
-          `DBBench is run by HumemAI. HumemAI also builds ${PAUSED_DB_PROJECTS_SHOWN ? "[HumemDB](/projects/humemdb), [CypherGLOT](/projects/cypherglot) and " : ""}the [ArcadeDB Python package](/projects/arcadedb). ${PAUSED_DB_PROJECTS_SHOWN ? "Those projects are" : "It is"} measured by the same rules as every other engine: the same tasks, the same machine, published settings, and a result for every failure.`,
+          `DBBench is run by HumemAI. HumemAI also builds [HumemDB](/software/humemdb), [CypherGLOT](/software/cypherglot) and the [ArcadeDB Python package](/research/arcadedb). Those projects are measured by the same rules as every other engine: the same tasks, the same machine, published settings, and a result for every failure.`,
           "The code and the settings are public, so anyone can check a result or reproduce it. When a result is wrong, the fix is a new row, not an edit.",
         ],
       },

@@ -3,8 +3,7 @@ import type { Project } from "../types";
 export const roomkgBaselines: Project = {
   slug: "roomkg-baselines",
   title: "RoomKG Baselines",
-  timelineOrder: 3,
-  subprojectPage: {
+  editorialPage: {
     layout: "editorial",
     linksHeading: "Paper and GitHub links.",
     sections: [
@@ -138,7 +137,7 @@ class="editorial-image-compact"
     },
     {
       label: "Parent project",
-      href: "/projects/machines-with-human-like-memory",
+      href: "/research/machines-with-human-like-memory",
     },
   ],
 };

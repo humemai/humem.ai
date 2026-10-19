@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { loadDbbenchDataset as loadPreview } from "@/lib/dbbench/payload";
 import { arcadeDbNext } from "@/lib/projects/items/arcadedb-next";
-import { EditorialProjectPage } from "../../editorial-project-page";
+import { EditorialProjectPage } from "../../../_projects/editorial-project-page";
 
 // The October campaign page, watched while it fills in (DECISIONS #83). Fed by
 // its own payload and image directory, written by refresh_web_page.py --preview
-// in the arcadedb-embedded-python repo; the live page at /projects/arcadedb is
+// in the arcadedb-embedded-python repo; the live page at /research/arcadedb is
 // never touched by a preview publish. Hidden: noindex, not in the project index.
 
 export const metadata: Metadata = {
@@ -37,15 +37,15 @@ export default function ArcadeDbPreviewPage() {
       <p>
         The checks waived for this page, and the tables a laptop cannot produce, are named in{" "}
         <Link href="#setup">the setup section</Link>. The live page, with real numbers measured on
-        the bench machine, is <Link href="/projects/arcadedb">/projects/arcadedb</Link>.
+        the bench machine, is <Link href="/research/arcadedb">/research/arcadedb</Link>.
       </p>
     </>
   ) : (
     <p>
       October campaign in progress at pin {pin}. Tables land as they complete; nothing here is final. The live page is{" "}
-      <Link href="/projects/arcadedb">/projects/arcadedb</Link>.
+      <Link href="/research/arcadedb">/research/arcadedb</Link>.
       {dataset.tables.length === 0 ? " No rows yet." : null}
     </p>
   );
-  return <EditorialProjectPage project={arcadeDbNext} dataset={dataset} banner={banner} />;
+  return <EditorialProjectPage project={arcadeDbNext} dataset={dataset} banner={banner} section="research" />;
 }

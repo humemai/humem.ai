@@ -4,9 +4,7 @@ import { arcadeDbDocsUrl, arcadeDbRepoUrl, arcadeDbUpstreamRepoUrl } from "../sh
 export const arcadeDb: Project = {
   slug: "arcadedb",
   title: "ArcadeDB",
-  showOnProjectsIndex: true,
-  timelineOrder: 1,
-  subprojectPage: {
+  editorialPage: {
     layout: "editorial",
     linksHeading: "Docs and code.",
     sections: [
@@ -255,6 +253,12 @@ export const arcadeDb: Project = {
   },
   summary:
     "A multi-model database engine that keeps documents, graphs, vectors, and time series in one transactional engine, plus the Python package that runs that engine inside your process, benchmarked against the comparators in each category.",
+  crossListing: {
+    section: "software",
+    anchor: "embedded",
+    summary:
+      "Install the Python package and run ArcadeDB inside your own process. Documents, graphs, vectors, and time series in one engine, with no server to set up.",
+  },
   image: {
     src: "/images/projects/project-arcadedb.png",
     alt: "Illustration of a document, a triangle graph, vector arrows and a stepped time-series line in one frame around a rose circle at the center, standing for one engine that holds four kinds of data.",

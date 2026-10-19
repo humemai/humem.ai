@@ -33,7 +33,7 @@ export default function ContactPage() {
         title="Want more context before reaching out?"
         actions={[
           { href: "/about", label: "About HumemAI" },
-          { href: "/projects", label: "View projects", variant: "secondary" },
+          { href: "/software", label: "View software", variant: "secondary" },
         ]}
       />
     </main>

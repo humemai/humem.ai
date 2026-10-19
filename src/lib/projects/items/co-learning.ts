@@ -3,8 +3,7 @@ import type { Project } from "../types";
 export const coLearning: Project = {
 	slug: "co-learning",
 	title: "Co-Learning",
-	timelineOrder: 5,
-	subprojectPage: {
+	editorialPage: {
 		layout: "editorial",
 		linksHeading: "Paper, code, and project links.",
 		sections: [
@@ -174,7 +173,7 @@ class="editorial-image-compact"
 		},
 		{
 			label: "Parent project",
-			href: "/projects/machines-with-human-like-memory",
+			href: "/research/machines-with-human-like-memory",
 		},
 	],
 };

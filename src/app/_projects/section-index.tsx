@@ -3,37 +3,42 @@
 import Image from "next/image";
 import Link from "next/link";
 import { PagedCardGrid } from "@/components/paged-card-grid";
-import type { Project } from "@/lib/projects";
+import type { SectionEntry } from "@/lib/projects";
 import styles from "./projects.module.css";
 
-type ProjectsIndexSectionProps = {
-  projects: Project[];
+type SectionIndexProps = {
+  entries: SectionEntry[];
+  eyebrow: string;
+  title: string;
+  /** Plural noun for the screen-reader labels, e.g. "software" or "research". */
+  noun: string;
+  actionLabel: string;
 };
 
-export function ProjectsIndexSection({ projects }: ProjectsIndexSectionProps) {
+export function SectionIndex({ entries, eyebrow, title, noun, actionLabel }: SectionIndexProps) {
   return (
     <section className={styles.projectOverview}>
       <div className={styles.projectOverviewIntro}>
         <div>
-          <p className={styles.sectionEyebrow}>Project overview</p>
-          <h2>Featured projects.</h2>
+          <p className={styles.sectionEyebrow}>{eyebrow}</p>
+          <h2>{title}</h2>
         </div>
       </div>
 
       <PagedCardGrid
         controlsClassName={styles.mobileOverviewControls}
         controlClassName={styles.mobileOverviewControl}
-        items={projects}
+        items={entries}
         pageQueryParam="page"
-        leftLabel="Scroll projects left"
+        leftLabel={`Scroll ${noun} left`}
         listClassName={styles.overviewGrid}
         paginationClassName={styles.overviewPagination}
-        paginationLabel="Projects pagination"
+        paginationLabel={`${noun} pagination`}
         paginationPageActiveClassName={styles.overviewPaginationPageActive}
         paginationPageClassName={styles.overviewPaginationPage}
         paginationPagesClassName={styles.overviewPaginationPages}
-        renderItem={(project) => (
-          <Link className={styles.overviewCard} href={`/projects/${project.slug}`} key={project.slug}>
+        renderItem={({ project, summary, href }) => (
+          <Link className={styles.overviewCard} href={href} key={project.slug}>
             {project.image ? (
               <div className={styles.overviewImageWrap}>
                 <Image
@@ -49,12 +54,12 @@ export function ProjectsIndexSection({ projects }: ProjectsIndexSectionProps) {
             )}
             <div className={styles.overviewCardBody}>
               <h2>{project.title}</h2>
-              <p className={styles.overviewSummary}>{project.summary}</p>
-              <span className={styles.overviewAction}>Learn more</span>
+              <p className={styles.overviewSummary}>{summary}</p>
+              <span className={styles.overviewAction}>{actionLabel}</span>
             </div>
           </Link>
         )}
-        rightLabel="Scroll projects right"
+        rightLabel={`Scroll ${noun} right`}
       />
     </section>
   );

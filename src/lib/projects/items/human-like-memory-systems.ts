@@ -4,8 +4,7 @@ import type { Project } from "../types";
 export const humanLikeMemorySystems: Project = {
   slug: "human-like-memory-systems",
   title: "Human-Like Memory Systems",
-  timelineOrder: 1,
-  subprojectPage: {
+  editorialPage: {
     layout: "editorial",
     linksHeading: "Paper, GitHub, and project links.",
     sections: [
@@ -180,7 +179,7 @@ Each agent maintains bounded **episodic** and **semantic** memory stores. Episod
     },
     {
       label: "Parent project",
-      href: "/projects/machines-with-human-like-memory",
+      href: "/research/machines-with-human-like-memory",
     },
   ],
 };

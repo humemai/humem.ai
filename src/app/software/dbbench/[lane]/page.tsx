@@ -12,7 +12,7 @@ import {
   dbbenchMethodologyUrl,
 } from "@/lib/projects/shared";
 import { dbbench } from "@/lib/projects/items/dbbench";
-import { EditorialProjectPage } from "../../editorial-project-page";
+import { EditorialProjectPage } from "../../../_projects/editorial-project-page";
 
 // One page per DBBench lane, from one dynamic route. Hidden (noindex) until
 // DBBENCH_INDEXABLE is flipped at the page switch. A lane page renders only
@@ -83,7 +83,7 @@ export default async function DbbenchLanePage({ params }: { params: Promise<Para
 
   const otherLanes = dbbenchLanes
     .filter((candidate) => candidate.slug !== lane.slug)
-    .map((candidate) => `- [${candidate.title}](/projects/dbbench/${candidate.slug}): ${candidate.blurb}`)
+    .map((candidate) => `- [${candidate.title}](/software/dbbench/${candidate.slug}): ${candidate.blurb}`)
     .join("\n");
 
   const project: Project = {
@@ -94,12 +94,12 @@ export default async function DbbenchLanePage({ params }: { params: Promise<Para
     problem: "",
     solution: "",
     links: [
-      { label: "All DBBench lanes", href: "/projects/dbbench" },
+      { label: "All DBBench lanes", href: "/software/dbbench" },
       { label: "Methodology", href: dbbenchMethodologyUrl },
       { label: "Engine settings", href: dbbenchEnginesUrl },
       { label: "Report a wrong setting", href: dbbenchIssuesUrl },
     ],
-    subprojectPage: {
+    editorialPage: {
       layout: "editorial",
       linksHeading: "Rules and code.",
       sections: [
@@ -125,7 +125,8 @@ export default async function DbbenchLanePage({ params }: { params: Promise<Para
     <EditorialProjectPage
       project={project}
       dataset={dataset}
-      parent={{ href: "/projects/dbbench", label: "DBBench" }}
+      parent={{ href: "/software/dbbench", label: "DBBench" }}
+      section="software"
       eyebrow="Lane"
     />
   );

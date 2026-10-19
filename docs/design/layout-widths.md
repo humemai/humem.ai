@@ -17,7 +17,7 @@ Headers wrap only when the table is out of room. They never break inside a hyphe
 
 The rule lives in `.benchmarkScroll` in `src/components/editorial-sections.module.css`.
 
-Measured on `/projects/arcadedb` on 2026-10-02 (12 tables, #8):
+Measured on `/research/arcadedb` on 2026-10-02 (12 tables, #8):
 
 | Viewport | Frame | Text column | Tables that scroll, before | After |
 |---|---|---|---|---|
