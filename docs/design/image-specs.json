@@ -30,5 +30,13 @@
     "purpose": "This image will be used at the top of the Research page, which lists HumemAI's papers, the thesis and the benchmark studies. It should communicate research written down, with a knowledge graph rising from it.",
     "show": "One open book drawn as two solid filled oxblood pages meeting at a center spine, seen from the front, in the lower half. Above the book, a small tree of three nodes: one solid filled rose circle at the top, and below it two solid filled oxblood circles side by side, each joined to the rose circle by one thick straight oxblood line. Nothing else.",
     "alt": "Illustration of an open book with a small three-node graph above it and a rose node at the top, standing for research written down."
+  },
+  {
+    "id": "arcadedb-python-paper",
+    "out": "public/images/projects/project-arcadedb-python.png",
+    "aspect": "1:1",
+    "purpose": "This image will be used on the ArcadeDB in Python research page and its card. The paper is about running a multi-model database inside a Python process. It should communicate one database living inside the host process.",
+    "show": "One large rounded-square container drawn as a thick oxblood outline. Centered inside it, a stack of three solid filled oxblood rounded slabs, each wide and short, stacked with equal gaps, the same width. The middle slab is solid filled rose. Nothing else.",
+    "alt": "Illustration of three stacked slabs with the middle one in rose, inside a larger outlined square, standing for a database running inside a process."
   }
 ]
