@@ -14,8 +14,8 @@ const DBBENCH_REDIRECTS_ON = false;
 
 const dbbenchRedirects = DBBENCH_REDIRECTS_ON
   ? [
-      { source: "/research/arcadedb/next", destination: "/software/dbbench", permanent: true },
-      { source: "/projects/arcadedb/next", destination: "/software/dbbench", permanent: true },
+      { source: "/research/arcadedb/next", destination: "/research/dbbench", permanent: true },
+      { source: "/projects/arcadedb/next", destination: "/research/dbbench", permanent: true },
     ]
   : [{ source: "/projects/arcadedb/next", destination: "/research/arcadedb/next", permanent: true }];
 
@@ -27,7 +27,10 @@ const projectsRedirects = [
     destination: projectPath(slug),
     permanent: true,
   })),
-  { source: "/projects/dbbench/:lane", destination: "/software/dbbench/:lane", permanent: true },
+  { source: "/projects/dbbench/:lane", destination: "/research/dbbench/:lane", permanent: true },
+  // DBBench was on /software for a day. It is a page you read and cite, so it lives in Research.
+  { source: "/software/dbbench", destination: "/research/dbbench", permanent: true },
+  { source: "/software/dbbench/:lane", destination: "/research/dbbench/:lane", permanent: true },
   // Slugs retired before the sections existed. Each points straight at the final page.
   { source: "/projects/arcadedb-embedded-python", destination: projectPath("arcadedb-software"), permanent: true },
   { source: "/projects/multi-model-databases", destination: projectPath("arcadedb"), permanent: true },

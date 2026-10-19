@@ -8,10 +8,10 @@ import styles from "./projects.module.css";
 export const sectionCopy = {
   software: {
     label: "Software",
-    metaDescription: "Open source HumemAI software: databases, benchmarks, and tools you can install and run.",
+    metaDescription: "Open source HumemAI software: databases and tools you can install and run.",
     heroTitle: "Open source software.",
     heroIntro:
-      "The databases, the benchmarks, and the tools we build for AI memory. All of it is on GitHub.",
+      "The databases and the tools we build for AI memory. All of it is on GitHub.",
     heroImage: "/images/projects/software-overview.png",
     heroImageAlt: "Three stacked blocks with a rose block on top, standing for software built up from parts.",
     indexEyebrow: "Software",
@@ -20,7 +20,7 @@ export const sectionCopy = {
     actionLabel: "Learn more",
     ctaTitle: "Everything here is open source. Come build it with us.",
     ctaBody: [
-      "The code and the benchmark settings are public. Open an issue when something is wrong, send a pull request with a fix, or run a benchmark on your own hardware and tell us what you got.",
+      "The code is public. Open an issue when something is wrong, send a pull request with a fix, or run a benchmark on your own hardware and tell us what you got.",
       "If you work on multi-model databases, query compilers, or agent memory, get in touch.",
     ],
   },
@@ -29,7 +29,7 @@ export const sectionCopy = {
     metaDescription: "HumemAI research: human-like memory for machines with AI and knowledge graphs, and multi-model databases.",
     heroTitle: "Research on AI memory and databases.",
     heroIntro:
-      "It started with machines that have human-like memory, built with AI and knowledge graphs. It now covers databases too, multi-model ones in particular. The papers, code, and data are all public.",
+      "It started with machines that have human-like memory, built with AI and knowledge graphs. It now covers databases too, multi-model ones in particular, and the benchmarks that compare them. The papers, code, and data are all public.",
     heroImage: "/images/projects/research-overview.png",
     heroImageAlt: "An open book with a small three-node graph above it and a rose node at the top, standing for research written down.",
     indexEyebrow: "Research",

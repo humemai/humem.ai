@@ -18,7 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       .filter((project) => project.slug !== "dbbench" || DBBENCH_INDEXABLE)
       .map((project) => ({ url: `${SITE}${projectPath(project.slug)}` })),
     // The lane pages go with the project page (DBBENCH_INDEXABLE).
-    ...(DBBENCH_INDEXABLE ? dbbenchLanes.map((lane) => ({ url: `${SITE}/software/dbbench/${lane.slug}` })) : []),
+    ...(DBBENCH_INDEXABLE ? dbbenchLanes.map((lane) => ({ url: `${SITE}/research/dbbench/${lane.slug}` })) : []),
     ...getAllNewsPosts().map((post) => ({ url: `${SITE}/news/${post.slug}` })),
   ];
 }

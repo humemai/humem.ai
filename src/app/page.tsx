@@ -88,7 +88,7 @@ export default function Home() {
           <SectionIntro
             eyebrow="Software"
             title="Open source software."
-            aside="Databases, benchmarks, and the tools around them."
+            aside="Databases and the tools around them."
           />
           <div className={styles.railShell}>
           <ProjectRail entries={softwareEntries} noun="software" action={{ href: "/software", label: "View all software" }} />
@@ -99,7 +99,7 @@ export default function Home() {
           <SectionIntro
             eyebrow="Research"
             title="Research on AI memory and databases."
-            aside="Human-like memory for machines, and multi-model databases."
+            aside="Human-like memory for machines, multi-model databases, and benchmarks."
           />
           <div className={styles.railShell}>
           <ProjectRail entries={researchEntries} noun="research" action={{ href: "/research", label: "View all research" }} />

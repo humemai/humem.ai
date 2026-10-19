@@ -83,7 +83,7 @@ export default async function DbbenchLanePage({ params }: { params: Promise<Para
 
   const otherLanes = dbbenchLanes
     .filter((candidate) => candidate.slug !== lane.slug)
-    .map((candidate) => `- [${candidate.title}](/software/dbbench/${candidate.slug}): ${candidate.blurb}`)
+    .map((candidate) => `- [${candidate.title}](/research/dbbench/${candidate.slug}): ${candidate.blurb}`)
     .join("\n");
 
   const project: Project = {
@@ -95,7 +95,7 @@ export default async function DbbenchLanePage({ params }: { params: Promise<Para
     problem: "",
     solution: "",
     links: [
-      { label: "All DBBench lanes", href: "/software/dbbench" },
+      { label: "All DBBench lanes", href: "/research/dbbench" },
       { label: "Methodology", href: dbbenchMethodologyUrl },
       { label: "Engine settings", href: dbbenchEnginesUrl },
       { label: "Report a wrong setting", href: dbbenchIssuesUrl },
@@ -126,8 +126,8 @@ export default async function DbbenchLanePage({ params }: { params: Promise<Para
     <EditorialProjectPage
       project={project}
       dataset={dataset}
-      parent={{ href: "/software/dbbench", label: "DBBench" }}
-      section="software"
+      parent={{ href: "/research/dbbench", label: "DBBench" }}
+      section="research"
       eyebrow="Lane"
     />
   );

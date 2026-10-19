@@ -9,7 +9,7 @@
 export type Section = "software" | "research";
 
 export const projectSections = {
-  dbbench: "software",
+  dbbench: "research",
   "audit-ready-memory": "software",
   cypherglot: "software",
   humemdb: "software",
