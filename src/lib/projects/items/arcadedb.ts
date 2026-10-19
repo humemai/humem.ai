@@ -256,8 +256,8 @@ export const arcadeDb: Project = {
   summary:
     "A multi-model database engine that keeps documents, graphs, vectors, and time series in one transactional engine, plus the Python package that runs that engine inside your process, benchmarked against the comparators in each category.",
   image: {
-    src: "/images/projects/project-arcadedb-embedded-python.png",
-    alt: "Illustration for ArcadeDB",
+    src: "/images/projects/project-arcadedb.png",
+    alt: "Illustration of a document, a triangle graph, vector arrows and a stepped time-series line in one frame around a rose circle at the center, standing for one engine that holds four kinds of data.",
   },
   problem:
     "Applications increasingly need structured queries, graph traversal, and vector search over the same data, and the usual answer is to run three systems and write glue between them. That glue has no transaction boundary, so a failure part-way through a multi-store write leaves the stores disagreeing, and there is no single place to ask a question that spans them. For Python work there is a second problem: the engines worth using are rarely installable as a package and runnable inside your process.",

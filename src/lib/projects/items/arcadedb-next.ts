@@ -282,8 +282,8 @@ export const arcadeDbNext: Project = {
   summary:
     "The October campaign's page, built from nothing as the campaign runs: the October query set, the matched durability settings, and the ingest and index split on the tables that can time it.",
   image: {
-    src: "/images/projects/project-arcadedb-embedded-python.png",
-    alt: "Illustration for ArcadeDB",
+    src: "/images/projects/project-arcadedb.png",
+    alt: "Illustration of a document, a triangle graph, vector arrows and a stepped time-series line in one frame around a rose circle at the center, standing for one engine that holds four kinds of data.",
   },
   problem: "",
   solution: "",
