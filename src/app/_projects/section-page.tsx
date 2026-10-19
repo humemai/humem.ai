@@ -8,10 +8,10 @@ import styles from "./projects.module.css";
 export const sectionCopy = {
   software: {
     label: "Software",
-    metaDescription: "Open source HumemAI software: databases, a benchmark, and tools you can install and run.",
+    metaDescription: "Open source HumemAI software: databases, benchmarks, and tools you can install and run.",
     heroTitle: "Open source software.",
     heroIntro:
-      "The databases, the benchmark, and the tools we build for AI memory. All of it is on GitHub.",
+      "The databases, the benchmarks, and the tools we build for AI memory. All of it is on GitHub.",
     heroImage: "/images/projects/software-overview.png",
     heroImageAlt: "Three stacked blocks with a rose block on top, standing for software built up from parts.",
     indexEyebrow: "Software",

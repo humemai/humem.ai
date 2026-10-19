@@ -88,7 +88,7 @@ export default function Home() {
           <SectionIntro
             eyebrow="Software"
             title="Open source software."
-            aside="Databases, a benchmark, and the tools around them."
+            aside="Databases, benchmarks, and the tools around them."
           />
           <div className={styles.railShell}>
           <ProjectRail entries={softwareEntries} noun="software" action={{ href: "/software", label: "View all software" }} />
