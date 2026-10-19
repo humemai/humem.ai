@@ -153,7 +153,7 @@ class="editorial-image-compact"
 		],
 	},
 	summary:
-		"Reusing prior human-robot collaboration patterns as knowledge-graph episodic memory to improve early teamwork in USAR.",
+		"A robot that starts a search-and-rescue mission with a knowledge-graph memory of earlier collaborations, so teamwork with a human improves from the start.",
 	image: {
 		src: "/images/projects/project-co-learning.png",
 		alt: "Illustration for Co-Learning",
