@@ -9,7 +9,7 @@ export const sectionCopy = {
   software: {
     label: "Software",
     metaDescription: "Open source HumemAI software: databases, a benchmark, and tools you can install and run.",
-    heroTitle: "Open source software you can run.",
+    heroTitle: "Open source software.",
     heroIntro:
       "Databases, a benchmark, and tools for AI memory. The code is public. Try it, read it, and tell us what breaks.",
     heroImage: "/images/projects/software-overview.png",
@@ -26,8 +26,8 @@ export const sectionCopy = {
   },
   research: {
     label: "Research",
-    metaDescription: "Open HumemAI research: the thesis on human-like memory for machines, and the papers and benchmarks behind it.",
-    heroTitle: "Open research you can read and cite.",
+    metaDescription: "HumemAI research: the thesis on human-like memory for machines, and the papers and benchmarks behind it.",
+    heroTitle: "Research on AI memory.",
     heroIntro:
       "The thesis on machines with human-like memory, the papers that came out of it, and the benchmark papers on databases. The papers, code, and data are public.",
     heroImage: "/images/projects/research-overview.png",

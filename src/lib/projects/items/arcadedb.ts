@@ -182,7 +182,7 @@ export const arcadeDb: Project = {
         body: [
           "ArcadeDB is a Java engine, and that is friction for Python work: a separate runtime to install, a service to start, and a network hop between your code and your data. The Python package removes all three. It ships the upstream engine unmodified, with a bundled Java runtime and platform wheels, so `uv add arcadedb-embedded` or `pip install arcadedb-embedded` is the whole setup and the database runs inside your process.",
           "It is a full API, not a launcher. Transactions and lifecycle, schema and graph helpers, bulk ingest, import and export, and the vector features are all exposed and tested, with the example suite run in CI on every change.",
-          "The engine and the Python package are maintained together. Fixes and features found through the benchmarks above are filed and, where possible, contributed upstream. Both are Apache-2.0, and both maintainers, Arcade Data for the engine and HumemAI for this package, have said they will keep it that way.",
+          "How to install it and use it is on the [ArcadeDB for Python](/software/arcadedb-python) page. The engine and the Python package are maintained together. Fixes and features found through the benchmarks above are filed and, where possible, contributed upstream. Both are Apache-2.0, and both maintainers, Arcade Data for the engine and HumemAI for this package, have said they will keep it that way.",
           "What does the Python boundary cost? The engine runs at the same speed either way; what you pay for is handing results back. Against Java in the same process doing the same work, a vector search costs 1.04x and a 100k-document scan 1.75x.",
           "The bigger number is inside Python. Asking for record objects is 15.1x slower than asking for columns over the same query, so which call you use, `to_list` or `to_columns`, matters more than the language boundary does. Check that before blaming the engine for a slow loop.",
           {
@@ -253,12 +253,6 @@ export const arcadeDb: Project = {
   },
   summary:
     "A multi-model database engine that keeps documents, graphs, vectors, and time series in one transactional engine, plus the Python package that runs that engine inside your process, benchmarked against the comparators in each category.",
-  crossListing: {
-    section: "software",
-    anchor: "embedded",
-    summary:
-      "Install the Python package and run ArcadeDB inside your own process. Documents, graphs, vectors, and time series in one engine, with no server to set up.",
-  },
   image: {
     src: "/images/projects/project-arcadedb.png",
     alt: "Illustration of a document, a triangle graph, vector arrows and a stepped time-series line in one frame around a rose circle at the center, standing for one engine that holds four kinds of data.",

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/page-hero";
-import { SectionCta, SectionIntro } from "@/components/section-blocks";
+import { SectionIntro } from "@/components/section-blocks";
 import styles from "../company-pages.module.css";
 
 export const metadata: Metadata = {
@@ -27,15 +27,6 @@ export default function ContactPage() {
             For everything else, email <a className={styles.textLink} href="mailto:info@humem.ai">info@humem.ai</a> with a short note about what you are looking for.
           </p>
       </SectionIntro>
-
-      <SectionCta
-        eyebrow="Next"
-        title="Want more context before reaching out?"
-        actions={[
-          { href: "/about", label: "About HumemAI" },
-          { href: "/software", label: "View software", variant: "secondary" },
-        ]}
-      />
     </main>
   );
 }
