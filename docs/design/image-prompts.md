@@ -80,44 +80,7 @@ Aspect ratio: 16:10 landscape.
 Filename: `home-hero-memory-layer.png`
 Alt text: `Illustration of conversations, documents, tables, and graph data flowing into a structured memory system.`
 
-## 2. Product Hero
-
-```text
-Generate a 16:9 landscape illustration for the HumemAI website.
-
-Purpose:
-This image will be used on the product page. It should imply what the HumemAI product feels like in use.
-
-What to show:
-On the left, three solid filled oxblood rounded bars stacked vertically, of slightly different widths. In the centre, a large rounded-rectangle container drawn as a thick oxblood outline holding a small knowledge graph of five solid filled oxblood circles with thick edges. One circle is rose. From that rose circle, a single thick rose line exits to the right and ends in a solid rose dot. Seven elements total.
-
-Style:
-Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
-
-Fills:
-Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
-
-Palette, exactly these three colors and nothing else:
-- background: warm off-white #faf8f5
-- every shape and every stroke: deep oxblood #892122
-- the single most important element only: soft rose #e88e8b
-Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
-
-Content discipline:
-Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
-
-Composition:
-Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
-
-Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
-
-Aspect ratio: 16:9 landscape.
-```
-
-Filename: `product-hero-interface.png`
-Alt text: `Mock product interface showing chat, memory graph, and structured retrieval panels.`
-
-## 3. About Page Visual
+## 2. About Page Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -154,44 +117,7 @@ Aspect ratio: 1:1 square.
 Filename: `about-memory-architecture.png`
 Alt text: `Conceptual illustration of structured memory systems for AI.`
 
-## 4. Pricing Visual
-
-```text
-Generate a 1:1 square illustration for the HumemAI website.
-
-Purpose:
-This image will be used on the Pricing page. It should show different ways of using HumemAI without looking like a literal pricing table.
-
-What to show:
-One solid filled oxblood rounded square at the top centre. From its bottom edge, three thick lines fan downward to three separate rounded-square shapes along the bottom. The left and right bottom shapes are solid oxblood; the middle bottom shape and the middle line connecting to it are rose. Seven elements total.
-
-Style:
-Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
-
-Fills:
-Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
-
-Palette, exactly these three colors and nothing else:
-- background: warm off-white #faf8f5
-- every shape and every stroke: deep oxblood #892122
-- the single most important element only: soft rose #e88e8b
-Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
-
-Content discipline:
-Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
-
-Composition:
-Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
-
-Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
-
-Aspect ratio: 1:1 square.
-```
-
-Filename: `pricing-deployment-paths.png`
-Alt text: `Illustration showing self-hosted, hosted, and custom deployment paths.`
-
-## 5. Contact / Early Access Visual
+## 3. Contact / Early Access Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -228,81 +154,7 @@ Aspect ratio: 1:1 square.
 Filename: `contact-collaboration-onboarding.png`
 Alt text: `Illustration representing collaboration and onboarding around an AI memory system.`
 
-## 6. Social / Open Graph Image
-
-```text
-Generate a 2:1 wide landscape illustration for the HumemAI website.
-
-Purpose:
-This image will be used as the site-wide Open Graph / social share image. It needs to be immediately readable on X, LinkedIn, Slack, and Discord.
-
-What to show:
-One large rounded-rectangle container drawn as a thick oxblood outline, centred. Inside it, a small knowledge graph of six solid filled circles joined by thick oxblood edges; five circles are oxblood and the central one is rose. Nothing else at all. Very simple and legible at small sizes.
-
-Style:
-Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
-
-Fills:
-Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
-
-Palette, exactly these three colors and nothing else:
-- background: warm off-white #faf8f5
-- every shape and every stroke: deep oxblood #892122
-- the single most important element only: soft rose #e88e8b
-Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
-
-Content discipline:
-Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
-
-Composition:
-Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
-
-Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
-
-Aspect ratio: 2:1 wide landscape.
-```
-
-Filename: `og-memory-for-agentic-ai.png`
-Alt text: `Branded social preview image for HumemAI.`
-
-## 7. Hosted Workspace Mockup
-
-```text
-Generate a 16:9 landscape illustration for the HumemAI website.
-
-Purpose:
-This image will be used lower on the product page, pricing page, or a future hosted page. It should show a somewhat more concrete workspace than the product hero image, but still as an illustration rather than a screenshot.
-
-What to show:
-One very large rounded-rectangle container drawn as a thick oxblood outline filling most of the frame. Inside it, on the left, three solid filled oxblood bars stacked vertically; on the right, a small knowledge graph of four solid filled oxblood circles with thick edges. One of the left bars is rose. Six elements total.
-
-Style:
-Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
-
-Fills:
-Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
-
-Palette, exactly these three colors and nothing else:
-- background: warm off-white #faf8f5
-- every shape and every stroke: deep oxblood #892122
-- the single most important element only: soft rose #e88e8b
-Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
-
-Content discipline:
-Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
-
-Composition:
-Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
-
-Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
-
-Aspect ratio: 16:9 landscape.
-```
-
-Filename: `hosted-workspace-mockup.png`
-Alt text: `Conceptual hosted workspace for an AI memory platform.`
-
-## 8. Audit-Ready Memory Project Visual
+## 4. Audit-Ready Memory Project Visual
 
 ```text
 Generate a 16:9 landscape illustration for the HumemAI website.
@@ -339,7 +191,7 @@ Aspect ratio: 16:9 landscape.
 Filename: `project-audit-ready-memory.png`
 Alt text: `Illustration of traceable and explainable AI memory records.`
 
-## 9. Machines With Human-Like Memory Project Visual
+## 5. Machines With Human-Like Memory Project Visual
 
 ```text
 Generate a 16:9 landscape illustration for the HumemAI website.
@@ -376,7 +228,7 @@ Aspect ratio: 16:9 landscape.
 Filename: `project-human-like-memory.png`
 Alt text: `Illustration of human-like memory architecture for AI.`
 
-## 10. CypherGLOT Project Visual
+## 6. CypherGLOT Project Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -413,7 +265,7 @@ Aspect ratio: 1:1 square.
 Filename: `project-cypherglot-compiler.png`
 Alt text: `Illustration of Cypher query compilation into normalized graph-relational output.`
 
-## 11. HumemDB Project Visual
+## 7. HumemDB Project Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -450,44 +302,7 @@ Aspect ratio: 1:1 square.
 Filename: `project-humemdb-runtime.png`
 Alt text: `Illustration of an embedded runtime coordinating SQL, graph, and vector workloads.`
 
-## 12. Careers Visual
-
-```text
-Generate a 1:1 square illustration for the HumemAI website.
-
-Purpose:
-This image will be used on the Careers page. It should communicate that HumemAI is building serious AI memory systems and is looking for people who want to build that future together.
-
-What to show:
-Three solid filled oxblood circles arranged in a triangle around a central rounded-square container drawn as a thick oxblood outline. Each circle connects to the container by a thick oxblood line. Inside the container is a small graph of three solid filled circles, one of which is rose. Eight elements total.
-
-Style:
-Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
-
-Fills:
-Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
-
-Palette, exactly these three colors and nothing else:
-- background: warm off-white #faf8f5
-- every shape and every stroke: deep oxblood #892122
-- the single most important element only: soft rose #e88e8b
-Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
-
-Content discipline:
-Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
-
-Composition:
-Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
-
-Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
-
-Aspect ratio: 1:1 square.
-```
-
-Filename: `careers-build-with-memory.png` (removed 2026-09-16 with the Careers page; no longer shipped)
-Alt text: `Illustration representing collaborative work on AI memory systems.`
-
-## 13. News Visual
+## 8. News Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -524,7 +339,7 @@ Aspect ratio: 1:1 square.
 Filename: `news-writing-and-research.png`
 Alt text: `Illustration representing technical writing, research updates, and structured knowledge.`
 
-## 14. Privacy Policy Visual
+## 9. Privacy Policy Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -561,7 +376,7 @@ Aspect ratio: 1:1 square.
 Filename: `privacy-policy-trust-and-choice.png`
 Alt text: `Illustration representing privacy, transparency, and user control.`
 
-## 15. Human-Like Memory Systems Project Visual
+## 10. Human-Like Memory Systems Project Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -598,7 +413,7 @@ Aspect ratio: 1:1 square.
 Filename: `project-human-like-memory-systems.png`
 Alt text: `Illustration of RoomEnv-v0 with explicit episodic and semantic memory.`
 
-## 16. Explicit Memory Project Visual
+## 11. Explicit Memory Project Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -635,7 +450,7 @@ Aspect ratio: 1:1 square.
 Filename: `project-explicit-memory.png`
 Alt text: `Illustration of a reinforcement-learning agent managing short-term, episodic, and semantic memory in RoomEnv-v1.`
 
-## 17. RoomKG Baselines Project Visual
+## 12. RoomKG Baselines Project Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -672,7 +487,7 @@ Aspect ratio: 1:1 square.
 Filename: `project-roomkg-baselines.png`
 Alt text: `Illustration of a partially observable room benchmark connected to temporal knowledge-graph memory and baseline comparisons.`
 
-## 18. Co-Learning Project Visual
+## 13. Co-Learning Project Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -709,7 +524,7 @@ Aspect ratio: 1:1 square.
 Filename: `project-co-learning.png`
 Alt text: `Illustration of reusing a prior human-robot collaboration pattern as knowledge-graph episodic memory in a search-and-rescue task.`
 
-## 19. KG Memory Transfer Project Visual
+## 14. KG Memory Transfer Project Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
@@ -746,7 +561,7 @@ Aspect ratio: 1:1 square.
 Filename: `project-kg-memory-transfer.png`
 Alt text: `Illustration of selective transfer from short-term observations into long-term temporal knowledge-graph memory under partial observability.`
 
-## 20. RoomKG Meta-Policies Project Visual
+## 15. RoomKG Meta-Policies Project Visual
 
 ```text
 Generate a 1:1 square illustration for the HumemAI website.
