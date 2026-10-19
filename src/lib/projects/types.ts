@@ -50,6 +50,13 @@ export type ProjectEditorialBodyBlock =
   | {
       type: "skeletonNotes";
     }
+  // A table copied from a paper: the same widths and phone layout as a benchmarkTable, but its cells are given here.
+  | {
+      type: "paperTable";
+      caption: string;
+      columns: string[];
+      rows: string[][];
+    }
   | {
       type: "benchmarkTable";
       /** Table `id` in the dataset (for ArcadeDB: l3s, l3d, l2, l1, l1tpc, e2). */
