@@ -34,7 +34,10 @@ export function ProjectRail({ entries, noun, action }: ProjectRailProps) {
             <div className={styles.content}>
               <h3>{project.title}</h3>
               <p className={styles.summary}>{summary}</p>
-              <span className={styles.action}>Learn more</span>
+              <div className={styles.cardFooter}>
+                <span className={styles.action}>Learn more</span>
+                {project.venue ? <span className={styles.venue}>{project.venue}</span> : null}
+              </div>
             </div>
           </Link>
         ))}

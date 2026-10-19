@@ -55,7 +55,10 @@ export function SectionIndex({ entries, eyebrow, title, noun, actionLabel }: Sec
             <div className={styles.overviewCardBody}>
               <h2>{project.title}</h2>
               <p className={styles.overviewSummary}>{summary}</p>
-              <span className={styles.overviewAction}>{actionLabel}</span>
+              <div className={styles.cardFooter}>
+                <span className={styles.overviewAction}>{actionLabel}</span>
+                {project.venue ? <span className={styles.venue}>{project.venue}</span> : null}
+              </div>
             </div>
           </Link>
         )}

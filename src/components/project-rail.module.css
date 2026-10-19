@@ -22,7 +22,19 @@
 }
 
 .card:hover .action,
-.card:focus-visible .action {
+.card:focus-visible .cardFooter {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.venue {
+  margin-top: 1.1rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.action {
   text-decoration: underline;
   text-underline-offset: 0.22rem;
 }
