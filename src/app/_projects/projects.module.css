@@ -4,23 +4,11 @@
   padding: var(--site-page-padding);
 }
 
-.indexHero,
 .projectOverview {
   width: var(--site-shell-width-mobile);
   margin: 0 auto;
 }
 
-.indexHero {
-  display: grid;
-  gap: var(--site-layout-gap);
-  align-items: start;
-}
-
-.indexHeroCopy {
-  padding: var(--site-copy-block-padding);
-}
-
-.indexEyebrow,
 .sectionEyebrow {
   margin: 0;
   font-size: var(--site-eyebrow-size);
@@ -30,83 +18,10 @@
   color: var(--accent);
 }
 
-.indexHeroCopy h1,
-.projectOverviewIntro h2,
-.projectSectionCopy h2,
-.subprojectsHeading h3,
-.projectFocusBlock h3 {
+.projectOverviewIntro h2 {
   margin: 0.5rem 0 0;
   line-height: 0.98;
   letter-spacing: var(--site-heading-tracking);
-}
-
-.indexHeroCopy h1 {
-  font-size: var(--site-hero-title-size);
-}
-
-.indexIntro,
-.projectSectionSummary,
-.projectSectionBody,
-.projectSectionMeta,
-.subprojectSummary,
-.projectFocusBody p {
-  color: var(--muted);
-  line-height: 1.8;
-}
-
-.indexIntro {
-  max-width: var(--site-hero-intro-max);
-  margin: 1.3rem 0 0;
-  font-size: clamp(1.04rem, 2vw, 1.22rem);
-}
-
-.indexActions {
-  display: flex;
-  flex-direction: column;
-  gap: var(--site-space-compact);
-  margin-top: 2rem;
-}
-
-.indexPrimaryAction {
-  composes: buttonBase from "../../components/action-button.module.css";
-  composes: buttonPrimary from "../../components/action-button.module.css";
-}
-
-.indexSecondaryAction {
-  composes: buttonBase from "../../components/action-button.module.css";
-  composes: buttonSecondary from "../../components/action-button.module.css";
-}
-
-.subprojectCard:hover,
-.subprojectCard:focus-visible {
-  transform: translateY(-1px);
-}
-
-.indexHeroFigure {
-  margin: 0;
-}
-
-.indexHeroImageWrap,
-.projectSectionImageWrap,
-.subprojectImageWrap {
-  position: relative;
-  overflow: hidden;
-  background: var(--site-hero-surface);
-}
-
-.indexHeroImageWrap,
-.projectSectionImageWrap {
-  border-radius: 2rem;
-}
-
-.indexHeroImageWrap {
-  aspect-ratio: 5 / 6;
-}
-
-.indexHeroImage,
-.projectSectionImage,
-.subprojectImage {
-  object-fit: cover;
 }
 
 .projectOverview {
@@ -125,11 +40,7 @@
   composes: directionalControl from "../../components/icon-control.module.css";
 }
 
-.projectOverviewIntro h2,
-.projectSectionCopy h2,
-.subprojectsHeading h3,
-.projectFocusBlock h3,
-.overviewCardBody h2 {
+.projectOverviewIntro h2, .overviewCardBody h2 {
   font-size: var(--site-section-title-size);
 }
 
@@ -154,9 +65,7 @@
   transition: transform var(--card-transition), box-shadow var(--card-transition), background-color var(--card-transition);
 }
 
-.overviewImageWrap,
-.overviewFallback,
-.subprojectFallback {
+.overviewImageWrap, .overviewFallback {
   position: relative;
   overflow: hidden;
   aspect-ratio: 16 / 11;
@@ -244,123 +153,7 @@
   transform: translateY(-1px);
 }
 
-.projectSectionPanel {
-  display: grid;
-  gap: var(--site-space-base);
-}
-
-.projectSectionCopy {
-  max-width: 38rem;
-}
-
-.projectSectionSummary {
-  margin: var(--site-space-base) 0 0;
-  font-size: 1.08rem;
-}
-
-.projectSectionBody {
-  margin: var(--site-space-base) 0 0;
-}
-
-.projectSectionMeta {
-  margin: var(--site-space-base) 0 0;
-  font-weight: 600;
-}
-
-.projectSectionFigure {
-  min-width: 0;
-}
-
-.projectSectionImageWrap,
-.projectSectionFallback {
-  aspect-ratio: 5 / 4;
-}
-
-.projectSectionFallback {
-  border-radius: inherit;
-  background: var(--card-media-gradient);
-}
-
-.subprojectsBlock,
-.projectFocusBlock {
-  margin-top: var(--site-space-roomy);
-}
-
-.subprojectsSection {
-  width: var(--site-shell-width-mobile);
-  margin: var(--site-space-roomy) auto 0;
-}
-
-.subprojectGrid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: var(--card-gap);
-  margin-top: var(--site-space-roomy);
-  overflow-x: visible;
-  padding-bottom: 0;
-  scroll-snap-type: none;
-}
-
-.subprojectCard {
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-  min-width: 0;
-  overflow: hidden;
-  border-radius: var(--card-radius);
-  background: var(--card-surface);
-  color: inherit;
-  text-decoration: none;
-  scroll-snap-align: start;
-  transition: background-color var(--card-transition), transform var(--card-transition);
-}
-
-.subprojectImageWrap,
-.subprojectFallback {
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 16 / 11;
-  background: var(--card-media-gradient);
-}
-
-.subprojectContent {
-  display: grid;
-  align-content: start;
-  gap: var(--card-copy-gap);
-  padding: var(--card-body-padding);
-}
-
-.subprojectContent h4 {
-  margin: 0;
-  max-width: 14ch;
-  font-size: clamp(1.9rem, 4vw, 2.8rem);
-  line-height: 0.98;
-  letter-spacing: var(--site-heading-tracking);
-}
-
-.subprojectSummary {
-  max-width: 34rem;
-  margin: 0.9rem 0 0;
-  color: var(--muted);
-  line-height: 1.75;
-}
-
-.subprojectAction {
-  composes: action from "../../components/tertiary-action.module.css";
-  margin-top: auto;
-}
-
-.projectFocusBody {
-  display: grid;
-  gap: var(--site-space-base);
-  margin-top: var(--site-space-base);
-}
-
 .detailPage {
-  width: 100%;
-  padding: var(--site-page-padding);
-}
-
-.subprojectPage {
   width: 100%;
   padding: var(--site-page-padding);
 }
@@ -370,83 +163,10 @@
   padding: var(--site-page-padding);
 }
 
-.detailHero,
-.detailSubprojects {
-  width: var(--site-shell-width-mobile);
-  margin: 0 auto;
-}
-
-.subprojectHero,
-.subprojectHighlights,
-.subprojectLinksSection {
-  width: var(--site-shell-width-mobile);
-  margin: 0 auto;
-}
-
 .editorialNav {
   width: var(--site-shell-width-mobile);
   margin: 0 auto;
   --editorial-nav-offset: 4.6rem;
-}
-
-.detailHero {
-  display: grid;
-  gap: var(--site-layout-gap);
-  align-items: start;
-}
-
-.subprojectHero {
-  display: grid;
-  gap: var(--site-layout-gap);
-  align-items: start;
-}
-
-.detailHeroCopy {
-  padding: var(--site-copy-block-padding);
-}
-
-.subprojectHeroCopy {
-  padding: var(--site-copy-block-padding);
-}
-
-.detailContext {
-  margin: 0 0 var(--site-space-base);
-  color: var(--muted);
-}
-
-.detailContext a {
-  color: inherit;
-}
-
-.detailHeroCopy h1 {
-  margin: 0.5rem 0 0;
-  line-height: 0.98;
-  letter-spacing: var(--site-heading-tracking);
-}
-
-.subprojectHeroCopy h1 {
-  margin: 0.5rem 0 0;
-  line-height: 0.98;
-  letter-spacing: var(--site-heading-tracking);
-}
-
-.detailHeroCopy h1 {
-  font-size: var(--site-hero-title-size);
-}
-
-.subprojectHeroCopy h1 {
-  font-size: clamp(2.8rem, 6vw, 4.8rem);
-}
-
-.detailIntro {
-  color: var(--muted);
-  line-height: 1.8;
-}
-
-.detailIntro {
-  max-width: var(--site-hero-intro-max);
-  margin: 1.3rem 0 0;
-  font-size: clamp(1.04rem, 2vw, 1.22rem);
 }
 
 .detailSponsor {
@@ -464,48 +184,6 @@
   width: var(--site-sponsor-logo-width);
   max-width: 100%;
   height: auto;
-}
-
-.detailHeroFigure {
-  margin: 0;
-}
-
-.subprojectHeroFigure {
-  margin: 0;
-}
-
-.detailHeroImageWrap,
-.detailHeroFallback {
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 5 / 6;
-  border-radius: var(--site-hero-radius);
-  background: var(--site-hero-surface);
-}
-
-.subprojectHeroImageWrap,
-.subprojectHeroFallback {
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 5 / 6;
-  border-radius: var(--site-hero-radius);
-  background: var(--site-hero-surface);
-}
-
-.detailHeroImage {
-  object-fit: cover;
-}
-
-.subprojectHeroImage {
-  object-fit: cover;
-}
-
-.detailHeroFallback {
-  background: var(--card-media-gradient);
-}
-
-.subprojectHeroFallback {
-  background: var(--card-media-gradient);
 }
 
 .editorialNav {
@@ -564,61 +242,24 @@
   background: var(--site-reading-nav-active-bg);
 }
 
-.detailSubprojects,
-.detailAcknowledgements {
-  display: grid;
-  gap: var(--site-space-base);
-  margin-top: var(--site-section-margin-top);
-}
-
-.subprojectHighlights,
-.subprojectLinksSection {
-  display: grid;
-  gap: var(--site-space-base);
-  margin-top: var(--site-section-margin-top);
-}
-
-.detailSectionLead {
-  max-width: var(--site-section-lead-max);
-}
-
-.detailSectionLead h2 {
-  font-size: var(--site-section-title-size);
-}
-
 .detailInlineLink {
   color: var(--accent);
   text-decoration: underline;
   text-underline-offset: 0.16em;
 }
 
-.subprojectHighlightList,
 .subprojectLinksList {
   display: grid;
   gap: 0;
 }
 
-.subprojectHighlightItem,
 .subprojectLinkRow {
   padding: 1.15rem 0;
   border-top: 1px solid var(--border);
 }
 
-.subprojectHighlightItem:last-child,
 .subprojectLinksList > :last-child {
   border-bottom: 1px solid var(--border);
-}
-
-.subprojectHighlightItem h3 {
-  margin: 0;
-  font-size: 1.15rem;
-}
-
-.subprojectHighlightItem p,
-.subprojectLinkSummary {
-  margin: 0.7rem 0 0;
-  color: var(--muted);
-  line-height: 1.8;
 }
 
 .subprojectLinkRow {
@@ -641,19 +282,10 @@
   font-size: 1.05rem;
 }
 
-.subprojectLinkSummary {
-  display: block;
-}
-
 .subprojectLinkAction {
   flex: 0 0 auto;
   color: var(--accent);
   font-weight: 600;
-}
-
-.grid {
-  display: grid;
-  gap: var(--site-space-base);
 }
 
 .card {
@@ -698,44 +330,21 @@
 }
 
 @media (min-width: 720px) {
-  .projectOverview,
-  .detailSubprojects {
+  .projectOverview {
     grid-template-columns: var(--site-split-columns);
   }
-  .indexHero,
-  .projectOverview,
-  .detailHero,
-  .subprojectHero,
-  .detailSubprojects,
-  .subprojectsSection,
-  .editorialNav {
+  .projectOverview, .editorialNav {
     width: var(--site-shell-width-desktop);
   }
 
-  .indexActions {
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .overviewGrid,
-  .subprojectGrid {
+  .overviewGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 1024px) {
-  .detailHero,
-  .subprojectHero {
-    grid-template-columns: var(--site-split-columns);
-  }
 
-  .projectOverview,
-  .subprojectsSection,
-  .editorialNav {
+  .projectOverview, .editorialNav {
     width: var(--site-shell-width-desktop);
   }
 
@@ -761,28 +370,11 @@
   .overviewCard:focus-visible {
     background: var(--surface-muted);
   }
-
-  .subprojectGrid {
-    grid-auto-flow: row;
-    grid-auto-columns: auto;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    overflow-x: visible;
-    padding-bottom: 0;
-    scroll-snap-type: none;
-  }
 }
 
 @media (max-width: 719px) {
   .editorialNav {
     top: 5.2rem;
-  }
-}
-
-@media (min-width: 1200px) {
-  .indexHero,
-  .projectSectionPanel,
-  .detailSubprojects {
-    grid-template-columns: var(--site-split-columns);
   }
 }
 
