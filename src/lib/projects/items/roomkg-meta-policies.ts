@@ -133,7 +133,7 @@ class="editorial-image-compact"
 		],
 	},
 	summary:
-		"A neuro-symbolic meta-policy that learns which symbolic memory heuristic to apply for answering, exploring, and forgetting, while keeping execution symbolic. Accepted at ISWC 2026.",
+		"A neuro-symbolic meta-policy that learns which symbolic memory heuristic to apply for answering, exploring, and forgetting, while keeping execution symbolic.",
 	image: {
 		src: "/images/projects/project-roomkg-meta-policies.png",
 		alt: "Illustration for RoomKG Meta-Policies",
