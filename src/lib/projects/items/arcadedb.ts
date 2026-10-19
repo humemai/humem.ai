@@ -3,7 +3,7 @@ import { arcadeDbDocsUrl, arcadeDbRepoUrl, arcadeDbUpstreamRepoUrl } from "../sh
 
 export const arcadeDb: Project = {
   slug: "arcadedb",
-  date: "2026-10-01",
+  date: "2025-10-17",
   title: "ArcadeDB",
   editorialPage: {
     layout: "editorial",
