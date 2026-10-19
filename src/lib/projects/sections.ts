@@ -4,8 +4,8 @@
 // Software: things you install or run. Research: things you read and cite. A project has ONE canonical page, under
 // the section it is mainly about; it may also have a card in the other section (Project.crossListing).
 //
-// The order of the keys is the order of the cards on the index pages and the home page: newest first (a project's
-// first release or first paper). A new project goes at the top of its section.
+// The cards are sorted newest first by Project.date, so the order of the keys here does not matter, except as the
+// tie-break for two projects with the same date.
 export type Section = "software" | "research";
 
 export const projectSections = {

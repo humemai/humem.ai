@@ -99,6 +99,8 @@ export type ProjectEditorialPage = {
 export type Project = {
   slug: string;
   title: string;
+  /** The day it first went public (first release, or first paper or announcement). The index pages sort on it, newest first. */
+  date: string;
   summary: string;
   timelineOrder?: number;
   /** A second card in the other section, written for that section; it links to this project's canonical page. */

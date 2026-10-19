@@ -41,12 +41,13 @@ for (const project of allProjects) {
 }
 
 // DBBench is standalone. It joins the lists (the section indexes and the home-page rail) when it is listed or
-// indexable; the sitemap takes it only when indexable (src/app/sitemap.ts). The order is the order of
-// projectSections, which is the order of the cards.
+// indexable; the sitemap takes it only when indexable (src/app/sitemap.ts). The cards are newest first by
+// Project.date; two projects with the same date keep their order in projectSections.
 export const projects: Project[] = Object.keys(projectSections)
   .map((slug) => allProjects.find((project) => project.slug === slug))
   .filter((project): project is Project => Boolean(project))
-  .filter((project) => project.slug !== "dbbench" || DBBENCH_INDEXABLE || DBBENCH_LISTED);
+  .filter((project) => project.slug !== "dbbench" || DBBENCH_INDEXABLE || DBBENCH_LISTED)
+  .sort((left, right) => right.date.localeCompare(left.date));
 
 export function getProject(slug: string) {
   return projects.find((project) => project.slug === slug);

@@ -2,6 +2,7 @@ import type { Project } from "../types";
 
 export const coLearning: Project = {
 	slug: "co-learning",
+	date: "2026-06-19",
 	title: "Co-Learning",
 	editorialPage: {
 		layout: "editorial",

@@ -2,6 +2,7 @@ import type { Project } from "../types";
 
 export const kgMemoryTransfer: Project = {
 	slug: "kg-memory-transfer",
+	date: "2026-05-22",
 	title: "KG Memory Transfer",
 	editorialPage: {
 		layout: "editorial",
