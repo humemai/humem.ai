@@ -14,7 +14,7 @@ The public website of HumemAI, an open source organization building memory syste
 
 ## Rules for agents
 
-- A project's `summary` is its card text and the first line of its page. Write one or two plain sentences of 20 to 28 words (about 130 to 170 characters) that say what it is and the one thing that matters. No venue, no "accepted at", no numbers; the venue is its own field. Cards in a row should read about the same length.
+- A project's `summary` is its card text and the first line of its page. Write one or two plain sentences of 20 to 28 words (about 130 to 170 characters) that say what it is and the one thing that matters. No venue, no "accepted at" and no results; the venue is its own field. Cards in a row should read about the same length. `scripts/check-summary-length.mjs` runs in `npm run build` and enforces the word and character range.
 - A new project needs a `date` (the day it first went public); the Software and Research cards sort on it, newest first.
 - A moved URL always ships with a permanent redirect in `next.config.ts`, straight to the final page (no chains). The old `/projects/...` redirects are generated from `sections.ts`; a new project needs no redirect, but a project that changes section does.
 - Every illustration comes from `scripts/gen-image.mjs`. Do not draw, recolor or hand-edit one. Commit the PNG, the spec and the stored prompt together.
