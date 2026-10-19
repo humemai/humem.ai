@@ -102,7 +102,6 @@ export type Project = {
   /** The day it first went public (first release, or first paper or announcement). The index pages sort on it, newest first. */
   date: string;
   summary: string;
-  timelineOrder?: number;
   /** A second card in the other section, written for that section; it links to this project's canonical page. */
   crossListing?: {
     section: Section;
