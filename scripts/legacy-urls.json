@@ -1,0 +1,168 @@
+{
+  "_comment": "The ledger of URLs that were published and must never break. Each answers 308 to one of the listed destinations in one hop, and the destination answers 200. A moved URL is added here in the same change that moves it. /research/arcadedb/next is the unlisted October preview and is handled in scripts/precheck.mjs.",
+  "redirects": [
+    {
+      "from": "/projects",
+      "to": "/software"
+    },
+    {
+      "from": "/projects/page/2",
+      "to": "/software"
+    },
+    {
+      "from": "/projects/dbbench/tables",
+      "to": "/research/dbbench/tables"
+    },
+    {
+      "from": "/projects/dbbench/graphs",
+      "to": "/research/dbbench/graphs"
+    },
+    {
+      "from": "/projects/dbbench/vectors",
+      "to": "/research/dbbench/vectors"
+    },
+    {
+      "from": "/projects/dbbench",
+      "to": "/research/dbbench"
+    },
+    {
+      "from": "/projects/arcadedb",
+      "to": "/research/arcadedb"
+    },
+    {
+      "from": "/projects/arcadedb/next",
+      "to": [
+        "/research/arcadedb/next",
+        "/research/dbbench"
+      ]
+    },
+    {
+      "from": "/projects/arcadedb-embedded-python",
+      "to": "/software/arcadedb"
+    },
+    {
+      "from": "/projects/multi-model-databases",
+      "to": "/research/arcadedb"
+    },
+    {
+      "from": "/projects/audit-ready-memory",
+      "to": "/software/audit-ready-memory"
+    },
+    {
+      "from": "/projects/cypherglot",
+      "to": "/software/cypherglot"
+    },
+    {
+      "from": "/projects/humemdb",
+      "to": "/software/humemdb"
+    },
+    {
+      "from": "/projects/human-like-memory-systems",
+      "to": "/research/human-like-memory-systems"
+    },
+    {
+      "from": "/projects/explicit-memory",
+      "to": "/research/explicit-memory"
+    },
+    {
+      "from": "/projects/roomkg-baselines",
+      "to": "/research/roomkg-baselines"
+    },
+    {
+      "from": "/projects/kg-memory-transfer",
+      "to": "/research/kg-memory-transfer"
+    },
+    {
+      "from": "/projects/roomkg-meta-policies",
+      "to": "/research/roomkg-meta-policies"
+    },
+    {
+      "from": "/projects/co-learning",
+      "to": "/research/co-learning"
+    },
+    {
+      "from": "/projects/machines-with-human-like-memory",
+      "to": "/research"
+    },
+    {
+      "from": "/research/machines-with-human-like-memory",
+      "to": "/research"
+    },
+    {
+      "from": "/software/arcadedb-python",
+      "to": "/software/arcadedb"
+    },
+    {
+      "from": "/software/dbbench",
+      "to": "/research/dbbench"
+    },
+    {
+      "from": "/software/dbbench/tables",
+      "to": "/research/dbbench/tables"
+    },
+    {
+      "from": "/software/dbbench/graphs",
+      "to": "/research/dbbench/graphs"
+    },
+    {
+      "from": "/software/dbbench/vectors",
+      "to": "/research/dbbench/vectors"
+    },
+    {
+      "from": "/product",
+      "to": "/software"
+    },
+    {
+      "from": "/careers",
+      "to": "/software"
+    },
+    {
+      "from": "/ourtechnologies.html",
+      "to": "/software"
+    },
+    {
+      "from": "/pricing",
+      "to": "/about"
+    },
+    {
+      "from": "/blog/posts/2022-04-04-first-paper",
+      "to": "/news/human-like-memory-systems"
+    },
+    {
+      "from": "/blog/posts/2024-10-24-youtube",
+      "to": "/news/youtube"
+    },
+    {
+      "from": "/blog/posts/2026-01-28-arcadedb-embedded-python-bindings",
+      "to": "/news/arcadedb-embedded-python-bindings"
+    },
+    {
+      "from": "/blog/some-old-post",
+      "to": "/news"
+    },
+    {
+      "from": "/blog.html",
+      "to": "/news"
+    },
+    {
+      "from": "/2024-03-01-design-humemai",
+      "to": "/news"
+    },
+    {
+      "from": "/humemaiandyou.html",
+      "to": "/about"
+    },
+    {
+      "from": "/whoweare.html",
+      "to": "/about"
+    },
+    {
+      "from": "/team",
+      "to": "/about"
+    },
+    {
+      "from": "/terms-of-service",
+      "to": "/privacy-policy"
+    }
+  ]
+}
