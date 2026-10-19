@@ -100,6 +100,16 @@ export const dbbench: Project = {
           "The code and the settings are public, so anyone can check a result or reproduce it. When a result is wrong, the fix is a new row, not an edit.",
         ],
       },
+      {
+        id: "citation",
+        navLabel: "Cite",
+        eyebrow: "Cite",
+        title: "Cite DBBench.",
+        body: [
+          "~~~bibtex\n@misc{kim2026dbbench,\n      title={{DBBench}: an independent, open benchmark of database engines},\n      author={Taewoon Kim},\n      year={2026},\n      publisher={Zenodo},\n      doi={10.5281/zenodo.23481288},\n      url={https://github.com/humemai/dbbench},\n}\n~~~",
+          "Cite a release of the repository rather than this page, because the page changes with every measurement. The DOI above covers every release; the [Zenodo record](https://doi.org/10.5281/zenodo.23481288) lists the DOI of each release, for when the exact numbers matter.",
+        ],
+      },
     ],
   },
   summary:
