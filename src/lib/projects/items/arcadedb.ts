@@ -206,7 +206,7 @@ export const arcadeDb: Project = {
   links: [
     { label: "Python package", href: arcadeDbRepoUrl },
     { label: "ArcadeDB engine", href: arcadeDbUpstreamRepoUrl },
-    { label: "ArcadeDB in Python (SciPy 2026)", href: "/research/arcadedb-python" },
+    { label: "ArcadeDB in Python", href: "/research/arcadedb-python" },
     { label: "Python docs", href: arcadeDbDocsUrl },
   ],
 };
