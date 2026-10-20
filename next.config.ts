@@ -5,12 +5,11 @@ import { projectPath, projectSections } from "./src/lib/projects/sections";
 // A URL that has been published never breaks: a moved page ships with a permanent redirect (Next.js answers 308),
 // and it points straight at the final page, never at another redirect.
 //
-// THE DBBENCH REDIRECT. The October results are served at /research/arcadedb/next until the page switch, so this is
-// OFF and the preview keeps working. It is turned on at the page switch, in the same change that sets
-// DBBENCH_INDEXABLE (src/lib/dbbench/config.ts) and removes the preview route. The redirect stays for good: the
-// preview URL was sent to vendors and maintainers. It matches with or without a trailing slash. The old
-// /projects/arcadedb/next preview URL follows the same switch, so it never chains through /research.
-const DBBENCH_REDIRECTS_ON = false;
+// THE DBBENCH REDIRECT. The October results were served at /research/arcadedb/next until the page switch. The route
+// is gone and both preview URLs answer 308 straight to /research/dbbench. The redirect stays for good: the preview URL
+// was sent to vendors and maintainers. It matches with or without a trailing slash. The old /projects/arcadedb/next
+// preview URL goes straight to DBBench too, so it never chains through /research.
+const DBBENCH_REDIRECTS_ON = true;
 
 const dbbenchRedirects = DBBENCH_REDIRECTS_ON
   ? [

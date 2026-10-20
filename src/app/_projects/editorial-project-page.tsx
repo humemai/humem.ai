@@ -16,10 +16,9 @@ import type { Project, ProjectEditorialBodyBlock } from "@/lib/projects/types";
 import styles from "./projects.module.css";
 import { domProps } from "@/lib/markdown";
 
-// One renderer for every editorial project page. The live ArcadeDB page and
-// its October preview (/research/arcadedb/next) differ only in the prose file
-// and the payload they are fed, so the renderer is parameterized by both
-// rather than forked (DECISIONS #83).
+// One renderer for every editorial project page. The ArcadeDB page and the
+// DBBench pages differ only in the prose file and the payload they are fed, so
+// the renderer is parameterized by both rather than forked.
 
 export function buildAcknowledgements(project: Project): ReactNode {
   const acknowledgementsContent = project.acknowledgements ? (

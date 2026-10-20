@@ -1,5 +1,5 @@
 {
-  "_comment": "The ledger of URLs that were published and must never break. Each answers 308 to one of the listed destinations in one hop, and the destination answers 200. A moved URL is added here in the same change that moves it. /research/arcadedb/next is the unlisted October preview and is handled in scripts/precheck.mjs.",
+  "_comment": "The ledger of URLs that were published and must never break. Each answers 308 to one of the listed destinations in one hop, and the destination answers 200. A moved URL is added here in the same change that moves it.",
   "redirects": [
     {
       "from": "/projects",
@@ -31,10 +31,11 @@
     },
     {
       "from": "/projects/arcadedb/next",
-      "to": [
-        "/research/arcadedb/next",
-        "/research/dbbench"
-      ]
+      "to": "/research/dbbench"
+    },
+    {
+      "from": "/research/arcadedb/next",
+      "to": "/research/dbbench"
     },
     {
       "from": "/projects/arcadedb-embedded-python",
