@@ -20,6 +20,7 @@ export const arcadeDb: Project = {
           "Vectors are the one exception. The vector records are transactional, logged, and replicated like everything else, but the nearest-neighbour graph used to search them is not: it is built in the background and can be rebuilt. The data is the source of truth and the search structure catches up to it. That is more than a standalone vector store offers, and less than a fully transactional index would be.",
         ],
       },
+      // P1: replace with summary + DBBench lane links (section "setup")
       {
         id: "setup",
         navLabel: "Setup",
@@ -28,9 +29,11 @@ export const arcadeDb: Project = {
         body: [
           "Every number on this page was measured on one machine: an Intel Core i9-12900HK (14 cores, 6 performance and 8 efficient, 20 threads, 24 MiB L3), 64 GiB of memory, a Samsung 980 PRO 2 TB NVMe drive, Ubuntu 26.04 with Docker. Each run is pinned to the twelve hardware threads of the six performance cores (`cpuset` 0-11) and to a memory cap that depends on the size: 8 GiB up to 100k documents, 16 GiB at 1M, 32 GiB at 20M rows, 36 GiB at ten million vectors, with a JVM (Java virtual machine) heap of half the cap for the Java engines, except at ten million vectors, where every Java engine runs 24 of the 36 GiB because the vector build fills it. One job runs at a time; a served engine and its client share the same cap. Every comparator is pinned by image digest, and the build measured is listed under each table.",
           "The method behind these numbers is documented in full at [docs.humem.ai/arcadedb](https://docs.humem.ai/arcadedb/benchmarks/), which covers the protocol, the answer checking that compares every engine's result rather than only its speed, how to run a lane yourself, and how this page is generated and gated. The conditions below hold for every table on this page. A table adds its own beneath its caption where they differ. Latency columns are p50 and p99, the median and the 99th percentile of the query times, in milliseconds.",
+          // P1: replace with summary + DBBench lane links
           { type: "benchmarkConditions" },
         ],
       },
+      // P1: replace with summary + DBBench lane links (section "documents")
       {
         id: "documents",
         navLabel: "Documents",
@@ -38,11 +41,13 @@ export const arcadeDb: Project = {
         title: "Document OLTP and OLAP on TPC.",
         body: [
           "Most people arrive with tables. ArcadeDB stores them as documents and answers the same SQL, so documents come first. Every engine below answers the same questions in its own language: SQL where it has one, MongoDB's aggregation pipeline, SurrealQL for SurrealDB. The benchmarks are TPC-C and TPC-H, the long-standing transaction and analytics benchmarks. TPC-C is OLTP, online transaction processing: many small reads and writes. TPC-H is OLAP, online analytical processing: a few large scanning queries. Both run at SF1, where SF is the scale factor, the size of the generated data set.",
+          // P1: replace with summary + DBBench lane links
           {
             type: "benchmarkTable",
             tableId: "docs_oltp",
             caption: "TPC-C's new-order transaction (read a part, insert an order line, update stock) on the TPC-H tables, against DuckDB and PostgreSQL. PostgreSQL appears twice, at its image defaults and tuned with its buffer and work memory fitted to the container.",
           },
+          // P1: replace with summary + DBBench lane links
           {
             type: "benchmarkTable",
             tableId: "docs_olap",
@@ -50,6 +55,7 @@ export const arcadeDb: Project = {
           },
         ],
       },
+      // P1: replace with summary + DBBench lane links (section "graph")
       {
         id: "graph",
         navLabel: "Graph",
@@ -58,12 +64,14 @@ export const arcadeDb: Project = {
         body: [
           "Graph is what most people use ArcadeDB for. The benchmark is LDBC-SNB, the Linked Data Benchmark Council's Social Network Benchmark, a synthetic social network at two scale factors, SF1 and SF10. ArcadeDB, Neo4j, and LadybugDB answer the queries in Cypher, the most common graph query language; SurrealDB answers the same queries in SurrealQL. Neo4j is the most widely used graph database, so it is the comparator. LadybugDB is here because it is embedded and columnar, the closest comparator to running ArcadeDB inside your own process.",
           "ArcadeDB embedded answers all four queries faster than Neo4j at both sizes. That is the strongest head-to-head result on this page.",
+          // P1: replace with summary + DBBench lane links
           {
             type: "benchmarkTable",
             tableId: "l2",
             caption: "Graph OLTP against Neo4j and LadybugDB on LDBC-SNB. Point is a single vertex lookup, 1-hop and 2-hop walk that many edges out from a starting person, and write inserts one edge.",
           },
           "Graph OLAP, queries over the whole graph, is a different job from single traversals, and ArcadeDB has a separate mechanism for it. A Graph Analytical View (GAV) is an in-memory copy of the graph, built once, that the planner uses for queries touching most of the vertices. It is optional, so the table below carries the same engine twice, with the view and without it, and the cost of building the view is measured rather than assumed.",
+          // P1: replace with summary + DBBench lane links
           {
             type: "benchmarkTable",
             tableId: "l2olap",
@@ -71,6 +79,7 @@ export const arcadeDb: Project = {
           },
         ],
       },
+      // P1: replace with summary + DBBench lane links (section "vectors")
       {
         id: "vectors",
         navLabel: "Vectors",
@@ -80,6 +89,7 @@ export const arcadeDb: Project = {
           "Vector search is the newest of these models and the one with the most comparators, so it gets the most detail: three corpora, two kinds of vector, and recall reported beside every latency. It is also a workload ArcadeDB does not win, and the tables show that. Every engine on the dense table today indexes with HNSW (Hierarchical Navigable Small World), a graph of near neighbours that a query walks; an engine with a different index says so in the table's notes. Every corpus below is real and published, not generated, which matters most for sparse search.",
           "A SPLADE (Sparse Lexical And Expansion model) vector stores one weight per word in the vocabulary, and nearly every weight is zero, so a search only has to look at the few words a query uses. Those words cost very different amounts. A common word has to be checked against a huge number of documents; a rare one against almost none.",
           "Real writing has a few words that appear everywhere and a long tail that appear almost nowhere, so some queries are far more expensive than others. Generated data spreads words out evenly, which removes the expensive case and makes any approximate index look better than it is. Dense search uses published image descriptors for the same reason.",
+          // P1: replace with summary + DBBench lane links
           {
             type: "paperTable",
             caption: "The vector corpora, and what each is used for.",
@@ -93,6 +103,7 @@ export const arcadeDb: Project = {
           "Every engine in every table below runs under the same limits, one at a time on one machine, and each cell is the median of five repetitions. The exact build measured sits under each table. Two words recur: cold is the first timed pass after the index is built, and warm is a second pass over the same queries.",
           "Every engine gets a settle step before any query is timed, the one-off operation that leaves it answering from a finished index rather than a half-built one: Elasticsearch refreshes and force-merges to a single segment, Milvus flushes and loads, Qdrant waits until the collection reports green, and ArcadeDB compacts its LSM segments.",
           "Each comparator's sparse precision is read from its own documentation and source at the version measured. Qdrant and Milvus keep sparse weights at full 32-bit precision. Elasticsearch keeps about 9 significant bits, which its documentation puts at roughly 0.4% relative error, the lossiest of the engines here. ArcadeDB stores int8 posting weights by default and can store fp32; both are measured.",
+          // P1: replace with summary + DBBench lane links
           {
             type: "benchmarkTable",
             tableId: "l3s",
@@ -100,6 +111,7 @@ export const arcadeDb: Project = {
               "Sparse search on real SPLADE vectors against Elasticsearch, Milvus, and Qdrant. ArcadeDB appears four times, in both deployments and at both precisions: int8 posting weights are its default and fp32 is the ablation.",
           },
           "Warm is the same pair measured again on a separate one-build run. The largest gain by any engine is 1.15x at a million and 1.83x at 8.84 million, and at the larger size no engine gains more than 83%, and that gain is pgvector's. Compare the dense table below, where ArcadeDB alone gains about 8x on a second pass: that comes from how the two index structures reach their data, not from how the runs were made.",
+          // P1: replace with summary + DBBench lane links
           {
             type: "benchmarkTable",
             tableId: "l3d",
@@ -107,6 +119,7 @@ export const arcadeDb: Project = {
           },
         ],
       },
+      // P1: replace with summary + DBBench lane links (section "timeseries")
       {
         id: "timeseries",
         navLabel: "Time series",
@@ -114,6 +127,7 @@ export const arcadeDb: Project = {
         title: "Time series on TSBS.",
         body: [
           "Time series on TSBS, the Time Series Benchmark Suite: ingest, the newest reading of one host, and a twelve-hour aggregate across all hosts.",
+          // P1: replace with summary + DBBench lane links
           {
             type: "benchmarkTable",
             tableId: "l4",
@@ -121,6 +135,7 @@ export const arcadeDb: Project = {
           },
         ],
       },
+      // P1: replace with summary + DBBench lane links (section "crossmodel")
       {
         id: "crossmodel",
         navLabel: "Cross-model",
@@ -132,16 +147,19 @@ export const arcadeDb: Project = {
           "That damage stays. Nothing goes back to look for it, so the only records that recover are the ones a later write happens to touch. The corruption is partial and silent: you cannot find it by spot-checking a few records. One engine wrapping the same work in one transaction undoes all of it, leaving the counters where the completed operations left them.",
           "We interrupted 200 trials against each system. The composed stack was left half-updated in all 200. Every single engine on the table, each wrapping the work in one transaction, was left half-updated in none. The count matters: with five trials and no failures you cannot rule out a failure rate near one in two, and two hundred puts it under two in a hundred. Before each interruption the two stores are checked and agree exactly, which is what makes a disagreement afterwards mean something.",
           "This is not a criticism of Qdrant or Neo4j. Both do what they are asked, correctly, every time. The gap is between them, and it belongs to any design in which two systems acknowledge separately; the single engines on the table close it by holding all three models under one transaction. Nor does it mean two stores cannot be made to work: a team would add machinery to repair the divergence afterwards, replaying the missing write until both sides agree. The experiment measures what that machinery buys you, because one engine with one transaction does not need it.",
+          // P1: replace with summary + DBBench lane links
           {
             type: "benchmarkTable",
             tableId: "e2",
             caption: "The cross-model operation: a vector hit expands over graph edges and updates a document. ArcadeDB, SurrealDB, Neo4j, and PostgreSQL + pgvector + AGE each do it in one transaction; the composed stack has no transaction spanning its two engines.",
           },
+          // P1: replace with summary + DBBench lane links
           {
             type: "benchmarkTable",
             tableId: "e2atom",
             caption: "The same operation interrupted mid-way, 40 trials per run over five runs. The composed stack is left torn in 40 of 40 trials; every single engine, ArcadeDB embedded and server, SurrealDB embedded and server, Neo4j with its vector index, and PostgreSQL + pgvector + AGE, in 0 of 40, because the whole operation is one transaction that commits or does not.",
           },
+          // P1: replace with summary + DBBench lane links
           {
             type: "figureGrid",
             columns: 1,
@@ -153,6 +171,7 @@ export const arcadeDb: Project = {
           },
         ],
       },
+      // P1: replace with summary + DBBench lane links (section "summary")
       {
         id: "summary",
         navLabel: "Summary",
@@ -164,6 +183,7 @@ export const arcadeDb: Project = {
           "Each row picks its comparator on the first pass, the fastest engine or the highest throughput, and on the vector rows the fastest engine whose recall is at least ArcadeDB's; the same engine is then read on the repeat pass. At ten million vectors that is 8.75 ms for ArcadeDB against Qdrant's 1.26 and Chroma's 0.70. The dense bar divides by Qdrant rather than Chroma, which the table shows is faster, because Chroma returns 93.4% of the true neighbours where ArcadeDB returns 95.3%.",
           "The repeat pass matters most for ArcadeDB: run the same queries again and ArcadeDB answers in 1.04 ms, because it pages its index off disk and the second pass finds it resident, while Qdrant moves to 1.25 and Chroma to 0.72. So the dense rows flip between the panels, a 1.2x win, with the comparators where they were. The graph rows move too, in both directions, because Neo4j and LadybugDB gain on a repeat pass as well.",
           "On the first pass ArcadeDB wins the OLTP, write, and cross-model rows, matches DuckDB on time-series ingest, and loses every scan-, bulk-, and search-bound row, vector search included. The cross-model row is measured against SurrealDB embedded, the fastest of the single engines here that also do the whole operation in one transaction, rather than the composed stack, which is slower and has no transaction spanning its two engines. Each row uses the comparator's own language: document OLTP is SQL against PostgreSQL, the graph rows are Cypher against LadybugDB or Neo4j, and TPC-H is SQL against DuckDB.",
+          // P1: replace with summary + DBBench lane links
           {
             type: "figureGrid",
             // One per row at every width, like every other figure here. These
@@ -198,6 +218,7 @@ export const arcadeDb: Project = {
       },
     ],
   },
+  // P1: replace with summary + DBBench lane links (card summary: "how it compares" claim)
   summary:
     "ArcadeDB keeps documents, graphs, vectors and time series in one engine. How it compares with the specialist engines for each kind of data, with every setting published.",
   image: {
@@ -208,8 +229,9 @@ export const arcadeDb: Project = {
     "Applications increasingly need structured queries, graph traversal, and vector search over the same data, and the usual answer is to run three systems and write glue between them. That glue has no transaction boundary, so a failure part-way through a multi-store write leaves the stores disagreeing, and there is no single place to ask a question that spans them. For Python work there is a second problem: the engines worth using are rarely installable as a package and runnable inside your process.",
   solution:
     "ArcadeDB puts every model on the same pages and the same write-ahead log, so a write spanning documents, edges, and vectors is one ACID transaction, and replication is correct for every model without per-model code. The Python package ships that same engine with a bundled Java runtime, so it installs with pip and runs inside your process, and can start a server from there when wire protocols or replication are needed.",
+  // P1: replace with summary + DBBench lane links (not rendered on editorial pages)
   impact:
-    "The engine and the Python package are developed together and measured against the comparators in each category, on real corpora rather than synthetic ones, with recall reported next to latency and every comparator pinned by image digest. Findings from the benchmarks are filed and contributed upstream, so the benchmarks improve the engine as well as measure it.",
+    "The engine and the Python package are developed together. The cross-engine benchmarks, with recall reported next to latency and every comparator pinned by image digest, live in DBBench (/research/dbbench). Findings from the benchmarks are filed and contributed upstream, so the benchmarks improve the engine as well as measure it.",
   // The hero renders the first two as buttons, so those two have to represent
   // both halves of the work rather than sending everyone to the Python side.
   links: [
