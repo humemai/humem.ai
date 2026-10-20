@@ -9,14 +9,10 @@ import { projectPath, projectSections } from "./src/lib/projects/sections";
 // is gone and both preview URLs answer 308 straight to /research/dbbench. The redirect stays for good: the preview URL
 // was sent to vendors and maintainers. It matches with or without a trailing slash. The old /projects/arcadedb/next
 // preview URL goes straight to DBBench too, so it never chains through /research.
-const DBBENCH_REDIRECTS_ON = true;
-
-const dbbenchRedirects = DBBENCH_REDIRECTS_ON
-  ? [
-      { source: "/research/arcadedb/next", destination: "/research/dbbench", permanent: true },
-      { source: "/projects/arcadedb/next", destination: "/research/dbbench", permanent: true },
-    ]
-  : [{ source: "/projects/arcadedb/next", destination: "/research/arcadedb/next", permanent: true }];
+const dbbenchRedirects = [
+  { source: "/research/arcadedb/next", destination: "/research/dbbench", permanent: true },
+  { source: "/projects/arcadedb/next", destination: "/research/dbbench", permanent: true },
+];
 
 // Every page of the old /projects section, generated from the section map so the redirects cannot drift from the
 // pages. The DBBench lane pages moved with their project.
