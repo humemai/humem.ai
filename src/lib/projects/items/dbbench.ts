@@ -1,5 +1,4 @@
-// DBBench: the benchmark as its own project, standalone. Rendered at /research/dbbench from the same
-// payload the October preview uses. Lane pages live under it
+// DBBench: the benchmark as its own project, standalone. Rendered at /research/dbbench. Lane pages live under it
 // (/research/dbbench/<lane>, see src/lib/dbbench/lanes.ts).
 //
 // The methodology points below summarise docs.humem.ai/dbbench/latest/methodology/.

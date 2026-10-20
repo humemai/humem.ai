@@ -2,8 +2,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { BenchmarkDataset } from "@/components/editorial-sections";
 
-// The DBBench pages and the October preview at /research/arcadedb/next read the
-// same payload, written by export_web.py in the benchmark tooling. Nothing on a
+// The DBBench pages read this payload, written by export_web.py in the benchmark tooling. Nothing on a
 // DBBench page types a number; every figure comes from this file.
 const PAYLOAD_PATH = join(process.cwd(), "src", "data", "arcadedb-benchmarks-next.json");
 

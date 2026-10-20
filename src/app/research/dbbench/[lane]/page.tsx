@@ -14,9 +14,9 @@ import {
 import { dbbench } from "@/lib/projects/items/dbbench";
 import { EditorialProjectPage } from "../../../_projects/editorial-project-page";
 
-// One page per DBBench lane, from one dynamic route. Hidden (noindex) until
-// DBBENCH_INDEXABLE is flipped at the page switch. A lane page renders only
-// that lane's tables, from the same payload as the project page.
+// One page per DBBench lane, from one dynamic route. Robots follow
+// DBBENCH_INDEXABLE. A lane page renders only that lane's tables, from the
+// same payload as the project page.
 
 type Params = { lane: string };
 

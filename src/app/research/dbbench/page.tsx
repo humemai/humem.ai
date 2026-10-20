@@ -4,9 +4,7 @@ import { loadDbbenchDataset } from "@/lib/dbbench/payload";
 import { dbbench } from "@/lib/projects/items/dbbench";
 import { EditorialProjectPage } from "../../_projects/editorial-project-page";
 
-// The DBBench project page. For now it reads the same payload as the October
-// preview at /research/arcadedb/next. Hidden (noindex) until DBBENCH_INDEXABLE
-// is flipped at the page switch.
+// The DBBench project page. Robots follow DBBENCH_INDEXABLE.
 
 export const metadata: Metadata = {
   title: "DBBench",

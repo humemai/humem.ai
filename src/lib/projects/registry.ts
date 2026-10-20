@@ -1,4 +1,3 @@
-import { DBBENCH_INDEXABLE, DBBENCH_LISTED } from "../dbbench/config";
 import { projectIdForPath, projectPath, projectSections, type Section } from "./sections";
 import type { Project } from "./types";
 import {
@@ -40,13 +39,10 @@ for (const project of allProjects) {
   }
 }
 
-// DBBench is standalone. It joins the lists (the section indexes and the home-page rail) when it is listed or
-// indexable; the sitemap takes it only when indexable (src/app/sitemap.ts). The cards are in the order of
-// projectSections, which is a hand-picked order.
+// The cards are in the order of projectSections, which is a hand-picked order.
 export const projects: Project[] = Object.keys(projectSections)
   .map((slug) => allProjects.find((project) => project.slug === slug))
-  .filter((project): project is Project => Boolean(project))
-  .filter((project) => project.slug !== "dbbench" || DBBENCH_INDEXABLE || DBBENCH_LISTED);
+  .filter((project): project is Project => Boolean(project));
 
 export function getProject(slug: string) {
   return projects.find((project) => project.slug === slug);
