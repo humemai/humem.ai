@@ -92,5 +92,6 @@ export const cypherglot: Project = {
   links: [
     { label: "Read docs", href: cypherglotDocsUrl },
     { label: "View GitHub", href: cypherglotRepoUrl },
+    { label: "DBBench", href: "/research/dbbench" },
   ],
 };

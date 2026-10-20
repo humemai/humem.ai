@@ -91,5 +91,6 @@ export const humemdb: Project = {
   links: [
     { label: "Read docs", href: humemDbDocsUrl },
     { label: "View GitHub", href: humemDbRepoUrl },
+    { label: "DBBench", href: "/research/dbbench" },
   ],
 };
