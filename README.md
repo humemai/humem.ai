@@ -17,6 +17,10 @@ npm run dev
 
 Before pushing a change to pages, links or layout, run `npm run precheck`. It takes about 2 minutes and runs the lint and a production build, then checks every URL in `scripts/legacy-urls.json` (the ledger of published URLs: each must answer 308 to its new page in one hop), every URL in the sitemap, and the six test devices in light and dark for overflow and console errors. It needs Chromium (set `PLAYWRIGHT_CHROME`, or have `~/.cache/ms-playwright/chromium-1248`). For smaller changes, run `npm run lint` and `npm run build` (the build also runs `scripts/check-spacing-tokens.mjs`, which fails when a child of a prose column carries its own vertical margin, `scripts/check-item-tables.mjs`, which fails on a markdown table in a project page, and `scripts/check-summary-length.mjs`, which fails when a project card summary is outside 20 to 28 words or 130 to 170 characters). There is no CI besides the Vercel preview, so run them again after any later edit. Check a layout change rendered, not only built: in light and dark mode, on the six devices in `docs/design/test-devices.md` (360 to 1920 px).
 
+## DBBench payload
+
+The DBBench pages (`/research/dbbench` and `/research/dbbench/<lane>`) read one file, `src/data/dbbench-benchmarks.json`, written by `refresh_web_page.py` in `humemai/arcadedb-embedded-python` (`benchmarks/experiments`), which also checks that every `tableId` in `src/lib/dbbench/lanes.ts` has rows. The reader is `src/lib/dbbench/payload.ts`. While the file is absent, or carries no row, the pages show the method and the lanes and no number. With the file, the project page shows the machine, the shared conditions and each lane's first table, and a lane page shows the lane's tables; a table the payload does not carry is left out. A served ArcadeDB row that has a `client_twin` gets a second, labelled row under it (the same cell through the benchmark's own lean HTTP client, a sensitivity that is not part of the headline). Precision `pq` rows use the Precision column like any other. The robots tag still follows `DBBENCH_INDEXABLE` in `src/lib/dbbench/config.ts`.
+
 ## Production
 
 ```bash

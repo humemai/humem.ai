@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { dbbenchRobots } from "@/lib/dbbench/config";
 import { dbbenchFirstResults, dbbenchLanes, getDbbenchLane } from "@/lib/dbbench/lanes";
-import type { Project } from "@/lib/projects/types";
+import { datasetHasTable, loadDbbenchDataset } from "@/lib/dbbench/payload";
+import type { Project, ProjectEditorialBodyBlock } from "@/lib/projects/types";
 import {
   dbbenchEnginesUrl,
   dbbenchIssuesUrl,
@@ -12,8 +13,9 @@ import { dbbench } from "@/lib/projects/items/dbbench";
 import { EditorialProjectPage } from "../../../_projects/editorial-project-page";
 
 // One page per DBBench lane, from one dynamic route. Hidden (noindex) until DBBENCH_INDEXABLE is flipped, which happens
-// when the first results are published (November 2026). Until then a lane page says what the lane measures and lists the
-// tables it will carry.
+// when the first results are published (November 2026). While src/data/dbbench-benchmarks.json is absent, a lane page says
+// what the lane measures and lists the tables it will carry. With the payload it renders the lane's tables; a table the
+// payload does not carry (or name as pending) is left out.
 
 type Params = { lane: string };
 
@@ -45,14 +47,39 @@ export default async function DbbenchLanePage({ params }: { params: Promise<Para
     notFound();
   }
 
-  const plannedTables = lane.tables.map((table) => `- ${table.caption}`).join("\n");
-  const resultBody = [
-    dbbenchFirstResults,
-    ...lane.lead,
-    "The lane will carry these tables:",
-    plannedTables,
-    "The rules every result follows are in the [methodology](" + dbbenchMethodologyUrl + "). The settings for each engine are on the [engines page](" + dbbenchEnginesUrl + "). If one is wrong, [tell us](" + dbbenchIssuesUrl + ").",
-  ];
+  const dataset = loadDbbenchDataset();
+  const methodNote =
+    "The rules every result follows are in the [methodology](" + dbbenchMethodologyUrl + "). The settings for each engine are on the [engines page](" + dbbenchEnginesUrl + "). If one is wrong, [tell us](" + dbbenchIssuesUrl + ").";
+  const laneTables = lane.tables.filter((table) => datasetHasTable(dataset, table.tableId));
+
+  let resultBody: ProjectEditorialBodyBlock[];
+  let resultEyebrow = "Lane";
+  let resultTitle = "Not published yet.";
+  if (!dataset) {
+    const plannedTables = lane.tables.map((table) => `- ${table.caption}`).join("\n");
+    resultBody = [dbbenchFirstResults, ...lane.lead, "The lane will carry these tables:", plannedTables, methodNote];
+  } else if (laneTables.length > 0) {
+    resultEyebrow = "Results";
+    resultTitle = "Tasks and results.";
+    resultBody = [
+      ...lane.lead,
+      ...laneTables.map(
+        (table): ProjectEditorialBodyBlock => ({
+          type: "benchmarkTable",
+          tableId: table.tableId,
+          caption: table.caption,
+          showDigests: table.showDigests,
+        }),
+      ),
+      methodNote,
+    ];
+  } else {
+    resultBody = [
+      `The ${lane.title.toLowerCase()} lane has no published results yet. They appear here when its first measurement is complete.`,
+      ...lane.lead,
+      methodNote,
+    ];
+  }
 
   const otherLanes = dbbenchLanes
     .filter((candidate) => candidate.slug !== lane.slug)
@@ -79,8 +106,8 @@ export default async function DbbenchLanePage({ params }: { params: Promise<Para
         {
           id: "results",
           navLabel: "Results",
-          eyebrow: "Lane",
-          title: "Not published yet.",
+          eyebrow: resultEyebrow,
+          title: resultTitle,
           body: resultBody,
         },
         {
@@ -97,6 +124,7 @@ export default async function DbbenchLanePage({ params }: { params: Promise<Para
   return (
     <EditorialProjectPage
       project={project}
+      dataset={dataset}
       parent={{ href: "/research/dbbench", label: "DBBench" }}
       section="research"
       eyebrow="Lane"
