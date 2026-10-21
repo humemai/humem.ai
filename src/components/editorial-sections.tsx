@@ -206,6 +206,12 @@ export type BenchmarkEntry = {
   version_name: string | null;
   host: string | null;
   metrics: Record<string, BenchmarkStat>;
+  /**
+   * The served ArcadeDB row's sensitivity twin: the same cell timed through the benchmark's own lean HTTP client instead of
+   * the vendor's official one. Printed on a labelled row under its headline row, never pooled into the headline, never the
+   * best value of a column. Carries only the metric labels the headline row has.
+   */
+  client_twin?: { client: string | null; metrics: Record<string, BenchmarkStat> };
 };
 
 export type EditorialBenchmarkTableProps = {
@@ -465,41 +471,58 @@ export function EditorialBenchmarkTable({
             </tr>
           </thead>
           <tbody>
-            {entries.map((entry) => (
-              <tr
-                // deployment is part of the key. It was not, and it did not
-                // need to be while every label carried "(embedded)" or
-                // "(server)"; stripping those makes l1's two ArcadeDB rows
-                // share a backend, scale and workload, which is the same
-                // duplicate-key collision Elasticsearch hit on l3s.
-                key={`${entry.backend}-${entry.deployment}-${entry.precision ?? ""}-${entry.scale}-${entry.workload}`}
-                className={entry.is_arcadedb ? styles.benchmarkOwnRow : undefined}
-              >
-                <th scope="row">
-                  {stripQualifiers(
-                    entry.backend,
-                    showMode ? entry.deployment : null,
-                    showPrecision ? entry.precision : null)}
-                </th>
-                {showMode ? <td data-label="Mode">{entry.deployment}</td> : null}
-                {showPrecision ? (
-                  <td data-label="Precision">{entry.precision ?? "—"}</td>
-                ) : null}
-                {showScale ? (
-                  <td data-label="Size">{entry.scale_label ?? entry.scale}</td>
-                ) : null}
-                {columns.map((column) => (
-                  <td key={column} data-label={column}>
-                    {isBest(entry, column) ? (
-                      <strong>{formatStat(entry.metrics[column], column)}</strong>
-                    ) : (
-                      formatStat(entry.metrics[column], column)
-                    )}
-                  </td>
-                ))}
-
-              </tr>
-            ))}
+            {entries.flatMap((entry) => {
+              const rowKey = `${entry.backend}-${entry.deployment}-${entry.precision ?? ""}-${entry.scale}-${entry.workload}`;
+              const twin = entry.client_twin;
+              // The row label is the headline row's, so the twin line reads as the same engine, cell and size.
+              const cells = (stats: Record<string, BenchmarkStat>, best: boolean) => (
+                <>
+                  {showMode ? <td data-label="Mode">{entry.deployment}</td> : null}
+                  {showPrecision ? <td data-label="Precision">{entry.precision ?? "—"}</td> : null}
+                  {showScale ? <td data-label="Size">{entry.scale_label ?? entry.scale}</td> : null}
+                  {columns.map((column) => (
+                    <td key={column} data-label={column}>
+                      {best && isBest(entry, column) ? (
+                        <strong>{formatStat(stats[column], column)}</strong>
+                      ) : (
+                        formatStat(stats[column], column)
+                      )}
+                    </td>
+                  ))}
+                </>
+              );
+              const rows = [
+                <tr
+                  // deployment is part of the key. It was not, and it did not
+                  // need to be while every label carried "(embedded)" or
+                  // "(server)"; stripping those makes l1's two ArcadeDB rows
+                  // share a backend, scale and workload, which is the same
+                  // duplicate-key collision Elasticsearch hit on l3s.
+                  key={rowKey}
+                  className={entry.is_arcadedb ? styles.benchmarkOwnRow : undefined}
+                >
+                  <th scope="row">
+                    {stripQualifiers(
+                      entry.backend,
+                      showMode ? entry.deployment : null,
+                      showPrecision ? entry.precision : null)}
+                  </th>
+                  {cells(entry.metrics, true)}
+                </tr>,
+              ];
+              if (twin && Object.keys(twin.metrics).length > 0) {
+                rows.push(
+                  <tr key={`${rowKey}-twin`} className={styles.benchmarkTwinRow}>
+                    <th scope="row">
+                      {`Sensitivity: ${twin.client ?? "lean"} client`}
+                      <span className={styles.benchmarkTwinNote}>not part of the headline</span>
+                    </th>
+                    {cells(twin.metrics, false)}
+                  </tr>,
+                );
+              }
+              return rows;
+            })}
           </tbody>
         </table>
         {hasDirections ? (

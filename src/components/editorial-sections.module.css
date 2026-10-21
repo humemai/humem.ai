@@ -547,6 +547,25 @@ table.benchmarkGrid {
   font-weight: 700;
 }
 
+/* The lean-client sensitivity twin of a served ArcadeDB row: plainly secondary, under the row it belongs to. */
+.benchmarkTwinRow {
+  font-size: 0.88em;
+  opacity: 0.8;
+}
+
+.benchmarkTwinRow th[scope="row"] {
+  font-weight: 400;
+  font-style: italic;
+}
+
+.benchmarkTwinNote {
+  display: block;
+  font-size: 0.85em;
+  font-style: normal;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
 .benchmarkGrid td {
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
