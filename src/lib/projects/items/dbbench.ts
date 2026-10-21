@@ -61,6 +61,7 @@ export const dbbench: Project = {
           "Results are kept. When an engine ships a new version, new rows are added next to the old ones. When a setting is corrected, the corrected run is added and the earlier result stays visible.",
           "DBBench does not rank databases in general. It measures the tasks listed in each lane, on the stated machine and settings. A different workload, scale or tuning can change the order. That is why the settings are published, and why anyone can tell us when one is wrong.",
           "There are six lanes. An engine appears only in the lanes it is built for.",
+          "The tables show every engine measured so far. A cell that is not measured yet, or that was withdrawn, says so in its table, and a table that is still being measured says so in its place, so a gap is never left blank.",
           laneList,
         ],
       },
