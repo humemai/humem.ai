@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import type { BenchmarkDataset } from "@/components/editorial-sections";
 import { dbbenchRobots } from "@/lib/dbbench/config";
-import { dbbenchLanes, getDbbenchLane } from "@/lib/dbbench/lanes";
-import type { DbbenchLane } from "@/lib/dbbench/lanes";
-import { loadDbbenchDataset } from "@/lib/dbbench/payload";
-import type { Project, ProjectEditorialBodyBlock } from "@/lib/projects/types";
+import { dbbenchFirstResults, dbbenchLanes, getDbbenchLane } from "@/lib/dbbench/lanes";
+import type { Project } from "@/lib/projects/types";
 import {
   dbbenchEnginesUrl,
   dbbenchIssuesUrl,
@@ -14,9 +11,9 @@ import {
 import { dbbench } from "@/lib/projects/items/dbbench";
 import { EditorialProjectPage } from "../../../_projects/editorial-project-page";
 
-// One page per DBBench lane, from one dynamic route. Hidden (noindex) until
-// DBBENCH_INDEXABLE is flipped at the page switch. A lane page renders only
-// that lane's tables, from the same payload as the project page.
+// One page per DBBench lane, from one dynamic route. Hidden (noindex) until DBBENCH_INDEXABLE is flipped, which happens
+// when the first results are published (November 2026). Until then a lane page says what the lane measures and lists the
+// tables it will carry.
 
 type Params = { lane: string };
 
@@ -41,17 +38,6 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   };
 }
 
-// A lane has something to show when the payload carries one of its tables with
-// rows, or names one as still being measured. Otherwise the page says the lane
-// has no published results, instead of a heading with nothing under it.
-function laneHasContent(lane: DbbenchLane, dataset: BenchmarkDataset) {
-  return lane.tables.some(
-    (table) =>
-      dataset.tables.some((candidate) => candidate.id === table.tableId && candidate.entries.length > 0) ||
-      Boolean(dataset.pending_tables?.[table.tableId]),
-  );
-}
-
 export default async function DbbenchLanePage({ params }: { params: Promise<Params> }) {
   const { lane: slug } = await params;
   const lane = getDbbenchLane(slug);
@@ -59,27 +45,14 @@ export default async function DbbenchLanePage({ params }: { params: Promise<Para
     notFound();
   }
 
-  const dataset = loadDbbenchDataset();
-  const hasContent = laneHasContent(lane, dataset);
-
-  const resultBody: ProjectEditorialBodyBlock[] = hasContent
-    ? [
-        ...lane.lead,
-        ...lane.tables.map(
-          (table): ProjectEditorialBodyBlock => ({
-            type: "benchmarkTable",
-            tableId: table.tableId,
-            caption: table.caption,
-            showDigests: table.showDigests,
-          }),
-        ),
-        "The rules every result follows are in the [methodology](" + dbbenchMethodologyUrl + "). The settings for each engine are on the [engines page](" + dbbenchEnginesUrl + "). If one is wrong, [tell us](" + dbbenchIssuesUrl + ").",
-      ]
-    : [
-        `The ${lane.title.toLowerCase()} lane has no published results yet. They appear here when its first measurement is complete.`,
-        ...lane.lead,
-        "The rules this lane will follow are in the [methodology](" + dbbenchMethodologyUrl + ").",
-      ];
+  const plannedTables = lane.tables.map((table) => `- ${table.caption}`).join("\n");
+  const resultBody = [
+    dbbenchFirstResults,
+    ...lane.lead,
+    "The lane will carry these tables:",
+    plannedTables,
+    "The rules every result follows are in the [methodology](" + dbbenchMethodologyUrl + "). The settings for each engine are on the [engines page](" + dbbenchEnginesUrl + "). If one is wrong, [tell us](" + dbbenchIssuesUrl + ").",
+  ];
 
   const otherLanes = dbbenchLanes
     .filter((candidate) => candidate.slug !== lane.slug)
@@ -106,8 +79,8 @@ export default async function DbbenchLanePage({ params }: { params: Promise<Para
         {
           id: "results",
           navLabel: "Results",
-          eyebrow: hasContent ? "Results" : "Lane",
-          title: hasContent ? "Tasks and results." : "Not published yet.",
+          eyebrow: "Lane",
+          title: "Not published yet.",
           body: resultBody,
         },
         {
@@ -124,7 +97,6 @@ export default async function DbbenchLanePage({ params }: { params: Promise<Para
   return (
     <EditorialProjectPage
       project={project}
-      dataset={dataset}
       parent={{ href: "/research/dbbench", label: "DBBench" }}
       section="research"
       eyebrow="Lane"

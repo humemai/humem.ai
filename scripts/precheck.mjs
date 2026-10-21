@@ -80,12 +80,7 @@ for (const { from, to } of ledger) {
     if (dest.status !== 200) fail(`${from}: ${target} answered ${dest.status}, want 200 (a chain?)`);
   }
 }
-// The unlisted October preview is a page until the DBBench switch, then a redirect to DBBench.
-const preview = await get("/research/arcadedb/next");
-if (preview.status === 308 ? location(preview) !== "/research/dbbench" : preview.status !== 200) {
-  fail(`/research/arcadedb/next: answered ${preview.status} ${location(preview)}`);
-}
-console.log(`  ${ledger.length + 1} old URLs checked`);
+console.log(`  ${ledger.length} old URLs checked`);
 
 console.log("\n== sitemap");
 const sitemap = await (await get("/sitemap.xml")).text();

@@ -1,13 +1,14 @@
-// The six DBBench lanes and which payload tables belong to each.
+// The six DBBench lanes and the tables each one will publish.
 //
-// The payload (src/data/arcadedb-benchmarks-next.json) names tables by id, not
-// by lane, so this file is the one place that maps them. The first table of a
-// lane is its headline: the project page shows that one and links to the lane
-// page for the rest. A table id that the payload does not carry renders its
-// "still being measured" line if the payload names one, and nothing otherwise.
+// No result is published yet: the first results come in November 2026 (dbbenchFirstResults below). A lane lists the
+// tables it will carry, each with the caption that says what it measures. When the first results land, the payload
+// that carries the numbers is added back and the table ids here name its tables.
 //
-// NO NUMBER IS TYPED INTO A SENTENCE HERE. Every figure lives in a table cell,
-// generated from the rows. The prose says what a table measures and why.
+// NO NUMBER IS TYPED INTO A SENTENCE HERE. The prose says what a table measures and why.
+
+/** The one sentence every DBBench and ArcadeDB page uses to say when results appear. */
+export const dbbenchFirstResults =
+  "The first results are published in November 2026: ArcadeDB 26.11.1 against a multi-model subset of engines, measured on the November instrument. Until then DBBench shows its method and its lanes, and no numbers.";
 
 export type DbbenchLaneTable = {
   tableId: string;

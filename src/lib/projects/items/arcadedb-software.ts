@@ -1,7 +1,7 @@
 import type { Project } from "../types";
 import { arcadeDbDocsUrl, arcadeDbRepoUrl, arcadeDbUpstreamRepoUrl } from "../shared";
 
-// The Software page of ArcadeDB: how to run it. The papers and benchmarks are on the Research page (arcadedb.ts).
+// The Software page of ArcadeDB: how to run it. The engine page is on the Research page (arcadedb.ts); the benchmarks are in DBBench (dbbench.ts).
 export const arcadeDbSoftware: Project = {
   slug: "arcadedb-software",
   title: "ArcadeDB",
@@ -101,7 +101,7 @@ export const arcadeDbSoftware: Project = {
         eyebrow: "Benchmarks",
         title: "How fast it is.",
         body: [
-          "We benchmark ArcadeDB against the engines people use for each kind of data. The numbers, the settings and the paper are on the [ArcadeDB research page](/research/arcadedb), and the cross-engine results are in [DBBench](/research/dbbench).",
+          "We benchmark ArcadeDB against the engines people use for each kind of data, in [DBBench](/research/dbbench). The first results are published in November 2026. The [ArcadeDB research page](/research/arcadedb) covers the engine itself.",
         ],
       },
     ],

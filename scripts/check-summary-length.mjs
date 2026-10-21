@@ -11,8 +11,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 
 const DIR = "src/lib/projects/items";
-// The unlisted October preview is not a card.
-const SKIP = new Set(["index.ts", "arcadedb-next.ts"]);
+const SKIP = new Set(["index.ts"]);
 const WORDS = [20, 28];
 const CHARS = [130, 170];
 
