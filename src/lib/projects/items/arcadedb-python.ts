@@ -1,7 +1,7 @@
 import type { Project } from "../types";
 import { arcadeDbDocsUrl, arcadeDbRepoUrl } from "../shared";
 
-// The paper about the Python package. The page of the engine and its benchmarks is arcadedb.ts; how to run
+// The paper about the Python package. The page of the engine is arcadedb.ts and the benchmarks are dbbench.ts; how to run
 // it is arcadedb-software.ts.
 export const arcadeDbPython: Project = {
   slug: "arcadedb-python",
@@ -104,6 +104,6 @@ export const arcadeDbPython: Project = {
     { label: "View GitHub", href: arcadeDbRepoUrl },
     { label: "Python docs", href: arcadeDbDocsUrl },
     { label: "How to run ArcadeDB", href: "/software/arcadedb" },
-    { label: "ArcadeDB benchmarks", href: "/research/arcadedb" },
+    { label: "DBBench", href: "/research/dbbench" },
   ],
 };

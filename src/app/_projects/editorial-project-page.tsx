@@ -16,10 +16,9 @@ import type { Project, ProjectEditorialBodyBlock } from "@/lib/projects/types";
 import styles from "./projects.module.css";
 import { domProps } from "@/lib/markdown";
 
-// One renderer for every editorial project page. The live ArcadeDB page and
-// its October preview (/research/arcadedb/next) differ only in the prose file
-// and the payload they are fed, so the renderer is parameterized by both
-// rather than forked (DECISIONS #83).
+// One renderer for every editorial project page. Pages differ only in the prose
+// file and the payload they are fed, so the renderer is parameterized by both
+// rather than forked.
 
 export function buildAcknowledgements(project: Project): ReactNode {
   const acknowledgementsContent = project.acknowledgements ? (
@@ -68,8 +67,9 @@ export function buildAcknowledgements(project: Project): ReactNode {
 
 type EditorialProjectPageProps = {
   project: Project;
-  dataset: BenchmarkDataset;
-  /** Rendered above the hero; the October preview uses it for its notice. */
+  /** The payload behind benchmarkTable blocks. Omitted while a page publishes no result. */
+  dataset?: BenchmarkDataset;
+  /** Rendered above the hero. */
   banner?: ReactNode;
   /** Breadcrumb parent for a page under a project page (a DBBench lane). */
   parent?: { href: string; label: string };
@@ -79,7 +79,17 @@ type EditorialProjectPageProps = {
   eyebrow?: string;
 };
 
-export function EditorialProjectPage({ project, dataset, banner, parent, section, eyebrow }: EditorialProjectPageProps) {
+const NO_RESULTS: BenchmarkDataset = {
+  source: "",
+  generator: "",
+  arcadedb_version: "",
+  conditions: [],
+  provenance_note: "",
+  hosts_recorded: [],
+  tables: [],
+};
+
+export function EditorialProjectPage({ project, dataset = NO_RESULTS, banner, parent, section, eyebrow }: EditorialProjectPageProps) {
   const projectSection: Section = section ?? (projectSections as Record<string, Section>)[project.slug] ?? "research";
   const sectionLabel = projectSection === "software" ? "Software" : "Research";
   const projectContext = (

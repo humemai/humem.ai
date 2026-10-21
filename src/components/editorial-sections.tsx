@@ -144,7 +144,7 @@ export type BenchmarkTable = {
 };
 
 /**
- * Shape of src/data/arcadedb-benchmarks.json. Declared here rather than
+ * Shape of the benchmark payload a DBBench page reads (none is published until the first results, November 2026). Declared here rather than
  * inferred, because a direct JSON import narrows every null to `null` and
  * every metric key to the literals present in the first table, so the inferred
  * type stops matching as soon as a lane reports a different metric set.
@@ -164,7 +164,7 @@ export type BenchmarkDataset = {
   };
   /**
    * Skeleton fields (DECISIONS #86), present and false/empty on a real
-   * payload. Declared here rather than only where the preview route reads
+   * payload. Declared here rather than only where a page reads
    * them, because the setup section renders two of them as a body block and
    * the block is typed against this dataset.
    */
@@ -176,7 +176,7 @@ export type BenchmarkDataset = {
    * Tables this payload does not carry BECAUSE THEY HAVE NOT BEEN MEASURED
    * YET at this pin, mapped to the reason a reader should see.
    *
-   * The October campaign lands one lane at a time, so a payload published
+   * A campaign lands one lane at a time, so a payload published
    * between stages legitimately lacks most of the page's tables. Without
    * this, the table block renders null and the reader meets a section
    * heading, prose about numbers, and no numbers -- which reads as a broken
@@ -642,7 +642,7 @@ export function EditorialConditions({ conditions }: { conditions: string[] }) {
  * wants them will look. The banner keeps the warning; this keeps the detail.
  *
  * It renders nothing at all when the payload is not a skeleton, so the first
- * real October stage removes it by overwriting the payload rather than by
+ * real stage removes it by overwriting the payload rather than by
  * anyone remembering to delete a paragraph.
  */
 export function EditorialSkeletonNotes({ dataset }: { dataset: BenchmarkDataset }) {
@@ -664,7 +664,7 @@ export function EditorialSkeletonNotes({ dataset }: { dataset: BenchmarkDataset 
       ) : null}
       {absent.length > 0 ? (
         <>
-          <p>On the October page, and not here, because a laptop cannot produce them:</p>
+          <p>On the real page, and not here, because a laptop cannot produce them:</p>
           <EditorialConditions conditions={absent.map(([id, why]) => `${id}: ${why}`)} />
         </>
       ) : null}
