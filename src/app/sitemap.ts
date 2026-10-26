@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { getAllNewsPosts } from "@/lib/news-posts";
 import { DBBENCH_INDEXABLE } from "@/lib/dbbench/config";
 import { dbbenchLanes } from "@/lib/dbbench/lanes";
-import { projectPath, projects } from "@/lib/projects";
+import { UNLISTED_PROJECTS, projectPath, projects } from "@/lib/projects";
 
 const SITE = "https://humem.ai";
 
@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // A noindex DBBench page stays out of the sitemap (DBBENCH_INDEXABLE).
     ...projects
       .filter((project) => project.slug !== "dbbench" || DBBENCH_INDEXABLE)
+      .filter((project) => !UNLISTED_PROJECTS.has(project.slug))
       .map((project) => ({ url: `${SITE}${projectPath(project.slug)}` })),
     // The lane pages go with the project page (DBBENCH_INDEXABLE).
     ...(DBBENCH_INDEXABLE ? dbbenchLanes.map((lane) => ({ url: `${SITE}/research/dbbench/${lane.slug}` })) : []),
