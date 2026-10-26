@@ -21,7 +21,7 @@ export const sectionCopy = {
     ctaTitle: "Everything here is open source. Come build it with us.",
     ctaBody: [
       "The code is public. Open an issue when something is wrong, send a pull request with a fix, or run a benchmark on your own hardware and tell us what you got.",
-      "If you work on multi-model databases, query compilers, or agent memory, get in touch.",
+      "If you work on multi-model databases or agent memory, get in touch.",
     ],
   },
   research: {
