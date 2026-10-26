@@ -89,7 +89,7 @@ export const dbbench: Project = {
         eyebrow: "Independence",
         title: "Who runs DBBench.",
         body: [
-          `DBBench is run by HumemAI. HumemAI also builds [HumemDB](/software/humemdb), [CypherGLOT](/software/cypherglot) and the [ArcadeDB Python package](/software/arcadedb). Those projects are measured by the same rules as every other engine: the same tasks, the same machine, published settings, and a result for every failure.`,
+          `DBBench is run by HumemAI. HumemAI also builds the [ArcadeDB Python package](/software/arcadedb). It is measured by the same rules as every other engine: the same tasks, the same machine, published settings, and a result for every failure.`,
           "The code and the settings are public, so anyone can check a result or reproduce it. When a result is wrong, the fix is a new row, not an edit.",
         ],
       },
