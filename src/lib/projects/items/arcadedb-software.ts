@@ -39,10 +39,10 @@ export const arcadeDbSoftware: Project = {
         eyebrow: "Embedded",
         title: "Or run it inside Python.",
         body: [
-          "We maintain a Python package that runs the same engine inside your process, with the Java runtime bundled. There is nothing else to install and no service to start.",
-          "~~~bash\nuv add arcadedb-embedded\n~~~",
+          "We maintain ArcadeDB's Python bindings, within the ArcadeDB project. They run the same engine inside your process, so there is no service to start. The default package is a native build that needs no Java. `arcadedb-jvm` bundles a Java runtime instead, for heavy, long-running loads.",
+          "~~~bash\nuv add arcadedb\n~~~",
           "Schema and queries are SQL, or openCypher for graphs. A write needs a transaction. A read does not.",
-          "~~~python\nimport arcadedb_embedded as arcadedb\n\nwith arcadedb.create_database(\"./mydb\") as db:\n    db.command(\"sql\", \"CREATE DOCUMENT TYPE Person\")\n    db.command(\"sql\", \"CREATE PROPERTY Person.name STRING\")\n\n    with db.transaction():\n        db.command(\"sql\", \"INSERT INTO Person SET name = ?\", \"Alice\")\n\n    for record in db.query(\"sql\", \"SELECT FROM Person\"):\n        print(record.get(\"name\"))\n~~~",
+          "~~~python\nimport arcadedb\n\nwith arcadedb.create_database(\"./mydb\") as db:\n    db.command(\"sql\", \"CREATE DOCUMENT TYPE Person\")\n    db.command(\"sql\", \"CREATE PROPERTY Person.name STRING\")\n\n    with db.transaction():\n        db.command(\"sql\", \"INSERT INTO Person SET name = ?\", \"Alice\")\n\n    for record in db.query(\"sql\", \"SELECT FROM Person\"):\n        print(record.get(\"name\"))\n~~~",
           "Use it for notebooks, tests, single-node services and agent tooling. Only one process can open an embedded database at a time. When a second process needs the data, start a server from the same package, with Studio.",
           "~~~python\nwith arcadedb.create_server(\"./databases\", root_password=\"password123\") as server:\n    db = server.create_database(\"mydb\")\n    print(\"Studio:\", server.get_studio_url())\n~~~",
           "Your code keeps its direct access and everything else connects over HTTP. That server stops when your script does. The on-disk format is the same as the official server’s, so you can export a database from one and import it into the other.",
@@ -68,7 +68,7 @@ export const arcadeDbSoftware: Project = {
         title: "Store embeddings and search them.",
         body: [
           "You bring the embeddings, from any model. A vector index is created in SQL, and the search is a SQL function, so it combines with filters and graph traversals in the same query.",
-          "~~~python\nfrom arcadedb_embedded import to_java_float_array\n\ndb.command(\"sql\", \"CREATE VERTEX TYPE Doc\")\ndb.command(\"sql\", \"CREATE PROPERTY Doc.text STRING\")\ndb.command(\"sql\", \"CREATE PROPERTY Doc.embedding ARRAY_OF_FLOATS\")\ndb.command(\"sql\", \"\"\"\n    CREATE INDEX ON Doc (embedding)\n    LSM_VECTOR\n    METADATA {\"dimensions\": 3, \"similarity\": \"COSINE\"}\n\"\"\")\n\nrows = db.query(\n    \"sql\",\n    \"SELECT vectorNeighbors('Doc[embedding]', ?, 2) AS res\",\n    to_java_float_array([0.9, 0.1, 0.0]),\n).to_list()\n~~~",
+          "~~~python\ndb.command(\"sql\", \"CREATE VERTEX TYPE Doc\")\ndb.command(\"sql\", \"CREATE PROPERTY Doc.text STRING\")\ndb.command(\"sql\", \"CREATE PROPERTY Doc.embedding ARRAY_OF_FLOATS\")\ndb.command(\"sql\", \"\"\"\n    CREATE INDEX ON Doc (embedding)\n    LSM_VECTOR\n    METADATA {\"dimensions\": 3, \"similarity\": \"COSINE\"}\n\"\"\")\n\nrows = db.query(\n    \"sql\",\n    \"SELECT vectorNeighbors('Doc[embedding]', :vec, 2) AS res\",\n    {\"vec\": [0.9, 0.1, 0.0]},\n).to_list()\n~~~",
           "The index is built with JVector. The number of dimensions must match your embeddings. The search beam trades recall against speed, so set it for the recall you need. The docs also cover quantization, INT8 storage and sparse vectors.",
         ],
       },
