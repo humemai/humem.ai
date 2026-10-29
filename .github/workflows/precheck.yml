@@ -1,0 +1,58 @@
+name: precheck
+
+# The slow checks of `npm run precheck` (scripts/precheck.mjs): lint, the production build, the redirect ledger, the sitemap,
+# and every page on the six test devices in docs/design/test-devices.md. Vercel only builds the site, so without this a
+# cropped image, a broken image or a bad redirect is found after it is live.
+on:
+  pull_request:
+    paths:
+      - "src/**"
+      - "public/**"
+      - "scripts/**"
+      - "package.json"
+      - "package-lock.json"
+      - "next.config.ts"
+      - "docs/design/test-devices.md"
+      - ".github/workflows/precheck.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: precheck-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  UV_VERSION: "0.13.4"
+  PLAYWRIGHT_VERSION: "1.55.0"
+
+jobs:
+  precheck:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Install uv
+        run: |
+          curl -LsSf "https://astral.sh/uv/${UV_VERSION}/install.sh" | sh
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+      - name: Cache the browser
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ env.PLAYWRIGHT_VERSION }}-chromium-${{ runner.os }}
+
+      - name: Install Chromium
+        run: uvx --from "playwright==${PLAYWRIGHT_VERSION}" playwright install --with-deps chromium
+
+      - run: npm run precheck

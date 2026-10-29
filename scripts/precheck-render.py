@@ -15,11 +15,23 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 base = sys.argv[1].rstrip("/")
-chrome = os.environ.get("PLAYWRIGHT_CHROME") or str(
-    Path.home() / ".cache/ms-playwright/chromium-1248/chrome-linux64/chrome"
-)
+
+
+def find_chrome():
+    """PLAYWRIGHT_CHROME, else the Chromium in docs/design/test-devices.md, else whichever one Playwright installed."""
+    if os.environ.get("PLAYWRIGHT_CHROME"):
+        return os.environ["PLAYWRIGHT_CHROME"]
+    cache = Path.home() / ".cache/ms-playwright"
+    preferred = cache / "chromium-1248/chrome-linux64/chrome"
+    if preferred.exists():
+        return str(preferred)
+    installed = sorted(cache.glob("chromium-*/chrome-linux*/chrome"))
+    return str(installed[-1]) if installed else str(preferred)
+
+
+chrome = find_chrome()
 if not Path(chrome).exists():
-    sys.exit(f"no Chromium at {chrome}; set PLAYWRIGHT_CHROME")
+    sys.exit(f"no Chromium at {chrome}; set PLAYWRIGHT_CHROME, or run `uvx --from playwright==1.55.0 playwright install chromium`")
 
 doc = Path("docs/design/test-devices.md").read_text()
 devices = [
