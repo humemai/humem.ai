@@ -9,8 +9,10 @@
  *   2. every URL in scripts/legacy-urls.json answers 308 to its new page in
  *      one hop, and that page answers 200
  *   3. every URL in the sitemap answers 200, and the sitemap lists no /projects
- *   4. the six test devices in docs/design/test-devices.md, light and dark: no
- *      horizontal overflow, no console errors, cards on the index pages
+ *   4. the six test devices in docs/design/test-devices.md, every sitemap page in
+ *      light and the core pages also in dark: no horizontal overflow, no console
+ *      errors, cards on the index pages, one h1, no broken image, an alt on every
+ *      image, and no illustration or figure cropped by the box it is shown in
  *
  *     npm run precheck
  *
@@ -19,7 +21,7 @@
  * ~/.cache/ms-playwright/chromium-1248 (docs/design/test-devices.md).
  * ------------------------------------------------------------------------- */
 import { spawn, spawnSync } from "node:child_process";
-import { readFileSync } from "node:fs";
+import { readFileSync, rmSync } from "node:fs";
 
 const PORT = 3199;
 const BASE = `http://localhost:${PORT}`;
@@ -44,7 +46,10 @@ run("lint", "npm", ["run", "lint"]);
 run("build", "npm", ["run", "build"]);
 
 console.log("\n== server");
-const server = spawn("node_modules/.bin/next", ["start", "-p", String(PORT)], { env, stdio: "ignore", detached: true });
+// Next keeps its optimized images keyed by URL, not by file content, so an image that was replaced in place keeps
+// being served from the last run. Step 4 has to see the files as they are.
+rmSync(`${DIST}/cache/images`, { recursive: true, force: true });
+const server =spawn("node_modules/.bin/next", ["start", "-p", String(PORT)], { env, stdio: "ignore", detached: true });
 const stop = () => {
   try {
     process.kill(-server.pid);
