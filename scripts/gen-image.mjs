@@ -127,7 +127,7 @@ function snapPalette(data) {
 }
 
 // Finisher: crop to the true content bounding box, set the ground to exactly #faf8f5, recentre, and fit the content inside a box that
-// survives both crops the site applies (5:6 keeps 83% of the width, 16:11 keeps 69% of the height) on a square canvas of `size`.
+// survives both crops the site applies (5:6 keeps 83% of the width, the 16:10 hero box keeps 62.5% of the height, so the box is 60%) on a square canvas of `size`.
 async function finish(buf, size = 1254) {
   const { data, info } = await sharp(buf).removeAlpha().raw().toBuffer({ resolveWithObject: true });
   let x0 = info.width, y0 = info.height, x1 = -1, y1 = -1;
@@ -137,7 +137,7 @@ async function finish(buf, size = 1254) {
   }
   if (x1 < 0) throw new Error("the image has no content");
   const crop = await sharp(buf).extract({ left: x0, top: y0, width: x1 - x0 + 1, height: y1 - y0 + 1 }).toBuffer();
-  const boxW = Math.floor(size * 0.83), boxH = Math.floor(size * 0.69);
+  const boxW = Math.floor(size * 0.83), boxH = Math.floor(size * 0.60);
   const fitted = await sharp(crop).resize({ width: boxW, height: boxH, fit: "inside" }).toBuffer({ resolveWithObject: true });
   // snap the colours to the palette (ground exactly #faf8f5, ink #892122, accent #e88e8b)
   const raw = await sharp(fitted.data).removeAlpha().raw().toBuffer({ resolveWithObject: true });
