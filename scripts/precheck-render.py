@@ -1,15 +1,20 @@
-"""Rendered check for scripts/precheck.mjs: the devices in docs/design/test-devices.md, light and dark.
+"""Rendered check for scripts/precheck.mjs: the devices in docs/design/test-devices.md.
 
-Fails on horizontal overflow, console errors, or an index page with no cards. Run through
-`npm run precheck`, not by hand."""
+Every page in the sitemap is loaded on every device in the light scheme, and the core pages also in the dark scheme.
+Fails on horizontal overflow, console errors, an index page with no cards, a page without exactly one h1, a broken image,
+an image without an alt attribute, and a cropped illustration: an `object-fit: cover` image with one ground color in
+its four corners (an illustration or a figure, not a photo) whose content the box cuts off (the site crops one image to 5:6 on phones and 16:10 on desktop, see docs/design/image-generation.md).
+Run through `npm run precheck`, or by hand with the base URL of a running site (any host, for example https://humem.ai)."""
 import os
 import re
 import sys
+import urllib.parse
+import urllib.request
 from pathlib import Path
 
 from playwright.sync_api import sync_playwright
 
-base = sys.argv[1]
+base = sys.argv[1].rstrip("/")
 chrome = os.environ.get("PLAYWRIGHT_CHROME") or str(
     Path.home() / ".cache/ms-playwright/chromium-1248/chrome-linux64/chrome"
 )
@@ -24,13 +29,66 @@ devices = [
 if len(devices) != 6:
     sys.exit(f"expected 6 devices in docs/design/test-devices.md, found {len(devices)}")
 
-# One page of each kind: home, both indexes, a page of each layout, a news post, and the plain pages.
-pages = [
+# The core pages (one of each kind) are also checked in the dark scheme. Every sitemap page, and the unlisted pages
+# that are reachable by URL, is checked in the light scheme.
+core_pages = [
     "/", "/software", "/research", "/about", "/contact", "/news", "/privacy-policy",
     "/software/arcadedb", "/research/arcadedb", "/research/arcadedb-python",
     "/research/dbbench", "/research/dbbench/tables", "/research/explicit-memory",
 ]
+sitemap = urllib.request.urlopen(base + "/sitemap.xml").read().decode()
+listed = [urllib.parse.urlparse(u).path or "/" for u in re.findall(r"<loc>([^<]+)</loc>", sitemap)]
+pages = list(dict.fromkeys(core_pages + listed))
 cards_expected = {"/", "/software", "/research"}
+
+# Runs in the page. Loads every lazy image, then reports broken images, images without alt, and cropped illustrations.
+IMAGE_CHECK = """
+async () => {
+  document.querySelectorAll('img[loading="lazy"]').forEach((i) => { i.loading = 'eager'; });
+  await Promise.all([...document.images].map((i) => (i.complete ? 0 : new Promise((r) => {
+    i.addEventListener('load', r); i.addEventListener('error', r); setTimeout(r, 5000);
+  }))));
+  const name = (i) => {
+    const u = new URL(i.currentSrc || i.src, location.href);
+    return (u.searchParams.get('url') || u.pathname).split('/').pop();
+  };
+  const out = { broken: [], noAlt: [], cropped: [], h1: document.querySelectorAll('h1').length };
+  for (const i of document.images) {
+    if (!(i.currentSrc || i.src)) continue;
+    if (i.naturalWidth === 0) { out.broken.push(name(i)); continue; }
+    if (!i.hasAttribute('alt')) out.noAlt.push(name(i));
+    const r = i.getBoundingClientRect();
+    if (r.width < 120 || r.height < 80 || getComputedStyle(i).objectFit !== 'cover') continue;
+    // the part of the image the box shows, as fractions of the image
+    const nr = i.naturalWidth / i.naturalHeight, br = r.width / r.height;
+    let x0 = 0, y0 = 0, x1 = 1, y1 = 1;
+    if (br > nr) { y0 = (1 - nr / br) / 2; y1 = 1 - y0; } else { x0 = (1 - br / nr) / 2; x1 = 1 - x0; }
+    // the content of the image: everything that is not the ground color, found on a 160 px copy
+    const w = 160, h = Math.max(1, Math.round(w / nr)), c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d'); ctx.drawImage(i, 0, 0, w, h);
+    const d = ctx.getImageData(0, 0, w, h).data;
+    // an illustration or figure has one ground color in all four corners; a photo does not, and a crop of a photo is fine
+    const corner = (x, y) => { const p = (y * w + x) * 4; return [d[p], d[p + 1], d[p + 2]]; };
+    const g = corner(0, 0);
+    if ([corner(w - 1, 0), corner(0, h - 1), corner(w - 1, h - 1)].some((q) => Math.abs(q[0] - g[0]) + Math.abs(q[1] - g[1]) + Math.abs(q[2] - g[2]) > 12)) continue;
+    let a = w, b = h, e = -1, f = -1;
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+      const p = (y * w + x) * 4;
+      if (Math.abs(d[p] - g[0]) + Math.abs(d[p + 1] - g[1]) + Math.abs(d[p + 2] - g[2]) > 60) {
+        if (x < a) a = x; if (x > e) e = x; if (y < b) b = y; if (y > f) f = y;
+      }
+    }
+    const tol = 0.004;
+    if (a / w < x0 - tol || (e + 1) / w > x1 + tol || b / h < y0 - tol || (f + 1) / h > y1 + tol) {
+      out.cropped.push(`${name(i)} ${Math.round(r.width)}x${Math.round(r.height)} shows `
+        + `${Math.round((x1 - x0) * 100)}%w ${Math.round((y1 - y0) * 100)}%h, content `
+        + `${Math.round((e + 1 - a) / w * 100)}%w ${Math.round((f + 1 - b) / h * 100)}%h`);
+    }
+  }
+  return out;
+}
+"""
 
 bad = 0
 loads = 0
@@ -40,15 +98,20 @@ with sync_playwright() as p:
         for scheme in ("light", "dark"):
             context = browser.new_context(viewport={"width": width, "height": height}, device_scale_factor=dpr, color_scheme=scheme)
             for path in pages:
+                if scheme == "dark" and path not in core_pages:
+                    continue
                 page = context.new_page()
                 errors = []
-                page.on("console", lambda m, e=errors: e.append(m.text) if m.type == "error" else None)
+                # The YouTube player in an embed asks for browser features (compute-pressure) that the embed's `allow`
+                # list does not grant, and Chromium logs that as an error in our page. It is not ours to fix.
+                page.on("console", lambda m, e=errors: e.append(m.text) if m.type == "error" and not m.text.startswith("Permissions policy violation") else None)
                 page.on("pageerror", lambda x, e=errors: e.append(str(x)))
                 page.goto(base + path, wait_until="networkidle")
                 scroll_width = page.evaluate("document.documentElement.scrollWidth")
                 cards = page.evaluate(
                     "document.querySelectorAll('main a[href^=\"/software/\"], main a[href^=\"/research/\"]').length"
                 )
+                images = page.evaluate(IMAGE_CHECK) if scheme == "light" else {"broken": [], "noAlt": [], "cropped": [], "h1": 1}
                 loads += 1
                 problems = []
                 if scroll_width != width:
@@ -57,9 +120,17 @@ with sync_playwright() as p:
                     problems.append(f"console {errors[:2]}")
                 if path in cards_expected and cards == 0:
                     problems.append("no cards")
+                if images["h1"] != 1:
+                    problems.append(f"{images['h1']} h1 elements")
+                if images["broken"]:
+                    problems.append(f"broken image {images['broken']}")
+                if images["noAlt"]:
+                    problems.append(f"no alt {images['noAlt']}")
+                for c in images["cropped"]:
+                    problems.append(f"cropped {c}")
                 if problems:
                     bad += 1
-                    print(f"  FAIL {width}px {scheme} {path}: {', '.join(problems)}")
+                    print(f"  FAIL {width}px {scheme} {path}: {'; '.join(problems)}")
                 page.close()
             context.close()
     browser.close()
