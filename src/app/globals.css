@@ -157,11 +157,20 @@
 
 [data-prose-column] {
   display: grid;
+  /* One column that may shrink below its content. An `auto` track grows to the widest unbreakable thing in it, so a
+     long command or setting stretched the whole column, and the page, to 874px on a 360px phone. Code blocks scroll in
+     their own box, and inline code may wrap (below). */
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--site-space-base);
 }
 
 [data-prose-column] > * {
   margin-block: 0;
+  min-width: 0;
+}
+
+[data-prose] :not(pre) > code {
+  overflow-wrap: anywhere;
 }
 
 [data-prose-column] > :is(h2, h3, h4) {
