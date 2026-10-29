@@ -34,20 +34,20 @@ tags:
 
 **Human-Like Memory Systems** is our first research paper and the first public release in the line of work that became **Machines with Human-Like Memory**. The release combines the paper itself with the benchmark and code needed to reproduce the core results.
 
-The technical walkthrough now lives on the related [research page](/research/human-like-memory-systems), but this post covers the announcement-level story: what we released, why we think it matters, and where it leads next.
+The technical walkthrough is on the [research page](/research/human-like-memory-systems).
 
 ## What this release includes
 
 This release introduces an AI agent architecture with separate **episodic** and **semantic** memory systems, both represented explicitly instead of being hidden inside one opaque neural state. To evaluate that design, HumemAI also released **RoomEnv-v0**, a benchmark where agents must remember object-location events under partial observability and answer questions from memory over time.
 
-That combination matters to us because we wanted something testable and inspectable. Rather than talking about memory in the abstract, we wanted a concrete environment and open codebase where different memory systems could be compared directly.
+We wanted something testable: a concrete environment and an open codebase where different memory systems can be compared directly.
 
-## Why this matters
+## Why explicit memory
 
 The project was shaped by cognitive-science work on explicit memory, especially the distinction between general world knowledge and personally experienced events. HumemAI’s view is that this distinction should not disappear when we build AI systems. If memory matters for reasoning and action, it should be modeled as part of the architecture and evaluated on tasks that genuinely require recall.
 
-The first result from this release is encouraging: agents with both episodic and semantic memory outperform simpler single-memory baselines, and collaboration between agents helps further. That gave us the initial empirical signal that explicit memory could be a durable research direction for HumemAI.
+The first result from this release is encouraging: agents with both episodic and semantic memory outperform simpler single-memory baselines, and collaboration between agents helps further. That told us explicit memory was worth pursuing.
 
-## What comes next
+## What came after
 
-This announcement marks the starting point for a broader HumemAI program around explicit memory architectures, learned memory management, and graph-based agent systems. If you want the deeper technical version, start with the [research page](/research/human-like-memory-systems) and then follow the parent [Machines with Human-Like Memory](/research/machines-with-human-like-memory) project for the later work that builds on it.
+Next we worked on learned memory management and graph-based agents. For the technical details, start with the [research page](/research/human-like-memory-systems) and then follow the parent [Machines with Human-Like Memory](/research/machines-with-human-like-memory) project for the later work that builds on it.

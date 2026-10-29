@@ -112,7 +112,7 @@ class="editorial-image-compact"
 				eyebrow: "Behavior",
 				title: "The learned policy stays selective in ways that match navigation and question answering.",
 				body: [
-					"A key strength of this work is that the learned transfer behavior remains inspectable. Across 560 held-out transfer decisions over 100 steps, the policy keeps 224 items and drops 336. That is an overall keep rate of 0.40, but the mean rate is less important than the selectivity pattern.",
+					"The learned transfer behavior remains inspectable. Across 560 held-out transfer decisions over 100 steps, the policy keeps 224 items and drops 336. That is an overall keep rate of 0.40, but the mean rate is less important than the selectivity pattern.",
 					"Three patterns stand out. First, the policy almost always keeps the agent's own location signal, preserving $\\texttt{(agent,\ at\\_location,\ room)}$ 98 times out of 100. Second, it strongly keeps question-relevant object-location facts, preserving them 58 times while dropping them only 2 times in the held-out query set. Third, it drops many directional room-link facts, suggesting that a large share of local map-link observations are lower-value than self-localization and answer-relevant object memory.",
 					`<img
 src="/images/papers/kg-memory-transfer/memory_state_099.png"

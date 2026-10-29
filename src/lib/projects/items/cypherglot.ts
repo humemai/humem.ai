@@ -60,7 +60,7 @@ export const cypherglot: Project = {
         title: "Target multiple SQL backends through one Cypher surface.",
         body: [
           "That compiler path makes Cypher support reusable across runtimes such as HumemDB and creates a path toward targets like SQLite, DuckDB, PostgreSQL, and other SQL-backed systems.",
-          "Instead of burying graph logic inside custom SQL for each backend, the project offers an explicit translation contract with clearer guarantees and a much better developer story.",
+          "Instead of burying graph logic inside custom SQL for each backend, the project offers an explicit translation contract with clearer guarantees.",
         ],
         figure: {
           label: "Figure 3",
@@ -88,7 +88,7 @@ export const cypherglot: Project = {
   solution:
     "CypherGLOT creates that compiler boundary. It parses Cypher, validates an admitted Neo4j-like subset, normalizes it into internal structures, lowers it through a graph-relational IR, and uses SQLGlot-backed output so host runtimes can target SQL engines without developers having to write those graph-shaped SQL queries themselves.",
   impact:
-    "That makes Cypher support reusable across runtimes such as HumemDB and creates a path toward targets like SQLite, DuckDB, PostgreSQL, and other SQL-backed systems. Instead of burying graph logic inside custom SQL for each backend, the project offers an explicit compiler path with clearer guarantees and a much better developer story.",
+    "That makes Cypher support reusable across runtimes such as HumemDB and creates a path toward targets like SQLite, DuckDB, PostgreSQL, and other SQL-backed systems. Instead of burying graph logic inside custom SQL for each backend, the project offers an explicit compiler path with clearer guarantees.",
   links: [
     { label: "Read docs", href: cypherglotDocsUrl },
     { label: "View GitHub", href: cypherglotRepoUrl },

@@ -36,14 +36,8 @@ We are publishing a new PromptAgent demo that shows two complementary workflows:
 
 PromptAgent is built on top of the open-source [HumemAI Python package](https://github.com/humemai/humemai). In the demo, we show how prompting can be used to extract relationships from text, serialize graph structure for an LLM, and convert structured output back into a useful textual representation.
 
-The implementation uses property-graph infrastructure and keeps the graph as a first-class object rather than reducing everything to unstructured text. That matters to HumemAI because it keeps retrieval, inspection, and long-term memory organization more explicit.
+The implementation uses property-graph infrastructure and keeps the graph as a first-class object rather than reducing everything to unstructured text. That keeps retrieval, inspection, and long-term memory organization explicit.
 
-## Why this workflow matters to us
+## Between text and graphs
 
-We see PromptAgent as a useful bridge between language-native interfaces and graph-native memory systems. LLMs are very good at working with text, while memory-heavy systems often need explicit structure for retrieval and reasoning. This demo explores how to connect those two surfaces without pretending they are the same thing.
-
-It also points toward a broader direction for HumemAI: tools that can move fluidly between text, knowledge graphs, and memory-oriented agent workflows.
-
-## What comes next
-
-HumemAI will keep sharing demos and project updates as this line of work matures. If you want the broader technical context around graph-based memory and agent systems, browse the [research pages](/research), where we collect the longer-form work behind these announcements.
+LLMs work well with text, while memory-heavy systems often need explicit structure for retrieval and reasoning. This demo explores how to connect the two.

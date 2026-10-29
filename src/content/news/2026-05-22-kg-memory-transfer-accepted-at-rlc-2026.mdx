@@ -33,22 +33,16 @@ tags:
 
 ## Our KG Memory Transfer paper has been accepted at RLC 2026
 
-We are announcing that **Short-Term-to-Long-Term Memory Transfer for Knowledge Graphs under Partial Observability** has been accepted at **RLC 2026**, the [Reinforcement Learning Conference](https://rl-conference.cc/).
+Our paper **Short-Term-to-Long-Term Memory Transfer for Knowledge Graphs under Partial Observability** has been accepted at **RLC 2026**, the [Reinforcement Learning Conference](https://rl-conference.cc/).
 
 The paper is also now part of the broader [KG Memory Transfer research page](/research/kg-memory-transfer), where we explain the method, results, and implementation context in more detail.
 
-## What the paper is about
+## The question
 
 This work studies a specific memory problem inside partially observable reinforcement learning: when short-term symbolic observations arrive under memory constraints, which facts should be transferred into long-term memory and which should be dropped?
 
 Our approach treats that decision as an explicit **keep/drop** policy over knowledge-graph facts. Rather than hiding consolidation inside a latent recurrent state, the method keeps transfer decisions inspectable at the level of individual triples. That makes the learned behavior easier to analyze while still improving downstream question answering in the RoomKG setting.
 
-## Why this acceptance matters
+## What it shows
 
-For us, this paper is important because it pushes the memory-centric line of work beyond explicit storage and retrieval alone. It treats the move from short-term observation to long-term memory as the learned decision problem and shows that selective symbolic transfer can outperform both symbolic heuristics and history-based neural baselines in a controlled setting.
-
-It is also a good example of the broader HumemAI direction: explicit memory structures, interpretable decisions, and reinforcement learning systems that remain analyzable instead of collapsing everything into opaque hidden state.
-
-## Read more
-
-If you want the full technical story, start with the [research page](/research/kg-memory-transfer) and then read the paper on [arXiv](https://arxiv.org/abs/2605.22142).
+The paper treats the move from short-term observation to long-term memory as a learned decision problem. It shows that selective symbolic transfer can outperform both symbolic heuristics and history-based neural baselines in a controlled setting.
