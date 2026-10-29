@@ -42,9 +42,9 @@ The script builds the full prompt from the house template and these fields, so a
 3. If a stray element appears, tighten `show` (never add more words about what to avoid; list only what to draw) and run again.
 4. Commit the PNG, the spec and the stored prompt together.
 
-## Diagram covers
+## Paper figures as covers
 
-A news post can use a diagram from a paper as its cover. The paper figure is rarely the right shape (the ArcadeDB in Python architecture figure is 2.9:1), and the site crops covers to 16:10 on cards and 16:9 on the article, so a figure that is not laid out for it loses its sides. A full paper figure is also too detailed for a cover: its type is unreadable at 550 pixels wide. Simplify it to the nodes that carry the message (the cover of the ArcadeDB in Python post has five boxes and no sub-labels), and use large type (44 pt at 170 dpi came out at 21 px in the desktop hero and 15 px on a phone). These covers are not made by `gen-image.mjs`. Keep the Graphviz source in `docs/design/figures/` (`bgcolor="#faf8f5"`, a margin inside each cluster, no em dashes in labels, an aspect of about 1.7:1), render it with `dot -Tpng`, then crop to the content and center it on a 2000 by 2000 square canvas in the ground color with the diagram at 78% of the width and at most 54% of the height. A square is needed because the site crops one cover three ways: 5:6 portrait on phones (keeps 83% of the width of a square), 16:10 on cards and 16:9 on desktop article heroes (keep 62% and 56% of its height). A 16:9 canvas passes the landscape crops but loses 53% of its width on a phone. Commit the PNG and the `.dot` together, and check the PNG at 360, 768 and 1280 pixels wide. `public/news/2026-10-29/arcadedb-python-cover.png` is the example.
+A paper figure is rarely a good cover: it is the wrong shape (the ArcadeDB in Python architecture figure is 2.9:1), its type is unreadable at card size, and it is cut to about half its width on a phone. Generate the cover instead, with the idea of the paper drawn in the house theme (the spec `arcadedb-python-scipy-cover` is the example: one database inside a container, with a page, a small graph and arrows under it). A figure that has to be the cover is refit as described under "News covers".
 
 ## News covers
 
