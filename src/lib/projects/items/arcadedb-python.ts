@@ -20,7 +20,7 @@ export const arcadeDbPython: Project = {
           "Some Python work needs transactional reads and writes over documents, traversals over a graph, and similarity search over vectors. The usual answer is a stack of specialists, such as SQLite or DuckDB for documents, NetworkX or LadybugDB for the graph, and FAISS, hnswlib or Chroma for vectors. Each one holds its own copy of the data, with its own consistency model, so every write has to reach all of them.",
           "The paper describes the alternative: ArcadeDB, one multi-model engine for documents, a property graph and vector indexes, running inside the Python process. Documents are queried in SQL, the graph in openCypher, and vectors through an HNSW-family graph index. Transactional and analytical queries run over the same data, and the engine is ACID.",
           "It has three contributions. The first is the package itself, `arcadedb-embedded`. The second is a hybrid workflow that chains vector search, SQL filtering and graph traversal over one dataset. The third is a benchmark against embedded specialists, with what the unified engine costs. [Read the paper in the SciPy Proceedings](https://proceedings.scipy.org/articles/fwvt2525).",
-          "The package is now published as `arcadedb`, with `arcadedb-jvm` as the JVM build. The paper calls it `arcadedb-embedded`, its name when the numbers were measured.",
+          "From the 26.11.1 release the package is named `arcadedb`, with `arcadedb-jvm` as the JVM build. The paper calls it `arcadedb-embedded`, its name when the numbers were measured.",
         ],
       },
       {
