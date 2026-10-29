@@ -15,7 +15,7 @@ export const auditReadyMemory: Project = {
         title: "AI memory needs explicit audit trails instead of opaque retention.",
         body: [
           "Many AI systems still handle memory in opaque model state or hosted tooling that was not designed for public-interest accountability. That makes it difficult to inspect what the system retained, understand why it behaved a certain way, or explain how a past decision was produced.",
-          "Audit-Ready Memory starts from the idea that memory should be treated as infrastructure rather than a vague capability claim. If teams need governance, inspection, and operational trust, the memory layer itself has to expose those properties directly.",
+          "Audit-Ready Memory starts from the idea that memory is infrastructure, not a capability claim. Teams that need governance, inspection, and operational trust need a memory layer that exposes those properties directly.",
         ],
         figure: {
           label: "Figure 1",
@@ -81,7 +81,7 @@ export const auditReadyMemory: Project = {
         title: "Build accountable memory infrastructure for civic and public-interest use.",
         body: [
           "The project is aimed at civic-tech teams, NGOs, researchers, and public-interest pilots that need more sovereign and explainable AI behavior. By keeping the memory layer local-first and openly documented, the work becomes reusable infrastructure rather than a closed operational dependency.",
-          "That is the broader reason this stands alone as a focused project. Auditability, replay, and deletion are not side features around agent memory. They are the point of the system design.",
+          "We built it as its own project because auditability, replay, and deletion are the core of the design.",
         ],
         figure: {
           label: "Figure 4",

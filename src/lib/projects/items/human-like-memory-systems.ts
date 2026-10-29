@@ -116,7 +116,7 @@ Each agent maintains bounded **episodic** and **semantic** memory stores. Episod
         id: "takeaways",
         navLabel: "Takeaways",
         eyebrow: "Takeaways",
-        title: "Explicit episodic and semantic memory provide the foundation for the later work.",
+        title: "How this connects to the later work.",
         body: [
           `Theoretically, this work is closest to cognitive-science traditions such as ACT-R and Soar. Those systems provide strong conceptual motivation, but they do not provide the same kind of computational benchmark surface used here. Human-Like Memory Systems turns that theory into something experimentally comparable.`,
           `On the machine-learning side, some work studies memory and question answering computationally, but often focuses on episodic memory alone or stores memory in opaque numeric embeddings rather than structured symbolic records. Our contribution is to keep the memory systems explicit, interpretable, and directly comparable while still evaluating them in a nontrivial partially observable task.`,

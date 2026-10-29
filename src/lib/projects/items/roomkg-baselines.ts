@@ -16,7 +16,7 @@ export const roomkgBaselines: Project = {
           `**Authors:** [Taewoon Kim](https://taewoon.kim/), [Vincent Francois-Lavet](http://vincent.francois-l.be/), and [Michael Cochez](https://www.cochez.nl/).`,
           "RoomKG Baselines turns long-term memory into the main object of study rather than a side effect of policy learning. The hidden world state is an RDF knowledge graph, observations are RDF triples over locally visible structure, and agents must answer object-location questions while navigating a changing environment under partial observability.",
           "The benchmark builds on RoomEnv-v3, so the public [RoomEnv repository](https://github.com/humemai/room-env) is part of the contribution here too: these baselines are the agents, but the environment itself is the shared benchmark surface that makes the comparison meaningful and reproducible.",
-          "That shift makes the benchmark itself graph-native. Instead of asking whether one memory architecture happens to work inside one environment, the project aligns hidden state, observations, long-term memory, and evaluation around knowledge-graph structure so symbolic and neural approaches can be compared on the same controlled task.",
+          "Hidden state, observations, long-term memory, and evaluation all use knowledge-graph structure, so symbolic and neural approaches can be compared on the same controlled task.",
           "We contribute a configurable RoomKG benchmark, a set of symbolic and neural baselines, and public benchmark artifacts for reproducible comparison. [Read the full paper on arXiv](https://arxiv.org/abs/2408.05861).",
           {
             type: "figureGrid",
@@ -51,7 +51,7 @@ export const roomkgBaselines: Project = {
           `The symbolic memory used in the strongest agent is not just a set of triples. Each observed fact is stored as an annotated RDF-star triple, $\\ll s\\, r\\, o \\gg$, together with the annotation fields $\\texttt{time\\_added}$, $\\texttt{last\\_accessed}$, and $\\texttt{num\\_recalled}$. That is the paper's key move: the memory is a temporal knowledge graph built from annotated triples rather than a plain bag of observations.`,
           "Those agent families face the same task but behave very differently. Symbolic agents answer questions through graph querying and graph-based exploration, while neural agents must jointly learn exploration and question answering through a single policy over longer and longer observation histories as memory capacity grows.",
           `Those annotations induce concrete answer-selection rules, but they read better in words than as notation here. **MRA** means *most recently added*, **MRU** means *most recently used*, and **MFU** means *most frequently used*. When several triples match a query, the TKG agent can rank them by when they were added, when they were last accessed, or how often they have been recalled. That gives it recency- and usage-aware answer, exploration, and eviction behavior that the plain RDF agent simply does not have.`,
-          "A key design choice is that all four agents share one benchmark and one evaluation surface. That makes RoomKG Baselines more than an implementation repo for one model: it is the comparative layer that shows what different memory representations gain or lose under the same partially observable environment.",
+          "All four agents share one benchmark and one evaluation, so the results show what different memory representations gain or lose under the same partially observable environment.",
         ],
       },
       {
@@ -85,8 +85,8 @@ class="editorial-image-compact"
         eyebrow: "Takeaways",
         title: "This project makes long-term memory explicit, inspectable, and benchmarkable.",
         body: [
-          "RoomKG Baselines marks the point in the broader research line where long-term memory becomes a benchmark object in its own right. The hidden state is graph-structured, the observations are graph-structured, the symbolic memories are graph-structured, and the evaluation is designed to reveal whether an agent actually remembers over time rather than merely appearing to do so.",
-          "That gives the project a different role from the earlier memory papers. It is not only a new memory architecture or a stronger agent; it is the benchmark and baseline surface for comparing future symbolic, temporal, and neurosymbolic memory systems under shared conditions.",
+          "In RoomKG Baselines, long-term memory is the thing being benchmarked. The hidden state is graph-structured, the observations are graph-structured, the symbolic memories are graph-structured, and the evaluation is designed to reveal whether an agent actually remembers over time rather than merely appearing to do so.",
+          "Unlike the earlier memory papers, this one is mainly a benchmark with baselines, for comparing future symbolic, temporal, and neurosymbolic memory systems under shared conditions.",
         ],
       },
       {

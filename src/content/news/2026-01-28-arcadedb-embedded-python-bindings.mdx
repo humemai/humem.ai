@@ -1,6 +1,6 @@
 ---
 title: 'ArcadeDB Embedded Python is now available'
-description: 'ArcadeDB Embedded Python is our local-first Python distribution for ArcadeDB, built for embedded execution and a cleaner developer path.'
+description: 'ArcadeDB Embedded Python is our local-first Python distribution for ArcadeDB, built to run in process from Python.'
 date: '2026-01-28'
 excerpt: 'ArcadeDB Embedded Python is our Python-facing distribution for low-latency local graph, vector, and multi-model workloads.'
 image: '/news/2026-01-28/arcadedb_humemai.png'
@@ -24,24 +24,18 @@ tags:
 
 **ArcadeDB Embedded Python** is our Python-facing distribution for using ArcadeDB locally, in process, and without the setup friction that usually comes with a Java-first database stack. The deeper technical explanation is available on the related [research page](/research/arcadedb); this post covers the release at announcement level.
 
-This release is important to us because a large part of our work depends on fast, structured, local-first data access. We wanted ArcadeDB to feel like a practical Python dependency for graph, vector, and multi-model workloads, not just a powerful engine hidden behind a more cumbersome integration path.
+A lot of our work needs fast, local data access, so we wanted ArcadeDB to work as a normal Python dependency for graph, vector, and multi-model workloads.
 
 ## What the release includes
 
-ArcadeDB Embedded Python packages the original ArcadeDB engine for Python workflows with native bindings, a bundled runtime, and an embedded execution model that removes the usual driver hop. The current release is designed around a few practical outcomes:
+ArcadeDB Embedded Python packages the original ArcadeDB engine for Python workflows with native bindings, a bundled runtime, and an embedded execution model that removes the usual driver hop. The current release gives you:
 
 - **Local-first development** with the database running in process.
 - **Python orchestration** over SQL and OpenCypher workflows.
 - **Self-contained distribution** with the pieces needed to start quickly.
 
-That makes it easier to use ArcadeDB in tests, prototypes, research environments, and memory-heavy AI systems where operational simplicity and latency both matter.
+That makes it easier to use ArcadeDB in tests, prototypes, and research environments.
 
 ## Why HumemAI built it
 
-ArcadeDB already provides a strong multi-model foundation, but its Java-first distribution is not the most natural starting point for Python-centric AI work. HumemAI built this release to close that gap. We wanted developers to be able to install the package, create a local database, and start building without first assembling a separate Java environment or standing up a remote service.
-
-That goal fits the broader direction of our [ArcadeDB](/research/arcadedb) work: make graph, vector, and structured memory infrastructure more usable inside real application workflows.
-
-## What comes next
-
-HumemAI will continue publishing tutorials, benchmarks, and integration notes as the project matures. If you want implementation detail, start with the docs and the [research page](/research/arcadedb).
+ArcadeDB is multi-model, but its Java-first distribution is awkward for Python-centric AI work. We wanted developers to be able to install the package, create a local database, and start building without first assembling a separate Java environment or standing up a remote service.

@@ -35,7 +35,7 @@ tags:
 
 **Explicit Memory** is our second research paper on AI systems with explicit memory. This release takes the original [Human-Like Memory Systems](/research/human-like-memory-systems) direction one step further: instead of hand-writing the memory policy, we train the agent to decide what should be forgotten, stored episodically, or stored semantically.
 
-The full technical breakdown is available on the related [research page](/research/explicit-memory). This announcement focuses on the practical and research significance of the release.
+The full technical breakdown is available on the related [research page](/research/explicit-memory).
 
 ## What changed from the first paper
 
@@ -43,12 +43,8 @@ Our first paper showed that explicit episodic and semantic memory could outperfo
 
 Explicit Memory answers that question with **reinforcement learning** in **RoomEnv-v1**, a more demanding version of our environment. The agent now observes events, stores them in short-term memory, and learns which items should be routed into episodic or semantic long-term memory to maximize future reward.
 
-## Why this release matters
+## Why we kept the memory explicit
 
-This is an important step for HumemAI because it keeps the memory system **explicit and inspectable** while still making it trainable. We do not have to choose between symbolic structure and learning. In this work, the agent learns the memory-management policy while the memory contents remain separate enough to analyze.
+The memory stays **explicit and inspectable** and is still trainable. We do not have to choose between symbolic structure and learning: the agent learns the memory-management policy while the memory contents stay separate enough to analyze.
 
-The experiments show that the learned agent can outperform fixed storage baselines, and that pretrained semantic knowledge can improve learning further. For us, that makes Explicit Memory more than a follow-up paper. It is evidence that explicit memory can scale from handcrafted prototypes toward trainable agent systems.
-
-## Where this fits in our roadmap
-
-Explicit Memory builds on [Human-Like Memory Systems](/research/human-like-memory-systems). If the first paper established the benchmark and the architectural claim, this release establishes that memory management itself can become part of the learned policy.
+The experiments show that the learned agent can outperform fixed storage baselines, and that pretrained semantic knowledge can improve learning further. So explicit memory does not have to stay handcrafted.

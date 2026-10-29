@@ -89,7 +89,7 @@ export const arcadeDbPython: Project = {
         id: "takeaways",
         navLabel: "Takeaways",
         eyebrow: "Takeaways",
-        title: "One process, one set of identifiers, one transaction scope.",
+        title: "When it fits.",
         body: [
           "It fits when an application needs two or more of documents, a graph and vector search over the same data, on one machine. Point reads and graph traversals answer in well under a millisecond, and vector queries in single-digit milliseconds at the same recall as a dedicated index, and everything is ACID.",
           "For a workload that lives entirely in one model, the specialist is the natural choice.",

@@ -86,7 +86,7 @@ The total long-term budget is therefore $|\\mathbf{M}_e| + |\\mathbf{M}_s|$, whi
         eyebrow: "Takeaways",
         title: "Memory management becomes part of the learned policy.",
         body: [
-          "The core contribution of Explicit Memory is not just that reinforcement learning works in RoomEnv-v1, but that it works while memory remains explicit enough to inspect. We keep short-term, episodic, and semantic memory as separate architectural objects rather than collapsing everything into a hidden neural state.",
+          "The core contribution of Explicit Memory is that reinforcement learning works in RoomEnv-v1 while the memory stays explicit enough to inspect. We keep short-term, episodic, and semantic memory as separate architectural objects rather than collapsing everything into a hidden neural state.",
           "This work bridges the earlier handcrafted memory agents and the later graph-memory systems work. It shows that explicit memory can remain structured, analyzable, and still be integrated into trainable agents.",
         ],
       },

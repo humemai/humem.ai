@@ -87,7 +87,7 @@ export const humemdb: Project = {
   solution:
     "HumemDB takes a table-first orchestration approach. SQLite handles canonical writes and OLTP table workloads, DuckDB handles OLAP and broader analytical table workloads, CypherGLOT lets those same table-backed layouts be queried as graphs, and LanceDB provides the embedded vector path for index build and search. The result is a thin Python orchestration layer that decides which embedded engine to route each workload to, without pretending tables, graphs, and vectors need separate duplicated systems.",
   impact:
-    "That makes HumemDB powerful precisely because it is built on strong embedded engines with Python bindings instead of a fake all-in-one core. When routed well, the stack can handle tables, graphs, and vectors in one local runtime, while keeping OLTP, OLAP, and vector-index workloads on the components that are actually good at them.",
+    "HumemDB is built on existing embedded engines with Python bindings, not on a new all-in-one core. When routed well, the stack can handle tables, graphs, and vectors in one local runtime, while keeping OLTP, OLAP, and vector-index workloads on the components that are actually good at them.",
   links: [
     { label: "Read docs", href: humemDbDocsUrl },
     { label: "View GitHub", href: humemDbRepoUrl },
