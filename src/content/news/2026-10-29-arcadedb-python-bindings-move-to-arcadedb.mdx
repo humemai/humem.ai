@@ -1,0 +1,48 @@
+---
+title: 'HumemAI and ArcadeData are working more closely together'
+description: 'The Python bindings HumemAI built, and their docs, have moved to ArcadeData. HumemAI keeps sending fixes to the engine and runs DBBench.'
+date: '2026-10-29'
+image: '/news/2026-01-28/arcadedb_humemai.png'
+excerpt: 'The Python bindings HumemAI built are now the official Python package for ArcadeDB, with their repository and docs in ArcadeData. Install them with uv add arcadedb.'
+author: 'HumemAI'
+heroActions:
+  - label: 'View software page'
+    href: '/software/arcadedb'
+    variant: 'primary'
+  - label: 'Read docs'
+    href: 'https://docs.arcadedb.com/arcadedb-python/'
+    variant: 'secondary'
+resourcesHeading: 'Code, docs, and package links.'
+resources:
+  - label: 'View software page'
+    href: '/software/arcadedb'
+  - label: 'Read docs'
+    href: 'https://docs.arcadedb.com/arcadedb-python/'
+  - label: 'View GitHub'
+    href: 'https://github.com/ArcadeData/arcadedb-python'
+  - label: 'View on PyPI'
+    href: 'https://pypi.org/project/arcadedb/'
+  - label: 'DBBench research page'
+    href: '/research/dbbench'
+tags:
+  - 'HumemAI'
+  - 'ArcadeDB'
+  - 'Python'
+  - 'Open Source'
+---
+
+## Working more closely with ArcadeData
+
+HumemAI and ArcadeData are working more closely together, and the Python bindings show it. The repository HumemAI built them in has moved to ArcadeDB's own organization, as [ArcadeData/arcadedb-python](https://github.com/ArcadeData/arcadedb-python). The docs moved into the ArcadeDB docs, at [docs.arcadedb.com](https://docs.arcadedb.com/arcadedb-python/), and the old docs address, `docs.humem.ai/arcadedb`, redirects there.
+
+## What changed
+
+The package is [`arcadedb`](https://pypi.org/project/arcadedb/) on PyPI, the native build, which needs no Java. [`arcadedb-jvm`](https://pypi.org/project/arcadedb-jvm/) is the build with a bundled Java runtime. Both are published from the new repository.
+
+Install it with `uv add arcadedb`. The import is `import arcadedb`. A development release is on PyPI. The first stable one ships with ArcadeDB 26.11.1.
+
+## Who does what
+
+ArcadeData owns ArcadeDB, and with it the official Python package. HumemAI wrote the bindings, and Taewoon Kim maintains the repository. HumemAI keeps sending fixes to the engine and runs [DBBench](/research/dbbench), an open benchmark of database engines.
+
+The [SciPy paper](/research/arcadedb-python) describes the bindings in detail.
