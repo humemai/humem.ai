@@ -40,6 +40,6 @@ tags:
 
 Some Python programs need transactions over documents, graph traversals and vector search at once. Usually that means three systems, each with its own copy of the data, and application code to keep the copies in sync.
 
-The package runs ArcadeDB inside the Python process instead, so one database does all three. You query documents with SQL, the graph with openCypher, and vectors through an HNSW-family index. The wheel bundles a Java runtime, so you do not need Java installed. From the 26.11.1 release the package is named `arcadedb`. The paper uses its current name, `arcadedb-embedded`.
+The package runs ArcadeDB inside the Python process instead, so one database does all three. You query documents with SQL, the graph with openCypher, and vectors through an HNSW-family index. The wheel bundles a Java runtime, so you do not need Java installed. The build the paper measures, with a bundled Java runtime, is now published as `arcadedb-jvm`.
 
 We show a workflow that chains a vector search, a SQL filter and a graph traversal over one dataset. We also benchmark the package against SQLite, DuckDB, LadybugDB and Chroma on a Q&A corpus. Each specialist wins on its own model. ArcadeDB is competitive on all three, and the cost is memory and loading time.
