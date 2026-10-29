@@ -31,17 +31,15 @@ tags:
   - 'Open Source'
 ---
 
-## The bindings have a new home
+## The bindings moved
 
 The Python bindings for ArcadeDB that HumemAI built now live in ArcadeDB's own organization, as [ArcadeData/arcadedb-python](https://github.com/ArcadeData/arcadedb-python). The docs are at [docs.arcadedb.com](https://docs.arcadedb.com/arcadedb-python/), and the old docs address, `docs.humem.ai/arcadedb`, redirects there.
 
 ## What changed
 
-- **Repository:** [ArcadeData/arcadedb-python](https://github.com/ArcadeData/arcadedb-python). It was `humemai/arcadedb-embedded-python`.
-- **Docs:** [docs.arcadedb.com/arcadedb-python](https://docs.arcadedb.com/arcadedb-python/). They were at `docs.humem.ai/arcadedb`.
-- **Package:** [`arcadedb`](https://pypi.org/project/arcadedb/) on PyPI, the native build, which needs no Java. [`arcadedb-jvm`](https://pypi.org/project/arcadedb-jvm/) is the build with a bundled Java runtime. The old name was `arcadedb-embedded`.
+The package is [`arcadedb`](https://pypi.org/project/arcadedb/) on PyPI, the native build, which needs no Java. [`arcadedb-jvm`](https://pypi.org/project/arcadedb-jvm/) is the build with a bundled Java runtime. The package used to be called `arcadedb-embedded`.
 
-Install it with `uv add arcadedb`. The import is `import arcadedb`. A development release is on PyPI now, and the first stable release comes with the 26.11.1 release of ArcadeDB.
+Install it with `uv add arcadedb`. The import is `import arcadedb`. A development release is on PyPI. The first stable one ships with ArcadeDB 26.11.1.
 
 ## Who does what
 
