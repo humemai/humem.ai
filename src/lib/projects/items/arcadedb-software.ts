@@ -26,7 +26,7 @@ export const arcadeDbSoftware: Project = {
         eyebrow: "Server",
         title: "Run the official server.",
         body: [
-          "The official server comes from [arcadedb.com](https://arcadedb.com/). You can install it from a binary download, with Docker, or on Kubernetes. With Docker it is one command. Pin the image tag: the docs' own install page says `latest` is a development snapshot.",
+          "The official server comes from [arcadedb.com](https://arcadedb.com/). You can install it from a binary download, with Docker, or on Kubernetes. With Docker it is one command. Without a tag Docker pulls `latest`, which is the development build; for production, pin a release tag from [Docker Hub](https://hub.docker.com/r/arcadedata/arcadedb/tags).",
           "~~~bash\ndocker run -d --name arcadedb -p 2480:2480 \\\n  --env ARCADEDB_SETTINGS=\"-Darcadedb.server.rootPassword=playwithdata\" \\\n  arcadedata/arcadedb\n~~~",
           "Pick your own password. The user is `root`. Pass server settings in `ARCADEDB_SETTINGS`, not `JAVA_OPTS`, which would drop the image's garbage-collector setting. Studio, the web interface for running queries and browsing your data, opens at `http://localhost:2480`. The HTTP API is on the same port, so you can create a database with curl.",
           "~~~bash\ncurl -u root:playwithdata -H 'Content-Type: application/json' \\\n  -d '{\"command\": \"create database mydb\"}' \\\n  http://localhost:2480/api/v1/server\n~~~",
