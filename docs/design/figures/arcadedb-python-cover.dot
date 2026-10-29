@@ -1,0 +1,29 @@
+// Cover of the SciPy paper news post. Source: benchmarks/python-bindings/figures/architecture.dot in humemai/arcadedb-embedded-python,
+// laid out for 16:9 (ratio, margins, site ground color). Build: see "Diagram covers" in docs/design/image-generation.md.
+digraph arch {
+  rankdir=LR; bgcolor="#faf8f5"; ratio=0.5625; dpi=170;
+  graph [fontname="Helvetica", margin=0, pad="0.05", ranksep="0.8", nodesep="0.5"];
+  node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=26,
+        fillcolor="#eef3fb", color="#33557a", margin="0.24,0.16"];
+  edge [color="#33557a", penwidth=2.2];
+
+  subgraph cluster_py {
+    label="Python process"; labeljust=l; margin=32; style="rounded,dashed"; color="#888888";
+    fontname="Helvetica"; fontsize=26;
+
+    code [label="your Python code\n(numpy · pandas)", fillcolor="#f6f6f6", color="#888888"];
+    api  [label="arcadedb_embedded API\n(JPype in-process bridge)"];
+
+    subgraph cluster_jvm {
+      label="bundled JRE (JVM, in-process)"; labeljust=l; margin=32; style="rounded,filled";
+      fillcolor="#fcf7ef"; color="#b08d57"; fontname="Helvetica"; fontsize=26;
+      eng  [label="ArcadeDB engine\nACID · transactional", fillcolor="#e6edfb"];
+      doc  [label="Documents\n(SQL)", fillcolor="#eafbea", color="#2e7d32"];
+      gr   [label="Property graph\n(Cypher · GAV)", fillcolor="#eafbea", color="#2e7d32"];
+      vec  [label="Vectors\n(HNSW)", fillcolor="#eafbea", color="#2e7d32"];
+    }
+  }
+
+  code -> api -> eng;
+  eng -> doc; eng -> gr; eng -> vec;
+}
