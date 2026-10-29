@@ -41,7 +41,8 @@ export const arcadeDbSoftware: Project = {
         eyebrow: "HumemAI",
         title: "What HumemAI works on.",
         body: [
-          "HumemAI contributes to the engine itself. The merged [pull requests](https://github.com/ArcadeData/arcadedb/pulls?q=is%3Apr+is%3Amerged+author%3Atae898) cover the vector index (graph builds, product quantization and search settings), the speed of queries and storage (aggregation, graph traversals, time-series aggregates, index lookups and record scans), fixes in openCypher and the server, and the Python bindings, which began in the engine repository.",
+          "HumemAI contributes to the engine itself. Most of the work is in [issue reports](https://github.com/ArcadeData/arcadedb/issues?q=is%3Aissue+author%3Atae898): performance and correctness problems with a Java reproducer and measurements, which the maintainers fix and HumemAI verifies on the merge commit.",
+          "The merged [pull requests](https://github.com/ArcadeData/arcadedb/pulls?q=is%3Apr+is%3Amerged+author%3Atae898) cover the vector index (graph builds, product quantization and search settings), the speed of queries and storage (aggregation, graph traversals, time-series aggregates, index lookups and record scans), fixes in openCypher and the server, and the Python bindings, which began in the engine repository.",
           "We maintain the Python package, [ArcadeDB in Python](/software/arcadedb-python), and we run [DBBench](/research/dbbench), an open benchmark that measures ArcadeDB against the engines people use for each kind of data. The first results are published in November 2026.",
           "The [ArcadeDB research page](/research/arcadedb) covers the engine itself.",
         ],
