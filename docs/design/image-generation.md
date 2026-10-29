@@ -42,6 +42,10 @@ The script builds the full prompt from the house template and these fields, so a
 3. If a stray element appears, tighten `show` (never add more words about what to avoid; list only what to draw) and run again.
 4. Commit the PNG, the spec and the stored prompt together.
 
+## Diagram covers
+
+A news post can use a diagram from a paper as its cover. The paper figure is rarely the right shape (the ArcadeDB in Python architecture figure is 2.9:1), and the site crops covers to 16:10 on cards and 16:9 on the article, so a figure that is not laid out for it loses its sides. These covers are not made by `gen-image.mjs`. Keep the Graphviz source in `docs/design/figures/`, lay it out for 16:9 (`ratio=0.5625`, margin inside each cluster, `bgcolor="#faf8f5"`, no em dashes in labels), render it with `dot -Tpng`, then crop to the content and center it on a 2400 by 1350 canvas in the ground color so that it takes at most 83% of the width (the 16:10 crop keeps 90%). Commit the PNG and the `.dot` together. `public/news/2026-10-29/arcadedb-python-cover.png` is the example.
+
 ## Keys and secrets
 
 The script reads the OpenRouter key from the `OPENROUTER_API_KEY` environment variable, or from the local file named by `OPENROUTER_KEY_FILE`, which must live outside every repository. It never prints the key, never
