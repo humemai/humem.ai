@@ -22,10 +22,7 @@ export default function AboutPage() {
         imageAlt="Illustration of connected memory structures and stored knowledge"
       />
 
-      <SectionIntro eyebrow="Overview" title="Memory should be a real system layer, not a prompt trick.">
-          <p>
-            HumemAI is built around a straightforward idea: conversations and data are not the same thing.
-          </p>
+      <SectionIntro eyebrow="Overview" title="Conversations and data are not the same thing.">
           <p>
             Agentic systems need memory structures that stay structured, inspectable, and durable over time.
           </p>
@@ -37,7 +34,7 @@ export default function AboutPage() {
           </p>
       </SectionIntro>
 
-      <DetailSection eyebrow="Origin" title="From research into usable systems." divider bodyClassName={styles.detailLayout}>
+      <DetailSection eyebrow="Origin" title="Where HumemAI comes from." divider bodyClassName={styles.detailLayout}>
           <div data-prose data-prose-column className={styles.detailContent}>
             <a className={styles.inlineImageLink} href="https://taewoon.kim/" target="_blank" rel="noopener noreferrer">
               <div className={styles.inlineImageWrap}>

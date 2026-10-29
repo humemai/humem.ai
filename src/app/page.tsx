@@ -58,7 +58,7 @@ export default function Home() {
       </section>
 
       <div className={styles.sectionShell}>
-        <SectionIntro eyebrow="Why memory" title="Most agents still behave like stateless interfaces with better wording.">
+        <SectionIntro eyebrow="Why memory" title="Most agents have no memory between sessions.">
             <p>
               HumemAI focuses on what should persist beyond a prompt: what happened, what matters now, and how structured knowledge should stay available over time. That means treating memory as a real system layer instead of a side effect hidden in context windows.
             </p>
