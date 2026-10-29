@@ -34,7 +34,7 @@ tags:
 
 ## The paper is published
 
-**ArcadeDB in Python: An In-Process Multi-Model Database** is now published in the [SciPy Proceedings](https://proceedings.scipy.org/articles/fwvt2525) (DOI `10.25080/fwvt2525`).
+**ArcadeDB in Python: An In-Process Multi-Model Database** is published in the [SciPy Proceedings](https://proceedings.scipy.org/articles/fwvt2525) (DOI `10.25080/fwvt2525`).
 
 The [project page](/research/arcadedb-python) has the method, the benchmark tables and a BibTeX entry to cite it.
 
@@ -44,8 +44,4 @@ Some Python programs need transactional reads and writes over documents, travers
 
 The paper shows another way. `arcadedb-embedded` runs ArcadeDB inside the Python process, so one database serves all three. Documents are queried in SQL, the graph in openCypher, and vectors through an HNSW-family index. A bundled Java runtime means nobody installs Java.
 
-We show a workflow that chains a vector search, a SQL filter and a graph traversal over one dataset. We also benchmark the package against SQLite, DuckDB, LadybugDB and Chroma on a Q&A corpus, and report what the single engine costs. Each specialist is faster on its own model. The one engine holds its own on all three, and its price is memory and loading time.
-
-## Where to go next
-
-Read the [paper](https://proceedings.scipy.org/articles/fwvt2525), or start from the [project page](/research/arcadedb-python). The package lives in [ArcadeData/arcadedb-python](https://github.com/ArcadeData/arcadedb-python), and the Python docs are at [docs.arcadedb.com](https://docs.arcadedb.com/arcadedb-python/).
+We show a workflow that chains a vector search, a SQL filter and a graph traversal over one dataset. We also benchmark the package against SQLite, DuckDB, LadybugDB and Chroma on a Q&A corpus, and report what the single engine costs. Each specialist wins on its own model. The one engine is competitive on all three and costs more memory and loading time.
