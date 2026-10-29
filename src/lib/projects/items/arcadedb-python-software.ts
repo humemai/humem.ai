@@ -89,8 +89,6 @@ export const arcadeDbPythonSoftware: Project = {
   links: [
     { label: "Python docs", href: arcadeDbDocsUrl },
     { label: "Python package", href: arcadeDbRepoUrl },
-    { label: "PyPI", href: "https://pypi.org/project/arcadedb/" },
     { label: "ArcadeDB in Python research page", href: "/research/arcadedb-python" },
-    { label: "ArcadeDB software page", href: "/software/arcadedb" },
   ],
 };

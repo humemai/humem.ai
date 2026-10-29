@@ -1,5 +1,5 @@
 import type { Project } from "../types";
-import { arcadeDbDocsUrl, arcadeDbRepoUrl } from "../shared";
+import { arcadeDbRepoUrl } from "../shared";
 
 // The paper about the Python package. The page of the engine is arcadedb.ts and the benchmarks are dbbench.ts; how to run
 // it is arcadedb-software.ts.
@@ -118,8 +118,6 @@ export const arcadeDbPython: Project = {
   links: [
     { label: "Read paper", href: "https://proceedings.scipy.org/articles/fwvt2525" },
     { label: "View GitHub", href: arcadeDbRepoUrl },
-    { label: "Python docs", href: arcadeDbDocsUrl },
     { label: "ArcadeDB in Python software page", href: "/software/arcadedb-python" },
-    { label: "DBBench research page", href: "/research/dbbench" },
   ],
 };
