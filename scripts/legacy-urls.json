@@ -39,7 +39,7 @@
     },
     {
       "from": "/projects/arcadedb-embedded-python",
-      "to": "/software/arcadedb"
+      "to": "/software/arcadedb-python"
     },
     {
       "from": "/projects/multi-model-databases",
@@ -88,10 +88,6 @@
     {
       "from": "/research/machines-with-human-like-memory",
       "to": "/research"
-    },
-    {
-      "from": "/software/arcadedb-python",
-      "to": "/software/arcadedb"
     },
     {
       "from": "/software/dbbench",

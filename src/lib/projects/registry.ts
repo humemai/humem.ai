@@ -4,6 +4,7 @@ import type { Project } from "./types";
 import {
   arcadeDb,
   arcadeDbPython,
+  arcadeDbPythonSoftware,
   arcadeDbSoftware,
   auditReadyMemory,
   coLearning,
@@ -20,6 +21,7 @@ import {
 const allProjects: Project[] = [
   arcadeDb,
   arcadeDbPython,
+  arcadeDbPythonSoftware,
   arcadeDbSoftware,
   auditReadyMemory,
   coLearning,

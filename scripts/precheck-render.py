@@ -45,7 +45,7 @@ if len(devices) != 6:
 # that are reachable by URL, is checked in the light scheme.
 core_pages = [
     "/", "/software", "/research", "/about", "/contact", "/news", "/privacy-policy",
-    "/software/arcadedb", "/research/arcadedb", "/research/arcadedb-python",
+    "/software/arcadedb", "/software/arcadedb-python", "/research/arcadedb", "/research/arcadedb-python",
     "/research/dbbench", "/research/dbbench/tables", "/research/explicit-memory",
 ]
 sitemap = urllib.request.urlopen(base + "/sitemap.xml").read().decode()

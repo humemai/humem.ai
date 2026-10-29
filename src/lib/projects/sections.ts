@@ -10,6 +10,7 @@ export type Section = "software" | "research";
 
 export const projectSections = {
   "arcadedb-software": "software",
+  "arcadedb-python-software": "software",
   "audit-ready-memory": "software",
   cypherglot: "software",
   humemdb: "software",
@@ -24,9 +25,10 @@ export const projectSections = {
   "human-like-memory-systems": "research",
 } as const satisfies Record<string, Section>;
 
-// A project is known by its id (the key above); the URL uses the id unless it is listed here. ArcadeDB has a page in
-// each section, so the Software page keeps its own id and takes the same URL slug in its own section.
-const pathSlugs: Record<string, string> = { "arcadedb-software": "arcadedb" };
+// A project is known by its id (the key above); the URL uses the id unless it is listed here. ArcadeDB and ArcadeDB in
+// Python each have a page in both sections, so the Software pages keep their own ids and take the same URL slugs in
+// their own section.
+const pathSlugs: Record<string, string> = { "arcadedb-software": "arcadedb", "arcadedb-python-software": "arcadedb-python" };
 
 export function projectPathSlug(id: string): string {
   return pathSlugs[id] ?? id;

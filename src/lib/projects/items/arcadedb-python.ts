@@ -119,7 +119,7 @@ export const arcadeDbPython: Project = {
     { label: "Read paper", href: "https://proceedings.scipy.org/articles/fwvt2525" },
     { label: "View GitHub", href: arcadeDbRepoUrl },
     { label: "Python docs", href: arcadeDbDocsUrl },
-    { label: "ArcadeDB software page", href: "/software/arcadedb" },
+    { label: "ArcadeDB in Python software page", href: "/software/arcadedb-python" },
     { label: "DBBench research page", href: "/research/dbbench" },
   ],
 };
