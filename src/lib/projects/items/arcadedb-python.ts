@@ -20,6 +20,7 @@ export const arcadeDbPython: Project = {
           "Some Python work needs transactional reads and writes over documents, traversals over a graph, and similarity search over vectors. The usual answer is a stack of specialists, such as SQLite or DuckDB for documents, NetworkX or LadybugDB for the graph, and FAISS, hnswlib or Chroma for vectors. Each one holds its own copy of the data, with its own consistency model, so every write has to reach all of them.",
           "The paper describes the alternative: ArcadeDB, one multi-model engine for documents, a property graph and vector indexes, running inside the Python process. Documents are queried in SQL, the graph in openCypher, and vectors through an HNSW-family graph index. Transactional and analytical queries run over the same data, and the engine is ACID.",
           "It has three contributions. The first is the package itself, `arcadedb-embedded`. The second is a hybrid workflow that chains vector search, SQL filtering and graph traversal over one dataset. The third is a benchmark against embedded specialists, with what the unified engine costs. [Read the paper in the SciPy Proceedings](https://proceedings.scipy.org/articles/fwvt2525).",
+          "The package is now published as `arcadedb`, with `arcadedb-jvm` as the JVM build. The paper calls it `arcadedb-embedded`, its name when the numbers were measured.",
         ],
       },
       {
@@ -67,7 +68,21 @@ export const arcadeDbPython: Project = {
             columns: ["Backend", "Build s", "Query ms", "recall@10", "Peak MiB", "DB MiB"],
             rows: [["Chroma", "**319.1** [315.7–320.6]", "**1.17** [1.15–1.17]", "0.972 [0.970–0.972]", "25,212 [25,173–27,002]", "**2,208**"], ["ArcadeDB", "546.1 [541.3–550.6]", "4.15 [3.86–4.17]", "**0.980** [0.978–0.981]", "**21,650** [19,680–21,791]", "2,856"]],
           },
-          "The paper also measures how results cross into Python: row by row, as one JSON string per batch, as a packed columnar buffer read with NumPy, and as an Arrow table. The numbers describe release 26.8.1.",
+          "On the transactional reads and the vector queries, ArcadeDB's median and p99 latencies beat DuckDB and LadybugDB and trail SQLite and Chroma. Its worst single operation is slower, 35 to 146 ms across the three models against 0.05 to 11 ms for the specialists. For most applications that rare slow request does not matter. It does if every request has a strict deadline.",
+          {
+            type: "paperTable",
+            caption: "Latency in milliseconds of the read operations in the transactional workloads and of the vector queries: the median operation, the p99 tail, and the single worst operation, each the median over 5 repetitions. The best value per group is in bold.",
+            columns: ["Operation, backend", "median", "p99", "max"],
+            rows: [["document read, SQLite", "**0.004**", "**0.007**", "**0.05**"], ["document read, DuckDB", "0.92", "1.89", "2.9"], ["document read, ArcadeDB", "0.06", "0.17", "34.9"], ["graph point, LadybugDB", "0.41", "1.24", "1.8"], ["graph point, ArcadeDB", "**0.18**", "**0.74**", "**1.5**"], ["graph hop, LadybugDB", "1.44", "4.34", "**11.0**"], ["graph hop, ArcadeDB", "**0.21**", "**0.81**", "90.3"], ["vector query, Chroma", "**1.18**", "**1.36**", "**1.4**"], ["vector query, ArcadeDB", "3.86", "7.11", "145.9"]],
+          },
+          "The paper also measures how results cross into Python: row by row, as one JSON string per batch, as a packed columnar buffer read with NumPy, and as an Arrow table. At 100k rows, row by row is 18 times slower than Arrow, and the whole difference is on the Python side. At 10 rows every method finishes in under 2.1 ms.",
+          {
+            type: "paperTable",
+            caption: "Result transport into Python for a 200k-row document type with four columns, in milliseconds. Median of 7 timed passes after 2 warmups. The engine runs the same query for every method.",
+            columns: ["Rows", "iter_dicts()", "to_json_list()", "to_columns()", "to_arrow()"],
+            rows: [["10", "2.04", "1.70", "0.82", "0.59"], ["100", "2.66", "1.10", "0.93", "0.79"], ["1,000", "20.12", "2.97", "2.28", "1.49"], ["10,000", "197.29", "25.87", "15.87", "14.20"], ["100,000", "1,978.27", "278.22", "135.51", "109.03"]],
+          },
+          "The numbers describe release 26.8.1.",
         ],
       },
       {
@@ -87,7 +102,7 @@ export const arcadeDbPython: Project = {
         title: "Cite our paper.",
         body: [
           "~~~bibtex\n@inproceedings{kim2026arcadedbpython,\n      title={{ArcadeDB} in {Python}: An In-Process Multi-Model Database},\n      author={Taewoon Kim},\n      booktitle={Proceedings of the 25th Python in Science Conference},\n      year={2026},\n      publisher={SciPy},\n      issn={2575-9752},\n      doi={10.25080/fwvt2525},\n      url={https://proceedings.scipy.org/articles/fwvt2525},\n}\n~~~",
-          "The package is Apache-2.0. The benchmark suite and the results behind every table are public in the repository.",
+          "The package is Apache-2.0. The benchmark suite and the results behind every table are public in [`benchmarks/python-bindings`](https://github.com/humemai/arcadedb-embedded-python/tree/main/benchmarks/python-bindings) of the HumemAI repository.",
         ],
       },
     ],
