@@ -101,7 +101,7 @@ export const arcadeDbPython: Project = {
         eyebrow: "Cite",
         title: "Cite our paper.",
         body: [
-          "~~~bibtex\n@inproceedings{kim2026arcadedbpython,\n      title={{ArcadeDB} in {Python}: An In-Process Multi-Model Database},\n      author={Taewoon Kim},\n      booktitle={Proceedings of the 25th Python in Science Conference},\n      year={2026},\n      publisher={SciPy},\n      issn={2575-9752},\n      doi={10.25080/fwvt2525},\n      url={https://proceedings.scipy.org/articles/fwvt2525},\n}\n~~~",
+          "~~~bibtex\n@article{kim2026,\n  author = {Kim, Taewoon},\n  title = {ArcadeDB in Python: An In-Process Multi-Model Database},\n  journal = {Python in Science Conference},\n  year = {2026},\n  doi = {10.25080/fwvt2525},\n  url = {https://doi.org/10.25080/fwvt2525}\n}\n~~~",
           "The package is Apache-2.0. The benchmark suite and the results behind every table are public in [`benchmarks/python-bindings`](https://github.com/humemai/arcadedb-embedded-python/tree/main/benchmarks/python-bindings) of the HumemAI repository.",
         ],
       },
