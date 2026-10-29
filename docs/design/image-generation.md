@@ -30,7 +30,7 @@ The script builds the full prompt from the house template and these fields, so a
 2. **Audit the raw candidates.** It counts the share of stray charcoal pixels (a charcoal element the spec did not ask for) and picks the candidate with the least.
    The raw hue drift is reported but is not the gate, because the finisher removes it.
 3. **Finish.** It crops to the true content box, snaps the colors to the palette (ground exactly `#faf8f5`, ink `#892122`, accent `#e88e8b`, keeping anti-aliased edges),
-   recenters, and fits the content inside a box that survives both crops the site applies (5:6 keeps 83% of the width, 16:11 keeps 69% of the height) on a square canvas.
+   recenters, and fits the content inside a box that survives both crops the site applies (5:6 keeps 83% of the width, the 16:10 hero box keeps 62.5% of the height, so the box is 60%) on a square canvas.
 4. **Audit the finished image.** Off-palette pixels are measured against the ground-to-color lines, so edges do not count; the finished image should read about 0%.
 5. **Store the prompt.** The exact prompt that produced the shipped image goes to `docs/design/generated-prompts/<id>.txt`, with the model, the candidate count, the audit
    numbers and the alt text. A stored prompt is always the one that made the image.
