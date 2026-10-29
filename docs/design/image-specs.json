@@ -38,5 +38,13 @@
     "purpose": "This image will be used on the ArcadeDB in Python research page and its card. The paper is about running a multi-model database inside a Python process. It should communicate one database living inside the host process.",
     "show": "One large rounded-square container drawn as a thick oxblood outline. Centered inside it, a stack of three solid filled oxblood rounded slabs, each wide and short, stacked with equal gaps, the same width. The middle slab is solid filled rose. Nothing else.",
     "alt": "Illustration of three stacked slabs with the middle one in rose, inside a larger outlined square, standing for a database running inside a process."
+  },
+  {
+    "id": "arcadedb-python-scipy-cover",
+    "out": "public/news/2026-10-29/arcadedb-python-cover.png",
+    "aspect": "1:1",
+    "purpose": "This image will be the cover of the news post about the ArcadeDB in Python paper in the SciPy Proceedings. It should communicate one database that lives inside a Python program and holds three kinds of data: documents, a graph and vectors.",
+    "show": "One large rounded-square container drawn as a thick oxblood outline. Inside it, near the top and centered, one solid filled oxblood database cylinder (a flat elliptical top on a short body). Below the cylinder, three solid filled oxblood shapes in a row with equal gaps: a plain page rectangle on the left; in the middle a small triangle of three round nodes joined by plain lines, drawn solid filled rose; on the right three short parallel arrows pointing up and to the right, of different lengths. From the bottom of the cylinder, three thick oxblood lines run down, one to each of the three shapes.",
+    "alt": "Illustration of a database cylinder inside a larger rounded square, connected to a page, a small graph of three nodes and three arrows, standing for one database inside a Python process that holds documents, a graph and vectors."
   }
 ]
