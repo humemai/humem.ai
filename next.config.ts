@@ -27,10 +27,9 @@ const projectsRedirects = [
   { source: "/software/dbbench", destination: "/research/dbbench", permanent: true },
   { source: "/software/dbbench/:lane", destination: "/research/dbbench/:lane", permanent: true },
   // Slugs retired before the sections existed. Each points straight at the final page.
-  { source: "/projects/arcadedb-embedded-python", destination: projectPath("arcadedb-software"), permanent: true },
+  { source: "/projects/arcadedb-embedded-python", destination: projectPath("arcadedb-python-software"), permanent: true },
   { source: "/projects/multi-model-databases", destination: projectPath("arcadedb"), permanent: true },
   // The Software page was published for a day as ArcadeDB for Python.
-  { source: "/software/arcadedb-python", destination: projectPath("arcadedb-software"), permanent: true },
   // The Machines With Human-Like Memory overview page was removed: the papers are listed on /research.
   { source: "/projects/machines-with-human-like-memory", destination: "/research", permanent: true },
   { source: "/research/machines-with-human-like-memory", destination: "/research", permanent: true },
