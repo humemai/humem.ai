@@ -37,7 +37,7 @@ HumemAI and ArcadeData are working more closely together, and the Python binding
 
 ## What changed
 
-The package is [`arcadedb`](https://pypi.org/project/arcadedb/) on PyPI, the native build, which needs no Java. [`arcadedb-jvm`](https://pypi.org/project/arcadedb-jvm/) is the build with a bundled Java runtime. Both are published from the new repository. The package used to be called `arcadedb-embedded`.
+The package is [`arcadedb`](https://pypi.org/project/arcadedb/) on PyPI, the native build, which needs no Java. [`arcadedb-jvm`](https://pypi.org/project/arcadedb-jvm/) is the build with a bundled Java runtime. Both are published from the new repository.
 
 Install it with `uv add arcadedb`. The import is `import arcadedb`. A development release is on PyPI. The first stable one ships with ArcadeDB 26.11.1.
 
@@ -45,4 +45,4 @@ Install it with `uv add arcadedb`. The import is `import arcadedb`. A developmen
 
 ArcadeData owns ArcadeDB, and with it the official Python package. HumemAI wrote the bindings, and Taewoon Kim maintains the repository. HumemAI keeps sending fixes to the engine and runs [DBBench](/research/dbbench), an open benchmark of database engines.
 
-The [SciPy paper](/research/arcadedb-python) about the bindings was written before the move, so it uses the old package name, `arcadedb-embedded`.
+The [SciPy paper](/research/arcadedb-python) describes the bindings in detail.
