@@ -81,7 +81,7 @@ export const arcadeDbPythonSoftware: Project = {
         eyebrow: "Loading",
         title: "Getting a lot of data in.",
         body: [
-          "For documents and rows, `db.insert_many(...)` batches rows across the Java boundary, and `db.insert_columns(...)` takes a DataFrame or numpy arrays and is faster still. For graphs, use `GraphBatch`. Against a server, use `POST /api/v1/batch/{db}` for graphs and the line-protocol endpoint for time series.",
+          "For documents and rows, `db.insert_many(...)` batches rows across the Java boundary, and `db.insert_columns(...)` takes a DataFrame or numpy arrays. For graphs, use `GraphBatch`. Against a server, use `POST /api/v1/batch/{db}` for graphs and the line-protocol endpoint for time series.",
           "`IMPORT DATABASE` loads CSV, XML, RDF, Neo4j exports and ArcadeDB backups, and `EXPORT DATABASE` writes one. Create indexes after a big load where you can.",
         ],
       },
