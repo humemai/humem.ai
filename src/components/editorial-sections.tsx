@@ -144,7 +144,7 @@ export type BenchmarkTable = {
 };
 
 /**
- * Shape of the benchmark payload a DBBench page reads (none is published until the first results, November 2026). Declared here rather than
+ * Shape of the benchmark payload an MMDBBench page reads (none is published until the first results, November 2026). Declared here rather than
  * inferred, because a direct JSON import narrows every null to `null` and
  * every metric key to the literals present in the first table, so the inferred
  * type stops matching as soon as a lane reports a different metric set.
@@ -157,7 +157,7 @@ export type BenchmarkDataset = {
   provenance_note: string;
   hosts_recorded: string[];
   tables: BenchmarkTable[];
-  /** The machine the rows ran on, as the export writes it. Read by the DBBench page. */
+  /** The machine the rows ran on, as the export writes it. Read by the MMDBBench page. */
   setup?: {
     hosts?: Record<string, { cpu?: string; memory?: string; storage?: string; os?: string }>;
     cpuset?: string;

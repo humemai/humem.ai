@@ -1,7 +1,7 @@
 import type { Project } from "../types";
 import { arcadeDbEngineDocsUrl, arcadeDbUpstreamRepoUrl } from "../shared";
 
-// The Software page of the ArcadeDB engine: how to run the official server. The package for Python is arcadedb-python-software.ts; the engine paper is on the Research page (arcadedb.ts); the benchmarks are in DBBench (dbbench.ts).
+// The Software page of the ArcadeDB engine: how to run the official server. The package for Python is arcadedb-python-software.ts; the engine paper is on the Research page (arcadedb.ts); the benchmarks are in MMDBBench (dbbench.ts).
 export const arcadeDbSoftware: Project = {
   slug: "arcadedb-software",
   title: "ArcadeDB",
@@ -116,7 +116,7 @@ export const arcadeDbSoftware: Project = {
         title: "What we do.",
         body: [
           "We send fixes to the engine: [issue reports](https://github.com/ArcadeData/arcadedb/issues?q=is%3Aissue+author%3Atae898) with a Java reproducer and measurements, and [merged pull requests](https://github.com/ArcadeData/arcadedb/pulls?q=is%3Apr+is%3Amerged+author%3Atae898) for the vector index, query and storage speed, openCypher and the server.",
-          "We also maintain [ArcadeDB in Python](/software/arcadedb-python) and run [DBBench](/research/dbbench), an open benchmark of ArcadeDB against other engines. The [research page](/research/arcadedb) covers the engine itself.",
+          "We also maintain [ArcadeDB in Python](/software/arcadedb-python) and run [MMDBBench](/research/mmdbbench), an open benchmark of ArcadeDB against other engines. The [research page](/research/arcadedb) covers the engine itself.",
         ],
       },
     ],

@@ -15,7 +15,7 @@ export const projectSections = {
   cypherglot: "software",
   humemdb: "software",
   arcadedb: "research",
-  dbbench: "research",
+  mmdbbench: "research",
   "arcadedb-python": "research",
   "roomkg-meta-policies": "research",
   "kg-memory-transfer": "research",

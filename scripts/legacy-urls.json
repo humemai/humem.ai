@@ -11,19 +11,19 @@
     },
     {
       "from": "/projects/dbbench/tables",
-      "to": "/research/dbbench/tables"
+      "to": "/research/mmdbbench/tables"
     },
     {
       "from": "/projects/dbbench/graphs",
-      "to": "/research/dbbench/graphs"
+      "to": "/research/mmdbbench/graphs"
     },
     {
       "from": "/projects/dbbench/vectors",
-      "to": "/research/dbbench/vectors"
+      "to": "/research/mmdbbench/vectors"
     },
     {
       "from": "/projects/dbbench",
-      "to": "/research/dbbench"
+      "to": "/research/mmdbbench"
     },
     {
       "from": "/projects/arcadedb",
@@ -31,11 +31,11 @@
     },
     {
       "from": "/projects/arcadedb/next",
-      "to": "/research/dbbench"
+      "to": "/research/mmdbbench"
     },
     {
       "from": "/research/arcadedb/next",
-      "to": "/research/dbbench"
+      "to": "/research/mmdbbench"
     },
     {
       "from": "/projects/arcadedb-embedded-python",
@@ -91,19 +91,19 @@
     },
     {
       "from": "/software/dbbench",
-      "to": "/research/dbbench"
+      "to": "/research/mmdbbench"
     },
     {
       "from": "/software/dbbench/tables",
-      "to": "/research/dbbench/tables"
+      "to": "/research/mmdbbench/tables"
     },
     {
       "from": "/software/dbbench/graphs",
-      "to": "/research/dbbench/graphs"
+      "to": "/research/mmdbbench/graphs"
     },
     {
       "from": "/software/dbbench/vectors",
-      "to": "/research/dbbench/vectors"
+      "to": "/research/mmdbbench/vectors"
     },
     {
       "from": "/product",
@@ -160,6 +160,34 @@
     {
       "from": "/terms-of-service",
       "to": "/privacy-policy"
+    },
+    {
+      "from": "/research/dbbench",
+      "to": "/research/mmdbbench"
+    },
+    {
+      "from": "/research/dbbench/tables",
+      "to": "/research/mmdbbench/tables"
+    },
+    {
+      "from": "/research/dbbench/graphs",
+      "to": "/research/mmdbbench/graphs"
+    },
+    {
+      "from": "/research/dbbench/vectors",
+      "to": "/research/mmdbbench/vectors"
+    },
+    {
+      "from": "/research/dbbench/time-series",
+      "to": "/research/mmdbbench/time-series"
+    },
+    {
+      "from": "/research/dbbench/cross-model",
+      "to": "/research/mmdbbench/cross-model"
+    },
+    {
+      "from": "/research/dbbench/lifecycle",
+      "to": "/research/mmdbbench/lifecycle"
     }
   ]
 }
