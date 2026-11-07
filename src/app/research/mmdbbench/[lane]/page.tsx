@@ -12,7 +12,7 @@ import {
 import { dbbench } from "@/lib/projects/items/dbbench";
 import { EditorialProjectPage } from "../../../_projects/editorial-project-page";
 
-// One page per DBBench lane, from one dynamic route. Hidden (noindex) until DBBENCH_INDEXABLE is flipped, which happens
+// One page per MMDBBench lane, from one dynamic route. Hidden (noindex) until DBBENCH_INDEXABLE is flipped, which happens
 // when the first results are published (November 2026). While src/data/dbbench-benchmarks.json is absent, a lane page says
 // what the lane measures and lists the tables it will carry. With the payload it renders the lane's tables; a table the
 // payload does not carry (or name as pending) is left out.
@@ -29,10 +29,10 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const { lane: slug } = await params;
   const lane = getDbbenchLane(slug);
   if (!lane) {
-    return { title: "DBBench" };
+    return { title: "MMDBBench" };
   }
   return {
-    title: `DBBench ${lane.title.toLowerCase()}`,
+    title: `MMDBBench ${lane.title.toLowerCase()}`,
     description: lane.blurb,
     robots: dbbenchRobots,
     openGraph: dbbench.image ? { images: [{ url: dbbench.image.src, alt: dbbench.image.alt }] } : undefined,
@@ -83,7 +83,7 @@ export default async function DbbenchLanePage({ params }: { params: Promise<Para
 
   const otherLanes = dbbenchLanes
     .filter((candidate) => candidate.slug !== lane.slug)
-    .map((candidate) => `- [${candidate.title}](/research/dbbench/${candidate.slug}): ${candidate.blurb}`)
+    .map((candidate) => `- [${candidate.title}](/research/mmdbbench/${candidate.slug}): ${candidate.blurb}`)
     .join("\n");
 
   const project: Project = {
@@ -94,7 +94,7 @@ export default async function DbbenchLanePage({ params }: { params: Promise<Para
     problem: "",
     solution: "",
     links: [
-      { label: "All DBBench lanes", href: "/research/dbbench" },
+      { label: "All MMDBBench lanes", href: "/research/mmdbbench" },
       { label: "Methodology", href: dbbenchMethodologyUrl },
       { label: "Engine settings", href: dbbenchEnginesUrl },
       { label: "Report a wrong setting", href: dbbenchIssuesUrl },
@@ -113,7 +113,7 @@ export default async function DbbenchLanePage({ params }: { params: Promise<Para
         {
           id: "lanes",
           navLabel: "Other lanes",
-          eyebrow: "DBBench",
+          eyebrow: "MMDBBench",
           title: "The other lanes.",
           body: [otherLanes],
         },
@@ -125,7 +125,7 @@ export default async function DbbenchLanePage({ params }: { params: Promise<Para
     <EditorialProjectPage
       project={project}
       dataset={dataset}
-      parent={{ href: "/research/dbbench", label: "DBBench" }}
+      parent={{ href: "/research/mmdbbench", label: "MMDBBench" }}
       section="research"
       eyebrow="Lane"
     />

@@ -12,13 +12,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const pages = ["", "/about", "/software", "/research", "/news", "/contact", "/privacy-policy"];
   return [
     ...pages.map((path) => ({ url: `${SITE}${path}` })),
-    // A noindex DBBench page stays out of the sitemap (DBBENCH_INDEXABLE).
+    // A noindex MMDBBench page stays out of the sitemap (DBBENCH_INDEXABLE).
     ...projects
-      .filter((project) => project.slug !== "dbbench" || DBBENCH_INDEXABLE)
+      .filter((project) => project.slug !== "mmdbbench" || DBBENCH_INDEXABLE)
       .filter((project) => !UNLISTED_PROJECTS.has(project.slug))
       .map((project) => ({ url: `${SITE}${projectPath(project.slug)}` })),
     // The lane pages go with the project page (DBBENCH_INDEXABLE).
-    ...(DBBENCH_INDEXABLE ? dbbenchLanes.map((lane) => ({ url: `${SITE}/research/dbbench/${lane.slug}` })) : []),
+    ...(DBBENCH_INDEXABLE ? dbbenchLanes.map((lane) => ({ url: `${SITE}/research/mmdbbench/${lane.slug}` })) : []),
     ...getAllNewsPosts().map((post) => ({ url: `${SITE}/news/${post.slug}` })),
   ];
 }

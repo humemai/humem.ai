@@ -3,7 +3,7 @@ import type { Project, ProjectEditorialBodyBlock } from "@/lib/projects/types";
 import { dbbenchLanes } from "./lanes";
 import { datasetHasTable } from "./payload";
 
-// The DBBench project page is written for the time before any result exists (src/lib/projects/items/dbbench.ts). When a
+// The MMDBBench project page is written for the time before any result exists (src/lib/projects/items/dbbench.ts). When a
 // payload exists, this swaps in what the payload adds: the machine and the shared conditions in place of the "No results yet"
 // section, and each lane's headline table in place of the line that says the lane will carry tables. With no payload the
 // project is returned as it came, so the page renders exactly as it did before.
@@ -35,7 +35,7 @@ export function dbbenchProjectWithResults(project: Project, dataset: BenchmarkDa
           caption: headline.caption,
           showDigests: headline.showDigests,
         },
-        `[Every ${lane.title.toLowerCase()} table](/research/dbbench/${lane.slug}), with the rest of the tasks in this lane.`,
+        `[Every ${lane.title.toLowerCase()} table](/research/mmdbbench/${lane.slug}), with the rest of the tasks in this lane.`,
       ];
       return { ...section, body };
     }

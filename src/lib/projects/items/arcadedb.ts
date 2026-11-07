@@ -25,9 +25,9 @@ export const arcadeDb: Project = {
         id: "benchmarks",
         navLabel: "Benchmarks",
         eyebrow: "Benchmarks",
-        title: "Results are measured in DBBench.",
+        title: "Results are measured in MMDBBench.",
         body: [
-          "The cross-engine benchmarks are their own project, [DBBench](/research/dbbench), so that they stay independent of any one engine. This page keeps to ArcadeDB itself.",
+          "The cross-engine benchmarks are their own project, [MMDBBench](/research/mmdbbench), so that they stay independent of any one engine. This page keeps to ArcadeDB itself.",
           dbbenchFirstResults,
         ],
       },
@@ -37,7 +37,7 @@ export const arcadeDb: Project = {
         eyebrow: "Licenses",
         title: "What each engine's license allows.",
         body: [
-          "Not every engine that DBBench measures is open source in the sense the Open Source Initiative (OSI) defines. ArcadeDB and the Python package are both Apache-2.0.",
+          "Not every engine that MMDBBench measures is open source in the sense the Open Source Initiative (OSI) defines. ArcadeDB and the Python package are both Apache-2.0.",
           {
             type: "paperTable",
             caption: "What each engine's license allows.",
@@ -51,7 +51,7 @@ export const arcadeDb: Project = {
     ],
   },
   summary:
-    "ArcadeDB keeps documents, graphs, vectors and time series in one engine, with one transaction across all four. Its benchmarks are in DBBench, with every setting public.",
+    "ArcadeDB keeps documents, graphs, vectors and time series in one engine, with one transaction across all four. Its benchmarks are in MMDBBench, with every setting public.",
   image: {
     src: "/images/projects/project-arcadedb.png",
     alt: "Illustration of a document, a triangle graph, vector arrows and a stepped time-series line in one frame around a rose circle at the center, standing for one engine that holds four kinds of data.",
@@ -61,7 +61,7 @@ export const arcadeDb: Project = {
   solution:
     "ArcadeDB puts every model on the same pages and the same write-ahead log, so a write spanning documents, edges, and vectors is one ACID transaction, and replication is correct for every model without per-model code. The Python package ships that same engine with a bundled Java runtime, so it installs with uv and runs inside your process, and can start a server from there when wire protocols or replication are needed.",
   impact:
-    "The engine and the Python package are developed together. The cross-engine benchmarks, with recall reported next to latency and every comparator pinned by image digest, live in DBBench (/research/dbbench). Findings from the benchmarks are filed and contributed upstream, so the benchmarks improve the engine as well as measure it.",
+    "The engine and the Python package are developed together. The cross-engine benchmarks, with recall reported next to latency and every comparator pinned by image digest, live in MMDBBench (/research/mmdbbench). Findings from the benchmarks are filed and contributed upstream, so the benchmarks improve the engine as well as measure it.",
   // The hero renders the first two as buttons, so those two have to represent
   // both halves of the work rather than sending everyone to the Python side.
   links: [

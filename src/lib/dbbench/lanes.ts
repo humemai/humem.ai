@@ -1,4 +1,4 @@
-// The six DBBench lanes and the tables each one will publish.
+// The six MMDBBench lanes and the tables each one will publish.
 //
 // No result is published yet: the first results come in November 2026 (dbbenchFirstResults below). A lane lists the
 // tables it will carry, each with the caption that says what it measures. When the first results land, the payload
@@ -6,9 +6,9 @@
 //
 // NO NUMBER IS TYPED INTO A SENTENCE HERE. The prose says what a table measures and why.
 
-/** The one sentence every DBBench and ArcadeDB page uses to say when results appear. */
+/** The one sentence every MMDBBench and ArcadeDB page uses to say when results appear. */
 export const dbbenchFirstResults =
-  "The first results are published in November 2026: ArcadeDB 26.11.1 against a multi-model subset of engines, measured on the November instrument. Until then DBBench shows its method and its lanes, and no numbers.";
+  "The first results are published in November 2026: ArcadeDB 26.11.1 against a multi-model subset of engines, measured on the November instrument. Until then MMDBBench shows its method and its lanes, and no numbers.";
 
 export type DbbenchLaneTable = {
   tableId: string;

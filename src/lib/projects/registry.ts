@@ -46,13 +46,13 @@ for (const project of allProjects) {
 // indexes or the home-page rail, and no sitemap entry (src/app/sitemap.ts).
 export const UNLISTED_PROJECTS: ReadonlySet<string> = new Set(["cypherglot", "humemdb"]);
 
-// DBBench is standalone. It joins the lists (the section indexes and the home-page rail) when it is listed or
+// MMDBBench is standalone. It joins the lists (the section indexes and the home-page rail) when it is listed or
 // indexable; the sitemap takes it only when indexable (src/app/sitemap.ts). The cards are in the order of
 // projectSections, which is a hand-picked order.
 export const projects: Project[] = Object.keys(projectSections)
   .map((slug) => allProjects.find((project) => project.slug === slug))
   .filter((project): project is Project => Boolean(project))
-  .filter((project) => project.slug !== "dbbench" || DBBENCH_INDEXABLE || DBBENCH_LISTED);
+  .filter((project) => project.slug !== "mmdbbench" || DBBENCH_INDEXABLE || DBBENCH_LISTED);
 
 export function getProject(slug: string) {
   return projects.find((project) => project.slug === slug);

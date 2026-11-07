@@ -71,7 +71,7 @@ type EditorialProjectPageProps = {
   dataset?: BenchmarkDataset;
   /** Rendered above the hero. */
   banner?: ReactNode;
-  /** Breadcrumb parent for a page under a project page (a DBBench lane). */
+  /** Breadcrumb parent for a page under a project page (an MMDBBench lane). */
   parent?: { href: string; label: string };
   /** The section the breadcrumb starts in. Defaults to the project's own; the unregistered preview passes it. */
   section?: Section;
