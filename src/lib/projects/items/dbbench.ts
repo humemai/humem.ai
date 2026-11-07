@@ -43,6 +43,7 @@ export const dbbench: Project = {
         eyebrow: "MMDBBench",
         title: "The same tasks, on the same machine, for every engine.",
         body: [
+          "Agent memory is becoming an important workload. An agent keeps what it learns as facts and events (documents and tables), the relations between them (a graph), their meaning (vectors), their words (text), and their time. It asks one database to serve all of these at once, usually in many small collections that change on every turn: a few inserts, then a query right away, with other agents writing next to it. Most benchmarks measure one data model at a time, so the cost of putting them in one engine is not visible.",
           "MMDBBench is an open benchmark of multi-model databases: databases that serve tables, time series, documents, graphs, key-values, and vectors from one storage engine. Specialist databases built for a single model run the same tasks as per-model baselines, so a reader can see what one engine gives up or gains against the engine built for that job.",
           "Every engine in a lane answers the same tasks over the same data on the same x86 Linux machine, in SQL, Cypher, or its native language. The settings are published, and every result is tied to the exact version of the engine that produced it. The raw result rows are open.",
           "Results are kept. When an engine ships a new version, new rows are added next to the old ones. When a setting is corrected, the corrected run is added and the earlier result stays visible.",
