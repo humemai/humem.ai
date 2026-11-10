@@ -101,7 +101,7 @@ export const arcadeDbPython: Project = {
         eyebrow: "Cite",
         title: "Cite our paper.",
         body: [
-          "~~~bibtex\n@article{kim2026,\n  author = {Kim, Taewoon},\n  title = {ArcadeDB in Python: An In-Process Multi-Model Database},\n  journal = {Python in Science Conference},\n  year = {2026},\n  doi = {10.25080/fwvt2525},\n  url = {https://doi.org/10.25080/fwvt2525}\n}\n~~~",
+          "~~~bibtex\n@misc{kim2026arcadedbpythoninprocess,\n      title={ArcadeDB in Python: An In-Process Multi-Model Database},\n      author={Taewoon Kim},\n      year={2026},\n      eprint={2611.07971},\n      archivePrefix={arXiv},\n      primaryClass={cs.DB},\n      url={https://arxiv.org/abs/2611.07971},\n}\n~~~",
           "The package is Apache-2.0. The benchmark suite and the results behind every table are public in [`benchmarks/python-bindings`](https://github.com/humemai/arcadedb-embedded-python/tree/6463877445125f745f317356f32fb6ba086ebe17/benchmarks/python-bindings) of the HumemAI repository.",
         ],
       },
@@ -116,7 +116,7 @@ export const arcadeDbPython: Project = {
   problem: "",
   solution: "",
   links: [
-    { label: "Read paper", href: "https://proceedings.scipy.org/articles/fwvt2525" },
+    { label: "Read paper", href: "https://arxiv.org/abs/2611.07971" },
     { label: "View GitHub", href: arcadeDbRepoUrl },
     { label: "ArcadeDB in Python software page", href: "/software/arcadedb-python" },
   ],
