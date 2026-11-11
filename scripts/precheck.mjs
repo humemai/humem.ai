@@ -4,6 +4,8 @@
  * already part of `npm run build`, which Vercel runs on every deploy; this adds
  * what needs a running server and a browser:
  *
+ *   0. the vendored design system in public/brand still matches the hash in its
+ *      VERSION.md (public/brand/verify.sh): a hand edit of the copy fails here
  *   1. lint and a production build (in its own directory, so a running dev
  *      server is left alone)
  *   2. every URL in scripts/legacy-urls.json answers 308 to its new page in
@@ -42,6 +44,7 @@ function run(label, command, args) {
   }
 }
 
+run("design-system copy", "bash", ["public/brand/verify.sh"]);
 run("lint", "npm", ["run", "lint"]);
 run("build", "npm", ["run", "build"]);
 

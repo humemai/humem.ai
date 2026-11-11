@@ -9,7 +9,7 @@ The public website of HumemAI, an open source organization building memory syste
 | running, building or checking the site | `README.md` (Development, and the checks before pushing: `npm run precheck`) |
 | adding or changing an illustration | `docs/design/image-generation.md` (the pipeline), then `docs/design/image-prompts.md` (the look) |
 | changing layout or page widths | `docs/design/layout-widths.md`, `docs/design/test-devices.md` |
-| changing colours, type or any brand asset | `humemai/design-system` first, then vendor it here |
+| changing colours, type or any brand asset | `humemai/design-system` first, then vendor it here (`npm run precheck` fails on an edited copy) |
 | adding or changing a project page | `src/lib/projects/items/`, `src/lib/projects/sections.ts` (which section the page goes in: Software for what you install or run, Research for what you read and cite) and `src/lib/projects/registry.ts`; numbers on a page come from a generated payload |
 
 ## Rules for agents
