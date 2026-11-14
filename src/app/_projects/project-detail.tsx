@@ -9,7 +9,11 @@ import { EditorialProjectPage, buildAcknowledgements } from "./editorial-project
 import styles from "./projects.module.css";
 
 export function sectionStaticParams(section: Section) {
-  return getProjectsInSection(section).map((project) => ({ slug: projectPathSlug(project.slug) }));
+  // MMDBBench has its own page (src/app/research/mmdbbench/page.tsx), which reads the results payload. Listing it here too made
+  // two routes prerender the same file, and the one without the payload could win: the page then showed no table at all.
+  return getProjectsInSection(section)
+    .filter((project) => project.slug !== "mmdbbench")
+    .map((project) => ({ slug: projectPathSlug(project.slug) }));
 }
 
 export function projectMetadata(slug: string, section: Section): Metadata {

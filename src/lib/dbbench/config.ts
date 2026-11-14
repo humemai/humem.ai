@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
-// THE DBBENCH SWITCH. One constant gates the robots tag on /research/mmdbbench and its lane pages, the home-page rail and
-// the sitemap entries. It stays false until the first results are published (November 2026), and is flipped to true
+// THE DBBENCH SWITCH. One constant gates the robots tag on /research/mmdbbench, the home-page rail and
+// the sitemap entry. It stays false until the first results are published (November 2026), and is flipped to true
 // in the change that publishes them. The October preview route is gone; its two URLs always redirect here
 // (next.config.ts).
 export const DBBENCH_INDEXABLE = false;

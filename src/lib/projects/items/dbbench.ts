@@ -1,11 +1,11 @@
-// MMDBBench: the benchmark as its own project, standalone. Rendered at /research/mmdbbench. Lane pages live under it
-// (/research/mmdbbench/<lane>, see src/lib/dbbench/lanes.ts).
+// MMDBBench: the benchmark as its own project, standalone. Rendered at /research/mmdbbench, one page: each lane is a section
+// of it (#tables, #graphs, ..., see src/lib/dbbench/lanes.ts), and the old lane URLs redirect to those anchors (next.config.ts).
 //
 // The methodology points below summarise docs.humem.ai/mmdbbench/latest/methodology/.
 // When that page changes, change this list in the same pull request.
 //
 // NO RESULT IS PUBLISHED YET, and no number is typed into a sentence here. The first results come in November 2026.
-// When they land, the result tables are added back to the lane sections and the lane pages in the same change that
+// When they land, the result tables are added back to the lane sections (src/lib/dbbench/results.ts) in the same change that
 // flips DBBENCH_INDEXABLE.
 import type { Project } from "../types";
 import { dbbenchFirstResults, dbbenchLanes } from "../../dbbench/lanes";
@@ -18,16 +18,20 @@ import {
 } from "../shared";
 
 const laneList = dbbenchLanes
-  .map((lane) => `- [${lane.title}](/research/mmdbbench/${lane.slug}): ${lane.blurb}`)
+  .map((lane) => `- [${lane.title}](/research/mmdbbench#${lane.slug}): ${lane.blurb}`)
   .join("\n");
 
-// One section per lane: what it measures and a link to the lane page.
+// One section per lane: what it measures and the tables it will carry. With a payload, results.ts puts the tables here.
 const laneSections = dbbenchLanes.map((lane) => ({
   id: lane.slug,
   navLabel: lane.navLabel,
   eyebrow: "Lane",
   title: `${lane.title}.`,
-  body: [lane.lead[0], `[The ${lane.title.toLowerCase()} lane](/research/mmdbbench/${lane.slug}), with the tables it will publish.`],
+  body: [
+    lane.lead[0],
+    `The ${lane.title.toLowerCase()} lane will carry these tables:`,
+    lane.tables.map((table) => `- ${table.caption}`).join("\n"),
+  ],
 }));
 
 export const dbbench: Project = {

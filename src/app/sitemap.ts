@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAllNewsPosts } from "@/lib/news-posts";
 import { DBBENCH_INDEXABLE } from "@/lib/dbbench/config";
-import { dbbenchLanes } from "@/lib/dbbench/lanes";
 import { UNLISTED_PROJECTS, projectPath, projects } from "@/lib/projects";
 
 const SITE = "https://humem.ai";
@@ -17,8 +16,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       .filter((project) => project.slug !== "mmdbbench" || DBBENCH_INDEXABLE)
       .filter((project) => !UNLISTED_PROJECTS.has(project.slug))
       .map((project) => ({ url: `${SITE}${projectPath(project.slug)}` })),
-    // The lane pages go with the project page (DBBENCH_INDEXABLE).
-    ...(DBBENCH_INDEXABLE ? dbbenchLanes.map((lane) => ({ url: `${SITE}/research/mmdbbench/${lane.slug}` })) : []),
     ...getAllNewsPosts().map((post) => ({ url: `${SITE}/news/${post.slug}` })),
   ];
 }
