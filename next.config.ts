@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 
+import { dbbenchLanes } from "./src/lib/dbbench/lanes";
 import { projectPath, projectSections } from "./src/lib/projects/sections";
 
 // A URL that has been published never breaks: a moved page ships with a permanent redirect (Next.js answers 308),
@@ -9,16 +10,29 @@ import { projectPath, projectSections } from "./src/lib/projects/sections";
 // URLs answer 308 straight to /research/mmdbbench. The redirect stays for good: the preview URL was sent to vendors and
 // maintainers. It matches with or without a trailing slash. The old /projects/arcadedb/next preview URL goes straight to
 // MMDBBench too, so it never chains through /research. The benchmark was called DBBench until 2026-11-07, so its
-// old pages (/research/dbbench and the lane pages under it) also answer 308 straight to the new ones.
+// old pages (/research/dbbench and the lane URLs under it) also answer 308 straight to the new ones.
+//
+// THE LANE URLS. MMDBBench had one page per lane (/research/mmdbbench/tables, /graphs, ...). On 2026-11-14 the lanes became
+// sections of /research/mmdbbench, so each lane URL, under every name the benchmark has had, answers 308 straight to its anchor
+// (/research/mmdbbench#tables). They are linked from GitHub posts, so they stay for good. They come from the lane list, so they
+// cannot drift from the sections.
+const laneRedirects = (prefix: string) =>
+  dbbenchLanes.map((lane) => ({
+    source: `${prefix}/${lane.slug}`,
+    destination: `/research/mmdbbench#${lane.slug}`,
+    permanent: true,
+  }));
+
 const dbbenchRedirects = [
   { source: "/research/arcadedb/next", destination: "/research/mmdbbench", permanent: true },
   { source: "/projects/arcadedb/next", destination: "/research/mmdbbench", permanent: true },
   { source: "/research/dbbench", destination: "/research/mmdbbench", permanent: true },
-  { source: "/research/dbbench/:lane", destination: "/research/mmdbbench/:lane", permanent: true },
+  ...laneRedirects("/research/mmdbbench"),
+  ...laneRedirects("/research/dbbench"),
 ];
 
 // Every page of the old /projects section, generated from the section map so the redirects cannot drift from the
-// pages. The MMDBBench lane pages moved with their project.
+// pages. The MMDBBench lane URLs moved with their project.
 const projectsRedirects = [
   ...Object.keys(projectSections).filter((slug) => slug !== "arcadedb-software").map((slug) => ({
     source: `/projects/${slug}`,
@@ -26,10 +40,10 @@ const projectsRedirects = [
     permanent: true,
   })),
   { source: "/projects/dbbench", destination: "/research/mmdbbench", permanent: true },
-  { source: "/projects/dbbench/:lane", destination: "/research/mmdbbench/:lane", permanent: true },
+  ...laneRedirects("/projects/dbbench"),
   // The benchmark was on /software for a day. It is a page you read and cite, so it lives in Research.
   { source: "/software/dbbench", destination: "/research/mmdbbench", permanent: true },
-  { source: "/software/dbbench/:lane", destination: "/research/mmdbbench/:lane", permanent: true },
+  ...laneRedirects("/software/dbbench"),
   // Slugs retired before the sections existed. Each points straight at the final page.
   { source: "/projects/arcadedb-embedded-python", destination: projectPath("arcadedb-python-software"), permanent: true },
   { source: "/projects/multi-model-databases", destination: projectPath("arcadedb"), permanent: true },

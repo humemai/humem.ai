@@ -11,15 +11,15 @@
     },
     {
       "from": "/projects/dbbench/tables",
-      "to": "/research/mmdbbench/tables"
+      "to": "/research/mmdbbench#tables"
     },
     {
       "from": "/projects/dbbench/graphs",
-      "to": "/research/mmdbbench/graphs"
+      "to": "/research/mmdbbench#graphs"
     },
     {
       "from": "/projects/dbbench/vectors",
-      "to": "/research/mmdbbench/vectors"
+      "to": "/research/mmdbbench#vectors"
     },
     {
       "from": "/projects/dbbench",
@@ -95,15 +95,15 @@
     },
     {
       "from": "/software/dbbench/tables",
-      "to": "/research/mmdbbench/tables"
+      "to": "/research/mmdbbench#tables"
     },
     {
       "from": "/software/dbbench/graphs",
-      "to": "/research/mmdbbench/graphs"
+      "to": "/research/mmdbbench#graphs"
     },
     {
       "from": "/software/dbbench/vectors",
-      "to": "/research/mmdbbench/vectors"
+      "to": "/research/mmdbbench#vectors"
     },
     {
       "from": "/product",
@@ -162,32 +162,56 @@
       "to": "/privacy-policy"
     },
     {
+      "from": "/research/mmdbbench/tables",
+      "to": "/research/mmdbbench#tables"
+    },
+    {
+      "from": "/research/mmdbbench/graphs",
+      "to": "/research/mmdbbench#graphs"
+    },
+    {
+      "from": "/research/mmdbbench/vectors",
+      "to": "/research/mmdbbench#vectors"
+    },
+    {
+      "from": "/research/mmdbbench/time-series",
+      "to": "/research/mmdbbench#time-series"
+    },
+    {
+      "from": "/research/mmdbbench/cross-model",
+      "to": "/research/mmdbbench#cross-model"
+    },
+    {
+      "from": "/research/mmdbbench/lifecycle",
+      "to": "/research/mmdbbench#lifecycle"
+    },
+    {
       "from": "/research/dbbench",
       "to": "/research/mmdbbench"
     },
     {
       "from": "/research/dbbench/tables",
-      "to": "/research/mmdbbench/tables"
+      "to": "/research/mmdbbench#tables"
     },
     {
       "from": "/research/dbbench/graphs",
-      "to": "/research/mmdbbench/graphs"
+      "to": "/research/mmdbbench#graphs"
     },
     {
       "from": "/research/dbbench/vectors",
-      "to": "/research/mmdbbench/vectors"
+      "to": "/research/mmdbbench#vectors"
     },
     {
       "from": "/research/dbbench/time-series",
-      "to": "/research/mmdbbench/time-series"
+      "to": "/research/mmdbbench#time-series"
     },
     {
       "from": "/research/dbbench/cross-model",
-      "to": "/research/mmdbbench/cross-model"
+      "to": "/research/mmdbbench#cross-model"
     },
     {
       "from": "/research/dbbench/lifecycle",
-      "to": "/research/mmdbbench/lifecycle"
+      "to": "/research/mmdbbench#lifecycle"
     }
   ]
 }

@@ -71,8 +71,6 @@ type EditorialProjectPageProps = {
   dataset?: BenchmarkDataset;
   /** Rendered above the hero. */
   banner?: ReactNode;
-  /** Breadcrumb parent for a page under a project page (an MMDBBench lane). */
-  parent?: { href: string; label: string };
   /** The section the breadcrumb starts in. Defaults to the project's own; the unregistered preview passes it. */
   section?: Section;
   /** Overrides the label above the title, which is the section name. */
@@ -89,18 +87,12 @@ const NO_RESULTS: BenchmarkDataset = {
   tables: [],
 };
 
-export function EditorialProjectPage({ project, dataset = NO_RESULTS, banner, parent, section, eyebrow }: EditorialProjectPageProps) {
+export function EditorialProjectPage({ project, dataset = NO_RESULTS, banner, section, eyebrow }: EditorialProjectPageProps) {
   const projectSection: Section = section ?? (projectSections as Record<string, Section>)[project.slug] ?? "research";
   const sectionLabel = projectSection === "software" ? "Software" : "Research";
   const projectContext = (
     <>
       <Link href={`/${projectSection}`}>{sectionLabel}</Link>
-      {parent ? (
-        <>
-          {" / "}
-          <Link href={parent.href}>{parent.label}</Link>
-        </>
-      ) : null}
     </>
   );
   const acknowledgementsSectionContent = buildAcknowledgements(project);

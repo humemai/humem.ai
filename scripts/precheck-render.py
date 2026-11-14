@@ -46,7 +46,7 @@ if len(devices) != 6:
 core_pages = [
     "/", "/software", "/research", "/about", "/contact", "/news", "/privacy-policy",
     "/software/arcadedb", "/software/arcadedb-python", "/research/arcadedb", "/research/arcadedb-python",
-    "/research/mmdbbench", "/research/mmdbbench/tables", "/research/explicit-memory",
+    "/research/mmdbbench", "/research/explicit-memory",
 ]
 sitemap = urllib.request.urlopen(base + "/sitemap.xml").read().decode()
 listed = [urllib.parse.urlparse(u).path or "/" for u in re.findall(r"<loc>([^<]+)</loc>", sitemap)]

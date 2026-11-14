@@ -20,9 +20,9 @@ export type DbbenchLane = {
   slug: "tables" | "graphs" | "vectors" | "time-series" | "cross-model" | "lifecycle";
   title: string;
   navLabel: string;
-  /** One line for the lane list and the lane page hero. */
+  /** One line for the lane list on the MMDBBench page. */
   blurb: string;
-  /** Paragraphs above the tables on the lane page. */
+  /** Paragraphs above the lane's tables, in the lane's section of the MMDBBench page. */
   lead: string[];
   tables: DbbenchLaneTable[];
 };
@@ -174,7 +174,3 @@ export const dbbenchLanes: DbbenchLane[] = [
     ],
   },
 ];
-
-export function getDbbenchLane(slug: string): DbbenchLane | undefined {
-  return dbbenchLanes.find((lane) => lane.slug === slug);
-}
