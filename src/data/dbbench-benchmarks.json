@@ -190,16 +190,15 @@
         "Every repetition, on every engine, runs each read against the same start persons, 500 at SF1 (10k people, 181k friendships) and 200 at SF10 (66k people, 1.9M friendships), plus 1,000 each of the insert, update, and delete; the p50 and p99 are over those. The start persons are picked at random with a fixed seed and with replacement, so one person can be picked more than once.",
         "DuckPGQ at SF1 (10k people, 181k friendships): the transaction cell reached the 8g memory envelope (peak 8,192 MiB) and the engine stopped it with its own out-of-memory error, the same envelope every engine on this table had; it did not run out of time, and there is no row.",
         "DuckPGQ at SF10 (66k people, 1.9M friendships): the transaction cell reached the 24g memory envelope (peak 24,576 MiB) and the engine stopped it with its own out-of-memory error, the same envelope every engine on this table had; it did not run out of time, and there is no row.",
-        "11 query cells on this table stopped at their per-query budget, the same for every engine here; each one's p50 and p99 are over those starts timed in the first pass, and every other query in those cells keeps its numbers.",
+        "Ten query cells on this table stopped at their per-query budget, the same for every engine here; each one's p50 and p99 are over those starts timed in the first pass, and every other query in those cells keeps its numbers.",
         "ArangoDB at SF1 (10k people, 181k friendships): 3-hop filtered (124 to 128 starts).",
         "ArangoDB at SF10 (66k people, 1.9M friendships): 3-hop filtered (66 to 76 starts).",
-        "ArcadeDB (embedded) at SF10 (66k people, 1.9M friendships): 3-hop filtered (83 starts).",
         "ArcadeDB (server) at SF10 (66k people, 1.9M friendships): 3-hop filtered (58 starts).",
-        "MongoDB at SF1 (10k people, 181k friendships): 3-hop filtered (266 to 335 starts).",
-        "PostgreSQL + AGE at SF1 (10k people, 181k friendships): 2-hop (154 to 166 starts) and 3-hop filtered (95 to 98).",
-        "SurrealDB (embedded) at SF1 (10k people, 181k friendships): 3-hop filtered (7 to 13 starts).",
-        "SurrealDB (embedded) at SF10 (66k people, 1.9M friendships): 3-hop filtered (6 to 8 starts).",
-        "SurrealDB (server) at SF1 (10k people, 181k friendships): 3-hop filtered (13 to 18 starts).",
+        "MongoDB at SF1 (10k people, 181k friendships): 3-hop filtered (266 to 334 starts).",
+        "PostgreSQL + AGE at SF1 (10k people, 181k friendships): 2-hop (164 to 166 starts) and 3-hop filtered (98).",
+        "SurrealDB (embedded) at SF1 (10k people, 181k friendships): 3-hop filtered (10 to 13 starts).",
+        "SurrealDB (embedded) at SF10 (66k people, 1.9M friendships): 3-hop filtered (7 to 8 starts).",
+        "SurrealDB (server) at SF1 (10k people, 181k friendships): 3-hop filtered (13 to 17 starts).",
         "SurrealDB (server) at SF10 (66k people, 1.9M friendships): 3-hop filtered (8 starts).",
         "In the cells: `OOM` means ran out of memory at the cell's memory envelope, killed by the kernel or stopped by the engine's own out-of-memory error, rather than running out of time. A dash is an operation the engine cannot express, never a slow one.",
         "Ingest paths: ArcadeDB embedded loads through the Python package's graph_batch, the engine's bulk graph loader, with the WAL on, fed 5,000 records at a time; served streams the vertices and edges as JSONL to the HTTP batch endpoint with the WAL on; Neo4j and Memgraph UNWIND batches over bolt; FalkorDB the same UNWIND batches over the Redis protocol; LadybugDB COPY from CSV, its native bulk path; DuckPGQ registers each batch as an Arrow table and INSERT ... SELECTs from it into the Person and knows tables, then defines the property graph over them; PostgreSQL + AGE writes each vertex label and each edge label, the message half included, with one COPY ... FROM STDIN stream into AGE's own label tables, with the ids AGE's sequences would assign, then builds a btree on the Person id property and runs ANALYZE, all inside the build timer; ArangoDB import_bulk; MongoDB insert_many; SurrealDB inserts the persons through its Python SDK and the KNOWS edges as bulk relation inserts."
@@ -13218,6 +13217,9 @@
               "min": 5.1854,
               "max": 5.2431,
               "n": 3
+            },
+            "JVM heap": {
+              "text": "4g"
             }
           }
         },
@@ -14573,6 +14575,9 @@
               "min": 10.2988,
               "max": 10.4024,
               "n": 3
+            },
+            "JVM heap": {
+              "text": "8g"
             }
           }
         },
@@ -15899,6 +15904,9 @@
               "min": 5.1854,
               "max": 5.2431,
               "n": 3
+            },
+            "JVM heap": {
+              "text": "4g"
             }
           }
         },
@@ -17142,6 +17150,9 @@
               "min": 10.2988,
               "max": 10.4024,
               "n": 3
+            },
+            "JVM heap": {
+              "text": "8g"
             }
           }
         },
@@ -18075,9 +18086,9 @@
         ]
       },
       {
-        "text": "11 query cells on this table stopped at their per-query budget, the same for every engine here; each one's p50 and p99 are over those starts timed in the first pass, and every other query in those cells keeps its numbers.",
+        "text": "Ten query cells on this table stopped at their per-query budget, the same for every engine here; each one's p50 and p99 are over those starts timed in the first pass, and every other query in those cells keeps its numbers.",
         "values": [
-          "11",
+          "Ten",
           "per-query budget"
         ]
       },
@@ -18098,14 +18109,6 @@
         ]
       },
       {
-        "text": "ArcadeDB (embedded) at SF10 (66k people, 1.9M friendships): 3-hop filtered (83 starts).",
-        "values": [
-          "ArcadeDB (embedded)",
-          "SF10 (66k people, 1.9M friendships)",
-          "3-hop filtered (83 starts)"
-        ]
-      },
-      {
         "text": "ArcadeDB (server) at SF10 (66k people, 1.9M friendships): 3-hop filtered (58 starts).",
         "values": [
           "ArcadeDB (server)",
@@ -18114,43 +18117,43 @@
         ]
       },
       {
-        "text": "MongoDB at SF1 (10k people, 181k friendships): 3-hop filtered (266 to 335 starts).",
+        "text": "MongoDB at SF1 (10k people, 181k friendships): 3-hop filtered (266 to 334 starts).",
         "values": [
           "MongoDB",
           "SF1 (10k people, 181k friendships)",
-          "3-hop filtered (266 to 335 starts)"
+          "3-hop filtered (266 to 334 starts)"
         ]
       },
       {
-        "text": "PostgreSQL + AGE at SF1 (10k people, 181k friendships): 2-hop (154 to 166 starts) and 3-hop filtered (95 to 98).",
+        "text": "PostgreSQL + AGE at SF1 (10k people, 181k friendships): 2-hop (164 to 166 starts) and 3-hop filtered (98).",
         "values": [
           "PostgreSQL + AGE",
           "SF1 (10k people, 181k friendships)",
-          "2-hop (154 to 166 starts) and 3-hop filtered (95 to 98)"
+          "2-hop (164 to 166 starts) and 3-hop filtered (98)"
         ]
       },
       {
-        "text": "SurrealDB (embedded) at SF1 (10k people, 181k friendships): 3-hop filtered (7 to 13 starts).",
+        "text": "SurrealDB (embedded) at SF1 (10k people, 181k friendships): 3-hop filtered (10 to 13 starts).",
         "values": [
           "SurrealDB (embedded)",
           "SF1 (10k people, 181k friendships)",
-          "3-hop filtered (7 to 13 starts)"
+          "3-hop filtered (10 to 13 starts)"
         ]
       },
       {
-        "text": "SurrealDB (embedded) at SF10 (66k people, 1.9M friendships): 3-hop filtered (6 to 8 starts).",
+        "text": "SurrealDB (embedded) at SF10 (66k people, 1.9M friendships): 3-hop filtered (7 to 8 starts).",
         "values": [
           "SurrealDB (embedded)",
           "SF10 (66k people, 1.9M friendships)",
-          "3-hop filtered (6 to 8 starts)"
+          "3-hop filtered (7 to 8 starts)"
         ]
       },
       {
-        "text": "SurrealDB (server) at SF1 (10k people, 181k friendships): 3-hop filtered (13 to 18 starts).",
+        "text": "SurrealDB (server) at SF1 (10k people, 181k friendships): 3-hop filtered (13 to 17 starts).",
         "values": [
           "SurrealDB (server)",
           "SF1 (10k people, 181k friendships)",
-          "3-hop filtered (13 to 18 starts)"
+          "3-hop filtered (13 to 17 starts)"
         ]
       },
       {
