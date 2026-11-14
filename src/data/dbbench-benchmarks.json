@@ -1,6 +1,6 @@
 {
-  "source": "benchmarks/experiments/results/runs_paper.csv",
-  "generator": "benchmarks/experiments/export_web.py",
+  "source": "experiments/results/runs_paper.csv",
+  "generator": "experiments/export_web.py",
   "skeleton": false,
   "arcadedb_version": null,
   "comparator_versions": {
@@ -185,8 +185,8 @@
         "These are not LDBC Benchmark Results. This table is derived from the LDBC Social Network Benchmark and credits the Linked Data Benchmark Council (LDBC) under CC BY 4.0; we ran it ourselves, it was not audited by an LDBC-approved auditor, and LDBC has not endorsed it.",
         "How this differs from the LDBC standard: the data is the persons-and-KNOWS projection of LDBC's published Interactive datasets at SF1 and SF10, without the messages, forums and tags; the seven operations are our own templates (point lookup, one hop, two hops, three hops filtered on the far end, insert, update and delete), not the Interactive complex, short or update queries; there is no LDBC driver, no operation mix, no throughput-at-target-latency run, no ACID or recovery test and no price/performance figure; the harness is our own Python code, and the engines are embedded in that process or served from containers under one fixed CPU set and memory cap, not a system under test as an audit describes it.",
         "Every engine traverses the same persons-and-KNOWS projection, with edges stored in both directions.",
-        "ArcadeDB's served rows time every call through the benchmark's own minimal HTTP client, lean_http (http.client, keep-alive) (source: benchmarks/experiments/lean_http.py), which keeps one persistent http.client connection per host. The other engines are measured through their vendors' own Python clients, so client weight differs between the served engines.",
-        "ArcadeDB (server, JVM build), ArcadeDB (server, native build), and Neo4j run on a JVM, and for them this column is close to the heap they were given rather than the memory the work needed: Neo4j's 4.22 GiB here is about 120 per cent of its 3.52g heap. Every engine on a table gets the same memory envelope; how much of it a JVM takes is a property of the runtime, so read these cells against each other rather than against an engine that manages its own memory. ArcadeDB (embedded, JVM build) and ArcadeDB (embedded, native build) run on a JVM too, but they start with no initial heap size, so their column follows what the work needed and not the heap the JVM was allowed to grow into.",
+        "ArcadeDB's served rows time every call through the benchmark's own minimal HTTP client, lean_http (http.client, keep-alive) (source: experiments/lean_http.py), which keeps one persistent http.client connection per host. The other engines are measured through their vendors' own Python clients, so client weight differs between the served engines.",
+        "ArcadeDB (server, JVM build), ArcadeDB (server, native build), and Neo4j run on a JVM, and for them this column is close to the heap they were given rather than the memory the work needed: Neo4j's 4.22 GiB at SF1 is about 120 per cent of its 3.52g heap. Every engine on a table gets the same memory envelope; how much of it a JVM takes is a property of the runtime, so read these cells against each other rather than against an engine that manages its own memory. ArcadeDB (embedded, JVM build) and ArcadeDB (embedded, native build) run on a JVM too, but they start with no initial heap size, so their column follows what the work needed and not the heap the JVM was allowed to grow into.",
         "Every repetition, on every engine, runs each read against the same start persons, 500 at SF1 (10k people, 181k friendships) and 200 at SF10 (66k people, 1.9M friendships), plus 1,000 each of the insert, update, and delete; the p50 and p99 are over those. The start persons are picked at random with a fixed seed and with replacement, so one person can be picked more than once.",
         "DuckPGQ at SF1 (10k people, 181k friendships): the transaction cell reached the 8g memory envelope (peak 8,192 MiB) and the engine stopped it with its own out-of-memory error, the same envelope every engine on this table had; it did not run out of time, and there is no row.",
         "DuckPGQ at SF10 (66k people, 1.9M friendships): the transaction cell reached the 24g memory envelope (peak 24,576 MiB) and the engine stopped it with its own out-of-memory error, the same envelope every engine on this table had; it did not run out of time, and there is no row.",
@@ -239,75 +239,75 @@
           "host": null,
           "metrics": {
             "point p50 ms": {
-              "median": 0.025,
-              "min": 0.025,
-              "max": 0.026,
+              "median": 0.027,
+              "min": 0.027,
+              "max": 0.027,
               "n": 3
             },
             "point p99 ms": {
-              "median": 0.038,
-              "min": 0.036,
-              "max": 0.04,
+              "median": 0.04,
+              "min": 0.033,
+              "max": 0.078,
               "n": 3
             },
             "1-hop p50 ms": {
-              "median": 0.049,
-              "min": 0.049,
-              "max": 0.05,
+              "median": 0.051,
+              "min": 0.051,
+              "max": 0.053,
               "n": 3
             },
             "2-hop p50 ms": {
-              "median": 4.079,
-              "min": 4.075,
-              "max": 4.136,
+              "median": 4.073,
+              "min": 4.022,
+              "max": 4.101,
               "n": 3
             },
             "3-hop filtered p50 ms": {
-              "median": 477.991,
-              "min": 475.045,
-              "max": 482.264,
+              "median": 475.843,
+              "min": 469.822,
+              "max": 497.074,
               "n": 3
             },
             "insert p50 ms": {
-              "median": 0.545,
-              "min": 0.543,
-              "max": 0.548,
+              "median": 0.52,
+              "min": 0.511,
+              "max": 0.529,
               "n": 3
             },
             "update p50 ms": {
-              "median": 0.093,
-              "min": 0.092,
-              "max": 0.093,
+              "median": 0.082,
+              "min": 0.081,
+              "max": 0.083,
               "n": 3
             },
             "delete p50 ms": {
-              "median": 0.77,
-              "min": 0.769,
-              "max": 0.773,
+              "median": 0.814,
+              "min": 0.804,
+              "max": 0.827,
               "n": 3
             },
             "cold first query ms": {
-              "median": 4.8792,
-              "min": 4.8515,
-              "max": 4.888,
+              "median": 4.8916,
+              "min": 4.8704,
+              "max": 4.929,
               "n": 3
             },
             "ingest vertices+edges/s": {
-              "median": 99226.5625,
-              "min": 98712.4352,
-              "max": 100801.5873,
+              "median": 101337.766,
+              "min": 99226.5625,
+              "max": 101879.6791,
               "n": 3
             },
             "ingest total s": {
-              "median": 1.92,
-              "min": 1.89,
-              "max": 1.93,
+              "median": 1.88,
+              "min": 1.87,
+              "max": 1.92,
               "n": 3
             },
             "peak memory GiB": {
-              "median": 0.1655,
-              "min": 0.1576,
-              "max": 0.177,
+              "median": 0.1596,
+              "min": 0.1565,
+              "max": 0.1723,
               "n": 3
             },
             "disk GiB": {
@@ -317,9 +317,9 @@
               "n": 3
             },
             "owned memory after queries GiB": {
-              "median": 0.0856,
-              "min": 0.085,
-              "max": 0.1009,
+              "median": 0.0845,
+              "min": 0.0824,
+              "max": 0.0976,
               "n": 3
             },
             "JVM heap": {
@@ -2729,15 +2729,15 @@
         }
       ],
       "source_paths": [
-        "benchmarks/experiments/results/runs_paper.csv",
-        "benchmarks/experiments/lean_http.py"
+        "experiments/results/runs_paper.csv",
+        "experiments/lean_http.py"
       ],
       "source_urls": [
-        "https://github.com/humemai/arcadedb-embedded-python/blob/main/benchmarks/experiments/results/runs_paper.csv",
-        "https://github.com/humemai/arcadedb-embedded-python/blob/main/benchmarks/experiments/lean_http.py"
+        "https://github.com/humemai/mmdbbench/blob/main/experiments/results/runs_paper.csv",
+        "https://github.com/humemai/mmdbbench/blob/main/experiments/lean_http.py"
       ],
-      "source_path": "benchmarks/experiments/results/runs_paper.csv",
-      "source_url": "https://github.com/humemai/arcadedb-embedded-python/blob/main/benchmarks/experiments/results/runs_paper.csv"
+      "source_path": "experiments/results/runs_paper.csv",
+      "source_url": "https://github.com/humemai/mmdbbench/blob/main/experiments/results/runs_paper.csv"
     },
     {
       "id": "l2olap",
@@ -2759,7 +2759,7 @@
         "These are not LDBC Benchmark Results. This table is derived from the LDBC Social Network Benchmark and credits the Linked Data Benchmark Council (LDBC) under CC BY 4.0; we ran it ourselves, it was not audited by an LDBC-approved auditor, and LDBC has not endorsed it.",
         "How this differs from the LDBC standard: the data is the full SF1 network of LDBC's published Interactive datasets, not a Business Intelligence dataset; the nine pattern-matching counts are LSQB's (the Labelled Subgraph Query Benchmark, which LDBC hosts), taken nearly verbatim from its published Cypher, with the friends-of-friends pair excluded at this size, and the other queries are our own; there is no LDBC Business Intelligence workload, driver, update microbatch, power or throughput test, no audit and no price/performance figure; the harness is our own Python code, and the engines are embedded in that process or served from containers under one fixed CPU set and memory cap.",
         "The Graph Analytical View is a copy of the graph that ArcadeDB builds in memory, laid out for questions that sweep the whole graph rather than follow a few links. Rows labelled GAV ran with it built, once, before any query was timed, and the view build column is what that took.",
-        "ArcadeDB's served rows time every call through the benchmark's own minimal HTTP client, lean_http (http.client, keep-alive) (source: benchmarks/experiments/lean_http.py), which keeps one persistent http.client connection per host. The other engines are measured through their vendors' own Python clients, so client weight differs between the served engines.",
+        "ArcadeDB's served rows time every call through the benchmark's own minimal HTTP client, lean_http (http.client, keep-alive) (source: experiments/lean_http.py), which keeps one persistent http.client connection per host. The other engines are measured through their vendors' own Python clients, so client weight differs between the served engines.",
         "ArcadeDB (server, JVM build), ArcadeDB (server, native build), and Neo4j run on a JVM, and for them this column is close to the heap they were given rather than the memory the work needed: Neo4j's 13.81 GiB here is about 115 per cent of its 12g heap. Every engine on a table gets the same memory envelope; how much of it a JVM takes is a property of the runtime, so read these cells against each other rather than against an engine that manages its own memory. ArcadeDB (embedded, JVM build) and ArcadeDB (embedded, native build) run on a JVM too, but they start with no initial heap size, so their column follows what the work needed and not the heap the JVM was allowed to grow into.",
         "Each repetition runs every query 100 times; the p50 and p99 are over those runs.",
         "ArcadeDB's indexes on the `id` of Country, City, Forum, Post, Comment, Tag, and TagClass are hash indexes (`UNIQUE_HASH`), because the benchmark never ranges over or orders by those ids. A hash index keeps no key order: an equality lookup goes straight to its bucket instead of walking a sorted tree, and building it can cost more than building a sorted index when the ids arrive in ascending order, which is the order this loader sends them. Any such cost is in ArcadeDB's ingest and index times on this table.",
@@ -4597,15 +4597,15 @@
         }
       ],
       "source_paths": [
-        "benchmarks/experiments/results/runs_paper.csv",
-        "benchmarks/experiments/lean_http.py"
+        "experiments/results/runs_paper.csv",
+        "experiments/lean_http.py"
       ],
       "source_urls": [
-        "https://github.com/humemai/arcadedb-embedded-python/blob/main/benchmarks/experiments/results/runs_paper.csv",
-        "https://github.com/humemai/arcadedb-embedded-python/blob/main/benchmarks/experiments/lean_http.py"
+        "https://github.com/humemai/mmdbbench/blob/main/experiments/results/runs_paper.csv",
+        "https://github.com/humemai/mmdbbench/blob/main/experiments/lean_http.py"
       ],
-      "source_path": "benchmarks/experiments/results/runs_paper.csv",
-      "source_url": "https://github.com/humemai/arcadedb-embedded-python/blob/main/benchmarks/experiments/results/runs_paper.csv"
+      "source_path": "experiments/results/runs_paper.csv",
+      "source_url": "https://github.com/humemai/mmdbbench/blob/main/experiments/results/runs_paper.csv"
     },
     {
       "id": "e2atom",
@@ -4620,7 +4620,7 @@
         "The ArcadeDB server is started with the limit on the records or groups that one sorting, grouping, or distinct query may hold in memory fixed at 5,000,000, while the embedded package leaves that limit at the engine's default, which grows with the heap, so the two deployments can run different limits.",
         "The ArcadeDB server that loads its data through the bulk endpoint is started with the limit on one HTTP request body raised to 64 GiB, where the engine's default is 100 MiB. The default refuses the single streamed request that carries the larger graph and cross-model loads (the engine's own message says to raise the limit or split the payload), so the load stays one request, as the embedded arm's is one call. The limit caps how much one request may carry and is no speed setting; the embedded arms have no HTTP body.",
         "A trial writes the three products, kills the process between them, reopens, and checks whether every product is present or none. Torn means some but not all.",
-        "ArcadeDB's served rows time every call through the benchmark's own minimal HTTP client, lean_http (http.client, keep-alive) (source: benchmarks/experiments/lean_http.py), which keeps one persistent http.client connection per host. The other engines are measured through their vendors' own Python clients, so client weight differs between the served engines.",
+        "ArcadeDB's served rows time every call through the benchmark's own minimal HTTP client, lean_http (http.client, keep-alive) (source: experiments/lean_http.py), which keeps one persistent http.client connection per host. The other engines are measured through their vendors' own Python clients, so client weight differs between the served engines.",
         "SurrealDB (embedded) and SurrealDB (server) at 500k products: the atomicity cell exceeded its 0.5 hour budget, the same budget every engine on this table had, on its first attempt and was not retried; there is no row. It was still in the index build when the budget ran out.",
         "In the cells: `>30m` means the cell ran past its tier's cap and was not retried. A dash is an operation the engine cannot express, never a slow one."
       ],
@@ -5617,15 +5617,15 @@
         }
       ],
       "source_paths": [
-        "benchmarks/experiments/results/runs_paper.csv",
-        "benchmarks/experiments/lean_http.py"
+        "experiments/results/runs_paper.csv",
+        "experiments/lean_http.py"
       ],
       "source_urls": [
-        "https://github.com/humemai/arcadedb-embedded-python/blob/main/benchmarks/experiments/results/runs_paper.csv",
-        "https://github.com/humemai/arcadedb-embedded-python/blob/main/benchmarks/experiments/lean_http.py"
+        "https://github.com/humemai/mmdbbench/blob/main/experiments/results/runs_paper.csv",
+        "https://github.com/humemai/mmdbbench/blob/main/experiments/lean_http.py"
       ],
-      "source_path": "benchmarks/experiments/results/runs_paper.csv",
-      "source_url": "https://github.com/humemai/arcadedb-embedded-python/blob/main/benchmarks/experiments/results/runs_paper.csv"
+      "source_path": "experiments/results/runs_paper.csv",
+      "source_url": "https://github.com/humemai/mmdbbench/blob/main/experiments/results/runs_paper.csv"
     },
     {
       "id": "e2",
@@ -5646,8 +5646,8 @@
         "Atomic means all or nothing: the whole update happens, or none of it does, with no state in between that anyone can observe. One engine can promise that across a vector, a graph edge, and a document because they share a transaction. Qdrant and Neo4j cannot promise it to each other, because nothing spans the two.",
         "So the interesting result here is not the speed. It is what a crash halfway through leaves behind, and the atomicity table below shows it: for each engine, how many interrupted writes left the store holding some but not all of the write after it was reopened. That is what this comparison exists to show.",
         "SurrealDB embedded runs on the SDK's SurrealKV store on disk and SurrealDB server on RocksDB, and each has its own disk reading.",
-        "ArcadeDB's served rows time every call through the benchmark's own minimal HTTP client, lean_http (http.client, keep-alive) (source: benchmarks/experiments/lean_http.py), which keeps one persistent http.client connection per host. The other engines are measured through their vendors' own Python clients, so client weight differs between the served engines.",
-        "ArcadeDB (server, one transaction, JVM build), ArcadeDB (server, one transaction, native build), and Qdrant + Neo4j (no shared transaction) run on a JVM, and for them this column is close to the heap they were given rather than the memory the work needed: Qdrant + Neo4j (no shared transaction)'s 5.33 GiB here is about 119 per cent of its 4.49g heap. Every engine on a table gets the same memory envelope; how much of it a JVM takes is a property of the runtime, so read these cells against each other rather than against an engine that manages its own memory. ArcadeDB (one transaction, JVM build) and ArcadeDB (one transaction, native build) run on a JVM too, but they start with no initial heap size, so their column follows what the work needed and not the heap the JVM was allowed to grow into.",
+        "ArcadeDB's served rows time every call through the benchmark's own minimal HTTP client, lean_http (http.client, keep-alive) (source: experiments/lean_http.py), which keeps one persistent http.client connection per host. The other engines are measured through their vendors' own Python clients, so client weight differs between the served engines.",
+        "ArcadeDB (server, one transaction, JVM build), ArcadeDB (server, one transaction, native build), and Qdrant + Neo4j (no shared transaction) run on a JVM, and for them this column is close to the heap they were given rather than the memory the work needed: Qdrant + Neo4j (no shared transaction)'s 5.33 GiB at 50k products is about 119 per cent of its 4.49g heap. Every engine on a table gets the same memory envelope; how much of it a JVM takes is a property of the runtime, so read these cells against each other rather than against an engine that manages its own memory. ArcadeDB (one transaction, JVM build) and ArcadeDB (one transaction, native build) run on a JVM too, but they start with no initial heap size, so their column follows what the work needed and not the heap the JVM was allowed to grow into.",
         "Each repetition runs the transaction 300 times; the p50 and p99 are over those.",
         "Indexes on this table are matched by effect rather than by rule: ArangoDB, ArcadeDB (one transaction), ArcadeDB (server, one transaction), DuckDB (vss + DuckPGQ), LadybugDB (vector extension), Memgraph (vector index), MongoDB, Neo4j (vector index), PostgreSQL + pgvector + AGE, Qdrant + Neo4j (no shared transaction), SQLite + LanceDB + LadybugDB (no shared transaction), SurrealDB (embedded), and SurrealDB (server) build one. Where building one was a choice, the engine was timed with it and without it and the faster configuration kept; where an engine reaches these queries through its own primary key or record id, that is its equivalent. The time an index took to build is the index column.",
         "ArcadeDB's index on `Product.pid` is a hash index (`UNIQUE_HASH`), because the benchmark never ranges over or orders by that id. A hash index keeps no key order: an equality lookup goes straight to its bucket instead of walking a sorted tree, and building it can cost more than building a sorted index when the ids arrive in ascending order, which is the order this loader sends them. Any such cost is in ArcadeDB's ingest and index times on this table.",
@@ -8320,15 +8320,15 @@
         }
       ],
       "source_paths": [
-        "benchmarks/experiments/results/runs_paper.csv",
-        "benchmarks/experiments/lean_http.py"
+        "experiments/results/runs_paper.csv",
+        "experiments/lean_http.py"
       ],
       "source_urls": [
-        "https://github.com/humemai/arcadedb-embedded-python/blob/main/benchmarks/experiments/results/runs_paper.csv",
-        "https://github.com/humemai/arcadedb-embedded-python/blob/main/benchmarks/experiments/lean_http.py"
+        "https://github.com/humemai/mmdbbench/blob/main/experiments/results/runs_paper.csv",
+        "https://github.com/humemai/mmdbbench/blob/main/experiments/lean_http.py"
       ],
-      "source_path": "benchmarks/experiments/results/runs_paper.csv",
-      "source_url": "https://github.com/humemai/arcadedb-embedded-python/blob/main/benchmarks/experiments/results/runs_paper.csv"
+      "source_path": "experiments/results/runs_paper.csv",
+      "source_url": "https://github.com/humemai/mmdbbench/blob/main/experiments/results/runs_paper.csv"
     },
     {
       "id": "durability",
@@ -8366,9 +8366,9 @@
           "host": null,
           "metrics": {
             "no wait ms": {
-              "median": 0.236,
-              "min": 0.23,
-              "max": 0.24,
+              "median": 0.2365,
+              "min": 0.231,
+              "max": 0.247,
               "n": 6
             },
             "waits for the disk ms": {
@@ -8378,9 +8378,9 @@
               "n": 6
             },
             "cost of waiting": {
-              "median": 31.47,
-              "min": 31.47,
-              "max": 31.47,
+              "median": 31.4,
+              "min": 31.4,
+              "max": 31.4,
               "n": 6
             }
           }
@@ -8750,9 +8750,9 @@
           "host": null,
           "metrics": {
             "no wait ms": {
-              "median": 0.1925,
-              "min": 0.19,
-              "max": 0.2,
+              "median": 0.19,
+              "min": 0.188,
+              "max": 0.791,
               "n": 6
             },
             "waits for the disk ms": {
@@ -8762,9 +8762,9 @@
               "n": 6
             },
             "cost of waiting": {
-              "median": 37.73,
-              "min": 37.73,
-              "max": 37.73,
+              "median": 38.23,
+              "min": 38.23,
+              "max": 38.23,
               "n": 6
             }
           }
@@ -9134,9 +9134,9 @@
           "host": null,
           "metrics": {
             "no wait ms": {
-              "median": 0.088,
-              "min": 0.086,
-              "max": 0.09,
+              "median": 0.0855,
+              "min": 0.083,
+              "max": 0.135,
               "n": 6
             },
             "waits for the disk ms": {
@@ -9146,9 +9146,9 @@
               "n": 6
             },
             "cost of waiting": {
-              "median": 78.2,
-              "min": 78.2,
-              "max": 78.2,
+              "median": 80.49,
+              "min": 80.49,
+              "max": 80.49,
               "n": 6
             }
           }
@@ -9281,6 +9281,39 @@
               "median": 10.11,
               "min": 10.11,
               "max": 10.11,
+              "n": 6
+            }
+          }
+        },
+        {
+          "backend": "CrateDB",
+          "build": null,
+          "is_arcadedb": false,
+          "scale": "doc_insert",
+          "scale_label": "one record inserted (documents)",
+          "workload": "write",
+          "n_docs": null,
+          "deployment": "server",
+          "image": null,
+          "version_name": "cratedb 6.4.6",
+          "host": null,
+          "metrics": {
+            "no wait ms": {
+              "median": 0.138,
+              "min": 0.128,
+              "max": 0.161,
+              "n": 6
+            },
+            "waits for the disk ms": {
+              "median": 11.07,
+              "min": 10.987,
+              "max": 11.208,
+              "n": 6
+            },
+            "cost of waiting": {
+              "median": 80.22,
+              "min": 80.22,
+              "max": 80.22,
               "n": 6
             }
           }
@@ -9518,9 +9551,9 @@
           "host": null,
           "metrics": {
             "no wait ms": {
-              "median": 0.083,
-              "min": 0.081,
-              "max": 0.085,
+              "median": 0.1055,
+              "min": 0.104,
+              "max": 0.121,
               "n": 6
             },
             "waits for the disk ms": {
@@ -9530,9 +9563,9 @@
               "n": 6
             },
             "cost of waiting": {
-              "median": 83.72,
-              "min": 83.72,
-              "max": 83.72,
+              "median": 65.87,
+              "min": 65.87,
+              "max": 65.87,
               "n": 6
             }
           }
@@ -9665,6 +9698,39 @@
               "median": 9.56,
               "min": 9.56,
               "max": 9.56,
+              "n": 6
+            }
+          }
+        },
+        {
+          "backend": "CrateDB",
+          "build": null,
+          "is_arcadedb": false,
+          "scale": "doc_update",
+          "scale_label": "one record updated (documents)",
+          "workload": "write",
+          "n_docs": null,
+          "deployment": "server",
+          "image": null,
+          "version_name": "cratedb 6.4.6",
+          "host": null,
+          "metrics": {
+            "no wait ms": {
+              "median": 0.147,
+              "min": 0.11,
+              "max": 0.162,
+              "n": 6
+            },
+            "waits for the disk ms": {
+              "median": 11.073,
+              "min": 11.05,
+              "max": 11.163,
+              "n": 6
+            },
+            "cost of waiting": {
+              "median": 75.33,
+              "min": 75.33,
+              "max": 75.33,
               "n": 6
             }
           }
@@ -9902,9 +9968,9 @@
           "host": null,
           "metrics": {
             "no wait ms": {
-              "median": 0.178,
-              "min": 0.177,
-              "max": 0.181,
+              "median": 0.177,
+              "min": 0.172,
+              "max": 0.199,
               "n": 6
             },
             "waits for the disk ms": {
@@ -9914,9 +9980,9 @@
               "n": 6
             },
             "cost of waiting": {
-              "median": 40.58,
-              "min": 40.58,
-              "max": 40.58,
+              "median": 40.81,
+              "min": 40.81,
+              "max": 40.81,
               "n": 6
             }
           }
@@ -10049,6 +10115,39 @@
               "median": 9.98,
               "min": 9.98,
               "max": 9.98,
+              "n": 6
+            }
+          }
+        },
+        {
+          "backend": "CrateDB",
+          "build": null,
+          "is_arcadedb": false,
+          "scale": "doc_delete",
+          "scale_label": "one record deleted (documents)",
+          "workload": "write",
+          "n_docs": null,
+          "deployment": "server",
+          "image": null,
+          "version_name": "cratedb 6.4.6",
+          "host": null,
+          "metrics": {
+            "no wait ms": {
+              "median": 0.0915,
+              "min": 0.069,
+              "max": 0.106,
+              "n": 6
+            },
+            "waits for the disk ms": {
+              "median": 11.057,
+              "min": 11.004,
+              "max": 11.195,
+              "n": 6
+            },
+            "cost of waiting": {
+              "median": 120.84,
+              "min": 120.84,
+              "max": 120.84,
               "n": 6
             }
           }
@@ -10286,9 +10385,9 @@
           "host": null,
           "metrics": {
             "no wait ms": {
-              "median": 0.027,
-              "min": 0.027,
-              "max": 0.028,
+              "median": 0.028,
+              "min": 0.028,
+              "max": 0.037,
               "n": 6
             },
             "waits for the disk ms": {
@@ -10298,9 +10397,9 @@
               "n": 6
             },
             "cost of waiting": {
-              "median": 1.0,
-              "min": 1.0,
-              "max": 1.0,
+              "median": 0.96,
+              "min": 0.96,
+              "max": 0.96,
               "n": 6
             }
           }
@@ -10433,6 +10532,39 @@
               "median": 0.96,
               "min": 0.96,
               "max": 0.96,
+              "n": 6
+            }
+          }
+        },
+        {
+          "backend": "CrateDB",
+          "build": null,
+          "is_arcadedb": false,
+          "scale": "doc_read",
+          "scale_label": "one record read (documents) -- the control: a read commits nothing",
+          "workload": "write",
+          "n_docs": null,
+          "deployment": "server",
+          "image": null,
+          "version_name": "cratedb 6.4.6",
+          "host": null,
+          "metrics": {
+            "no wait ms": {
+              "median": 0.1565,
+              "min": 0.141,
+              "max": 0.225,
+              "n": 6
+            },
+            "waits for the disk ms": {
+              "median": 0.1335,
+              "min": 0.131,
+              "max": 0.229,
+              "n": 6
+            },
+            "cost of waiting": {
+              "median": 0.85,
+              "min": 0.85,
+              "max": 0.85,
               "n": 6
             }
           }
@@ -10670,8 +10802,8 @@
           "host": null,
           "metrics": {
             "no wait ms": {
-              "median": 0.544,
-              "min": 0.529,
+              "median": 0.529,
+              "min": 0.511,
               "max": 0.772,
               "n": 6
             },
@@ -10682,9 +10814,9 @@
               "n": 6
             },
             "cost of waiting": {
-              "median": 14.41,
-              "min": 14.41,
-              "max": 14.41,
+              "median": 14.81,
+              "min": 14.81,
+              "max": 14.81,
               "n": 6
             }
           }
@@ -11042,8 +11174,8 @@
           "host": null,
           "metrics": {
             "no wait ms": {
-              "median": 0.093,
-              "min": 0.091,
+              "median": 0.087,
+              "min": 0.081,
               "max": 0.114,
               "n": 6
             },
@@ -11054,9 +11186,9 @@
               "n": 6
             },
             "cost of waiting": {
-              "median": 71.69,
-              "min": 71.69,
-              "max": 71.69,
+              "median": 76.64,
+              "min": 76.64,
+              "max": 76.64,
               "n": 6
             }
           }
@@ -11414,7 +11546,7 @@
           "host": null,
           "metrics": {
             "no wait ms": {
-              "median": 0.7695,
+              "median": 0.809,
               "min": 0.698,
               "max": 1.059,
               "n": 6
@@ -11426,9 +11558,9 @@
               "n": 6
             },
             "cost of waiting": {
-              "median": 10.72,
-              "min": 10.72,
-              "max": 10.72,
+              "median": 10.2,
+              "min": 10.2,
+              "max": 10.2,
               "n": 6
             }
           }
@@ -12577,21 +12709,23 @@
       "conditions": [
         "Six transactional operations. New-order: TPC-C's checkout transaction: it reads a customer and a warehouse, inserts an order with its line items, and updates stock, all in one transaction. Payment: TPC-C's payment against one of the orders new-order just placed, chosen at random: the order is read, marked paid, and the payment inserted, in one transaction. Insert: one record inserted by key. Read: one record read back by key. Update: one record's quantity updated by key. Delete: one record deleted by key. OLTP ops/s is the rate of the two TPC-C transactions together; the four single-record operations are timed one at a time.",
         "Disk is what the workload left on disk, in GiB: the engine's writable layer plus its volumes after the cell, minus the same engine's empty footprint.",
-        "The cold column is the very first query of a session, new-order, timed once on a database that has just been opened; every other latency column is the warm median of the iterations that follow it. It answers what the first query of a session costs against the hundredth, which is a different question from the steady-state one and is the one an application that opens a database per request actually asks.",
+        "Every deterministic answer on this table is hashed and compared across the engines before anything is published, and a publish is refused when two of them disagree. What that comparison could not cover, declared rather than skipped: CrateDB cannot express new-order and payment (and the payments and stock checks that read their end state): CrateDB has no multi-statement transaction (a statement is its unit), so TPC-C's new-order and payment, each one ACID transaction over three statements, cannot be written for it.",
+        "The cold column is the very first query of a session, insert / new-order, timed once on a database that has just been opened; every other latency column is the warm median of the iterations that follow it. It answers what the first query of a session costs against the hundredth, which is a different question from the steady-state one and is the one an application that opens a database per request actually asks.",
         "Durability is matched at the relaxed end: on every engine that has the setting, a commit returns without waiting for the disk and the log is flushed by the engine's own background policy, which is ArcadeDB's engine default and a documented production mode for each of the others. Each row records what it ran as `durability`, and every engine's setting was read out of the engine rather than assumed. The exception on this table is DuckDB, which has no setting to relax and waits for the disk at every commit; its write and transaction cells are paying for that.",
         "Both server arms are the official ArcadeDB server images, one built for the JVM and one compiled to a native executable, started with the same server settings, which each server reports back when it starts. The CPU baselines differ: the native server image is native server image: -march=x86-64-v3 and the native wheel (the embedded arm) as native wheel: -march=compatibility, and the JVM server compiles for the CPU it runs on.",
         "DuckDB is given one thread for each CPU the run may use; left alone it sizes its pool from the machine's cores and not from the CPUs the run was given.",
         "The ArcadeDB server is started with the limit on the records or groups that one sorting, grouping, or distinct query may hold in memory fixed at 5,000,000, while the embedded package leaves that limit at the engine's default, which grows with the heap, so the two deployments can run different limits.",
         "PostgreSQL's memory cell adds two containers. At TPC-H SF10 (60.0M line items), of the 1.69 GiB shown, 1.485 GiB is our Python client and 0.211 GiB is the database.",
-        "ArcadeDB's served rows time every call through the benchmark's own minimal HTTP client, lean_http (http.client, keep-alive) (source: benchmarks/experiments/lean_http.py), which keeps one persistent http.client connection per host. The other engines are measured through their vendors' own Python clients, so client weight differs between the served engines.",
+        "ArcadeDB's served rows time every call through the benchmark's own minimal HTTP client, lean_http (http.client, keep-alive) (source: experiments/lean_http.py), which keeps one persistent http.client connection per host. The other engines are measured through their vendors' own Python clients, so client weight differs between the served engines.",
         "ArcadeDB (server, image JVM defaults) is not printed: it was not measured through the benchmark's own HTTP client, which every served ArcadeDB row on this table uses.",
-        "ArcadeDB (server, JVM build) and ArcadeDB (server, native build) run on a JVM, and for them this column is close to the heap they were given rather than the memory the work needed: ArcadeDB (server, JVM build)'s 3.27 GiB here is about 41 per cent of its 8g heap. Every engine on a table gets the same memory envelope; how much of it a JVM takes is a property of the runtime, so read these cells against each other rather than against an engine that manages its own memory. ArcadeDB (embedded, JVM build) and ArcadeDB (embedded, native build) run on a JVM too, but they start with no initial heap size, so their column follows what the work needed and not the heap the JVM was allowed to grow into.",
+        "ArcadeDB (server, JVM build), ArcadeDB (server, native build), and CrateDB run on a JVM, and for them this column is close to the heap they were given rather than the memory the work needed: CrateDB's 5.72 GiB at TPC-H SF1 is about 143 per cent of its 4g heap. Every engine on a table gets the same memory envelope; how much of it a JVM takes is a property of the runtime, so read these cells against each other rather than against an engine that manages its own memory. ArcadeDB (embedded, JVM build) and ArcadeDB (embedded, native build) run on a JVM too, but they start with no initial heap size, so their column follows what the work needed and not the heap the JVM was allowed to grow into.",
         "Each repetition runs 1,000 new-order transactions and 1,000 payments, then 1,000 each of the single-record insert, read, update, and delete; the p50 and p99 are over those, and OLTP ops/s is the rate of the two transactions together.",
         "ArcadeDB's indexes on `Part.p_partkey`, `OrderNew.okey`, and `Crud.ckey` are hash indexes (`UNIQUE_HASH`), because the benchmark never ranges over or orders by those ids. A hash index keeps no key order: an equality lookup goes straight to its bucket instead of walking a sorted tree, and building it can cost more than building a sorted index when the ids arrive in ascending order, which is the order this loader sends them. Any such cost is in ArcadeDB's ingest and index times on this table.",
         "`ingest total s` is the whole of building this corpus. `ingest s` and `index s` are the two phases timed inside it -- writing the data, then building whatever index the engine was given -- and they are not a division of it: each engine's ingest clock starts after the setup it does first, creating a schema or a collection, which neither phase counts. How much is left over depends on the engine: nothing on some of the ones here, up to about 1 per cent on others. Read the two as what each phase cost, and the total as what the whole of it cost.",
         "CrateDB, SurrealDB (embedded), and SurrealDB (server) define their index before the first row is loaded, so the index s printed for them times only the definition and the work of building the index is inside ingest s.",
         "SurrealDB (server) at TPC-H SF10 (60.0M line items): the transaction cell exceeded its 2 hour budget, the same budget every engine on this table had, on its first attempt and was not retried; there is no row. It was still in the index build when the budget ran out.",
         "SurrealDB (embedded) at TPC-H SF10 (60.0M line items): the transaction cell reached the 32g memory envelope (peak 32,768 MiB) and was killed by the kernel, the same envelope every engine on this table had; it did not run out of time, and there is no row.",
+        "CrateDB cannot express new-order and payment (and the payments and stock checks that read their end state) on this table: the adapter declared them not expressible rather than leaving them blank (CrateDB has no multi-statement transaction (a statement is its unit), so TPC-C's new-order and payment, each one ACID transaction over three statements, cannot be written for it).",
         "In the cells: `>2h` means the cell ran past its tier's cap and was not retried. `OOM` means ran out of memory at the cell's memory envelope, killed by the kernel or stopped by the engine's own out-of-memory error, rather than running out of time. A dash is an operation the engine cannot express, never a slow one.",
         "Ingest paths: DuckDB and ArcadeDB embedded load whole frames, DuckDB with CREATE TABLE AS SELECT from in-memory frames and ArcadeDB embedded through the Python package's insert_columns, which hands each batch of the file to the engine as whole columns and builds the documents in Java; ArcadeDB served binds 2,000-row INSERT ... CONTENT batches over HTTP; PostgreSQL COPY FROM STDIN, SQLite executemany, MongoDB insert_many, ArangoDB import_bulk, and SurrealDB's Python SDK are fed row by row."
       ],
@@ -12630,81 +12764,81 @@
           "host": null,
           "metrics": {
             "new-order p50 ms": {
-              "median": 0.232,
-              "min": 0.23,
-              "max": 0.24,
+              "median": 0.234,
+              "min": 0.231,
+              "max": 0.235,
               "n": 3
             },
             "new-order p99 ms": {
-              "median": 0.326,
-              "min": 0.315,
-              "max": 0.35,
+              "median": 0.372,
+              "min": 0.296,
+              "max": 0.525,
               "n": 3
             },
             "payment p50 ms": {
-              "median": 0.197,
-              "min": 0.193,
-              "max": 0.2,
+              "median": 0.191,
+              "min": 0.189,
+              "max": 0.193,
               "n": 3
             },
             "insert p50 ms": {
-              "median": 0.089,
-              "min": 0.088,
-              "max": 0.09,
+              "median": 0.084,
+              "min": 0.084,
+              "max": 0.087,
               "n": 3
             },
             "read p50 ms": {
               "median": 0.028,
-              "min": 0.027,
+              "min": 0.028,
               "max": 0.028,
               "n": 3
             },
             "update p50 ms": {
-              "median": 0.084,
-              "min": 0.083,
-              "max": 0.085,
+              "median": 0.106,
+              "min": 0.105,
+              "max": 0.106,
               "n": 3
             },
             "delete p50 ms": {
-              "median": 0.18,
-              "min": 0.179,
-              "max": 0.181,
+              "median": 0.177,
+              "min": 0.177,
+              "max": 0.177,
               "n": 3
             },
             "OLTP ops/s": {
-              "median": 4429.2,
-              "min": 4208.1,
-              "max": 4541.7,
+              "median": 4429.7,
+              "min": 4330.2,
+              "max": 4432.3,
               "n": 3
             },
             "ingest documents/s": {
-              "median": 92264.1953,
+              "median": 92756.513,
               "min": 90515.4722,
-              "max": 95125.2493,
+              "max": 94029.0371,
               "n": 6
             },
             "ingest total s": {
-              "median": 67.215,
-              "min": 65.19,
+              "median": 66.855,
+              "min": 65.95,
               "max": 68.51,
               "n": 6
             },
             "ingest s": {
-              "median": 57.12,
-              "min": 55.79,
+              "median": 57.22,
+              "min": 56.43,
               "max": 58.49,
               "n": 6
             },
             "index s": {
-              "median": 9.61,
-              "min": 9.4,
-              "max": 11.35,
+              "median": 9.55,
+              "min": 9.48,
+              "max": 10.02,
               "n": 6
             },
             "peak memory GiB": {
-              "median": 1.7854,
-              "min": 1.7816,
-              "max": 1.8034,
+              "median": 1.7335,
+              "min": 1.7146,
+              "max": 1.7414,
               "n": 3
             },
             "disk GiB": {
@@ -12714,9 +12848,9 @@
               "n": 6
             },
             "owned memory after queries GiB": {
-              "median": 1.4295,
-              "min": 1.3983,
-              "max": 1.7581,
+              "median": 1.366,
+              "min": 1.3575,
+              "max": 1.368,
               "n": 3
             },
             "JVM heap": {
@@ -13173,49 +13307,73 @@
           "n_docs": null,
           "deployment": "server",
           "image": "crate@sha256:e7bded344df487e2595f59d7edaa0cf96979a00ba51f12ee66d7fcf8cd65f5f4",
-          "version_name": "crate 6.4.6",
+          "version_name": "cratedb 6.4.6",
           "host": null,
           "metrics": {
-            "ingest documents/s": {
-              "median": 33520.0811,
-              "min": 33442.3502,
-              "max": 33574.5263,
+            "insert p50 ms": {
+              "median": 0.13,
+              "min": 0.128,
+              "max": 0.144,
               "n": 3
+            },
+            "read p50 ms": {
+              "median": 0.147,
+              "min": 0.141,
+              "max": 0.225,
+              "n": 3
+            },
+            "update p50 ms": {
+              "median": 0.146,
+              "min": 0.111,
+              "max": 0.161,
+              "n": 3
+            },
+            "delete p50 ms": {
+              "median": 0.09,
+              "min": 0.069,
+              "max": 0.106,
+              "n": 3
+            },
+            "ingest documents/s": {
+              "median": 33477.5926,
+              "min": 33338.0732,
+              "max": 33574.5263,
+              "n": 6
             },
             "ingest total s": {
-              "median": 185.0,
+              "median": 185.235,
               "min": 184.7,
-              "max": 185.43,
-              "n": 3
+              "max": 186.01,
+              "n": 6
             },
             "ingest s": {
-              "median": 185.0,
+              "median": 185.235,
               "min": 184.7,
-              "max": 185.43,
-              "n": 3
+              "max": 186.01,
+              "n": 6
             },
             "index s": {
               "median": 0.0,
               "min": 0.0,
               "max": 0.0,
-              "n": 3
+              "n": 6
             },
             "peak memory GiB": {
-              "median": 5.7391,
-              "min": 5.7356,
-              "max": 5.7532,
+              "median": 5.7221,
+              "min": 5.6904,
+              "max": 5.7509,
               "n": 3
             },
             "disk GiB": {
-              "median": 1.6729,
+              "median": 1.6724,
               "min": 0.6979,
               "max": 1.6731,
-              "n": 3
+              "n": 6
             },
             "owned memory after queries GiB": {
-              "median": 5.233,
-              "min": 5.1854,
-              "max": 5.2431,
+              "median": 5.1449,
+              "min": 5.115,
+              "max": 5.2022,
               "n": 3
             },
             "JVM heap": {
@@ -13988,81 +14146,81 @@
           "host": null,
           "metrics": {
             "new-order p50 ms": {
-              "median": 0.237,
-              "min": 0.235,
-              "max": 0.239,
+              "median": 0.24,
+              "min": 0.238,
+              "max": 0.247,
               "n": 3
             },
             "new-order p99 ms": {
-              "median": 0.279,
-              "min": 0.277,
-              "max": 0.286,
+              "median": 0.363,
+              "min": 0.294,
+              "max": 0.425,
               "n": 3
             },
             "payment p50 ms": {
-              "median": 0.191,
-              "min": 0.19,
-              "max": 0.192,
+              "median": 0.189,
+              "min": 0.188,
+              "max": 0.791,
               "n": 3
             },
             "insert p50 ms": {
-              "median": 0.086,
-              "min": 0.086,
-              "max": 0.088,
+              "median": 0.087,
+              "min": 0.083,
+              "max": 0.135,
               "n": 3
             },
             "read p50 ms": {
-              "median": 0.027,
-              "min": 0.027,
-              "max": 0.027,
+              "median": 0.029,
+              "min": 0.028,
+              "max": 0.037,
               "n": 3
             },
             "update p50 ms": {
-              "median": 0.083,
-              "min": 0.081,
-              "max": 0.083,
+              "median": 0.105,
+              "min": 0.104,
+              "max": 0.121,
               "n": 3
             },
             "delete p50 ms": {
-              "median": 0.177,
-              "min": 0.177,
-              "max": 0.177,
+              "median": 0.182,
+              "min": 0.172,
+              "max": 0.199,
               "n": 3
             },
             "OLTP ops/s": {
-              "median": 4716.2,
-              "min": 4707.8,
-              "max": 4780.0,
+              "median": 4661.1,
+              "min": 1435.6,
+              "max": 4662.0,
               "n": 3
             },
             "ingest documents/s": {
-              "median": 88547.5305,
-              "min": 83403.1458,
+              "median": 87906.6148,
+              "min": 81710.0381,
               "max": 91131.8357,
               "n": 6
             },
             "ingest total s": {
-              "median": 700.1,
+              "median": 705.175,
               "min": 680.18,
-              "max": 743.21,
+              "max": 758.61,
               "n": 6
             },
             "ingest s": {
-              "median": 549.72,
-              "min": 527.88,
-              "max": 591.81,
+              "median": 546.41,
+              "min": 517.72,
+              "max": 608.83,
               "n": 6
             },
             "index s": {
-              "median": 150.76,
+              "median": 150.655,
               "min": 149.04,
-              "max": 152.3,
+              "max": 204.96,
               "n": 6
             },
             "peak memory GiB": {
-              "median": 11.6157,
-              "min": 11.5847,
-              "max": 11.7116,
+              "median": 11.3214,
+              "min": 11.2939,
+              "max": 11.6118,
               "n": 3
             },
             "disk GiB": {
@@ -14072,9 +14230,9 @@
               "n": 6
             },
             "owned memory after queries GiB": {
-              "median": 8.4212,
-              "min": 7.0674,
-              "max": 8.4437,
+              "median": 6.8017,
+              "min": 6.6321,
+              "max": 7.0328,
               "n": 3
             },
             "JVM heap": {
@@ -14531,49 +14689,73 @@
           "n_docs": null,
           "deployment": "server",
           "image": "crate@sha256:e7bded344df487e2595f59d7edaa0cf96979a00ba51f12ee66d7fcf8cd65f5f4",
-          "version_name": "crate 6.4.6",
+          "version_name": "cratedb 6.4.6",
           "host": null,
           "metrics": {
-            "ingest documents/s": {
-              "median": 36579.6536,
-              "min": 33329.0598,
-              "max": 36711.1556,
+            "insert p50 ms": {
+              "median": 0.142,
+              "min": 0.134,
+              "max": 0.161,
               "n": 3
+            },
+            "read p50 ms": {
+              "median": 0.166,
+              "min": 0.145,
+              "max": 0.199,
+              "n": 3
+            },
+            "update p50 ms": {
+              "median": 0.148,
+              "min": 0.11,
+              "max": 0.162,
+              "n": 3
+            },
+            "delete p50 ms": {
+              "median": 0.093,
+              "min": 0.09,
+              "max": 0.094,
+              "n": 3
+            },
+            "ingest documents/s": {
+              "median": 36643.6654,
+              "min": 33329.0598,
+              "max": 36745.3225,
+              "n": 6
             },
             "ingest total s": {
-              "median": 1694.55,
-              "min": 1688.48,
+              "median": 1691.595,
+              "min": 1686.91,
               "max": 1859.82,
-              "n": 3
+              "n": 6
             },
             "ingest s": {
-              "median": 1694.55,
-              "min": 1688.48,
+              "median": 1691.595,
+              "min": 1686.91,
               "max": 1859.82,
-              "n": 3
+              "n": 6
             },
             "index s": {
               "median": 0.0,
               "min": 0.0,
               "max": 0.0,
-              "n": 3
+              "n": 6
             },
             "peak memory GiB": {
-              "median": 10.9125,
-              "min": 10.8735,
-              "max": 10.913,
+              "median": 10.4526,
+              "min": 10.4295,
+              "max": 10.5243,
               "n": 3
             },
             "disk GiB": {
-              "median": 7.0189,
+              "median": 8.9434,
               "min": 7.0164,
-              "max": 7.0191,
-              "n": 3
+              "max": 10.8738,
+              "n": 6
             },
             "owned memory after queries GiB": {
-              "median": 10.3497,
-              "min": 10.2988,
-              "max": 10.4024,
+              "median": 9.9029,
+              "min": 9.9022,
+              "max": 9.9136,
               "n": 3
             },
             "JVM heap": {
@@ -15139,12 +15321,12 @@
       "withheld_scales": [],
       "withheld_reason": null,
       "source_paths": [
-        "benchmarks/experiments/results/runs_paper.csv",
-        "benchmarks/experiments/lean_http.py"
+        "experiments/results/runs_paper.csv",
+        "experiments/lean_http.py"
       ],
       "source_urls": [
-        "https://github.com/humemai/arcadedb-embedded-python/blob/main/benchmarks/experiments/results/runs_paper.csv",
-        "https://github.com/humemai/arcadedb-embedded-python/blob/main/benchmarks/experiments/lean_http.py"
+        "https://github.com/humemai/mmdbbench/blob/main/experiments/results/runs_paper.csv",
+        "https://github.com/humemai/mmdbbench/blob/main/experiments/lean_http.py"
       ],
       "instrument": "2026-11",
       "directions": {
@@ -15168,50 +15350,26 @@
         {
           "backend": "CrateDB",
           "column": "new-order p50 ms",
-          "kind": "not measured",
-          "why": "CrateDB was not run on the transaction workload: it runs the analytics workload of this lane only."
+          "kind": "unexpressible",
+          "why": "CrateDB has no new-order transaction: its own language cannot express it, declared by the adapter rather than left blank (CrateDB has no multi-statement transaction (a statement is its unit), so TPC-C's new-order and payment, each one ACID transaction over three statements, cannot be written for it)."
         },
         {
           "backend": "CrateDB",
           "column": "new-order p99 ms",
-          "kind": "not measured",
-          "why": "CrateDB was not run on the transaction workload: it runs the analytics workload of this lane only."
-        },
-        {
-          "backend": "CrateDB",
-          "column": "payment p50 ms",
-          "kind": "not measured",
-          "why": "CrateDB was not run on the transaction workload: it runs the analytics workload of this lane only."
-        },
-        {
-          "backend": "CrateDB",
-          "column": "insert p50 ms",
-          "kind": "not measured",
-          "why": "CrateDB was not run on the transaction workload: it runs the analytics workload of this lane only."
-        },
-        {
-          "backend": "CrateDB",
-          "column": "read p50 ms",
-          "kind": "not measured",
-          "why": "CrateDB was not run on the transaction workload: it runs the analytics workload of this lane only."
-        },
-        {
-          "backend": "CrateDB",
-          "column": "update p50 ms",
-          "kind": "not measured",
-          "why": "CrateDB was not run on the transaction workload: it runs the analytics workload of this lane only."
-        },
-        {
-          "backend": "CrateDB",
-          "column": "delete p50 ms",
-          "kind": "not measured",
-          "why": "CrateDB was not run on the transaction workload: it runs the analytics workload of this lane only."
+          "kind": "unexpressible",
+          "why": "CrateDB has no new-order transaction: its own language cannot express it, declared by the adapter rather than left blank (CrateDB has no multi-statement transaction (a statement is its unit), so TPC-C's new-order and payment, each one ACID transaction over three statements, cannot be written for it)."
         },
         {
           "backend": "CrateDB",
           "column": "OLTP ops/s",
-          "kind": "not measured",
-          "why": "CrateDB was not run on the transaction workload: it runs the analytics workload of this lane only."
+          "kind": "unexpressible",
+          "why": "CrateDB has no new-order transaction: its own language cannot express it, declared by the adapter rather than left blank (CrateDB has no multi-statement transaction (a statement is its unit), so TPC-C's new-order and payment, each one ACID transaction over three statements, cannot be written for it)."
+        },
+        {
+          "backend": "CrateDB",
+          "column": "payment p50 ms",
+          "kind": "unexpressible",
+          "why": "CrateDB has no payment transaction: its own language cannot express it, declared by the adapter rather than left blank (CrateDB has no multi-statement transaction (a statement is its unit), so TPC-C's new-order and payment, each one ACID transaction over three statements, cannot be written for it)."
         },
         {
           "backend": "ArcadeDB (server, image JVM defaults)",
@@ -15230,10 +15388,38 @@
           "column": null,
           "kind": "envelope",
           "why": "SurrealDB (embedded) at TPC-H SF10 (60.0M line items): the transaction cell reached the 32g memory envelope (peak 32,768 MiB) and was killed by the kernel, the same envelope every engine on this table had; it did not run out of time, and there is no row."
+        },
+        {
+          "backend": "CrateDB",
+          "column": null,
+          "kind": "unexpressible",
+          "query": "neworder",
+          "why": "CrateDB does not answer neworder on this table: the engine's own language cannot express it, declared by the adapter rather than left blank (CrateDB has no multi-statement transaction (a statement is its unit), so TPC-C's new-order and payment, each one ACID transaction over three statements, cannot be written for it)."
+        },
+        {
+          "backend": "CrateDB",
+          "column": null,
+          "kind": "unexpressible",
+          "query": "payment",
+          "why": "CrateDB does not answer payment on this table: the engine's own language cannot express it, declared by the adapter rather than left blank (CrateDB has no multi-statement transaction (a statement is its unit), so TPC-C's new-order and payment, each one ACID transaction over three statements, cannot be written for it)."
+        },
+        {
+          "backend": "CrateDB",
+          "column": null,
+          "kind": "unexpressible",
+          "query": "payments",
+          "why": "CrateDB does not answer payments on this table: the engine's own language cannot express it, declared by the adapter rather than left blank (CrateDB has no multi-statement transaction (a statement is its unit), so TPC-C's new-order and payment, each one ACID transaction over three statements, cannot be written for it)."
+        },
+        {
+          "backend": "CrateDB",
+          "column": null,
+          "kind": "unexpressible",
+          "query": "stock",
+          "why": "CrateDB does not answer stock on this table: the engine's own language cannot express it, declared by the adapter rather than left blank (CrateDB has no multi-statement transaction (a statement is its unit), so TPC-C's new-order and payment, each one ACID transaction over three statements, cannot be written for it)."
         }
       ],
-      "source_path": "benchmarks/experiments/results/runs_paper.csv",
-      "source_url": "https://github.com/humemai/arcadedb-embedded-python/blob/main/benchmarks/experiments/results/runs_paper.csv"
+      "source_path": "experiments/results/runs_paper.csv",
+      "source_url": "https://github.com/humemai/mmdbbench/blob/main/experiments/results/runs_paper.csv"
     },
     {
       "id": "docs_olap",
@@ -15248,8 +15434,8 @@
         "DuckDB is given one thread for each CPU the run may use; left alone it sizes its pool from the machine's cores and not from the CPUs the run was given.",
         "The ArcadeDB server is started with the limit on the records or groups that one sorting, grouping, or distinct query may hold in memory fixed at 5,000,000, while the embedded package leaves that limit at the engine's default, which grows with the heap, so the two deployments can run different limits.",
         "PostgreSQL's memory cell adds two containers. At TPC-H SF10 (60.0M line items), of the 1.69 GiB shown, 1.485 GiB is our Python client and 0.211 GiB is the database.",
-        "ArcadeDB's served rows time every call through the benchmark's own minimal HTTP client, lean_http (http.client, keep-alive) (source: benchmarks/experiments/lean_http.py), which keeps one persistent http.client connection per host. The other engines are measured through their vendors' own Python clients, so client weight differs between the served engines.",
-        "ArcadeDB (server, JVM build) and ArcadeDB (server, native build) run on a JVM, and for them this column is close to the heap they were given rather than the memory the work needed: ArcadeDB (server, JVM build)'s 3.27 GiB here is about 41 per cent of its 8g heap. Every engine on a table gets the same memory envelope; how much of it a JVM takes is a property of the runtime, so read these cells against each other rather than against an engine that manages its own memory. ArcadeDB (embedded, JVM build) and ArcadeDB (embedded, native build) run on a JVM too, but they start with no initial heap size, so their column follows what the work needed and not the heap the JVM was allowed to grow into.",
+        "ArcadeDB's served rows time every call through the benchmark's own minimal HTTP client, lean_http (http.client, keep-alive) (source: experiments/lean_http.py), which keeps one persistent http.client connection per host. The other engines are measured through their vendors' own Python clients, so client weight differs between the served engines.",
+        "ArcadeDB (server, JVM build), ArcadeDB (server, native build), and CrateDB run on a JVM, and for them this column is close to the heap they were given rather than the memory the work needed: CrateDB's 5.72 GiB at TPC-H SF1 is about 143 per cent of its 4g heap. Every engine on a table gets the same memory envelope; how much of it a JVM takes is a property of the runtime, so read these cells against each other rather than against an engine that manages its own memory. ArcadeDB (embedded, JVM build) and ArcadeDB (embedded, native build) run on a JVM too, but they start with no initial heap size, so their column follows what the work needed and not the heap the JVM was allowed to grow into.",
         "Each repetition runs every query 100 times; the p50 and p99 are over those runs.",
         "Indexes on this table are matched by effect rather than by rule: ArcadeDB (embedded), ArcadeDB (server), CrateDB, MongoDB, PostgreSQL, Redis, SurrealDB (embedded), and SurrealDB (server) build one; ArangoDB, DuckDB, and SQLite build none, because measuring it showed the index costs them or changes nothing. Where building one was a choice, the engine was timed with it and without it and the faster configuration kept; where an engine reaches these queries through its own primary key or record id, that is its equivalent. The time an index took to build is the index column. DuckDB's index cell is not zero because it times a different index: the order-key index of the table new orders are written into, which the transactional workload needs and which is built while that table is still empty.",
         "ArcadeDB's indexes on `Part.p_partkey`, `OrderNew.okey`, and `Crud.ckey` are hash indexes (`UNIQUE_HASH`), because the benchmark never ranges over or orders by those ids. A hash index keeps no key order: an equality lookup goes straight to its bucket instead of walking a sorted tree, and building it can cost more than building a sorted index when the ids arrive in ascending order, which is the order this loader sends them. Any such cost is in ArcadeDB's ingest and index times on this table.",
@@ -15341,39 +15527,39 @@
               "n": 3
             },
             "cold first query ms": {
-              "median": 1718.2328,
-              "min": 6.7849,
+              "median": 1718.2946,
+              "min": 6.8727,
               "max": 3769.0547,
               "n": 6
             },
             "ingest documents/s": {
-              "median": 92264.1953,
+              "median": 92756.513,
               "min": 90515.4722,
-              "max": 95125.2493,
+              "max": 94029.0371,
               "n": 6
             },
             "ingest total s": {
-              "median": 67.215,
-              "min": 65.19,
+              "median": 66.855,
+              "min": 65.95,
               "max": 68.51,
               "n": 6
             },
             "ingest s": {
-              "median": 57.12,
-              "min": 55.79,
+              "median": 57.22,
+              "min": 56.43,
               "max": 58.49,
               "n": 6
             },
             "index s": {
-              "median": 9.61,
-              "min": 9.4,
-              "max": 11.35,
+              "median": 9.55,
+              "min": 9.48,
+              "max": 10.02,
               "n": 6
             },
             "peak memory GiB": {
-              "median": 1.7854,
-              "min": 1.7816,
-              "max": 1.8034,
+              "median": 1.7335,
+              "min": 1.7146,
+              "max": 1.7414,
               "n": 3
             },
             "disk GiB": {
@@ -15383,9 +15569,9 @@
               "n": 6
             },
             "owned memory after queries GiB": {
-              "median": 1.4295,
-              "min": 1.3983,
-              "max": 1.7581,
+              "median": 1.366,
+              "min": 1.3575,
+              "max": 1.368,
               "n": 3
             },
             "JVM heap": {
@@ -15818,7 +16004,7 @@
           "n_docs": null,
           "deployment": "server",
           "image": "crate@sha256:e7bded344df487e2595f59d7edaa0cf96979a00ba51f12ee66d7fcf8cd65f5f4",
-          "version_name": "crate 6.4.6",
+          "version_name": "cratedb 6.4.6",
           "host": null,
           "metrics": {
             "Q1 p50 ms": {
@@ -15858,51 +16044,51 @@
               "n": 3
             },
             "cold first query ms": {
-              "median": 835.7699,
-              "min": 834.9489,
+              "median": 419.0843,
+              "min": 2.9435,
               "max": 1290.7091,
-              "n": 3
+              "n": 6
             },
             "ingest documents/s": {
-              "median": 33520.0811,
-              "min": 33442.3502,
+              "median": 33477.5926,
+              "min": 33338.0732,
               "max": 33574.5263,
-              "n": 3
+              "n": 6
             },
             "ingest total s": {
-              "median": 185.0,
+              "median": 185.235,
               "min": 184.7,
-              "max": 185.43,
-              "n": 3
+              "max": 186.01,
+              "n": 6
             },
             "ingest s": {
-              "median": 185.0,
+              "median": 185.235,
               "min": 184.7,
-              "max": 185.43,
-              "n": 3
+              "max": 186.01,
+              "n": 6
             },
             "index s": {
               "median": 0.0,
               "min": 0.0,
               "max": 0.0,
-              "n": 3
+              "n": 6
             },
             "peak memory GiB": {
-              "median": 5.7391,
-              "min": 5.7356,
-              "max": 5.7532,
+              "median": 5.7221,
+              "min": 5.6904,
+              "max": 5.7509,
               "n": 3
             },
             "disk GiB": {
-              "median": 1.6729,
+              "median": 1.6724,
               "min": 0.6979,
               "max": 1.6731,
-              "n": 3
+              "n": 6
             },
             "owned memory after queries GiB": {
-              "median": 5.233,
-              "min": 5.1854,
-              "max": 5.2431,
+              "median": 5.1449,
+              "min": 5.115,
+              "max": 5.2022,
               "n": 3
             },
             "JVM heap": {
@@ -16587,39 +16773,39 @@
               "n": 3
             },
             "cold first query ms": {
-              "median": 20813.1738,
-              "min": 6.9348,
+              "median": 20813.0294,
+              "min": 7.0762,
               "max": 42650.3749,
               "n": 6
             },
             "ingest documents/s": {
-              "median": 88547.5305,
-              "min": 83403.1458,
+              "median": 87906.6148,
+              "min": 81710.0381,
               "max": 91131.8357,
               "n": 6
             },
             "ingest total s": {
-              "median": 700.1,
+              "median": 705.175,
               "min": 680.18,
-              "max": 743.21,
+              "max": 758.61,
               "n": 6
             },
             "ingest s": {
-              "median": 549.72,
-              "min": 527.88,
-              "max": 591.81,
+              "median": 546.41,
+              "min": 517.72,
+              "max": 608.83,
               "n": 6
             },
             "index s": {
-              "median": 150.76,
+              "median": 150.655,
               "min": 149.04,
-              "max": 152.3,
+              "max": 204.96,
               "n": 6
             },
             "peak memory GiB": {
-              "median": 11.6157,
-              "min": 11.5847,
-              "max": 11.7116,
+              "median": 11.3214,
+              "min": 11.2939,
+              "max": 11.6118,
               "n": 3
             },
             "disk GiB": {
@@ -16629,9 +16815,9 @@
               "n": 6
             },
             "owned memory after queries GiB": {
-              "median": 8.4212,
-              "min": 7.0674,
-              "max": 8.4437,
+              "median": 6.8017,
+              "min": 6.6321,
+              "max": 7.0328,
               "n": 3
             },
             "JVM heap": {
@@ -17064,7 +17250,7 @@
           "n_docs": null,
           "deployment": "server",
           "image": "crate@sha256:e7bded344df487e2595f59d7edaa0cf96979a00ba51f12ee66d7fcf8cd65f5f4",
-          "version_name": "crate 6.4.6",
+          "version_name": "cratedb 6.4.6",
           "host": null,
           "metrics": {
             "Q1 p50 ms": {
@@ -17104,51 +17290,51 @@
               "n": 3
             },
             "cold first query ms": {
-              "median": 5649.3267,
-              "min": 5607.4266,
+              "median": 2805.1709,
+              "min": 2.8494,
               "max": 5748.2359,
-              "n": 3
+              "n": 6
             },
             "ingest documents/s": {
-              "median": 36579.6536,
+              "median": 36643.6654,
               "min": 33329.0598,
-              "max": 36711.1556,
-              "n": 3
+              "max": 36745.3225,
+              "n": 6
             },
             "ingest total s": {
-              "median": 1694.55,
-              "min": 1688.48,
+              "median": 1691.595,
+              "min": 1686.91,
               "max": 1859.82,
-              "n": 3
+              "n": 6
             },
             "ingest s": {
-              "median": 1694.55,
-              "min": 1688.48,
+              "median": 1691.595,
+              "min": 1686.91,
               "max": 1859.82,
-              "n": 3
+              "n": 6
             },
             "index s": {
               "median": 0.0,
               "min": 0.0,
               "max": 0.0,
-              "n": 3
+              "n": 6
             },
             "peak memory GiB": {
-              "median": 10.9125,
-              "min": 10.8735,
-              "max": 10.913,
+              "median": 10.4526,
+              "min": 10.4295,
+              "max": 10.5243,
               "n": 3
             },
             "disk GiB": {
-              "median": 7.0189,
+              "median": 8.9434,
               "min": 7.0164,
-              "max": 7.0191,
-              "n": 3
+              "max": 10.8738,
+              "n": 6
             },
             "owned memory after queries GiB": {
-              "median": 10.3497,
-              "min": 10.2988,
-              "max": 10.4024,
+              "median": 9.9029,
+              "min": 9.9022,
+              "max": 9.9136,
               "n": 3
             },
             "JVM heap": {
@@ -17583,12 +17769,12 @@
       "withheld_scales": [],
       "withheld_reason": null,
       "source_paths": [
-        "benchmarks/experiments/results/runs_paper.csv",
-        "benchmarks/experiments/lean_http.py"
+        "experiments/results/runs_paper.csv",
+        "experiments/lean_http.py"
       ],
       "source_urls": [
-        "https://github.com/humemai/arcadedb-embedded-python/blob/main/benchmarks/experiments/results/runs_paper.csv",
-        "https://github.com/humemai/arcadedb-embedded-python/blob/main/benchmarks/experiments/lean_http.py"
+        "https://github.com/humemai/mmdbbench/blob/main/experiments/results/runs_paper.csv",
+        "https://github.com/humemai/mmdbbench/blob/main/experiments/lean_http.py"
       ],
       "instrument": "2026-11",
       "directions": {
@@ -17633,8 +17819,8 @@
           "why": "MongoDB at TPC-H SF10 (60.0M line items): the analytics cell exceeded its 2 hour budget, the same budget every engine on this table had, on its first attempt and was not retried; there is no row."
         }
       ],
-      "source_path": "benchmarks/experiments/results/runs_paper.csv",
-      "source_url": "https://github.com/humemai/arcadedb-embedded-python/blob/main/benchmarks/experiments/results/runs_paper.csv"
+      "source_path": "experiments/results/runs_paper.csv",
+      "source_url": "https://github.com/humemai/mmdbbench/blob/main/experiments/results/runs_paper.csv"
     },
     {
       "id": "multimodel",
@@ -17840,13 +18026,13 @@
         }
       ],
       "source_paths": [
-        "benchmarks/experiments/results/runs_paper.csv"
+        "experiments/results/runs_paper.csv"
       ],
-      "source_path": "benchmarks/experiments/results/runs_paper.csv",
+      "source_path": "experiments/results/runs_paper.csv",
       "source_urls": [
-        "https://github.com/humemai/arcadedb-embedded-python/blob/main/benchmarks/experiments/results/runs_paper.csv"
+        "https://github.com/humemai/mmdbbench/blob/main/experiments/results/runs_paper.csv"
       ],
-      "source_url": "https://github.com/humemai/arcadedb-embedded-python/blob/main/benchmarks/experiments/results/runs_paper.csv"
+      "source_url": "https://github.com/humemai/mmdbbench/blob/main/experiments/results/runs_paper.csv"
     }
   ],
   "condition_provenance": {
@@ -17914,6 +18100,12 @@
         ]
       },
       {
+        "text": "Every deterministic answer on this table is hashed and compared across the engines before anything is published, and a publish is refused when two of them disagree. What that comparison could not cover, declared rather than skipped: CrateDB cannot express new-order and payment (and the payments and stock checks that read their end state): CrateDB has no multi-statement transaction (a statement is its unit), so TPC-C's new-order and payment, each one ACID transaction over three statements, cannot be written for it.",
+        "values": [
+          "CrateDB cannot express new-order and payment (and the payments and stock checks that read their end state): CrateDB has no multi-statement transaction (a statement is its unit), so TPC-C's new-order and payment, each one ACID transaction over three statements, cannot be written for it"
+        ]
+      },
+      {
         "text": "The cold column is the very first query of a session, the point lookup, timed once on a database that has just been opened; every other latency column is the warm median of the iterations that follow it. It answers what the first query of a session costs against the hundredth, which is a different question from the steady-state one and is the one an application that opens a database per request actually asks.",
         "values": [
           "the point lookup"
@@ -17932,8 +18124,9 @@
         ]
       },
       {
-        "text": "The cold column is the very first query of a session, new-order, timed once on a database that has just been opened; every other latency column is the warm median of the iterations that follow it. It answers what the first query of a session costs against the hundredth, which is a different question from the steady-state one and is the one an application that opens a database per request actually asks.",
+        "text": "The cold column is the very first query of a session, insert / new-order, timed once on a database that has just been opened; every other latency column is the warm median of the iterations that follow it. It answers what the first query of a session costs against the hundredth, which is a different question from the steady-state one and is the one an application that opens a database per request actually asks.",
         "values": [
+          "insert",
           "new-order"
         ]
       },
@@ -18035,28 +18228,30 @@
         ]
       },
       {
-        "text": "ArcadeDB's served rows time every call through the benchmark's own minimal HTTP client, lean_http (http.client, keep-alive) (source: benchmarks/experiments/lean_http.py), which keeps one persistent http.client connection per host. The other engines are measured through their vendors' own Python clients, so client weight differs between the served engines.",
+        "text": "ArcadeDB's served rows time every call through the benchmark's own minimal HTTP client, lean_http (http.client, keep-alive) (source: experiments/lean_http.py), which keeps one persistent http.client connection per host. The other engines are measured through their vendors' own Python clients, so client weight differs between the served engines.",
         "values": [
           "lean_http (http.client, keep-alive)",
-          "benchmarks/experiments/lean_http.py"
+          "experiments/lean_http.py"
         ]
       },
       {
-        "text": "ArcadeDB (server, JVM build), ArcadeDB (server, native build), and Neo4j run on a JVM, and for them this column is close to the heap they were given rather than the memory the work needed: Neo4j's 4.22 GiB here is about 120 per cent of its 3.52g heap. Every engine on a table gets the same memory envelope; how much of it a JVM takes is a property of the runtime, so read these cells against each other rather than against an engine that manages its own memory.",
-        "values": [
-          "ArcadeDB (server, JVM build), ArcadeDB (server, native build), and Neo4j",
-          "4.22",
-          "120",
-          "3.52g"
-        ]
-      },
-      {
-        "text": "ArcadeDB (server, JVM build), ArcadeDB (server, native build), and Neo4j run on a JVM, and for them this column is close to the heap they were given rather than the memory the work needed: Neo4j's 4.22 GiB here is about 120 per cent of its 3.52g heap. Every engine on a table gets the same memory envelope; how much of it a JVM takes is a property of the runtime, so read these cells against each other rather than against an engine that manages its own memory. ArcadeDB (embedded, JVM build) and ArcadeDB (embedded, native build) run on a JVM too, but they start with no initial heap size, so their column follows what the work needed and not the heap the JVM was allowed to grow into.",
+        "text": "ArcadeDB (server, JVM build), ArcadeDB (server, native build), and Neo4j run on a JVM, and for them this column is close to the heap they were given rather than the memory the work needed: Neo4j's 4.22 GiB at SF1 is about 120 per cent of its 3.52g heap. Every engine on a table gets the same memory envelope; how much of it a JVM takes is a property of the runtime, so read these cells against each other rather than against an engine that manages its own memory.",
         "values": [
           "ArcadeDB (server, JVM build), ArcadeDB (server, native build), and Neo4j",
           "4.22",
           "120",
           "3.52g",
+          "SF1"
+        ]
+      },
+      {
+        "text": "ArcadeDB (server, JVM build), ArcadeDB (server, native build), and Neo4j run on a JVM, and for them this column is close to the heap they were given rather than the memory the work needed: Neo4j's 4.22 GiB at SF1 is about 120 per cent of its 3.52g heap. Every engine on a table gets the same memory envelope; how much of it a JVM takes is a property of the runtime, so read these cells against each other rather than against an engine that manages its own memory. ArcadeDB (embedded, JVM build) and ArcadeDB (embedded, native build) run on a JVM too, but they start with no initial heap size, so their column follows what the work needed and not the heap the JVM was allowed to grow into.",
+        "values": [
+          "ArcadeDB (server, JVM build), ArcadeDB (server, native build), and Neo4j",
+          "4.22",
+          "120",
+          "3.52g",
+          "SF1",
           "ArcadeDB (embedded, JVM build) and ArcadeDB (embedded, native build)"
         ]
       },
@@ -18341,21 +18536,23 @@
         ]
       },
       {
-        "text": "ArcadeDB (server, one transaction, JVM build), ArcadeDB (server, one transaction, native build), and Qdrant + Neo4j (no shared transaction) run on a JVM, and for them this column is close to the heap they were given rather than the memory the work needed: Qdrant + Neo4j (no shared transaction)'s 5.33 GiB here is about 119 per cent of its 4.49g heap. Every engine on a table gets the same memory envelope; how much of it a JVM takes is a property of the runtime, so read these cells against each other rather than against an engine that manages its own memory.",
-        "values": [
-          "ArcadeDB (server, one transaction, JVM build), ArcadeDB (server, one transaction, native build), and Qdrant + Neo4j (no shared transaction)",
-          "5.33",
-          "119",
-          "4.49g"
-        ]
-      },
-      {
-        "text": "ArcadeDB (server, one transaction, JVM build), ArcadeDB (server, one transaction, native build), and Qdrant + Neo4j (no shared transaction) run on a JVM, and for them this column is close to the heap they were given rather than the memory the work needed: Qdrant + Neo4j (no shared transaction)'s 5.33 GiB here is about 119 per cent of its 4.49g heap. Every engine on a table gets the same memory envelope; how much of it a JVM takes is a property of the runtime, so read these cells against each other rather than against an engine that manages its own memory. ArcadeDB (one transaction, JVM build) and ArcadeDB (one transaction, native build) run on a JVM too, but they start with no initial heap size, so their column follows what the work needed and not the heap the JVM was allowed to grow into.",
+        "text": "ArcadeDB (server, one transaction, JVM build), ArcadeDB (server, one transaction, native build), and Qdrant + Neo4j (no shared transaction) run on a JVM, and for them this column is close to the heap they were given rather than the memory the work needed: Qdrant + Neo4j (no shared transaction)'s 5.33 GiB at 50k products is about 119 per cent of its 4.49g heap. Every engine on a table gets the same memory envelope; how much of it a JVM takes is a property of the runtime, so read these cells against each other rather than against an engine that manages its own memory.",
         "values": [
           "ArcadeDB (server, one transaction, JVM build), ArcadeDB (server, one transaction, native build), and Qdrant + Neo4j (no shared transaction)",
           "5.33",
           "119",
           "4.49g",
+          "50k products"
+        ]
+      },
+      {
+        "text": "ArcadeDB (server, one transaction, JVM build), ArcadeDB (server, one transaction, native build), and Qdrant + Neo4j (no shared transaction) run on a JVM, and for them this column is close to the heap they were given rather than the memory the work needed: Qdrant + Neo4j (no shared transaction)'s 5.33 GiB at 50k products is about 119 per cent of its 4.49g heap. Every engine on a table gets the same memory envelope; how much of it a JVM takes is a property of the runtime, so read these cells against each other rather than against an engine that manages its own memory. ArcadeDB (one transaction, JVM build) and ArcadeDB (one transaction, native build) run on a JVM too, but they start with no initial heap size, so their column follows what the work needed and not the heap the JVM was allowed to grow into.",
+        "values": [
+          "ArcadeDB (server, one transaction, JVM build), ArcadeDB (server, one transaction, native build), and Qdrant + Neo4j (no shared transaction)",
+          "5.33",
+          "119",
+          "4.49g",
+          "50k products",
           "ArcadeDB (one transaction, JVM build) and ArcadeDB (one transaction, native build)"
         ]
       },
@@ -18429,21 +18626,23 @@
         ]
       },
       {
-        "text": "ArcadeDB (server, JVM build) and ArcadeDB (server, native build) run on a JVM, and for them this column is close to the heap they were given rather than the memory the work needed: ArcadeDB (server, JVM build)'s 3.27 GiB here is about 41 per cent of its 8g heap. Every engine on a table gets the same memory envelope; how much of it a JVM takes is a property of the runtime, so read these cells against each other rather than against an engine that manages its own memory.",
+        "text": "ArcadeDB (server, JVM build), ArcadeDB (server, native build), and CrateDB run on a JVM, and for them this column is close to the heap they were given rather than the memory the work needed: CrateDB's 5.72 GiB at TPC-H SF1 is about 143 per cent of its 4g heap. Every engine on a table gets the same memory envelope; how much of it a JVM takes is a property of the runtime, so read these cells against each other rather than against an engine that manages its own memory.",
         "values": [
-          "ArcadeDB (server, JVM build) and ArcadeDB (server, native build)",
-          "3.27",
-          "41",
-          "8g"
+          "ArcadeDB (server, JVM build), ArcadeDB (server, native build), and CrateDB",
+          "5.72",
+          "143",
+          "4g",
+          "TPC-H SF1"
         ]
       },
       {
-        "text": "ArcadeDB (server, JVM build) and ArcadeDB (server, native build) run on a JVM, and for them this column is close to the heap they were given rather than the memory the work needed: ArcadeDB (server, JVM build)'s 3.27 GiB here is about 41 per cent of its 8g heap. Every engine on a table gets the same memory envelope; how much of it a JVM takes is a property of the runtime, so read these cells against each other rather than against an engine that manages its own memory. ArcadeDB (embedded, JVM build) and ArcadeDB (embedded, native build) run on a JVM too, but they start with no initial heap size, so their column follows what the work needed and not the heap the JVM was allowed to grow into.",
+        "text": "ArcadeDB (server, JVM build), ArcadeDB (server, native build), and CrateDB run on a JVM, and for them this column is close to the heap they were given rather than the memory the work needed: CrateDB's 5.72 GiB at TPC-H SF1 is about 143 per cent of its 4g heap. Every engine on a table gets the same memory envelope; how much of it a JVM takes is a property of the runtime, so read these cells against each other rather than against an engine that manages its own memory. ArcadeDB (embedded, JVM build) and ArcadeDB (embedded, native build) run on a JVM too, but they start with no initial heap size, so their column follows what the work needed and not the heap the JVM was allowed to grow into.",
         "values": [
-          "ArcadeDB (server, JVM build) and ArcadeDB (server, native build)",
-          "3.27",
-          "41",
-          "8g",
+          "ArcadeDB (server, JVM build), ArcadeDB (server, native build), and CrateDB",
+          "5.72",
+          "143",
+          "4g",
+          "TPC-H SF1",
           "ArcadeDB (embedded, JVM build) and ArcadeDB (embedded, native build)"
         ]
       },
@@ -18489,6 +18688,14 @@
           "TPC-H SF10 (60.0M line items)",
           "32g memory envelope",
           "32,768 MiB"
+        ]
+      },
+      {
+        "text": "CrateDB cannot express new-order and payment (and the payments and stock checks that read their end state) on this table: the adapter declared them not expressible rather than leaving them blank (CrateDB has no multi-statement transaction (a statement is its unit), so TPC-C's new-order and payment, each one ACID transaction over three statements, cannot be written for it).",
+        "values": [
+          "CrateDB",
+          "new-order and payment (and the payments and stock checks that read their end state)",
+          "CrateDB has no multi-statement transaction (a statement is its unit), so TPC-C's new-order and payment, each one ACID transaction over three statements, cannot be written for it"
         ]
       },
       {
