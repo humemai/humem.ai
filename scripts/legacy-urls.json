@@ -51,11 +51,19 @@
     },
     {
       "from": "/projects/cypherglot",
-      "to": "/software/cypherglot"
+      "to": "/software"
     },
     {
       "from": "/projects/humemdb",
-      "to": "/software/humemdb"
+      "to": "/software"
+    },
+    {
+      "from": "/software/cypherglot",
+      "to": "/software"
+    },
+    {
+      "from": "/software/humemdb",
+      "to": "/software"
     },
     {
       "from": "/projects/human-like-memory-systems",

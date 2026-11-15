@@ -12,8 +12,6 @@ export const projectSections = {
   "arcadedb-software": "software",
   "arcadedb-python-software": "software",
   "audit-ready-memory": "software",
-  cypherglot: "software",
-  humemdb: "software",
   arcadedb: "research",
   mmdbbench: "research",
   "arcadedb-python": "research",

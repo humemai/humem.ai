@@ -41,8 +41,8 @@ devices = [
 if len(devices) != 6:
     sys.exit(f"expected 6 devices in docs/design/test-devices.md, found {len(devices)}")
 
-# The core pages (one of each kind) are also checked in the dark scheme. Every sitemap page, and the unlisted pages
-# that are reachable by URL, is checked in the light scheme.
+# The core pages (one of each kind) are also checked in the dark scheme. Every sitemap page is checked in the light
+# scheme.
 core_pages = [
     "/", "/software", "/research", "/about", "/contact", "/news", "/privacy-policy",
     "/software/arcadedb", "/software/arcadedb-python", "/research/arcadedb", "/research/arcadedb-python",

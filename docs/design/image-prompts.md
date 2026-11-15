@@ -191,79 +191,13 @@ Aspect ratio: 16:9 landscape.
 Filename: `project-audit-ready-memory.png`
 Alt text: `Illustration of traceable and explainable AI memory records.`
 
-## 5. CypherGLOT Project Visual
+## 5. Removed (CypherGLOT Project Visual)
 
-```text
-Generate a 1:1 square illustration for the HumemAI website.
+The CypherGLOT page was removed on 2026-11-15, and so was its illustration. Its prompt is in the git history. The number stays so the other section numbers keep their meaning.
 
-Purpose:
-This image will be used on the CypherGLOT project page. It should communicate that CypherGLOT is a compiler-first Cypher frontend that parses, validates, normalizes, and lowers admitted Cypher into backend-aware SQL-backed output for embedded runtimes.
+## 6. Removed (HumemDB Project Visual)
 
-What to show:
-Four groups arranged in a square block, one near each corner. Top left: a solid filled rose capsule. Top right and bottom right: two solid filled oxblood rounded squares. Bottom left: a small knowledge graph of three solid filled oxblood circles joined by thick oxblood edges. Thick oxblood lines connect them in a clockwise loop starting from the rose capsule and ending at the graph. The arrangement must fill the square frame rather than form a single horizontal row. Eight elements total.
-
-Style:
-Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
-
-Fills:
-Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
-
-Palette, exactly these three colors and nothing else:
-- background: warm off-white #faf8f5
-- every shape and every stroke: deep oxblood #892122
-- the single most important element only: soft rose #e88e8b
-Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
-
-Content discipline:
-Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
-
-Composition:
-Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
-
-Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
-
-Aspect ratio: 1:1 square.
-```
-
-Filename: `project-cypherglot-compiler.png`
-Alt text: `Illustration of Cypher query compilation into normalized graph-relational output.`
-
-## 6. HumemDB Project Visual
-
-```text
-Generate a 1:1 square illustration for the HumemAI website.
-
-Purpose:
-This image will be used on the HumemDB project page. It should communicate a Python-first embedded orchestration runtime that routes SQL, Cypher, and vector workloads across the engines best suited for each job.
-
-What to show:
-One solid filled oxblood rounded square at the centre. Four thick oxblood lines radiate from it to four smaller shapes placed up, down, left and right: a circle, a square, a diamond and a capsule. Three of the four outer shapes are solid oxblood; the one on the right is rose. Nine elements total.
-
-Style:
-Flat minimal diagram, like bold clean vector art someone drew with intent. Thick even strokes, generous negative space, chunky and confident rather than thin and wiry. If it could not be redrawn by hand in two minutes, it is too detailed.
-
-Fills:
-Every small shape is filled solid with flat color: circles, dots, capsules, pills, squares and diamonds are solid, never hollow rings or empty outlines. Only a large container, meaning a shape whose purpose is to enclose other shapes, may be drawn as a thick outline with the background showing through it.
-
-Palette, exactly these three colors and nothing else:
-- background: warm off-white #faf8f5
-- every shape and every stroke: deep oxblood #892122
-- the single most important element only: soft rose #e88e8b
-Do not use black, grey, charcoal, white, or any fourth color anywhere. No gradients, no lighting effects, no shadows, no texture.
-
-Content discipline:
-Draw only the elements listed under "What to show" and nothing else. Do not add decorative marks, stray dots, crosses, sparkles, arrows, badges, or any extra shape that was not requested. Empty background is correct and desirable.
-
-Composition:
-Center-weighted and balanced, with equal quiet margin on all four sides. Nothing important near any edge.
-
-Absolutely no text, letters, numbers, or letter-like glyph rows anywhere in the image. Shapes that suggest documents or tables must be plain empty outlines, never filled with writing-like lines.
-
-Aspect ratio: 1:1 square.
-```
-
-Filename: `project-humemdb-runtime.png`
-Alt text: `Illustration of an embedded runtime coordinating SQL, graph, and vector workloads.`
+The HumemDB page was removed on 2026-11-15, and so was its illustration. Its prompt is in the git history. The number stays so the other section numbers keep their meaning.
 
 ## 7. News Visual
 
