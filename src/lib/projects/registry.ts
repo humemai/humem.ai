@@ -8,11 +8,9 @@ import {
   arcadeDbSoftware,
   auditReadyMemory,
   coLearning,
-  cypherglot,
   dbbench,
   explicitMemory,
   humanLikeMemorySystems,
-  humemdb,
   kgMemoryTransfer,
   roomkgBaselines,
   roomkgMetaPolicies,
@@ -25,11 +23,9 @@ const allProjects: Project[] = [
   arcadeDbSoftware,
   auditReadyMemory,
   coLearning,
-  cypherglot,
   dbbench,
   explicitMemory,
   humanLikeMemorySystems,
-  humemdb,
   kgMemoryTransfer,
   roomkgBaselines,
   roomkgMetaPolicies,
@@ -41,10 +37,6 @@ for (const project of allProjects) {
     throw new Error(`Project "${project.slug}" has no section in src/lib/projects/sections.ts`);
   }
 }
-
-// Unlisted projects keep their page (the URL and links to it work) but are not advertised: no card on the section
-// indexes or the home-page rail, and no sitemap entry (src/app/sitemap.ts).
-export const UNLISTED_PROJECTS: ReadonlySet<string> = new Set(["cypherglot", "humemdb"]);
 
 // MMDBBench is standalone. It joins the lists (the section indexes and the home-page rail) when it is listed or
 // indexable; the sitemap takes it only when indexable (src/app/sitemap.ts). The cards are in the order of
@@ -73,11 +65,9 @@ export type SectionEntry = {
 /** The cards of one section: its own projects first, then the cross-listed ones from the other section. */
 export function getSectionEntries(section: Section): SectionEntry[] {
   const own = projects
-    .filter((project) => !UNLISTED_PROJECTS.has(project.slug))
     .filter((project) => projectSections[project.slug as keyof typeof projectSections] === section)
     .map((project) => ({ project, summary: project.summary, href: projectPath(project.slug) }));
   const crossListed = projects
-    .filter((project) => !UNLISTED_PROJECTS.has(project.slug))
     .filter((project) => project.crossListing?.section === section)
     .map((project) => ({
       project,
