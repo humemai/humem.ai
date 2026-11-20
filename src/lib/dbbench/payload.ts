@@ -3,7 +3,7 @@ import { join } from "node:path";
 import type { BenchmarkDataset } from "@/components/editorial-sections";
 
 // The MMDBBench pages read one payload, src/data/dbbench-benchmarks.json, written by refresh_web_page.py in the
-// benchmark tooling (humemai/arcadedb-embedded-python, benchmarks/experiments) from export_web.py's web_benchmarks.json.
+// benchmark tooling (humemai/mmdbbench, experiments) from export_web.py's web_benchmarks.json.
 // It holds 2026-11 rows only. Nothing on an MMDBBench page types a number; every figure comes from this file.
 //
 // While the file does not exist, loadDbbenchDataset() returns undefined and every MMDBBench page renders its method and its
