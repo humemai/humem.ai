@@ -545,7 +545,8 @@ export function EditorialBenchmarkTable({
           <p className={styles.benchmarkSource}>
             Measured rows:{" "}
             {(sourcePaths?.length ? sourcePaths : [sourcePath as string]).map((p, i) => {
-              const href = sourceUrls?.[i] ?? sourceUrl ?? undefined;
+              // A path with a placeholder (dense_mp5_<pin>) names an untracked folder of the bench host: it has no page, so it is text, not a link.
+              const href = p.includes("<") ? undefined : (sourceUrls?.[i] ?? sourceUrl ?? undefined);
               return (
                 <span key={p}>
                   {i > 0 ? ", " : ""}

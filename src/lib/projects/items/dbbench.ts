@@ -86,7 +86,7 @@ export const dbbench: Project = {
         body: [
           "If a setting we use for your engine differs from what you recommend, open an issue. Say which engine and version, what we use, what you recommend, and where your documentation says so.",
           "We re-run the affected cells with your configuration on the same machine, and publish them beside the earlier result with the reason. The earlier result stays in the history.",
-          "[Open an issue on GitHub](" + dbbenchIssuesUrl + "). The [contribution guide](" + dbbenchDocsUrl + "contribute/) also covers adding an engine, a query or a lane, and reporting a problem with a result.",
+          "[Open an issue on GitHub](" + dbbenchIssuesUrl + "). The [contribution guide](" + dbbenchDocsUrl + "latest/contribute/) also covers adding an engine, a query or a lane, and reporting a problem with a result.",
         ],
       },
       {
