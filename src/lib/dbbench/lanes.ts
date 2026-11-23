@@ -166,6 +166,12 @@ export const dbbenchLanes: DbbenchLane[] = [
         showDigests: false,
       },
       {
+        tableId: "restart",
+        caption:
+          "A served engine's restart: it is stopped cleanly, started again on the same data, and timed until a fixed read answers as it did before the stop. The cycle runs a second time after a batch of committed writes, and the batch is read back, so no stop is quick because it lost writes. Each engine restarts on one kind of data, named in the Size column, and is compared only with the engines on the same data. A served engine has no open or close to time, and a restart is what an operator pays after an upgrade, a configuration change, or a crash.",
+        showDigests: false,
+      },
+      {
         tableId: "durability",
         caption:
           "Every timed write at both durability settings, with the ratio, and the single-record read beneath the document writes as a control. The Size column names the operation rather than a corpus size, because the lanes that time a write do not write the same thing.",
