@@ -725,6 +725,13 @@ table.benchmarkGrid {
   word-break: break-all;
 }
 
+/* The stamp line above the status sentences: small and quiet. No margin of its own, the prose column's gap spaces it. */
+.pageStamp {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
 .benchmarkDirections {
   margin: var(--site-space-compact) 0 0;
   font-size: 0.78rem;

@@ -17,7 +17,8 @@ export function dbbenchProjectWithResults(project: Project, dataset: BenchmarkDa
   const sections = (page.sections ?? []).map((section) => {
     if (section.id === "status") {
       const body: ProjectEditorialBodyBlock[] = [
-        "These are the results of the November 2026 instrument. Every table was measured on the machine below. A table lists its own conditions beneath its caption.",
+        { type: "benchmarkStatus" },
+        "Every table was measured on the machine below. A table lists its own conditions beneath its caption.",
         { type: "benchmarkMachine" },
         "These conditions hold for every table:",
         { type: "benchmarkConditions" },

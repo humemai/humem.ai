@@ -149,6 +149,13 @@ export type BenchmarkTable = {
  * every metric key to the literals present in the first table, so the inferred
  * type stops matching as soon as a lane reports a different metric set.
  */
+export type BenchmarkStatus = {
+  /** One line: the instrument, the ArcadeDB release of the rows and the day the data was generated. */
+  stamp: string;
+  /** The status sentences: which release the rows are, what the rerun does to them, which sizes keep their rows. */
+  lines: string[];
+};
+
 export type BenchmarkDataset = {
   source: string;
   generator: string;
@@ -157,6 +164,8 @@ export type BenchmarkDataset = {
   provenance_note: string;
   hosts_recorded: string[];
   tables: BenchmarkTable[];
+  /** The page's stamp line and status sentences, written from page_status.json by the export. Read by the MMDBBench page. */
+  status?: BenchmarkStatus;
   /** The machine the rows ran on, as the export writes it. Read by the MMDBBench page. */
   setup?: {
     hosts?: Record<string, { cpu?: string; memory?: string; storage?: string; os?: string }>;
@@ -654,6 +663,24 @@ export function EditorialConditions({ conditions }: { conditions: string[] }) {
         <li key={condition}>{condition}</li>
       ))}
     </ul>
+  );
+}
+
+/**
+ * The page's statement of itself, above the tables: the stamp line, then the status sentences. Both are written
+ * by the export from one data file in the benchmark tooling, so the page cannot say a release its rows are not.
+ */
+export function EditorialStatus({ status }: { status?: BenchmarkStatus }) {
+  if (!status) {
+    return null;
+  }
+  return (
+    <>
+      <p className={styles.pageStamp}>{status.stamp}</p>
+      {status.lines.map((line) => (
+        <p key={line}>{line}</p>
+      ))}
+    </>
   );
 }
 

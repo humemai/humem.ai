@@ -44,6 +44,11 @@ export type ProjectEditorialBodyBlock =
   | {
       type: "benchmarkMachine";
     }
+  // The page's statement of its own engine release and rerun: a stamp line (instrument, ArcadeDB release, generation date) and the status
+  // sentences, read from the payload's `status`, which the benchmark tooling writes from page_status.json (humemai/mmdbbench#173).
+  | {
+      type: "benchmarkStatus";
+    }
   // The skeleton publish's two exception lists: the invariants it waives and
   // the tables it cannot draw (DECISIONS #86). They travel with the data, so
   // the block renders nothing once the payload is a real campaign one.
