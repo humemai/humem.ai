@@ -8,7 +8,7 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import type { ReactNode } from "react";
 import type { BenchmarkDataset } from "@/components/editorial-sections";
-import { EditorialBenchmarkTable, EditorialPaperTable, EditorialConditions, EditorialFigureGrid, EditorialLinkSection, EditorialSection, EditorialSectionFigure, EditorialSkeletonNotes } from "@/components/editorial-sections";
+import { EditorialBenchmarkTable, EditorialPaperTable, EditorialConditions, EditorialFigureGrid, EditorialLinkSection, EditorialSection, EditorialSectionFigure, EditorialSkeletonNotes, EditorialStatus } from "@/components/editorial-sections";
 import { EditorialMediaHero } from "@/components/editorial-media-hero";
 import { EditorialSectionNav } from "@/components/editorial-section-nav";
 import { projectSections, type Section } from "@/lib/projects";
@@ -151,6 +151,10 @@ export function EditorialProjectPage({ project, dataset = NO_RESULTS, banner, se
           }))}
         />
       );
+    }
+
+    if (block.type === "benchmarkStatus") {
+      return <EditorialStatus key={`${sectionId}-${index}`} status={dataset.status} />;
     }
 
     if (block.type === "benchmarkConditions") {
