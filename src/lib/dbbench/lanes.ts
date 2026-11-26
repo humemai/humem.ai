@@ -1,14 +1,12 @@
 // The six MMDBBench lanes and the tables each one will publish.
 //
-// No result is published yet: the first results come in November 2026 (dbbenchFirstResults below). A lane lists the
-// tables it will carry, each with the caption that says what it measures. When the first results land, the payload
-// that carries the numbers is added back and the table ids here name its tables.
+// A lane lists the tables it carries, each with the caption that says what it measures. The payload carries the numbers,
+// and the table ids here name its tables.
 //
 // NO NUMBER IS TYPED INTO A SENTENCE HERE. The prose says what a table measures and why.
 
-/** The one sentence every MMDBBench and ArcadeDB page uses to say when results appear. */
-export const dbbenchFirstResults =
-  "The first results are published in November 2026: ArcadeDB 26.11.1 against a multi-model subset of engines, measured on the November instrument. Until then MMDBBench shows its method and its lanes, and no numbers.";
+/** What the MMDBBench page says in place of its results while it has no payload (src/lib/dbbench/results.ts replaces it). */
+export const dbbenchNoResults = "No results are published here. The method and the lanes below say what a result measures.";
 
 export type DbbenchLaneTable = {
   tableId: string;
@@ -69,7 +67,7 @@ export const dbbenchLanes: DbbenchLane[] = [
       {
         tableId: "l2olap",
         caption:
-          "Graph analytical queries: average friend age, friendships within a city, most friends, the degree distribution, and the triangle count. A query that exceeds its time budget is published as censored, with its budget and the iterations it reached.",
+          "Graph analytical queries: average friend age, friendships within a city, most friends, the degree distribution, the triangle count, and the pattern counts of the Labelled Subgraph Query Benchmark (LSQB). A query that exceeds its time budget is published as censored, with its budget and the iterations it reached.",
       },
     ],
   },
@@ -117,10 +115,11 @@ export const dbbenchLanes: DbbenchLane[] = [
     slug: "cross-model",
     title: "Cross-model",
     navLabel: "Cross-model",
-    blurb: "One operation across a vector, a graph edge, and a document.",
+    blurb: "One operation across a vector, a graph edge, and a record.",
     lead: [
       "Most lanes compare engines that do one thing. This lane asks what a single engine buys when one operation touches more than one data model. The comparators are other engines that hold several models and, beside them, a composed stack: separate stores with application code between them.",
-      "The retrieval path is a vector search, a one-hop expansion from what it found, and a projection of the documents behind those. A second path restricts the vector search to the neighbourhood of a starting node. Both report recall against a brute-force answer over the same candidate set.",
+      "The write is a vector search, a one-hop expansion from what it found, and a record update on each product it reached. The record is a document, a table row, or a node's properties, depending on the engine.",
+      "The retrieval path is a vector search, a one-hop expansion from what it found, and a projection of the records behind those. A second path restricts the vector search to the neighbourhood of a starting node. Both report recall against a brute-force answer over the same candidate set.",
       "The crash table is a correctness result, not a speed one. The same operation is interrupted part-way through, many times, and afterwards the store is asked what it holds. It has no latency column on purpose.",
     ],
     tables: [
@@ -137,7 +136,7 @@ export const dbbenchLanes: DbbenchLane[] = [
       {
         tableId: "multimodel",
         caption:
-          "Which multi-model engines have rows on which table, read from the published tables. Each cell says whether the engine was measured there, was left off with a reason the table itself prints, or was not run on that workload at all.",
+          "Which multi-model engines have results on which table, read from the published tables. Each cell says whether the engine was measured there, has no measured result there for a reason that table prints, or was not run on that workload at all.",
         showDigests: false,
       },
     ],
