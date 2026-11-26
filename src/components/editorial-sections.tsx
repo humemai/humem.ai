@@ -211,6 +211,8 @@ export type BenchmarkEntry = {
   n_docs: string | null;
   deployment: string;
   precision?: string | null;
+  /** How a cross-model row gets to the vector, the graph, and the record: built in, an extension, separate products, or node properties. */
+  models?: string | null;
   image: string | null;
   version_name: string | null;
   host: string | null;
@@ -277,8 +279,11 @@ function formatStat(stat: BenchmarkStat | undefined, column?: string) {
   // more than it gives. Full precision stays in the JSON, which is what the
   // gates read.
   // Counts print as counts: "0 of 40 torn" is 0, not 0.00, and 40 trials
-  // is 40, not 40.0.
-  if (Number.isInteger(v) && v < 1e4) return v.toLocaleString();
+  // is 40, not 40.0. A latency or a recall is not a count, so a value that
+  // happens to be whole keeps the decimals of its column: a recall of 1 beside
+  // 0.96 read as another kind of number.
+  const measured = Boolean(column && /\bms\b|recall@/.test(column));
+  if (Number.isInteger(v) && v < 1e4 && !measured) return v.toLocaleString();
   if (v >= 1e6) return `${(v / 1e6).toFixed(2)}M`;
   if (v >= 1e4) return `${Math.round(v / 1000).toLocaleString()}k`;
   if (v >= 1000) return Math.round(v).toLocaleString();
@@ -427,6 +432,8 @@ export function EditorialBenchmarkTable({
   // dash because their weight encoding has not been audited, which is a true
   // thing to show rather than a blank that reads as "same as above".
   const showPrecision = entries.some((e) => e.precision);
+  // The cross-model tables say per row how the engine gets to the three models.
+  const showModels = entries.some((e) => e.models);
   // One line per DISTINCT build. The key is the build itself, NOT the row that
   // used it: keying on the row label made the time-series table list one
   // ArcadeDB build twice, because two arms of the same engine spell their
@@ -476,7 +483,7 @@ export function EditorialBenchmarkTable({
                   {arrow(column)}
                 </th>
               ))}
-
+              {showModels ? <th scope="col">Models</th> : null}
             </tr>
           </thead>
           <tbody>
@@ -498,6 +505,7 @@ export function EditorialBenchmarkTable({
                       )}
                     </td>
                   ))}
+                  {showModels ? <td data-label="Models">{entry.models ?? "—"}</td> : null}
                 </>
               );
               const rows = [

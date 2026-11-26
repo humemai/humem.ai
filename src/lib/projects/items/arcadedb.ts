@@ -1,5 +1,4 @@
 import type { Project } from "../types";
-import { dbbenchFirstResults } from "../../dbbench/lanes";
 import { arcadeDbDocsUrl, arcadeDbRepoUrl, arcadeDbUpstreamRepoUrl } from "../shared";
 
 export const arcadeDb: Project = {
@@ -28,7 +27,7 @@ export const arcadeDb: Project = {
         title: "Results are measured in MMDBBench.",
         body: [
           "The cross-engine benchmarks are their own project, [MMDBBench](/research/mmdbbench), so that they stay independent of any one engine. This page keeps to ArcadeDB itself.",
-          dbbenchFirstResults,
+          "The results are on that page. It says at the top which ArcadeDB release they were measured on.",
         ],
       },
       {

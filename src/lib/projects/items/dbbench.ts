@@ -4,11 +4,10 @@
 // The methodology points below summarise docs.humem.ai/mmdbbench/latest/methodology/.
 // When that page changes, change this list in the same pull request.
 //
-// NO RESULT IS PUBLISHED YET, and no number is typed into a sentence here. The first results come in November 2026.
-// When they land, the result tables are added back to the lane sections (src/lib/dbbench/results.ts) in the same change that
-// flips DBBENCH_INDEXABLE.
+// NO NUMBER IS TYPED INTO A SENTENCE HERE. This is the page without a payload; with one, src/lib/dbbench/results.ts
+// replaces the results section and puts the tables into the lane sections.
 import type { Project } from "../types";
-import { dbbenchFirstResults, dbbenchLanes } from "../../dbbench/lanes";
+import { dbbenchLanes, dbbenchNoResults } from "../../dbbench/lanes";
 import {
   dbbenchDocsUrl,
   dbbenchEnginesUrl,
@@ -62,8 +61,7 @@ export const dbbench: Project = {
         eyebrow: "Results",
         title: "No results yet.",
         body: [
-          dbbenchFirstResults,
-          "Each lane below says what it measures and which tables it will carry. The method above is what every result will follow.",
+          dbbenchNoResults,
         ],
       },
       {
