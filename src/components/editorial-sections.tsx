@@ -593,7 +593,10 @@ export function EditorialBenchmarkTable({
                       print, where they are the sole identification. */}
                   {b.build ? b.build : <strong>{b.backends.join(", ")}</strong>}
                   {b.image ? (
-                    <code> {shortDigest(b.image)}</code>
+                    /* The digest is cut for reading; the title carries the
+                       whole image reference (design system, Data display,
+                       rule 6). */
+                    <code title={b.image}> {shortDigest(b.image)}</code>
                   ) : builds.some((o) => o !== b && o.build === b.build) ? (
                     /* Same version, two artifacts: the in-process wheel and the
                        pinned server image. The image line identifies itself by
