@@ -5,7 +5,7 @@ import styles from "./privacy-policy.module.css";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "How HumemAI handles analytics, cookie choices, and contact information shared through this website.",
+  description: "How HumemAI handles analytics, cookie choices, contact information, and the data in its Audit-Ready Memory demo.",
 };
 
 export default function PrivacyPolicyPage() {
@@ -14,7 +14,7 @@ export default function PrivacyPolicyPage() {
       <PageHero
         eyebrow="Legal"
         title="Privacy policy"
-        intro="How HumemAI handles analytics, cookie choices, and information shared through this website."
+        intro="How HumemAI handles analytics, cookie choices, and information shared through this website and its demo."
         imageSrc="/images/site/privacy-policy-trust-and-choice.png"
         imageAlt="Illustration representing privacy, transparency, and user control."
         caption="HumemAI keeps analytics optional and makes cookie choices available from the footer."
@@ -51,6 +51,26 @@ export default function PrivacyPolicyPage() {
           <h3>Contact information</h3>
           <p>
             If you contact HumemAI by email or through the contact page, the information you provide is used only to respond to your message and continue the conversation you started.
+          </p>
+        </article>
+
+        <article data-prose className={styles.policyItem}>
+          <p className={styles.policyLabel}>Demo</p>
+          <h3>The Audit-Ready Memory demo</h3>
+          <p>
+            HumemAI runs a demonstration at <a href="https://memory.humem.ai">memory.humem.ai</a>. It is not a service, so use made-up information only.
+          </p>
+          <p>
+            You sign in with Google. The server keeps a scrambled (hashed) form of your account identifier to find your memory, and the app does not write your name or email address to its own storage. Signing in sets a cookie in your browser.
+          </p>
+          <p>
+            What you type and upload stays until you delete your account in the demo, or until 90 days after your last visit. A single deleted item is hidden from every read but stays in the log, so that the removal can be shown. A count of the day&apos;s AI replies is also kept until the day ends.
+          </p>
+          <p>
+            When you ask the assistant, your message and the memory it recalls are sent to OpenRouter and the provider of the model. The hosting provider, Railway, keeps server logs that can include your IP address.
+          </p>
+          <p>
+            Questions about the demo go to <a href="mailto:info@humem.ai">info@humem.ai</a>.
           </p>
         </article>
 
