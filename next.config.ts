@@ -51,13 +51,11 @@ const projectsRedirects = [
   // The Machines With Human-Like Memory overview page was removed: the papers are listed on /research.
   { source: "/projects/machines-with-human-like-memory", destination: "/research", permanent: true },
   { source: "/research/machines-with-human-like-memory", destination: "/research", permanent: true },
-  // CypherGLOT and HumemDB were removed on 2026-11-15: both repositories were made private and restarted from scratch,
-  // so the pages that described the old design are gone. Their URLs go to the Software index, under both /projects and
-  // /software (the page lived at /software). A removed project is no longer in sections.ts, so these are written out.
-  ...["cypherglot", "humemdb"].flatMap((slug) => [
-    { source: `/projects/${slug}`, destination: "/software", permanent: true },
-    { source: `/software/${slug}`, destination: "/software", permanent: true },
-  ]),
+  // HumemDB was removed on 2026-11-15, when its repository was made private and restarted from scratch, so the page
+  // that described the old design is gone. Its URLs go to the Software index, under both /projects and /software (the
+  // page lived at /software). A removed project is no longer in sections.ts, so these are written out.
+  { source: "/projects/humemdb", destination: "/software", permanent: true },
+  { source: "/software/humemdb", destination: "/software", permanent: true },
   // The old paginated index. The sections hold fewer cards than one page.
   { source: "/projects/page/:page", destination: "/software", permanent: true },
   { source: "/projects", destination: "/software", permanent: true },

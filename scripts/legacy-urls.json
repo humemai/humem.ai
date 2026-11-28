@@ -50,15 +50,7 @@
       "to": "/software/audit-ready-memory"
     },
     {
-      "from": "/projects/cypherglot",
-      "to": "/software"
-    },
-    {
       "from": "/projects/humemdb",
-      "to": "/software"
-    },
-    {
-      "from": "/software/cypherglot",
       "to": "/software"
     },
     {
