@@ -191,9 +191,9 @@ Aspect ratio: 16:9 landscape.
 Filename: `project-audit-ready-memory.png`
 Alt text: `Illustration of traceable and explainable AI memory records.`
 
-## 5. Removed (CypherGLOT Project Visual)
+## 5. Removed
 
-The CypherGLOT page was removed on 2026-11-15, and so was its illustration. Its prompt is in the git history. The number stays so the other section numbers keep their meaning.
+This visual was removed on 2026-11-15, with its page. Its prompt is in the git history. The number stays so the other section numbers keep their meaning.
 
 ## 6. Removed (HumemDB Project Visual)
 
